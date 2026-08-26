@@ -12,22 +12,32 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
         "choose_your_skin_QwTwP4": {
           "type": "choose_your_skin",
           "settings": {
-            "products": [],
+            "products": [
+              "brood",
+              "drone",
+              "hive",
+              "queen",
+              "worker"
+            ],
             "heading": "CHOOSE YOUR SCENT",
             "count_text": "in the colony",
-            "heading_color": "#a86a1f",
-            "text_color": "#2a1d13"
+            "heading_color": "#8a6a1f",
+            "text_color": "#5c4b2e"
           }
+        },
+        "product_sub_title_MQVex3": {
+          "type": "product_sub_title",
+          "settings": {}
         },
         "title": {
           "type": "title",
-          "settings": {}
-        },
-        "rating": {
-          "type": "rating",
           "settings": {}
         },
         "product_custom_tag_ydGnkD": {
@@ -37,9 +47,14 @@
             "background_opacity": 100
           }
         },
-        "price": {
-          "type": "price",
-          "settings": {}
+        "product_caption_8iXwUU": {
+          "type": "product-caption",
+          "settings": {
+            "caption_metafield_namespace": "custom",
+            "caption_metafield_key": "product_caption",
+            "source_product_metafield_namespace": "custom",
+            "source_product_metafield_key": "source_product"
+          }
         },
         "description": {
           "type": "description",
@@ -49,6 +64,10 @@
             "description_font_size": 16,
             "description_lines": 4
           }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -68,6 +87,25 @@
             "show_gift_card_recipient": false
           }
         },
+        "product_key_points_T6WRfd": {
+          "type": "product_key_points",
+          "settings": {
+            "point_1": "Beeswax absolute from Netta’s own hives",
+            "point_2": "Propolis, labdanum and benzoin",
+            "point_3": "No synthetic fragrance compounds, ever",
+            "point_4": "Glass bottle with a turned wooden cap, refillable",
+            "point_5": "",
+            "point_6": "",
+            "text_color": "#6d5942",
+            "icon_color": "#9a711a",
+            "font_size": 15,
+            "icon_size": 15,
+            "item_gap": 14,
+            "mobile_font_size": 14,
+            "mobile_icon_size": 13,
+            "mobile_item_gap": 12
+          }
+        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -77,15 +115,18 @@
         }
       },
       "block_order": [
-        "choose_your_skin_QwTwP4",
-        "title",
         "rating",
+        "choose_your_skin_QwTwP4",
+        "product_sub_title_MQVex3",
+        "title",
         "product_custom_tag_ydGnkD",
-        "price",
+        "product_caption_8iXwUU",
         "description",
+        "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "product_key_points_T6WRfd",
         "share"
       ],
       "settings": {
@@ -239,7 +280,7 @@
       "name": "Apiarian Discovery Set",
       "settings": {
         "eyebrow": "NOT SURE YET",
-        "heading": "Try all five first, <em>then commit.</em>",
+        "heading": "Try all five first, then commit.",
         "text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
         "button_label": "Add the set — $28",
         "note": "Credited toward your first full bottle",
@@ -298,6 +339,8 @@
         "metafield_namespace": "custom",
         "metafield_key": "the_role_in_the_colony",
         "metaobject_type": "the_role_in_the_colony",
+        "source_product_metafield_namespace": "custom",
+        "source_product_metafield_key": "source_product",
         "section_background": "#fffcf6",
         "eyebrow_size": 18,
         "eyebrow_letter_spacing": 3,
@@ -308,7 +351,7 @@
         "content_padding_horizontal": 60,
         "border_radius": 20,
         "padding_top": 20,
-        "padding_bottom": 20,
+        "padding_bottom": 80,
         "mobile_eyebrow_size": 14,
         "mobile_eyebrow_letter_spacing": 4,
         "mobile_heading_size": 34,
@@ -317,7 +360,57 @@
         "mobile_content_padding_horizontal": 24,
         "mobile_border_radius": 20,
         "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20
+        "mobile_padding_bottom": 60
+      }
+    },
+    "apiarian_values_bhcEQQ": {
+      "type": "apiarian-values",
+      "blocks": {
+        "item_hQzQtg": {
+          "type": "item",
+          "settings": {
+            "number": "01",
+            "heading": "Shake, then spray",
+            "text": "<p>Beeswax settles between uses. A short shake puts it back through the blend.</p>"
+          }
+        },
+        "item_c34xDe": {
+          "type": "item",
+          "settings": {
+            "number": "02",
+            "heading": "Aim at fabric",
+            "text": "<p>Linen, curtains and upholstery hold the scent longest. Two or three passes is plenty.</p>"
+          }
+        },
+        "item_VgnR7g": {
+          "type": "item",
+          "settings": {
+            "number": "03",
+            "heading": "Let it settle",
+            "text": "<p>Give it an hour before you judge it. The wax keeps working long after the top notes go.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_hQzQtg",
+        "item_c34xDe",
+        "item_VgnR7g"
+      ],
+      "name": "Apiarian Values",
+      "settings": {
+        "bee_image": "shopify://shop_images/bcf2a5f9-f2ff-4b4b-8ce1-d8ac93a318d4.png",
+        "bee_width": 70,
+        "section_background": "#fffcf6",
+        "box_background": "#efe8da",
+        "number_background": "#f5d991",
+        "number_color": "#21170f",
+        "heading_color": "#21170f",
+        "text_color": "#2a2118",
+        "box_radius": 24,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 35,
+        "mobile_padding_bottom": 0
       }
     },
     "apiarian_ingredients_sourcing_JfrKaA": {
@@ -372,8 +465,8 @@
         "left_width": 46,
         "column_gap": 70,
         "card_gap": 16,
-        "card_min_height": 160,
         "card_radius": 16,
+        "card_padding": 28,
         "spacing_top": 80,
         "spacing_bottom": 80,
         "eyebrow_size": 15,
@@ -384,7 +477,7 @@
         "card_text_size": 16,
         "eyebrow_bottom_spacing": 16,
         "heading_bottom_spacing": 20,
-        "card_title_bottom_spacing": 12,
+        "card_title_bottom_spacing": 6,
         "mobile_spacing_top": 50,
         "mobile_spacing_bottom": 50,
         "mobile_heading_size": 38,
@@ -395,58 +488,7 @@
         "mobile_card_text_size": 15,
         "mobile_card_gap": 14,
         "mobile_card_radius": 18,
-        "card_padding": 32,
         "mobile_card_padding": 24
-      }
-    },
-    "apiarian_values_bhcEQQ": {
-      "type": "apiarian-values",
-      "blocks": {
-        "item_hQzQtg": {
-          "type": "item",
-          "settings": {
-            "number": "01",
-            "heading": "Shake, then spray",
-            "text": "<p>Beeswax settles between uses. A short shake puts it back through the blend.</p>"
-          }
-        },
-        "item_c34xDe": {
-          "type": "item",
-          "settings": {
-            "number": "02",
-            "heading": "Aim at fabric",
-            "text": "<p>Linen, curtains and upholstery hold the scent longest. Two or three passes is plenty.</p>"
-          }
-        },
-        "item_VgnR7g": {
-          "type": "item",
-          "settings": {
-            "number": "03",
-            "heading": "Let it settle",
-            "text": "<p>Give it an hour before you judge it. The wax keeps working long after the top notes go.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "item_hQzQtg",
-        "item_c34xDe",
-        "item_VgnR7g"
-      ],
-      "name": "Apiarian Values",
-      "settings": {
-        "bee_image": "shopify://shop_images/bcf2a5f9-f2ff-4b4b-8ce1-d8ac93a318d4.png",
-        "bee_width": 70,
-        "section_background": "#fffcf6",
-        "box_background": "#efe8da",
-        "number_background": "#f5d991",
-        "number_color": "#21170f",
-        "heading_color": "#21170f",
-        "text_color": "#2a2118",
-        "box_radius": 24,
-        "padding_top": 0,
-        "padding_bottom": 55,
-        "mobile_padding_top": 35,
-        "mobile_padding_bottom": 35
       }
     },
     "apiarian_kind_words_prxhUq": {
@@ -460,14 +502,14 @@
         "section_background": "#fffcf6",
         "shell_background": "#efe7d7",
         "card_background": "#f8f4eb",
-        "eyebrow_color": "#a46b18",
+        "eyebrow_color": "#8A6A1F",
         "heading_color": "#21170f",
         "text_color": "#21170f",
         "meta_color": "#7b674d",
-        "star_color": "#a46b18",
+        "star_color": "#8a6a1f",
         "eyebrow_size": 14,
         "eyebrow_letter_spacing": 5,
-        "heading_size": 54,
+        "heading_size": 48,
         "review_title_size": 19,
         "review_text_size": 17,
         "meta_size": 14,
@@ -501,18 +543,18 @@
       "type": "apiarian-pairs-well",
       "name": "Apiarian Pairs Well",
       "settings": {
-        "heading": "Pairs well <em>with.</em>",
+        "heading": "Pairs well with.",
         "link_prefix": "All",
         "link_suffix": "scents",
-        "link_url": "",
+        "link_url": "shopify://collections/all",
         "price_prefix": "From",
         "products_limit": 5,
         "section_background": "#fffcf6",
         "heading_color": "#2a2118",
         "link_color": "#2a2118",
         "title_color": "#2a2118",
-        "price_color": "#2a2118",
-        "tags_color": "#2a2118",
+        "price_color": "#5c4b2e",
+        "tags_color": "#5c4b2e",
         "card_background_1": "#c3a7b9",
         "card_background_2": "#cf7b2b",
         "card_background_3": "#294533",
@@ -520,10 +562,10 @@
         "link_size": 16,
         "title_size": 20,
         "price_size": 15,
-        "tags_size": 15,
+        "tags_size": 14,
         "card_gap": 18,
         "card_radius": 18,
-        "padding_top": 30,
+        "padding_top": 60,
         "padding_bottom": 0,
         "enable_autoplay": true,
         "autoplay_speed": 4,
@@ -629,8 +671,8 @@
     "related-products",
     "product_apiarian_discovery_set_mMMFND",
     "apiarian_role_split_banner_q8Jgn7",
-    "apiarian_ingredients_sourcing_JfrKaA",
     "apiarian_values_bhcEQQ",
+    "apiarian_ingredients_sourcing_JfrKaA",
     "apiarian_kind_words_prxhUq",
     "apiarian_pairs_well_kPXe4y",
     "apiarian_good_to_know_GfbiQc"
