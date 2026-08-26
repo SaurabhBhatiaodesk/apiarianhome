@@ -228,8 +228,8 @@ product-info {
 
 .product-form__shipping-message {
   margin: 0.8rem 0 0;
-  color: #8a6a2b;
-  font-size: 14px;
+  color:rgb(107, 90, 62);
+  font-size:13px;
   line-height: 1.4;
 }
 
