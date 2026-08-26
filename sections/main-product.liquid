@@ -98,7 +98,24 @@
 
 
               {%- when 'product-caption' -%}
-                {%- assign current_product_caption = product.metafields.custom.product_caption.value -%}
+                {%- liquid
+                  assign caption_namespace = block.settings.caption_metafield_namespace | default: 'custom' | strip
+                  assign caption_key = block.settings.caption_metafield_key | default: 'product_caption' | strip
+                  assign caption_source_namespace = block.settings.source_product_metafield_namespace | default: 'custom' | strip
+                  assign caption_source_key = block.settings.source_product_metafield_key | default: 'source_product' | strip
+                  assign caption_source_metafield = product.metafields[caption_source_namespace][caption_source_key]
+                  assign caption_source_product = product
+
+                  if caption_source_metafield != blank
+                    if caption_source_metafield.type contains 'list.product_reference'
+                      assign caption_source_product = caption_source_metafield.value | first
+                    elsif caption_source_metafield.type contains 'product_reference'
+                      assign caption_source_product = caption_source_metafield.value
+                    endif
+                  endif
+
+                  assign current_product_caption = caption_source_product.metafields[caption_namespace][caption_key].value
+                -%}
                 {%- if current_product_caption != blank -%}
                   <div class="product_caption" {{ block.shopify_attributes }}>
                     <p>{{ current_product_caption | escape }}</p>
@@ -916,7 +933,41 @@
       "type": "product-caption",
       "name": "Product Caption",
       "limit": 1,
-      "settings": []
+      "settings": [
+        {
+          "type": "header",
+          "content": "Caption metafield"
+        },
+        {
+          "type": "text",
+          "id": "caption_metafield_namespace",
+          "label": "Caption namespace",
+          "default": "custom"
+        },
+        {
+          "type": "text",
+          "id": "caption_metafield_key",
+          "label": "Caption key",
+          "default": "product_caption"
+        },
+        {
+          "type": "header",
+          "content": "Optional source product"
+        },
+        {
+          "type": "text",
+          "id": "source_product_metafield_namespace",
+          "label": "Source product namespace",
+          "default": "custom",
+          "info": "Use a product reference metafield on the current product when caption should come from another product."
+        },
+        {
+          "type": "text",
+          "id": "source_product_metafield_key",
+          "label": "Source product key",
+          "default": "source_product"
+        }
+      ]
     },
     {
       "type": "product_sub_title",
