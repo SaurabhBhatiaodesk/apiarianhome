@@ -104,6 +104,11 @@
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
+          {%- if block.settings.shipping_message != blank -%}
+            <p class="product-form__shipping-message">
+              {{ block.settings.shipping_message | escape }}
+            </p>
+          {%- endif -%}
         </div>
       {%- endform -%}
     </product-form>

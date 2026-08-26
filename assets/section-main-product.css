@@ -225,6 +225,14 @@ product-info {
     height: auto;
     min-height: 54px;
 }
+
+.product-form__shipping-message {
+  margin: 0.8rem 0 0;
+  color: #8a6a2b;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
 .product-form__submit[disabled] + .shopify-payment-button .shopify-payment-button__button[disabled] {
   cursor: not-allowed;
@@ -1912,4 +1920,3 @@ a.product__text {
   img {
   border-radius: calc(var(--client-gallery-radius-current) - 2px);
 }
-
