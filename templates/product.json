@@ -1,1 +1,649 @@
-{"sections":{"main":{"type":"main-product","blocks":{"choose_your_skin_QwTwP4":{"type":"choose_your_skin","disabled":true,"settings":{"products":[],"heading":"CHOOSE YOUR SCENT","count_text":"in the colony","heading_color":"#a86a1f","text_color":"#2a1d13"}},"title":{"type":"title","settings":{}},"rating":{"type":"rating","settings":{}},"product_custom_tag_ydGnkD":{"type":"product_custom_tag","settings":{"text_color":"#2a1d13","background_opacity":100}},"price":{"type":"price","settings":{}},"description":{"type":"description","settings":{"description_color":"#2a1d13","read_more_color":"#8a6a1f","description_font_size":16,"description_lines":4}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"custom","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":false,"show_gift_card_recipient":false}},"share":{"type":"share","disabled":true,"settings":{"share_label":"Share"}}},"block_order":["choose_your_skin_QwTwP4","title","rating","product_custom_tag_ydGnkD","price","description","variant_picker","quantity_selector","buy_buttons","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"medium","constrain_to_viewport":true,"media_fit":"cover","gallery_layout":"thumbnail","desktop_thumbnail_position":"bottom","main_gallery_ratio":"landscape","gallery_border_radius_desktop":18,"gallery_border_radius_mobile":18,"mobile_thumbnails":"show","media_position":"left","image_zoom":"lightbox","hide_variants":true,"enable_video_looping":false,"padding_top":0,"padding_bottom":52}},"apiarian_scent_flow_7zeWfm":{"type":"apiarian-scent-flow","blocks":{"stage_pF7h9K":{"type":"stage","settings":{"label":"FIRST SPRAY","heading":"Chamomile","text":"<p>Herbal and gentle, more tea than flower.<\/p>"}},"stage_kMhrp4":{"type":"stage","settings":{"label":"An hour in","heading":"Lavender","text":"<p>Clean and calming, it settles the blend down.<\/p>"}},"stage_UQbKkJ":{"type":"stage","settings":{"label":"Late evening","heading":"Vanilla over beeswax","text":"<p>Powdery and soft, the part that stays on the pillow.<\/p>"}}},"block_order":["stage_pF7h9K","stage_kMhrp4","stage_UQbKkJ"],"disabled":true,"name":"Apiarian Scent Flow","settings":{"eyebrow":"The notes","heading":"How <em>Brood<\/em>  unfolds.","intro_text":"<p>Beeswax binds the aromatic compounds of the oils and slows their evaporation, so the blend arrives in stages instead of all at once.<\/p>","bee_image_one":"shopify:\/\/shop_images\/7bffe3d2-40c9-40c5-9c8a-2b0868e38207.png","heading_size":54,"section_background":"#fffcf6","eyebrow_color":"#8a6a1f","heading_color":"#21170f","body_color":"#2a2118","text_color":"#21170f","border_color":"#ded7cb","padding_top":70,"padding_bottom":70,"mobile_heading_size":39,"mobile_padding_top":45,"mobile_padding_bottom":45}},"pddp_notes_W3i8py":{"type":"pddp-notes","blocks":{"stage_zdnU39":{"type":"stage","settings":{"label":"First spray","heading":"Propolis","text":"<p>Sharp and green at first, the resin bees use to seal the hive.<\/p>"}},"stage_FVr6yt":{"type":"stage","settings":{"label":"An hour in","heading":"Labdanum","text":"<p>Sweet and leathery, it carries the middle of the blend.<\/p>"}},"stage_GnCKJK":{"type":"stage","settings":{"label":"Late evening","heading":"Benzoin over beeswax","text":"<p>Vanillic and slow, it holds on the fabric into the evening.<\/p>"}}},"block_order":["stage_zdnU39","stage_FVr6yt","stage_GnCKJK"],"name":"pdp new flow","settings":{"eyebrow":"The notes","heading":"A fragrance that <em>moves through the evening.<\/em>","intro_text":"<p>Beeswax binds the aromatic compounds of the oils and slows their evaporation, so the blend arrives in stages instead of all at once.<\/p>","bee_image_three":"shopify:\/\/shop_images\/7bffe3d2-40c9-40c5-9c8a-2b0868e38207_1.png","heading_size":54,"section_background":"#fffcf6","eyebrow_color":"#8a6a1f","heading_color":"#21170f","body_color":"#5c4b2e","text_color":"#21170f","border_color":"#ded7cb","padding_top":0,"padding_bottom":0,"mobile_heading_size":39,"mobile_padding_top":45,"mobile_padding_bottom":45}},"related-products":{"type":"related-products","disabled":true,"settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":28}},"product_apiarian_discovery_set_mMMFND":{"type":"product-apiarian-discovery-set","name":"Apiarian Discovery Set","settings":{"eyebrow":"NOT SURE YET","heading":"Try all five first,","heading_italic":"then commit.","text":"<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.<\/p>","button_label":"Add the set — $28","note":"Credited toward your first full bottle","image":"shopify:\/\/shop_images\/cb25afa7-a0cb-4662-9bd5-536e4268899a.jpg","set_products":["worker","queen","hive","drone","brood"],"background_color":"#efe7d7","eyebrow_color":"#8a6a1f","heading_color":"#30241a","text_color":"#6d5942","button_background":"#f0d58c","button_text_color":"#2a2118","note_color":"#806d54","image_background":"#e7ded0","left_width":53,"border_radius":24,"content_padding_vertical":50,"content_padding_horizontal":50,"image_position":"center center","spacing_top":70,"spacing_bottom":70,"eyebrow_size":17,"eyebrow_letter_spacing":5,"heading_size":48,"text_size":17,"button_text_size":17,"note_size":15,"heading_bottom_spacing":26,"text_bottom_spacing":32,"action_gap":18,"mobile_spacing_top":32,"mobile_spacing_bottom":32,"mobile_border_radius":20,"mobile_content_padding_vertical":38,"mobile_content_padding_horizontal":24,"mobile_eyebrow_size":13,"mobile_eyebrow_letter_spacing":4,"mobile_heading_size":36,"mobile_text_size":16,"mobile_button_text_size":15,"mobile_note_size":13,"mobile_heading_bottom_spacing":20,"mobile_text_bottom_spacing":26,"mobile_action_gap":14}},"apiarian_role_split_banner_q8Jgn7":{"type":"apiarian-role-split-banner","name":"Apiarian role split","settings":{"metafield_namespace":"custom","metafield_key":"the_role_in_the_colony","metaobject_type":"the_role_in_the_colony","section_background":"#fffcf6","eyebrow_size":18,"eyebrow_letter_spacing":3,"heading_size":50,"text_size":20,"content_max_width":600,"content_padding_vertical":160,"content_padding_horizontal":60,"border_radius":20,"padding_top":20,"padding_bottom":20,"mobile_eyebrow_size":14,"mobile_eyebrow_letter_spacing":4,"mobile_heading_size":34,"mobile_text_size":16,"mobile_content_padding_vertical":35,"mobile_content_padding_horizontal":24,"mobile_border_radius":20,"mobile_padding_top":20,"mobile_padding_bottom":20}},"apiarian_ingredients_sourcing_JfrKaA":{"type":"apiarian-ingredients-sourcing","blocks":{"ingredient_g9iaCy":{"type":"ingredient","settings":{"title":"Beeswax absolute","text":"<p>Rendered from Netta’s own frames. It anchors the blend and slows evaporation.<\/p>"}},"ingredient_rVe6hr":{"type":"ingredient","settings":{"title":"Organic sugarcane alcohol","text":"<p>The carrier. It flashes off and leaves the oils on the fabric.<\/p>"}},"ingredient_7XjrLF":{"type":"ingredient","settings":{"title":"Essential oils and absolutes","text":"<p>Resins first, warmed by benzoin. Nothing about it is sharp for long.<\/p>"}},"ingredient_azmQfG":{"type":"ingredient","settings":{"title":"Nothing else","text":"<p>No synthetic fragrance, no fixatives, no dyes, no phthalates.<\/p>"}}},"block_order":["ingredient_g9iaCy","ingredient_rVe6hr","ingredient_7XjrLF","ingredient_azmQfG"],"name":"Ingredients & sourcing","settings":{"eyebrow":"INGREDIENTS & SOURCING","heading":"Four things,","heading_italic":"nothing hidden.","text":"<p>Every bottle is blended by hand in Fort Collins, in batches small enough that each one carries its own character.<\/p>","eyebrow_color":"#8a6a1f","heading_color":"#2a2118","text_color":"#2a2118","card_background":"#f4eee1","card_title_color":"#17100b","card_text_color":"#2a2118","left_width":46,"column_gap":70,"card_gap":16,"card_min_height":160,"card_radius":16,"card_padding_vertical":32,"card_padding_horizontal":32,"spacing_top":80,"spacing_bottom":80,"eyebrow_size":15,"eyebrow_letter_spacing":5,"heading_size":50,"text_size":18,"card_title_size":20,"card_text_size":16,"eyebrow_bottom_spacing":16,"heading_bottom_spacing":20,"card_title_bottom_spacing":12,"mobile_spacing_top":50,"mobile_spacing_bottom":50,"mobile_heading_size":38,"mobile_eyebrow_size":13,"mobile_eyebrow_letter_spacing":4,"mobile_text_size":16,"mobile_card_title_size":18,"mobile_card_text_size":15,"mobile_card_gap":14,"mobile_card_radius":18,"mobile_card_padding_vertical":24,"mobile_card_padding_horizontal":24}},"apiarian_values_bhcEQQ":{"type":"apiarian-values","blocks":{"item_hQzQtg":{"type":"item","settings":{"number":"01","heading":"Shake, then spray","text":"<p>Beeswax settles between uses. A short shake puts it back through the blend.<\/p>"}},"item_c34xDe":{"type":"item","settings":{"number":"02","heading":"Aim at fabric","text":"<p>Linen, curtains and upholstery hold the scent longest. Two or three passes is plenty.<\/p>"}},"item_VgnR7g":{"type":"item","settings":{"number":"03","heading":"Let it settle","text":"<p>Give it an hour before you judge it. The wax keeps working long after the top notes go.<\/p>"}}},"block_order":["item_hQzQtg","item_c34xDe","item_VgnR7g"],"name":"Apiarian Values","settings":{"bee_image":"shopify:\/\/shop_images\/bcf2a5f9-f2ff-4b4b-8ce1-d8ac93a318d4.png","bee_width":70,"section_background":"#fffcf6","box_background":"#efe8da","number_background":"#f5d991","number_color":"#21170f","heading_color":"#21170f","text_color":"#2a2118","box_radius":24,"padding_top":0,"padding_bottom":55,"mobile_padding_top":35,"mobile_padding_bottom":35}},"apiarian_kind_words_prxhUq":{"type":"apiarian-kind-words","name":"Apiarian Reviews","settings":{"review_limit":3,"eyebrow":"KIND WORDS","heading":"What people notice <em>about Brood.<\/em>","bee_image":"shopify:\/\/shop_images\/29a7a4b7-dd1d-4c41-bc75-adc06a6b39b7_1.png","section_background":"#fffcf6","shell_background":"#efe7d7","card_background":"#f8f4eb","eyebrow_color":"#a46b18","heading_color":"#21170f","text_color":"#21170f","meta_color":"#7b674d","star_color":"#a46b18","eyebrow_size":14,"eyebrow_letter_spacing":5,"heading_size":54,"review_title_size":19,"review_text_size":17,"meta_size":14,"shell_padding_vertical":40,"shell_padding_horizontal":70,"shell_radius":26,"card_gap":18,"card_padding":28,"card_radius":18,"bee_width":75,"padding_top":0,"padding_bottom":0,"mobile_eyebrow_size":11,"mobile_eyebrow_letter_spacing":4,"mobile_heading_size":36,"mobile_review_title_size":18,"mobile_review_text_size":16,"mobile_meta_size":13,"mobile_shell_padding_vertical":28,"mobile_shell_padding_horizontal":16,"mobile_shell_radius":20,"mobile_card_gap":14,"mobile_card_padding":22,"mobile_card_radius":16,"mobile_bee_width":70,"mobile_padding_top":0,"mobile_padding_bottom":0}},"apiarian_pairs_well_kPXe4y":{"type":"apiarian-pairs-well","name":"Apiarian Pairs Well","settings":{"heading":"Pairs well","heading_italic":"with.","link_prefix":"All","link_suffix":"scents","link_url":"","price_prefix":"From","products_limit":5,"section_background":"#fffcf6","heading_color":"#2a2118","link_color":"#2a2118","title_color":"#2a2118","price_color":"#2a2118","tags_color":"#2a2118","card_background_1":"#c3a7b9","card_background_2":"#cf7b2b","card_background_3":"#294533","heading_size":46,"link_size":16,"title_size":20,"price_size":15,"tags_size":15,"card_gap":18,"card_radius":18,"padding_top":30,"padding_bottom":0,"enable_autoplay":true,"autoplay_speed":4,"mobile_heading_size":32,"mobile_link_size":14,"mobile_title_size":18,"mobile_price_size":14,"mobile_tags_size":13,"mobile_card_width":82,"mobile_card_gap":14,"mobile_card_radius":16,"mobile_padding_top":25,"mobile_padding_bottom":0}},"apiarian_good_to_know_GfbiQc":{"type":"apiarian-good-to-know","blocks":{"item_PEUpDM":{"type":"item","settings":{"question":"Shipping","answer":"<p>Orders leave Fort Collins within two business days. Free U.S. shipping over $60, flat $6 below that.<\/p>"}},"item_gaPntm":{"type":"item","settings":{"question":"Returns","answer":"<p>Unopened bottles can come back within 30 days. If a bottle arrives damaged, we replace it and cover the postage.<\/p>"}},"item_gK9xtQ":{"type":"item","settings":{"question":"Is it safe around pets?","answer":"<p>Spray fabric, not animals, and let the room air for a few minutes. Cats are sensitive to some essential oils, so keep them out of the room while it dries.<\/p>"}},"item_cPyzjb":{"type":"item","settings":{"question":"Where should I spray it?","answer":"<p>Linen, curtains, upholstery and the inside of a closet. It is a room and fabric spray, not a perfume for skin.<\/p>"}},"item_TRdXmF":{"type":"item","settings":{"question":"How long does a bottle last?","answer":"<p>A 100 mL bottle runs about three months at a few sprays a day. Kept out of sunlight, an opened bottle holds for a year.<\/p>"}},"item_dR4xXQ":{"type":"item","settings":{"question":"Do you offer refills?","answer":"<p>Yes. Bring or post the glass bottle back and we refill it at a discount, wooden cap and all.<\/p>"}}},"block_order":["item_PEUpDM","item_gaPntm","item_gK9xtQ","item_cPyzjb","item_TRdXmF","item_dR4xXQ"],"name":"Good to know","settings":{"eyebrow":"GOOD TO KNOW","heading":"Shipping, returns","heading_italic":"and the rest.","first_open":true,"background_color":"#fffcf6","eyebrow_color":"#9a711a","heading_color":"#2a2118","question_color":"#17100b","answer_color":"#2a2118","icon_color":"#9a711a","divider_color":"#ddd6c9","eyebrow_size":14,"eyebrow_letter_spacing":3,"heading_size":50,"question_size":18,"answer_size":16,"padding_top":80,"padding_bottom":80,"mobile_padding_top":50,"mobile_padding_bottom":50,"mobile_eyebrow_size":12,"mobile_eyebrow_letter_spacing":4,"mobile_heading_size":38,"mobile_question_size":18,"mobile_answer_size":15}}},"order":["main","apiarian_scent_flow_7zeWfm","pddp_notes_W3i8py","related-products","product_apiarian_discovery_set_mMMFND","apiarian_role_split_banner_q8Jgn7","apiarian_ingredients_sourcing_JfrKaA","apiarian_values_bhcEQQ","apiarian_kind_words_prxhUq","apiarian_pairs_well_kPXe4y","apiarian_good_to_know_GfbiQc"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "choose_your_skin_QwTwP4": {
+          "type": "choose_your_skin",
+          "settings": {
+            "products": [
+              "hive",
+              "drone",
+              "brood",
+              "queen"
+            ],
+            "heading": "CHOOSE YOUR SCENT",
+            "count_text": "in the colony",
+            "heading_color": "#a86a1f",
+            "text_color": "#2a1d13"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "product_custom_tag_ydGnkD": {
+          "type": "product_custom_tag",
+          "settings": {
+            "text_color": "#2a1d13",
+            "background_opacity": 100
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "description_color": "#2a1d13",
+            "read_more_color": "#8a6a1f",
+            "description_font_size": 16,
+            "description_lines": 4
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "custom",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "choose_your_skin_QwTwP4",
+        "title",
+        "rating",
+        "product_custom_tag_ydGnkD",
+        "price",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "desktop_thumbnail_position": "bottom",
+        "main_gallery_ratio": "landscape",
+        "gallery_border_radius_desktop": 18,
+        "gallery_border_radius_mobile": 18,
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 52
+      }
+    },
+    "apiarian_scent_flow_7zeWfm": {
+      "type": "apiarian-scent-flow",
+      "blocks": {
+        "stage_pF7h9K": {
+          "type": "stage",
+          "settings": {
+            "label": "FIRST SPRAY",
+            "heading": "Chamomile",
+            "text": "<p>Herbal and gentle, more tea than flower.</p>"
+          }
+        },
+        "stage_kMhrp4": {
+          "type": "stage",
+          "settings": {
+            "label": "An hour in",
+            "heading": "Lavender",
+            "text": "<p>Clean and calming, it settles the blend down.</p>"
+          }
+        },
+        "stage_UQbKkJ": {
+          "type": "stage",
+          "settings": {
+            "label": "Late evening",
+            "heading": "Vanilla over beeswax",
+            "text": "<p>Powdery and soft, the part that stays on the pillow.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "stage_pF7h9K",
+        "stage_kMhrp4",
+        "stage_UQbKkJ"
+      ],
+      "disabled": true,
+      "name": "Apiarian Scent Flow",
+      "settings": {
+        "eyebrow": "The notes",
+        "heading": "How <em>Brood</em>  unfolds.",
+        "intro_text": "<p>Beeswax binds the aromatic compounds of the oils and slows their evaporation, so the blend arrives in stages instead of all at once.</p>",
+        "bee_image_one": "shopify://shop_images/7bffe3d2-40c9-40c5-9c8a-2b0868e38207.png",
+        "heading_size": 54,
+        "section_background": "#fffcf6",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#21170f",
+        "body_color": "#2a2118",
+        "text_color": "#21170f",
+        "border_color": "#ded7cb",
+        "padding_top": 70,
+        "padding_bottom": 70,
+        "mobile_heading_size": 39,
+        "mobile_padding_top": 45,
+        "mobile_padding_bottom": 45
+      }
+    },
+    "pddp_notes_W3i8py": {
+      "type": "pddp-notes",
+      "blocks": {
+        "stage_zdnU39": {
+          "type": "stage",
+          "settings": {
+            "label": "First spray",
+            "heading": "Propolis",
+            "text": "<p>Sharp and green at first, the resin bees use to seal the hive.</p>"
+          }
+        },
+        "stage_FVr6yt": {
+          "type": "stage",
+          "settings": {
+            "label": "An hour in",
+            "heading": "Labdanum",
+            "text": "<p>Sweet and leathery, it carries the middle of the blend.</p>"
+          }
+        },
+        "stage_GnCKJK": {
+          "type": "stage",
+          "settings": {
+            "label": "Late evening",
+            "heading": "Benzoin over beeswax",
+            "text": "<p>Vanillic and slow, it holds on the fabric into the evening.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "stage_zdnU39",
+        "stage_FVr6yt",
+        "stage_GnCKJK"
+      ],
+      "name": "pdp new flow",
+      "settings": {
+        "eyebrow": "The notes",
+        "heading": "A fragrance that <em>moves through the evening.</em>",
+        "intro_text": "<p>Beeswax binds the aromatic compounds of the oils and slows their evaporation, so the blend arrives in stages instead of all at once.</p>",
+        "bee_image_three": "shopify://shop_images/7bffe3d2-40c9-40c5-9c8a-2b0868e38207_1.png",
+        "heading_size": 54,
+        "section_background": "#fffcf6",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#21170f",
+        "body_color": "#5c4b2e",
+        "text_color": "#21170f",
+        "border_color": "#ded7cb",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_heading_size": 39,
+        "mobile_padding_top": 45,
+        "mobile_padding_bottom": 45
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "product_apiarian_discovery_set_mMMFND": {
+      "type": "product-apiarian-discovery-set",
+      "name": "Apiarian Discovery Set",
+      "settings": {
+        "eyebrow": "NOT SURE YET",
+        "heading": "Try all five first,",
+        "heading_italic": "then commit.",
+        "text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
+        "button_label": "Add the set — $28",
+        "note": "Credited toward your first full bottle",
+        "image": "shopify://shop_images/cb25afa7-a0cb-4662-9bd5-536e4268899a.jpg",
+        "set_products": [
+          "worker",
+          "queen",
+          "hive",
+          "drone",
+          "brood"
+        ],
+        "background_color": "#efe7d7",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#30241a",
+        "text_color": "#6d5942",
+        "button_background": "#f0d58c",
+        "button_text_color": "#2a2118",
+        "note_color": "#806d54",
+        "image_background": "#e7ded0",
+        "left_width": 53,
+        "border_radius": 24,
+        "content_padding_vertical": 50,
+        "content_padding_horizontal": 50,
+        "image_position": "center center",
+        "spacing_top": 70,
+        "spacing_bottom": 70,
+        "eyebrow_size": 17,
+        "eyebrow_letter_spacing": 5,
+        "heading_size": 48,
+        "text_size": 17,
+        "button_text_size": 17,
+        "note_size": 15,
+        "heading_bottom_spacing": 26,
+        "text_bottom_spacing": 32,
+        "action_gap": 18,
+        "mobile_spacing_top": 32,
+        "mobile_spacing_bottom": 32,
+        "mobile_border_radius": 20,
+        "mobile_content_padding_vertical": 38,
+        "mobile_content_padding_horizontal": 24,
+        "mobile_eyebrow_size": 13,
+        "mobile_eyebrow_letter_spacing": 4,
+        "mobile_heading_size": 36,
+        "mobile_text_size": 16,
+        "mobile_button_text_size": 15,
+        "mobile_note_size": 13,
+        "mobile_heading_bottom_spacing": 20,
+        "mobile_text_bottom_spacing": 26,
+        "mobile_action_gap": 14
+      }
+    },
+    "apiarian_role_split_banner_q8Jgn7": {
+      "type": "apiarian-role-split-banner",
+      "name": "Apiarian role split",
+      "settings": {
+        "metafield_namespace": "custom",
+        "metafield_key": "the_role_in_the_colony",
+        "metaobject_type": "the_role_in_the_colony",
+        "section_background": "#fffcf6",
+        "eyebrow_size": 18,
+        "eyebrow_letter_spacing": 3,
+        "heading_size": 50,
+        "text_size": 20,
+        "content_max_width": 600,
+        "content_padding_vertical": 160,
+        "content_padding_horizontal": 60,
+        "border_radius": 20,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "mobile_eyebrow_size": 14,
+        "mobile_eyebrow_letter_spacing": 4,
+        "mobile_heading_size": 34,
+        "mobile_text_size": 16,
+        "mobile_content_padding_vertical": 35,
+        "mobile_content_padding_horizontal": 24,
+        "mobile_border_radius": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20
+      }
+    },
+    "apiarian_ingredients_sourcing_JfrKaA": {
+      "type": "apiarian-ingredients-sourcing",
+      "blocks": {
+        "ingredient_g9iaCy": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Beeswax absolute",
+            "text": "<p>Rendered from Netta’s own frames. It anchors the blend and slows evaporation.</p>"
+          }
+        },
+        "ingredient_rVe6hr": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Organic sugarcane alcohol",
+            "text": "<p>The carrier. It flashes off and leaves the oils on the fabric.</p>"
+          }
+        },
+        "ingredient_7XjrLF": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Essential oils and absolutes",
+            "text": "<p>Resins first, warmed by benzoin. Nothing about it is sharp for long.</p>"
+          }
+        },
+        "ingredient_azmQfG": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Nothing else",
+            "text": "<p>No synthetic fragrance, no fixatives, no dyes, no phthalates.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_g9iaCy",
+        "ingredient_rVe6hr",
+        "ingredient_7XjrLF",
+        "ingredient_azmQfG"
+      ],
+      "name": "Ingredients & sourcing",
+      "settings": {
+        "eyebrow": "INGREDIENTS & SOURCING",
+        "heading": "Four things,",
+        "heading_italic": "nothing hidden.",
+        "text": "<p>Every bottle is blended by hand in Fort Collins, in batches small enough that each one carries its own character.</p>",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#2a2118",
+        "text_color": "#2a2118",
+        "card_background": "#f4eee1",
+        "card_title_color": "#17100b",
+        "card_text_color": "#2a2118",
+        "left_width": 46,
+        "column_gap": 70,
+        "card_gap": 16,
+        "card_min_height": 160,
+        "card_radius": 16,
+        "card_padding_vertical": 32,
+        "card_padding_horizontal": 32,
+        "spacing_top": 80,
+        "spacing_bottom": 80,
+        "eyebrow_size": 15,
+        "eyebrow_letter_spacing": 5,
+        "heading_size": 50,
+        "text_size": 18,
+        "card_title_size": 20,
+        "card_text_size": 16,
+        "eyebrow_bottom_spacing": 16,
+        "heading_bottom_spacing": 20,
+        "card_title_bottom_spacing": 12,
+        "mobile_spacing_top": 50,
+        "mobile_spacing_bottom": 50,
+        "mobile_heading_size": 38,
+        "mobile_eyebrow_size": 13,
+        "mobile_eyebrow_letter_spacing": 4,
+        "mobile_text_size": 16,
+        "mobile_card_title_size": 18,
+        "mobile_card_text_size": 15,
+        "mobile_card_gap": 14,
+        "mobile_card_radius": 18,
+        "mobile_card_padding_vertical": 24,
+        "mobile_card_padding_horizontal": 24
+      }
+    },
+    "apiarian_values_bhcEQQ": {
+      "type": "apiarian-values",
+      "blocks": {
+        "item_hQzQtg": {
+          "type": "item",
+          "settings": {
+            "number": "01",
+            "heading": "Shake, then spray",
+            "text": "<p>Beeswax settles between uses. A short shake puts it back through the blend.</p>"
+          }
+        },
+        "item_c34xDe": {
+          "type": "item",
+          "settings": {
+            "number": "02",
+            "heading": "Aim at fabric",
+            "text": "<p>Linen, curtains and upholstery hold the scent longest. Two or three passes is plenty.</p>"
+          }
+        },
+        "item_VgnR7g": {
+          "type": "item",
+          "settings": {
+            "number": "03",
+            "heading": "Let it settle",
+            "text": "<p>Give it an hour before you judge it. The wax keeps working long after the top notes go.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_hQzQtg",
+        "item_c34xDe",
+        "item_VgnR7g"
+      ],
+      "name": "Apiarian Values",
+      "settings": {
+        "bee_image": "shopify://shop_images/bcf2a5f9-f2ff-4b4b-8ce1-d8ac93a318d4.png",
+        "bee_width": 70,
+        "section_background": "#fffcf6",
+        "box_background": "#efe8da",
+        "number_background": "#f5d991",
+        "number_color": "#21170f",
+        "heading_color": "#21170f",
+        "text_color": "#2a2118",
+        "box_radius": 24,
+        "padding_top": 0,
+        "padding_bottom": 55,
+        "mobile_padding_top": 35,
+        "mobile_padding_bottom": 35
+      }
+    },
+    "apiarian_kind_words_prxhUq": {
+      "type": "apiarian-kind-words",
+      "name": "Apiarian Reviews",
+      "settings": {
+        "review_limit": 3,
+        "eyebrow": "KIND WORDS",
+        "heading": "What people notice <em>about Brood.</em>",
+        "bee_image": "shopify://shop_images/29a7a4b7-dd1d-4c41-bc75-adc06a6b39b7_1.png",
+        "section_background": "#fffcf6",
+        "shell_background": "#efe7d7",
+        "card_background": "#f8f4eb",
+        "eyebrow_color": "#a46b18",
+        "heading_color": "#21170f",
+        "text_color": "#21170f",
+        "meta_color": "#7b674d",
+        "star_color": "#a46b18",
+        "eyebrow_size": 14,
+        "eyebrow_letter_spacing": 5,
+        "heading_size": 54,
+        "review_title_size": 19,
+        "review_text_size": 17,
+        "meta_size": 14,
+        "shell_padding_vertical": 40,
+        "shell_padding_horizontal": 70,
+        "shell_radius": 26,
+        "card_gap": 18,
+        "card_padding": 28,
+        "card_radius": 18,
+        "bee_width": 75,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_eyebrow_size": 11,
+        "mobile_eyebrow_letter_spacing": 4,
+        "mobile_heading_size": 36,
+        "mobile_review_title_size": 18,
+        "mobile_review_text_size": 16,
+        "mobile_meta_size": 13,
+        "mobile_shell_padding_vertical": 28,
+        "mobile_shell_padding_horizontal": 16,
+        "mobile_shell_radius": 20,
+        "mobile_card_gap": 14,
+        "mobile_card_padding": 22,
+        "mobile_card_radius": 16,
+        "mobile_bee_width": 70,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "apiarian_pairs_well_kPXe4y": {
+      "type": "apiarian-pairs-well",
+      "name": "Apiarian Pairs Well",
+      "settings": {
+        "heading": "Pairs well",
+        "heading_italic": "with.",
+        "link_prefix": "All",
+        "link_suffix": "scents",
+        "link_url": "",
+        "price_prefix": "From",
+        "products_limit": 5,
+        "section_background": "#fffcf6",
+        "heading_color": "#2a2118",
+        "link_color": "#2a2118",
+        "title_color": "#2a2118",
+        "price_color": "#2a2118",
+        "tags_color": "#2a2118",
+        "card_background_1": "#c3a7b9",
+        "card_background_2": "#cf7b2b",
+        "card_background_3": "#294533",
+        "heading_size": 46,
+        "link_size": 16,
+        "title_size": 20,
+        "price_size": 15,
+        "tags_size": 15,
+        "card_gap": 18,
+        "card_radius": 18,
+        "padding_top": 30,
+        "padding_bottom": 0,
+        "enable_autoplay": true,
+        "autoplay_speed": 4,
+        "mobile_heading_size": 32,
+        "mobile_link_size": 14,
+        "mobile_title_size": 18,
+        "mobile_price_size": 14,
+        "mobile_tags_size": 13,
+        "mobile_card_width": 82,
+        "mobile_card_gap": 14,
+        "mobile_card_radius": 16,
+        "mobile_padding_top": 25,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "apiarian_good_to_know_GfbiQc": {
+      "type": "apiarian-good-to-know",
+      "blocks": {
+        "item_PEUpDM": {
+          "type": "item",
+          "settings": {
+            "question": "Shipping",
+            "answer": "<p>Orders leave Fort Collins within two business days. Free U.S. shipping over $60, flat $6 below that.</p>"
+          }
+        },
+        "item_gaPntm": {
+          "type": "item",
+          "settings": {
+            "question": "Returns",
+            "answer": "<p>Unopened bottles can come back within 30 days. If a bottle arrives damaged, we replace it and cover the postage.</p>"
+          }
+        },
+        "item_gK9xtQ": {
+          "type": "item",
+          "settings": {
+            "question": "Is it safe around pets?",
+            "answer": "<p>Spray fabric, not animals, and let the room air for a few minutes. Cats are sensitive to some essential oils, so keep them out of the room while it dries.</p>"
+          }
+        },
+        "item_cPyzjb": {
+          "type": "item",
+          "settings": {
+            "question": "Where should I spray it?",
+            "answer": "<p>Linen, curtains, upholstery and the inside of a closet. It is a room and fabric spray, not a perfume for skin.</p>"
+          }
+        },
+        "item_TRdXmF": {
+          "type": "item",
+          "settings": {
+            "question": "How long does a bottle last?",
+            "answer": "<p>A 100 mL bottle runs about three months at a few sprays a day. Kept out of sunlight, an opened bottle holds for a year.</p>"
+          }
+        },
+        "item_dR4xXQ": {
+          "type": "item",
+          "settings": {
+            "question": "Do you offer refills?",
+            "answer": "<p>Yes. Bring or post the glass bottle back and we refill it at a discount, wooden cap and all.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_PEUpDM",
+        "item_gaPntm",
+        "item_gK9xtQ",
+        "item_cPyzjb",
+        "item_TRdXmF",
+        "item_dR4xXQ"
+      ],
+      "name": "Good to know",
+      "settings": {
+        "eyebrow": "GOOD TO KNOW",
+        "heading": "Shipping, returns",
+        "heading_italic": "and the rest.",
+        "first_open": true,
+        "background_color": "#fffcf6",
+        "eyebrow_color": "#9a711a",
+        "heading_color": "#2a2118",
+        "question_color": "#17100b",
+        "answer_color": "#2a2118",
+        "icon_color": "#9a711a",
+        "divider_color": "#ddd6c9",
+        "eyebrow_size": 14,
+        "eyebrow_letter_spacing": 3,
+        "heading_size": 50,
+        "question_size": 18,
+        "answer_size": 16,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50,
+        "mobile_eyebrow_size": 12,
+        "mobile_eyebrow_letter_spacing": 4,
+        "mobile_heading_size": 38,
+        "mobile_question_size": 18,
+        "mobile_answer_size": 15
+      }
+    }
+  },
+  "order": [
+    "main",
+    "apiarian_scent_flow_7zeWfm",
+    "pddp_notes_W3i8py",
+    "related-products",
+    "product_apiarian_discovery_set_mMMFND",
+    "apiarian_role_split_banner_q8Jgn7",
+    "apiarian_ingredients_sourcing_JfrKaA",
+    "apiarian_values_bhcEQQ",
+    "apiarian_kind_words_prxhUq",
+    "apiarian_pairs_well_kPXe4y",
+    "apiarian_good_to_know_GfbiQc"
+  ]
+}
