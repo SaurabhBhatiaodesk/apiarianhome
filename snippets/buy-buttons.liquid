@@ -24,9 +24,9 @@
       endif
 
       assign selected_variant = product.selected_or_first_available_variant
-      assign selected_variant_price = selected_variant.price | money_without_trailing_zeros
+      assign selected_variant_price = selected_variant.price | money | replace: '.00', '' | replace: ',00', ''
       if settings.currency_code_enabled
-        assign selected_variant_price = selected_variant.price | money_with_currency | replace: '.00 ', ' ' | replace: ',00 ', ' '
+        assign selected_variant_price = selected_variant.price | money_with_currency | replace: '.00', '' | replace: ',00', ''
       endif
       assign add_to_cart_with_price = 'products.product.add_to_cart' | t | append: ' - ' | append: selected_variant_price
     -%}
