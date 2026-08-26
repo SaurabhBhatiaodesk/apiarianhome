@@ -10,7 +10,7 @@ product-info {
     color: #5c4b2e;
     font-size: 22px;
     line-height: normal;
-    margin: -15px 0 0;
+    margin: -10px 0 -10px;
 }
 .product_sub_title {
     text-transform: uppercase;
