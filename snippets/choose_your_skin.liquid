@@ -1,7 +1,7 @@
 {% comment %} 
   CHOOSE YOUR SCENT 
-  Current product is automatic, first, and selected.
-  Select up to 4 OTHER scent products from block settings. 
+  Select up to 5 scent products from block settings.
+  Swatch backgrounds come from product metafield: custom.product_badge_color.
 {% endcomment %} 
 
 <style> 
@@ -183,30 +183,15 @@
   } 
 </style> 
 
-{%- assign selected_products = block.settings.products -%}
-
 {%- liquid
-  assign current_in_selected = false
-
-  for scent_product in selected_products
-    if scent_product.id == product.id
-      assign current_in_selected = true
-      break
-    endif
-  endfor
-
-  if current_in_selected
-    assign display_count = selected_products.size
-  else
-    assign display_count = selected_products.size | plus: 1
-  endif
-
+  assign selected_products = block.settings.products
+  assign display_count = selected_products.size
   if display_count > 5
     assign display_count = 5
   endif
 -%}
 
-{% if product != blank %}
+{% if selected_products != blank %}
   <div
     class="choose-your-scent-{{ block.id }}"
     data-choose-your-scent
@@ -239,40 +224,47 @@
 
     <div class="choose-your-scent-{{ block.id }}__products">
 
-      {%- comment -%}
-        Current PDP product is always rendered first and is always selected.
-        Other products are only navigation choices.
-      {%- endcomment -%}
-      {%- assign current_badge_color = product.metafields.custom.product_badge_color.value -%}
+      {% for scent_product in selected_products limit: 5 %}
+        {%- liquid
+          assign scent_badge_color = scent_product.metafields.custom.product_badge_color.value
 
-      <a
-        href="{{ product.url }}"
-        class="choose-your-scent-{{ block.id }}__item is-selected"
-        aria-current="page"
-      >
-        <span class="choose-your-scent-{{ block.id }}__media-wrap">
-          <span
-            class="choose-your-scent-{{ block.id }}__media"
-            {% if current_badge_color != blank %}
-              style="background: {{ current_badge_color }};"
-            {% endif %}
-          ></span>
-        </span>
+          if scent_badge_color == blank
+            assign scent_handle_1 = scent_product.handle
+            assign scent_handle_2 = scent_product.handle | remove: '-fragrance'
+            assign scent_handle_3 = scent_product.title | handleize
+            assign scent_handle_4 = scent_handle_3 | remove: '-fragrance'
+            assign scent_handle_5 = scent_handle_4 | remove_first: 'the-'
 
-        <span class="choose-your-scent-{{ block.id }}__name">
-          {{ product.title | escape }}
-        </span>
-      </a>
+            if scent_handle_2 != scent_handle_1
+              assign scent_source_product = all_products[scent_handle_2]
+            endif
 
-      {%- assign other_scent_count = 0 -%}
-      {% for scent_product in selected_products %}
-        {% unless scent_product.id == product.id %}
-          {% if other_scent_count < 4 %}
-            {%- assign scent_badge_color = scent_product.metafields.custom.product_badge_color.value -%}
+            if scent_source_product == blank and scent_handle_4 != scent_handle_1
+              assign scent_source_product = all_products[scent_handle_4]
+            endif
+
+            if scent_source_product == blank and scent_handle_5 != scent_handle_1
+              assign scent_source_product = all_products[scent_handle_5]
+            endif
+
+            if scent_source_product != blank
+              assign scent_badge_color = scent_source_product.metafields.custom.product_badge_color.value
+            endif
+          endif
+
+          assign is_selected = false
+          assign current_handle_base = product.handle | remove: '-fragrance' | remove_first: 'the-'
+          assign scent_handle_base = scent_product.handle | remove: '-fragrance' | remove_first: 'the-'
+
+          if scent_product.id == product.id or scent_handle_base == current_handle_base
+            assign is_selected = true
+          endif
+        -%}
 
             <a
               href="{{ scent_product.url }}"
-              class="choose-your-scent-{{ block.id }}__item"
+              class="choose-your-scent-{{ block.id }}__item{% if is_selected %} is-selected{% endif %}"
+              {% if is_selected %}aria-current="page"{% endif %}
             >
               <span class="choose-your-scent-{{ block.id }}__media-wrap">
                 <span
@@ -287,10 +279,6 @@
                 {{ scent_product.title | escape }}
               </span>
             </a>
-
-            {%- assign other_scent_count = other_scent_count | plus: 1 -%}
-          {% endif %}
-        {% endunless %}
       {% endfor %}
 
     </div>
