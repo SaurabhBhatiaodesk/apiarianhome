@@ -8,17 +8,17 @@ product-info {
     font-family: Bodoni Moda,serif;
     font-style: italic;
     color: #5c4b2e;
-    font-size: 24px;
+    font-size: 22px;
     line-height: normal;
     margin: -15px 0 0;
 }
 .product_sub_title {
     text-transform: uppercase;
-    color: #8a6a1f;
+    color: rgb(138, 106, 31);
     letter-spacing: 0.28em;
-    font-size: 15px;
+    font-size: 14.074px;
     font-weight: 400;
-    padding-top:0px;
+    padding-top: 0;
 }
 .product__info-container .product__title{
   margin:0 0 10px 0;
