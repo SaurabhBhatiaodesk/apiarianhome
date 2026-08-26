@@ -374,8 +374,6 @@
         "card_gap": 16,
         "card_min_height": 160,
         "card_radius": 16,
-        "card_padding_vertical": 32,
-        "card_padding_horizontal": 32,
         "spacing_top": 80,
         "spacing_bottom": 80,
         "eyebrow_size": 15,
@@ -397,8 +395,8 @@
         "mobile_card_text_size": 15,
         "mobile_card_gap": 14,
         "mobile_card_radius": 18,
-        "mobile_card_padding_vertical": 24,
-        "mobile_card_padding_horizontal": 24
+        "card_padding": 32,
+        "mobile_card_padding": 24
       }
     },
     "apiarian_values_bhcEQQ": {

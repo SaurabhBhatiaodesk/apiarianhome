@@ -71,9 +71,7 @@
   }
 
   #shopify-section-{{ section.id }} .apiarian-ingredients__card {
-    padding:
-      {{ section.settings.card_padding_vertical }}px
-      {{ section.settings.card_padding_horizontal }}px;
+    padding: {{ section.settings.card_padding }}px;
     border-radius: {{ section.settings.card_radius }}px;
     background: {{ section.settings.card_background }};
   }
@@ -190,9 +188,7 @@
 
     #shopify-section-{{ section.id }} .apiarian-ingredients__card {
       min-height: 0;
-      padding:
-        {{ section.settings.mobile_card_padding_vertical }}px
-        {{ section.settings.mobile_card_padding_horizontal }}px;
+      padding: {{ section.settings.mobile_card_padding }}px;
       border-radius: {{ section.settings.mobile_card_radius }}px;
     }
   }
@@ -422,18 +418,8 @@
     },
     {
       "type": "range",
-      "id": "card_padding_vertical",
-      "label": "Card vertical padding",
-      "min": 20,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "card_padding_horizontal",
-      "label": "Card horizontal padding",
+      "id": "card_padding",
+      "label": "Card padding",
       "min": 20,
       "max": 50,
       "step": 2,
@@ -667,18 +653,8 @@
     },
     {
       "type": "range",
-      "id": "mobile_card_padding_vertical",
-      "label": "Card vertical padding",
-      "min": 18,
-      "max": 40,
-      "step": 2,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "mobile_card_padding_horizontal",
-      "label": "Card horizontal padding",
+      "id": "mobile_card_padding",
+      "label": "Card padding",
       "min": 18,
       "max": 40,
       "step": 2,
