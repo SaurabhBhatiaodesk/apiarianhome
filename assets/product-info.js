@@ -196,8 +196,15 @@ if (!customElements.get('product-info')) {
           this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
           this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
 
+          const sourceSubmitButton = html.getElementById(`ProductSubmitButton-${this.sectionId}`);
+          const currentSubmitButton = this.querySelector(`#ProductSubmitButton-${this.dataset.section}`);
+
+          if (sourceSubmitButton?.dataset.addToCartText && currentSubmitButton) {
+            currentSubmitButton.dataset.addToCartText = sourceSubmitButton.dataset.addToCartText;
+          }
+
           this.productForm?.toggleSubmitButton(
-            html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
+            sourceSubmitButton?.hasAttribute('disabled') ?? true,
             window.variantStrings.soldOut
           );
 
