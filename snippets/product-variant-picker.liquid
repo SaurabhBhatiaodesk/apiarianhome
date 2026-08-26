@@ -258,7 +258,13 @@
 
                 <label for="{{ custom_id }}" class="custom-variant-card"> 
                   <span class="custom-variant-card__value">{{ value }}</span> 
-                  <span class="custom-variant-card__price">{{ option_price | money }}</span> 
+                  <span class="custom-variant-card__price">
+                    {%- if settings.currency_code_enabled -%}
+                      {{- option_price | money_with_currency | replace: '.00 ', ' ' | replace: ',00 ', ' ' -}}
+                    {%- else -%}
+                      {{- option_price | money_without_trailing_zeros -}}
+                    {%- endif -%}
+                  </span>
                 </label> 
               </div> 
             {%- endfor -%} 
