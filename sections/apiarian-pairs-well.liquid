@@ -1,12 +1,3 @@
-{% comment %}
-  Section: Apiarian Pairs Well
-  Dynamic Shopify recommended products section
-  - Shows Shopify related products only
-  - Desktop grid
-  - Mobile slider with pagination
-  - Optional autoplay from settings
-{% endcomment %}
-
 {% style %}
   #shopify-section-{{ section.id }} {
     background: {{ section.settings.section_background }};
@@ -138,7 +129,6 @@
       transform: scale(1.02);
     }
 
-    /* Products without a second image keep the existing subtle hover effect. */
     #shopify-section-{{ section.id }} .apiarian-pairs-well__card:not(.has-preview-image):hover .apiarian-pairs-well__image--primary {
       transform: scale(1.02);
     }
@@ -200,7 +190,9 @@
     border-radius: 50%;
     background: rgba(42, 33, 24, 0.2);
     cursor: pointer;
-    transition: background-color .25s ease, transform .25s ease;
+    transition:
+      background-color .25s ease,
+      transform .25s ease;
   }
 
   #shopify-section-{{ section.id }} .apiarian-pairs-well__dot.is-active {
@@ -213,7 +205,9 @@
   #shopify-section-{{ section.id }} .apiarian-pairs-well.is-animation-ready .apiarian-pairs-well__pagination {
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity .45s ease, transform .6s cubic-bezier(.22, 1, .36, 1);
+    transition:
+      opacity .45s ease,
+      transform .6s cubic-bezier(.22, 1, .36, 1);
   }
 
   #shopify-section-{{ section.id }} .apiarian-pairs-well.is-animation-ready .apiarian-pairs-well__viewport {
@@ -283,7 +277,6 @@
       font-size: {{ section.settings.mobile_tags_size }}px;
       margin-top: 8px;
     }
-
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -305,12 +298,9 @@
   class="apiarian-pairs-well"
   data-apiarian-pairs-well
   data-product-id="{{ product.id }}"
-  data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
-  data-price-prefix="{{ section.settings.price_prefix | escape }}"
+  data-products-limit="{{ section.settings.products_limit }}"
   data-link-prefix="{{ section.settings.link_prefix | escape }}"
   data-link-suffix="{{ section.settings.link_suffix | escape }}"
-  data-products-limit="{{ section.settings.products_limit }}"
-  data-mobile-breakpoint="749"
   data-autoplay="{{ section.settings.enable_autoplay }}"
   data-autoplay-speed="{{ section.settings.autoplay_speed }}"
 >
@@ -328,16 +318,109 @@
         data-pairs-link
       >
         <span data-pairs-link-text>
-          {{ section.settings.link_prefix }} {{ section.settings.products_limit | default: 5 }} {{ section.settings.link_suffix }}
+          {{ section.settings.link_prefix }}
+          {{ section.settings.products_limit | default: 5 }}
+          {{ section.settings.link_suffix }}
         </span>
       </a>
     </div>
 
-    <div class="apiarian-pairs-well__viewport" data-pairs-viewport>
-      <div class="apiarian-pairs-well__track" data-recommended-products></div>
+    <div
+      class="apiarian-pairs-well__viewport"
+      data-pairs-viewport
+    >
+      <div
+        class="apiarian-pairs-well__track"
+        data-recommended-products
+      >
+        {% if recommendations.performed and recommendations.products_count > 0 %}
+          {% for recommended_product in recommendations.products limit: section.settings.products_limit %}
+            {% liquid
+              assign tag_source_product = recommended_product
+
+              assign tag_source_metafield = recommended_product.metafields.custom.source_product
+
+              if tag_source_metafield != blank
+                if tag_source_metafield.type contains 'list.product_reference'
+                  assign tag_source_product = tag_source_metafield.value | first
+                elsif tag_source_metafield.type contains 'product_reference'
+                  assign tag_source_product = tag_source_metafield.value
+                endif
+              endif
+
+              if tag_source_product == blank
+                assign tag_source_product = recommended_product
+              endif
+
+              assign custom_product_tags = recommended_product.metafields.custom.custom_porudct_tag.value
+
+              if custom_product_tags == blank
+                assign custom_product_tags = tag_source_product.metafields.custom.custom_porudct_tag.value
+              endif
+
+              assign preview_image = recommended_product.images[1]
+            %}
+
+            <a
+              href="{{ recommended_product.url }}"
+              class="apiarian-pairs-well__card{% if preview_image != blank %} has-preview-image{% endif %}"
+            >
+              <div class="apiarian-pairs-well__media">
+                {% if recommended_product.featured_image != blank %}
+                  <img
+                    class="apiarian-pairs-well__image apiarian-pairs-well__image--primary"
+                    src="{{ recommended_product.featured_image | image_url: width: 1200 }}"
+                    alt="{{ recommended_product.featured_image.alt | default: recommended_product.title | escape }}"
+                    width="{{ recommended_product.featured_image.width }}"
+                    height="{{ recommended_product.featured_image.height }}"
+                    loading="lazy"
+                  >
+                {% endif %}
+
+                {% if preview_image != blank %}
+                  <img
+                    class="apiarian-pairs-well__image apiarian-pairs-well__image--preview"
+                    src="{{ preview_image | image_url: width: 1200 }}"
+                    alt=""
+                    width="{{ preview_image.width }}"
+                    height="{{ preview_image.height }}"
+                    loading="lazy"
+                    aria-hidden="true"
+                  >
+                {% endif %}
+              </div>
+
+              <div class="apiarian-pairs-well__content">
+                <div class="apiarian-pairs-well__meta">
+                  <h3 class="apiarian-pairs-well__title">
+                    {{ recommended_product.title | escape }}
+                  </h3>
+
+                  <p class="apiarian-pairs-well__price">
+                    {{ section.settings.price_prefix }}{{ recommended_product.price_min | money_without_trailing_zeros }}
+                  </p>
+                </div>
+
+                {% if custom_product_tags != blank %}
+                  <p class="apiarian-pairs-well__tags">
+                    {% for tag in custom_product_tags limit: 3 %}
+                      {% if tag != blank %}
+                        {{ tag | escape }}{% unless forloop.last %}, {% endunless %}
+                      {% endif %}
+                    {% endfor %}
+                  </p>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        {% endif %}
+      </div>
     </div>
 
-    <div class="apiarian-pairs-well__pagination" data-pairs-pagination></div>
+    <div
+      class="apiarian-pairs-well__pagination"
+      data-pairs-pagination
+    ></div>
   </div>
 </section>
 
@@ -349,6 +432,7 @@
       );
 
       if (!root || root.dataset.initialized === 'true') return;
+
       root.dataset.initialized = 'true';
 
       const productId = root.dataset.productId;
@@ -362,14 +446,22 @@
         return;
       }
 
-      const currency = root.dataset.currency || 'USD';
-      const pricePrefix = root.dataset.pricePrefix || '';
-      const linkPrefix = root.dataset.linkPrefix || '';
-      const linkSuffix = root.dataset.linkSuffix || '';
-      const productsLimit = parseInt(root.dataset.productsLimit || '5', 10);
-      const mobileBreakpoint = parseInt(root.dataset.mobileBreakpoint || '749', 10);
-      const autoplayEnabled = root.dataset.autoplay === 'true';
-      const autoplaySpeed = parseInt(root.dataset.autoplaySpeed || '4', 10) * 1000;
+      const productsLimit = parseInt(
+        root.dataset.productsLimit || '5',
+        10
+      );
+
+      const linkPrefix =
+        root.dataset.linkPrefix || '';
+
+      const linkSuffix =
+        root.dataset.linkSuffix || '';
+
+      const autoplayEnabled =
+        root.dataset.autoplay === 'true';
+
+      const autoplaySpeed =
+        parseInt(root.dataset.autoplaySpeed || '4', 10) * 1000;
 
       let sliderIndex = 0;
       let autoplayTimer = null;
@@ -395,136 +487,13 @@
 
       function updateLinkCount(count) {
         if (!linkText) return;
-       linkText.textContent = linkPrefix.trim() + ' ' + numberToWord(count) + ' ' + linkSuffix.trim();
-      }
 
-      function formatMoney(cents) {
-        const amount = Number(cents || 0) / 100;
-
-        try {
-          return new Intl.NumberFormat(
-            document.documentElement.lang || 'en-US',
-            {
-              style: 'currency',
-              currency: currency,
-              minimumFractionDigits: amount % 1 === 0 ? 0 : 2,
-              maximumFractionDigits: 2
-            }
-          ).format(amount);
-        } catch (error) {
-          return '$' + amount.toFixed(2);
-        }
-      }
-
-      function normaliseImageSource(image) {
-        if (!image) return '';
-
-        if (typeof image === 'string') {
-          return image;
-        }
-
-        if (typeof image === 'object') {
-          return image.src || image.url || '';
-        }
-
-        return '';
-      }
-
-      function getProductImages(item) {
-        const imageSources = [];
-
-        const featuredImage = normaliseImageSource(item.featured_image);
-
-        if (featuredImage) {
-          imageSources.push(featuredImage);
-        }
-
-        if (Array.isArray(item.images)) {
-          item.images.forEach(function (image) {
-            const source = normaliseImageSource(image);
-
-            if (source && imageSources.indexOf(source) === -1) {
-              imageSources.push(source);
-            }
-          });
-        }
-
-        return {
-          primary: imageSources[0] || '',
-          preview: imageSources[1] || ''
-        };
-      }
-
-      function createCard(item) {
-        const card = document.createElement('a');
-        card.className = 'apiarian-pairs-well__card';
-        card.href = item.url;
-
-        const media = document.createElement('div');
-        media.className = 'apiarian-pairs-well__media';
-
-        const productImages = getProductImages(item);
-
-        if (productImages.primary) {
-          const image = document.createElement('img');
-          image.className =
-            'apiarian-pairs-well__image apiarian-pairs-well__image--primary';
-          image.src = productImages.primary;
-          image.alt = item.title || '';
-          image.loading = 'lazy';
-          image.decoding = 'async';
-          media.appendChild(image);
-        }
-
-        if (productImages.preview) {
-          const previewImage = document.createElement('img');
-          previewImage.className =
-            'apiarian-pairs-well__image apiarian-pairs-well__image--preview';
-          previewImage.src = productImages.preview;
-          previewImage.alt = '';
-          previewImage.loading = 'lazy';
-          previewImage.decoding = 'async';
-          previewImage.setAttribute('aria-hidden', 'true');
-
-          media.appendChild(previewImage);
-          card.classList.add('has-preview-image');
-        }
-
-        const content = document.createElement('div');
-        content.className = 'apiarian-pairs-well__content';
-
-        const meta = document.createElement('div');
-        meta.className = 'apiarian-pairs-well__meta';
-
-        const title = document.createElement('h3');
-        title.className = 'apiarian-pairs-well__title';
-        title.textContent = item.title || '';
-
-        const price = document.createElement('p');
-        price.className = 'apiarian-pairs-well__price';
-
-        const productPrice =
-          item.price_min !== undefined
-            ? item.price_min
-            : item.price;
-
-        price.textContent = pricePrefix + formatMoney(productPrice);
-
-        meta.appendChild(title);
-        meta.appendChild(price);
-        content.appendChild(meta);
-
-        if (Array.isArray(item.tags) && item.tags.length) {
-          const tags = document.createElement('p');
-          tags.className = 'apiarian-pairs-well__tags';
-          tags.textContent = item.tags.slice(0, 3).join(', ');
-          content.appendChild(tags);
-        }
-
-        card.appendChild(media);
-        card.appendChild(content);
-
-        return card;
+        linkText.textContent =
+          linkPrefix.trim() +
+          ' ' +
+          numberToWord(count) +
+          ' ' +
+          linkSuffix.trim();
       }
 
       function clearAutoplay() {
@@ -542,7 +511,11 @@
 
       function getPageCount() {
         const perView = getPerView();
-        return Math.max(1, Math.ceil(cards.length / perView));
+
+        return Math.max(
+          1,
+          Math.ceil(cards.length / perView)
+        );
       }
 
       function renderPagination() {
@@ -552,16 +525,25 @@
 
         const pageCount = getPageCount();
 
-        if (cards.length <= getPerView() || pageCount <= 1) {
+        if (
+          cards.length <= getPerView() ||
+          pageCount <= 1
+        ) {
           pagination.classList.remove('is-visible');
           return;
         }
 
         pagination.classList.add('is-visible');
 
-        for (let index = 0; index < pageCount; index += 1) {
+        for (
+          let index = 0;
+          index < pageCount;
+          index += 1
+        ) {
           const dot = document.createElement('button');
+
           dot.type = 'button';
+
           dot.className =
             'apiarian-pairs-well__dot' +
             (index === sliderIndex ? ' is-active' : '');
@@ -571,11 +553,15 @@
             'Go to products page ' + (index + 1)
           );
 
-          dot.addEventListener('click', function () {
-            sliderIndex = index;
-            updateSlider();
-            restartAutoplay();
-          });
+          dot.addEventListener(
+            'click',
+            function () {
+              sliderIndex = index;
+
+              updateSlider();
+              restartAutoplay();
+            }
+          );
 
           pagination.appendChild(dot);
         }
@@ -585,7 +571,9 @@
         if (!grid) return;
 
         cards = Array.from(
-          grid.querySelectorAll('.apiarian-pairs-well__card')
+          grid.querySelectorAll(
+            '.apiarian-pairs-well__card'
+          )
         );
 
         if (!cards.length) return;
@@ -602,37 +590,50 @@
         }
 
         const firstCard = cards[0];
-        const cardWidth = firstCard.getBoundingClientRect().width;
-        const styles = window.getComputedStyle(grid);
-        const gap = parseFloat(
-          styles.columnGap || styles.gap || 0
-        );
 
-        const startCardIndex = sliderIndex * perView;
-        const offset = startCardIndex * (cardWidth + gap);
+        const cardWidth =
+          firstCard.getBoundingClientRect().width;
+
+        const styles =
+          window.getComputedStyle(grid);
+
+        const gap =
+          parseFloat(
+            styles.columnGap ||
+            styles.gap ||
+            0
+          );
+
+        const startCardIndex =
+          sliderIndex * perView;
+
+        const offset =
+          startCardIndex * (cardWidth + gap);
 
         grid.style.transform =
-          'translate3d(' + (-offset) + 'px, 0, 0)';
+          'translate3d(' +
+          (-offset) +
+          'px, 0, 0)';
 
         renderPagination();
 
-        Array.from(pagination.children).forEach(
-          function (dot, index) {
-            dot.classList.toggle(
-              'is-active',
-              index === sliderIndex
-            );
-          }
-        );
+        if (pagination) {
+          Array.from(
+            pagination.children
+          ).forEach(
+            function (dot, index) {
+              dot.classList.toggle(
+                'is-active',
+                index === sliderIndex
+              );
+            }
+          );
+        }
       }
 
       function restartAutoplay() {
         clearAutoplay();
 
-        /*
-          Autoplay remains a mobile option, as requested.
-          Desktop/tablet pagination works manually.
-        */
         if (
           !autoplayEnabled ||
           window.innerWidth > 749 ||
@@ -641,20 +642,30 @@
           return;
         }
 
-        autoplayTimer = window.setInterval(function () {
-          sliderIndex =
-            (sliderIndex + 1) % getPageCount();
+        autoplayTimer =
+          window.setInterval(
+            function () {
+              sliderIndex =
+                (sliderIndex + 1) %
+                getPageCount();
 
-          updateSlider();
-        }, Math.max(autoplaySpeed, 2000));
+              updateSlider();
+            },
+            Math.max(
+              autoplaySpeed,
+              2000
+            )
+          );
       }
 
       function goNext() {
         const pageCount = getPageCount();
+
         if (pageCount <= 1) return;
 
         sliderIndex =
-          (sliderIndex + 1) % pageCount;
+          (sliderIndex + 1) %
+          pageCount;
 
         updateSlider();
         restartAutoplay();
@@ -662,10 +673,16 @@
 
       function goPrevious() {
         const pageCount = getPageCount();
+
         if (pageCount <= 1) return;
 
         sliderIndex =
-          (sliderIndex - 1 + pageCount) % pageCount;
+          (
+            sliderIndex -
+            1 +
+            pageCount
+          ) %
+          pageCount;
 
         updateSlider();
         restartAutoplay();
@@ -681,11 +698,17 @@
           function (event) {
             clearAutoplay();
 
-            if (event.touches && event.touches.length) {
-              touchStartX = event.touches[0].clientX;
+            if (
+              event.touches &&
+              event.touches.length
+            ) {
+              touchStartX =
+                event.touches[0].clientX;
             }
           },
-          { passive: true }
+          {
+            passive: true
+          }
         );
 
         viewport.addEventListener(
@@ -700,9 +723,12 @@
                 event.changedTouches[0].clientX;
 
               const difference =
-                touchEndX - touchStartX;
+                touchEndX -
+                touchStartX;
 
-              if (Math.abs(difference) > 45) {
+              if (
+                Math.abs(difference) > 45
+              ) {
                 if (difference < 0) {
                   goNext();
                 } else {
@@ -715,7 +741,9 @@
 
             restartAutoplay();
           },
-          { passive: true }
+          {
+            passive: true
+          }
         );
 
         viewport.addEventListener(
@@ -729,119 +757,234 @@
         );
       }
 
-      const url =
-        window.Shopify.routes.root +
-        'recommendations/products.json?product_id=' +
+      function setupAnimation() {
+        if (
+          window
+            .matchMedia(
+              '(prefers-reduced-motion: reduce)'
+            )
+            .matches ||
+          !(
+            'IntersectionObserver' in
+            window
+          )
+        ) {
+          return;
+        }
+
+        const rect =
+          root.getBoundingClientRect();
+
+        const viewportHeight =
+          window.innerHeight ||
+          document.documentElement.clientHeight;
+
+        if (
+          rect.top <=
+          viewportHeight * 0.94
+        ) {
+          return;
+        }
+
+        root.classList.add(
+          'is-animation-ready'
+        );
+
+        const observer =
+          new IntersectionObserver(
+            function (entries) {
+              entries.forEach(
+                function (entry) {
+                  if (
+                    !entry.isIntersecting
+                  ) {
+                    return;
+                  }
+
+                  entry.target.classList.add(
+                    'is-visible'
+                  );
+
+                  observer.unobserve(
+                    entry.target
+                  );
+                }
+              );
+            },
+            {
+              threshold: 0.12,
+              rootMargin:
+                '0px 0px -4% 0px'
+            }
+          );
+
+        observer.observe(root);
+      }
+
+      function initialiseCards() {
+        cards = Array.from(
+          grid.querySelectorAll(
+            '.apiarian-pairs-well__card'
+          )
+        );
+
+        if (!cards.length) {
+          root.hidden = true;
+          return;
+        }
+
+        root.hidden = false;
+
+        updateLinkCount(cards.length);
+
+        sliderIndex = 0;
+
+        updateSlider();
+        bindSliderEvents();
+        restartAutoplay();
+        setupAnimation();
+      }
+
+      if (
+        grid.querySelector(
+          '.apiarian-pairs-well__card'
+        )
+      ) {
+        initialiseCards();
+        return;
+      }
+
+      const recommendationsUrl =
+        '{{ routes.product_recommendations_url }}' +
+        '?section_id={{ section.id }}' +
+        '&product_id=' +
         encodeURIComponent(productId) +
-        '&limit=' + encodeURIComponent(productsLimit) +
+        '&limit=' +
+        encodeURIComponent(productsLimit) +
         '&intent=related';
 
-      fetch(url)
+      fetch(recommendationsUrl)
         .then(function (response) {
           if (!response.ok) {
-            throw new Error('Unable to load recommended products');
+            throw new Error(
+              'Unable to load recommended products'
+            );
           }
 
-          return response.json();
+          return response.text();
         })
-        .then(function (data) {
-          const products =
-            Array.isArray(data.products)
-              ? data.products.filter(function (item) {
-                  return String(item.id) !== String(productId);
-                })
-              : [];
+        .then(function (htmlText) {
+          const parser =
+            new DOMParser();
 
-          if (!products.length) {
+          const documentHtml =
+            parser.parseFromString(
+              htmlText,
+              'text/html'
+            );
+
+          const recommendedGrid =
+            documentHtml.querySelector(
+              '[data-recommended-products]'
+            );
+
+          if (!recommendedGrid) {
             root.hidden = true;
             return;
           }
 
-          products.forEach(function (item) {
-            grid.appendChild(createCard(item));
-          });
+          const recommendedCards =
+            recommendedGrid.querySelectorAll(
+              '.apiarian-pairs-well__card'
+            );
 
-          cards = Array.from(
-            grid.querySelectorAll('.apiarian-pairs-well__card')
-          );
+          if (!recommendedCards.length) {
+            root.hidden = true;
+            return;
+          }
 
-          updateLinkCount(cards.length);
-          sliderIndex = 0;
-          updateSlider();
-          bindSliderEvents();
-          restartAutoplay();
+          grid.innerHTML =
+            recommendedGrid.innerHTML;
+
+          initialiseCards();
         })
         .catch(function () {
           root.hidden = true;
         });
 
       let resizeTimer = null;
-      window.addEventListener('resize', function () {
-        window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(function () {
-          sliderIndex = 0;
-          updateSlider();
-          restartAutoplay();
-        }, 100);
-      });
 
-      if (
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-        !('IntersectionObserver' in window)
-      ) {
-        return;
-      }
+      window.addEventListener(
+        'resize',
+        function () {
+          window.clearTimeout(
+            resizeTimer
+          );
 
-      const rect = root.getBoundingClientRect();
-      const viewportHeight =
-        window.innerHeight ||
-        document.documentElement.clientHeight;
+          resizeTimer =
+            window.setTimeout(
+              function () {
+                sliderIndex = 0;
 
-      if (rect.top <= viewportHeight * 0.94) {
-        return;
-      }
-
-      root.classList.add('is-animation-ready');
-
-      const observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          });
-        },
-        {
-          threshold: 0.12,
-          rootMargin: '0px 0px -4% 0px'
+                updateSlider();
+                restartAutoplay();
+              },
+              100
+            );
         }
       );
-
-      observer.observe(root);
     }
 
     initApiarianPairsWell(document);
 
-    document.addEventListener('shopify:section:load', function (event) {
-      if (event.target && event.target.id === 'shopify-section-{{ section.id }}') {
-        const root = event.target.querySelector('[data-apiarian-pairs-well]');
+    document.addEventListener(
+      'shopify:section:load',
+      function (event) {
+        if (
+          event.target &&
+          event.target.id ===
+            'shopify-section-{{ section.id }}'
+        ) {
+          const root =
+            event.target.querySelector(
+              '[data-apiarian-pairs-well]'
+            );
 
-        if (root) {
-          delete root.dataset.initialized;
-          root.hidden = false;
-          root.classList.remove('is-animation-ready', 'is-visible');
+          if (root) {
+            delete root.dataset.initialized;
 
-          const grid = root.querySelector('[data-recommended-products]');
-          const pagination = root.querySelector('[data-pairs-pagination]');
+            root.hidden = false;
 
-          if (grid) grid.innerHTML = '';
-          if (pagination) pagination.innerHTML = '';
+            root.classList.remove(
+              'is-animation-ready',
+              'is-visible'
+            );
+
+            const grid =
+              root.querySelector(
+                '[data-recommended-products]'
+              );
+
+            const pagination =
+              root.querySelector(
+                '[data-pairs-pagination]'
+              );
+
+            if (grid) {
+              grid.innerHTML = '';
+            }
+
+            if (pagination) {
+              pagination.innerHTML = '';
+            }
+          }
+
+          initApiarianPairsWell(
+            event.target
+          );
         }
-
-        initApiarianPairsWell(event.target);
       }
-    });
+    );
   })();
 </script>
 
@@ -891,7 +1034,6 @@
       "step": 1,
       "default": 5
     },
-
     {
       "type": "header",
       "content": "Colors"
@@ -929,7 +1071,7 @@
     {
       "type": "color",
       "id": "tags_color",
-      "label": "Tags color",
+      "label": "Metafield text color",
       "default": "#8B5D21"
     },
     {
@@ -950,7 +1092,6 @@
       "label": "Card background 3",
       "default": "#294533"
     },
-
     {
       "type": "header",
       "content": "Desktop typography"
@@ -998,14 +1139,13 @@
     {
       "type": "range",
       "id": "tags_size",
-      "label": "Tags size",
+      "label": "Metafield text size",
       "min": 12,
       "max": 22,
       "step": 1,
       "unit": "px",
       "default": 15
     },
-
     {
       "type": "header",
       "content": "Desktop layout"
@@ -1050,7 +1190,6 @@
       "unit": "px",
       "default": 30
     },
-
     {
       "type": "header",
       "content": "Mobile slider"
@@ -1114,7 +1253,7 @@
     {
       "type": "range",
       "id": "mobile_tags_size",
-      "label": "Tags size",
+      "label": "Metafield text size",
       "min": 11,
       "max": 18,
       "step": 1,
