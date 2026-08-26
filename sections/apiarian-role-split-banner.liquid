@@ -3,8 +3,8 @@
   Dynamic source:
   - Product metafield: custom.the_role_in_the_colony
   - Metaobject type: the_role_in_the_colony
-  - Fields: sub_heading, heading, content, image, backround_color, color
-  - Right content background comes from metaobject key: backround_color
+  - Fields: sub_heading, heading, content, image, background_color/backround_color, color
+  - Right content background comes from metaobject key: background_color or backround_color
   - Text color comes from metaobject key: color
   - Full section background comes from Theme Editor setting: section_background
   - Section renders only when the product metafield has a metaobject entry
@@ -18,6 +18,11 @@
   assign role_namespace = section.settings.metafield_namespace | default: 'custom' | strip
   assign role_key = section.settings.metafield_key | default: 'the_role_in_the_colony' | strip
   assign role_metaobject_type = section.settings.metaobject_type | default: 'the_role_in_the_colony' | strip
+  assign role_handle_1 = product.handle
+  assign role_handle_2 = product.handle | remove: '-fragrance'
+  assign role_handle_3 = product.title | handleize
+  assign role_handle_4 = role_handle_3 | remove: '-fragrance'
+  assign role_handle_5 = role_handle_4 | remove_first: 'the-'
 
   assign role_metafield = product.metafields[role_namespace][role_key]
 
@@ -25,17 +30,50 @@
     assign role_metafield = product.metafields.custom.the_role_in_the_colony
   endif
 
+  if role_metafield == blank
+    assign role_metafield = product.metafields.custom.the_role_in_colony
+  endif
+
+  if role_metafield == blank
+    assign role_metafield = product.metafields.custom.role_in_the_colony
+  endif
+
+  if role_metafield == blank and role_handle_2 != role_handle_1
+    assign role_source_product = all_products[role_handle_2]
+
+    if role_source_product != blank
+      assign role_metafield = role_source_product.metafields[role_namespace][role_key]
+
+      if role_metafield == blank
+        assign role_metafield = role_source_product.metafields.custom.the_role_in_the_colony
+      endif
+
+      if role_metafield == blank
+        assign role_metafield = role_source_product.metafields.custom.the_role_in_colony
+      endif
+
+      if role_metafield == blank
+        assign role_metafield = role_source_product.metafields.custom.role_in_the_colony
+      endif
+    endif
+  endif
+
   assign role_entry = blank
 
   if role_metafield != blank
-    if role_metafield.type == 'list.metaobject_reference'
+    if role_metafield.type contains 'list.metaobject_reference'
       assign role_entry = role_metafield.value | first
-    elsif role_metafield.type == 'metaobject_reference'
+    elsif role_metafield.type contains 'metaobject_reference'
       assign role_entry = role_metafield.value
     else
       assign role_raw_value = role_metafield.value
       if role_raw_value != blank
+        assign role_raw_handle = role_raw_value | handleize
         assign role_entry = shop.metaobjects[role_metaobject_type][role_raw_value]
+
+        if role_entry == blank
+          assign role_entry = shop.metaobjects[role_metaobject_type][role_raw_handle]
+        endif
       endif
     endif
   endif
@@ -43,12 +81,6 @@
   # Automatic current-product fallback.
   # Example: worker-fragrance -> worker
   if role_entry == blank
-    assign role_handle_1 = product.handle
-    assign role_handle_2 = product.handle | remove: '-fragrance'
-    assign role_handle_3 = product.title | handleize
-    assign role_handle_4 = role_handle_3 | remove: '-fragrance'
-    assign role_handle_5 = role_handle_4 | remove_first: 'the-'
-
     assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_1]
 
     if role_entry == blank
@@ -68,14 +100,23 @@
     endif
   endif
 
+  assign role_background = '#efe8da'
+  assign role_color = '#2a2118'
+
   if role_entry != blank
     assign role_sub_heading = role_entry.sub_heading.value
     assign role_heading = role_entry.heading.value
     assign role_content_field = role_entry.content
     assign role_content = role_content_field.value
     assign role_image = role_entry.image.value
-    assign role_background = role_entry.backround_color.value
-    assign role_color = role_entry.color.value
+    assign role_background = role_entry.background_color.value
+
+    if role_background == blank
+      assign role_background = role_entry.backround_color.value
+    endif
+
+    assign role_background = role_background | default: '#efe8da'
+    assign role_color = role_entry.color.value | default: '#2a2118'
   endif
 -%}
 
