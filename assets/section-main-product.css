@@ -225,12 +225,15 @@ product-info {
     height: auto;
     min-height: 54px;
 }
-
 .product-form__shipping-message {
-  margin: 0.8rem 0 0;
-  color:rgb(107, 90, 62);
-  font-size:13px;
-  line-height: 1.4;
+    margin: 0;
+    color: #6b5a3e;
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
 }
 
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
