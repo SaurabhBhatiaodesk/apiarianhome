@@ -216,11 +216,15 @@ product-info {
 .product-form__input .svg-wrapper {
   right: 1.5rem;
 }
-
 .product-form__submit {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
+    font-size: 14.3947px;
+    letter-spacing: 0.04em;
+    color: rgb(255, 252, 246);
+    font-weight: 500;
+    height: auto;
+    min-height: 54px;
 }
-
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
 .product-form__submit[disabled] + .shopify-payment-button .shopify-payment-button__button[disabled] {
   cursor: not-allowed;
