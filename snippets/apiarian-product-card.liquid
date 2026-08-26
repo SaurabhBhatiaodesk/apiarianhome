@@ -18,32 +18,27 @@
   assign mobile_card_vw = 100 | divided_by: mobile_columns
   assign responsive_image_sizes = '(max-width: 749px) ' | append: mobile_card_vw | append: 'vw, (max-width: 1100px) 33vw, 20vw'
 
-  assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value
-  assign tag_background = product.metafields.custom.product_badge_color.value
+  assign tag_source_product = product
+  assign tag_source_metafield = product.metafields.custom.source_product
 
-  if tag_background == blank
-    assign role_handle_1 = product.handle
-    assign role_handle_2 = product.handle | remove: '-fragrance'
-    assign role_handle_3 = product.title | handleize
-    assign role_handle_4 = role_handle_3 | remove: '-fragrance'
-    assign role_handle_5 = role_handle_4 | remove_first: 'the-'
-
-    if role_handle_2 != role_handle_1
-      assign tag_source_product = all_products[role_handle_2]
-    endif
-
-    if tag_source_product == blank and role_handle_4 != role_handle_1
-      assign tag_source_product = all_products[role_handle_4]
-    endif
-
-    if tag_source_product == blank and role_handle_5 != role_handle_1
-      assign tag_source_product = all_products[role_handle_5]
-    endif
-
-    if tag_source_product != blank
-      assign tag_background = tag_source_product.metafields.custom.product_badge_color.value
+  if tag_source_metafield != blank
+    if tag_source_metafield.type contains 'list.product_reference'
+      assign tag_source_product = tag_source_metafield.value | first
+    elsif tag_source_metafield.type contains 'product_reference'
+      assign tag_source_product = tag_source_metafield.value
     endif
   endif
+
+  if tag_source_product == blank
+    assign tag_source_product = product
+  endif
+
+  assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value
+  if custom_product_tags == blank
+    assign custom_product_tags = tag_source_product.metafields.custom.custom_porudct_tag.value
+  endif
+
+  assign tag_background = tag_source_product.metafields.custom.product_badge_color.value
 -%}
 
 
@@ -110,7 +105,11 @@
             {{ section.settings.price_prefix | escape }}
           </span>
         {% endif %}
-        {{ product.price | money }}
+        {% if settings.currency_code_enabled %}
+          {{ product.price | money_with_currency | replace: '.00 ', ' ' | replace: ',00 ', ' ' }}
+        {% else %}
+          {{ product.price | money_without_trailing_zeros }}
+        {% endif %}
       </div>
     </div>
 

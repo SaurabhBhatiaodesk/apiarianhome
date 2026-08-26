@@ -226,37 +226,39 @@
 
       {% for scent_product in selected_products limit: 5 %}
         {%- liquid
-          assign scent_badge_color = scent_product.metafields.custom.product_badge_color.value
+          assign current_compare_product = product
+          assign current_source_metafield = product.metafields.custom.source_product
+          assign scent_compare_product = scent_product
+          assign scent_source_metafield = scent_product.metafields.custom.source_product
 
-          if scent_badge_color == blank
-            assign scent_handle_1 = scent_product.handle
-            assign scent_handle_2 = scent_product.handle | remove: '-fragrance'
-            assign scent_handle_3 = scent_product.title | handleize
-            assign scent_handle_4 = scent_handle_3 | remove: '-fragrance'
-            assign scent_handle_5 = scent_handle_4 | remove_first: 'the-'
-
-            if scent_handle_2 != scent_handle_1
-              assign scent_source_product = all_products[scent_handle_2]
-            endif
-
-            if scent_source_product == blank and scent_handle_4 != scent_handle_1
-              assign scent_source_product = all_products[scent_handle_4]
-            endif
-
-            if scent_source_product == blank and scent_handle_5 != scent_handle_1
-              assign scent_source_product = all_products[scent_handle_5]
-            endif
-
-            if scent_source_product != blank
-              assign scent_badge_color = scent_source_product.metafields.custom.product_badge_color.value
+          if current_source_metafield != blank
+            if current_source_metafield.type contains 'list.product_reference'
+              assign current_compare_product = current_source_metafield.value | first
+            elsif current_source_metafield.type contains 'product_reference'
+              assign current_compare_product = current_source_metafield.value
             endif
           endif
 
-          assign is_selected = false
-          assign current_handle_base = product.handle | remove: '-fragrance' | remove_first: 'the-'
-          assign scent_handle_base = scent_product.handle | remove: '-fragrance' | remove_first: 'the-'
+          if scent_source_metafield != blank
+            if scent_source_metafield.type contains 'list.product_reference'
+              assign scent_compare_product = scent_source_metafield.value | first
+            elsif scent_source_metafield.type contains 'product_reference'
+              assign scent_compare_product = scent_source_metafield.value
+            endif
+          endif
 
-          if scent_product.id == product.id or scent_handle_base == current_handle_base
+          if current_compare_product == blank
+            assign current_compare_product = product
+          endif
+
+          if scent_compare_product == blank
+            assign scent_compare_product = scent_product
+          endif
+
+          assign scent_badge_color = scent_compare_product.metafields.custom.product_badge_color.value
+          assign is_selected = false
+
+          if scent_product.id == product.id or scent_compare_product.id == current_compare_product.id
             assign is_selected = true
           endif
         -%}

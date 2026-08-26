@@ -7,65 +7,31 @@
   - Right content background comes from metaobject key: background_color or backround_color
   - Text color comes from metaobject key: color
   - Full section background comes from Theme Editor setting: section_background
-  - Section renders when the product, or a matching product handle, has a metaobject entry
+  - Section renders when the product, or its configured source product, has a metaobject entry
 {% endcomment %}
 
 {%- liquid
-  # CURRENT PRODUCT FIRST.
-  # 1) Try the product metafield reference.
-  # 2) If that is blank, resolve the matching metaobject from the current product handle/title.
-
   assign role_namespace = section.settings.metafield_namespace | default: 'custom' | strip
   assign role_key = section.settings.metafield_key | default: 'the_role_in_the_colony' | strip
   assign role_metaobject_type = section.settings.metaobject_type | default: 'the_role_in_the_colony' | strip
-  assign role_handle_1 = product.handle
-  assign role_handle_2 = product.handle | remove: '-fragrance'
-  assign role_handle_3 = product.title | handleize
-  assign role_handle_4 = role_handle_3 | remove: '-fragrance'
-  assign role_handle_5 = role_handle_4 | remove_first: 'the-'
+  assign role_source_namespace = section.settings.source_product_metafield_namespace | default: 'custom' | strip
+  assign role_source_key = section.settings.source_product_metafield_key | default: 'source_product' | strip
+  assign role_source_metafield = product.metafields[role_source_namespace][role_source_key]
+  assign role_source_product = product
 
-  assign role_metafield = product.metafields[role_namespace][role_key]
-
-  if role_metafield == blank
-    assign role_metafield = product.metafields.custom.the_role_in_the_colony
-  endif
-
-  if role_metafield == blank
-    assign role_metafield = product.metafields.custom.the_role_in_colony
-  endif
-
-  if role_metafield == blank
-    assign role_metafield = product.metafields.custom.role_in_the_colony
-  endif
-
-  if role_metafield == blank and role_handle_2 != role_handle_1
-    assign role_source_product = all_products[role_handle_2]
-  endif
-
-  if role_metafield == blank and role_source_product == blank and role_handle_4 != role_handle_1
-    assign role_source_product = all_products[role_handle_4]
-  endif
-
-  if role_metafield == blank and role_source_product == blank and role_handle_5 != role_handle_1
-    assign role_source_product = all_products[role_handle_5]
-  endif
-
-  if role_metafield == blank and role_source_product != blank
-    assign role_metafield = role_source_product.metafields[role_namespace][role_key]
-
-    if role_metafield == blank
-      assign role_metafield = role_source_product.metafields.custom.the_role_in_the_colony
-    endif
-
-    if role_metafield == blank
-      assign role_metafield = role_source_product.metafields.custom.the_role_in_colony
-    endif
-
-    if role_metafield == blank
-      assign role_metafield = role_source_product.metafields.custom.role_in_the_colony
+  if role_source_metafield != blank
+    if role_source_metafield.type contains 'list.product_reference'
+      assign role_source_product = role_source_metafield.value | first
+    elsif role_source_metafield.type contains 'product_reference'
+      assign role_source_product = role_source_metafield.value
     endif
   endif
 
+  if role_source_product == blank
+    assign role_source_product = product
+  endif
+
+  assign role_metafield = role_source_product.metafields[role_namespace][role_key]
   assign role_entry = blank
 
   if role_metafield != blank
@@ -83,28 +49,6 @@
           assign role_entry = shop.metaobjects[role_metaobject_type][role_raw_handle]
         endif
       endif
-    endif
-  endif
-
-  # Automatic current-product fallback.
-  # Example: worker-fragrance -> worker
-  if role_entry == blank
-    assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_1]
-
-    if role_entry == blank
-      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_2]
-    endif
-
-    if role_entry == blank
-      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_3]
-    endif
-
-    if role_entry == blank
-      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_4]
-    endif
-
-    if role_entry == blank
-      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_5]
     endif
   endif
 
@@ -473,6 +417,23 @@
       "label": "Metaobject type",
       "default": "the_role_in_the_colony",
       "info": "Use the exact metaobject type/handle"
+    },
+    {
+      "type": "header",
+      "content": "Optional source product"
+    },
+    {
+      "type": "text",
+      "id": "source_product_metafield_namespace",
+      "label": "Source product namespace",
+      "default": "custom",
+      "info": "Use a product reference metafield on the current product when role data should come from another product."
+    },
+    {
+      "type": "text",
+      "id": "source_product_metafield_key",
+      "label": "Source product key",
+      "default": "source_product"
     },
     {
       "type": "header",

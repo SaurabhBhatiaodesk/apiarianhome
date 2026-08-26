@@ -114,6 +114,10 @@
                     endif
                   endif
 
+                  if caption_source_product == blank
+                    assign caption_source_product = product
+                  endif
+
                   assign current_product_caption = caption_source_product.metafields[caption_namespace][caption_key].value
                 -%}
                 {%- if current_product_caption != blank -%}
