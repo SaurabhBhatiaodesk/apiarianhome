@@ -316,12 +316,9 @@
 >
   <div class="page-width">
     <div class="apiarian-pairs-well__header">
-      {% if section.settings.heading != blank or section.settings.heading_italic != blank %}
+      {% if section.settings.heading != blank %}
         <h2 class="apiarian-pairs-well__heading">
-          {{ section.settings.heading | escape }}
-          {% if section.settings.heading_italic != blank %}
-            <em>{{ section.settings.heading_italic | escape }}</em>
-          {% endif %}
+          {{ section.settings.heading }}
         </h2>
       {% endif %}
 
@@ -857,16 +854,10 @@
       "content": "Content"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Pairs well"
-    },
-    {
-      "type": "text",
-      "id": "heading_italic",
-      "label": "Italic heading",
-      "default": "with."
+      "default": "Pairs well <em>with.</em>"
     },
     {
       "type": "text",

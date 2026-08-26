@@ -327,12 +327,9 @@
           </p>
         {% endif %}
 
-        {% if section.settings.heading != blank or section.settings.heading_italic != blank %}
+        {% if section.settings.heading != blank %}
           <h2 class="apiarian-discovery-set__heading">
-            {{ section.settings.heading | escape }}
-            {% if section.settings.heading_italic != blank %}
-              <em>{{ section.settings.heading_italic | escape }}</em>
-            {% endif %}
+            {{ section.settings.heading }}
           </h2>
         {% endif %}
 
@@ -602,16 +599,10 @@
       "default": "NOT SURE YET"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Try all five first,"
-    },
-    {
-      "type": "text",
-      "id": "heading_italic",
-      "label": "Italic heading",
-      "default": "then commit."
+      "default": "Try all five first, <em>then commit.</em>"
     },
     {
       "type": "richtext",
