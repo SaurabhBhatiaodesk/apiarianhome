@@ -32,7 +32,7 @@
   }
 
   #shopify-section-{{ section.id }} .apiarian-good-to-know__eyebrow {
-    margin: 0 0 26px;
+    margin: 0 0 20px;
     color: {{ section.settings.eyebrow_color }};
     font-size: {{ section.settings.eyebrow_size }}px;
     font-weight: 400;
@@ -51,9 +51,9 @@
   }
 
   #shopify-section-{{ section.id }} .apiarian-good-to-know__heading em {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family:"Bodoni Moda", serif;
     font-style: italic;
-    font-weight: 400;
+    /* font-weight: 400; */
   }
 
   #shopify-section-{{ section.id }} .apiarian-good-to-know__accordion {
@@ -86,9 +86,10 @@
 
   #shopify-section-{{ section.id }} .apiarian-good-to-know__icon {
     position: relative;
-    flex: 0 0 18px;
-    width: 18px;
-    height: 18px;
+    flex: 0 0 11px;
+    width: 11px;
+    height: 11px;
+    font-size: 0;
     color: {{ section.settings.icon_color }};
   }
 
@@ -98,7 +99,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 12px;
+    width: 8px;
     height: 1.5px;
     background: currentColor;
     transform: translate(-50%, -50%);
@@ -139,7 +140,7 @@
 
   #shopify-section-{{ section.id }} .apiarian-good-to-know__answer-content {
     max-width: 720px;
-    padding: 0 42px 30px 0;
+    padding: 0 42px 22px 0;
     color: {{ section.settings.answer_color }};
     font-size: {{ section.settings.answer_size }}px;
     font-weight: 300;
