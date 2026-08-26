@@ -15,12 +15,7 @@
         "choose_your_skin_QwTwP4": {
           "type": "choose_your_skin",
           "settings": {
-            "products": [
-              "hive",
-              "drone",
-              "brood",
-              "queen"
-            ],
+            "products": [],
             "heading": "CHOOSE YOUR SCENT",
             "count_text": "in the colony",
             "heading_color": "#a86a1f",
