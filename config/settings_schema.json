@@ -1451,5 +1451,16 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Shipping",
+    "settings": [
+      {
+        "type": "text",
+        "id": "shipping_message",
+        "label": "PDP shipping message",
+        "default": "Free U.S. shipping over $60"
+      }
+    ]
   }
 ]
