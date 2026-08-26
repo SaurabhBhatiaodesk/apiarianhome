@@ -71,7 +71,6 @@
   }
 
   #shopify-section-{{ section.id }} .apiarian-ingredients__card {
-    min-height: {{ section.settings.card_min_height }}px;
     padding:
       {{ section.settings.card_padding_vertical }}px
       {{ section.settings.card_padding_horizontal }}px;
@@ -224,12 +223,9 @@
         </p>
       {% endif %}
 
-      {% if section.settings.heading != blank or section.settings.heading_italic != blank %}
+      {% if section.settings.heading != blank %}
         <h2 class="apiarian-ingredients__heading">
-          {{ section.settings.heading | escape }}
-          {% if section.settings.heading_italic != blank %}
-            <em>{{ section.settings.heading_italic | escape }}</em>
-          {% endif %}
+          {{ section.settings.heading }}
         </h2>
       {% endif %}
 
@@ -326,16 +322,10 @@
       "default": "INGREDIENTS & SOURCING"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Four things,"
-    },
-    {
-      "type": "text",
-      "id": "heading_italic",
-      "label": "Italic heading",
-      "default": "nothing hidden."
+      "default": "Four things, <em>nothing hidden.</em>"
     },
     {
       "type": "richtext",
@@ -419,16 +409,7 @@
       "unit": "px",
       "default": 22
     },
-    {
-      "type": "range",
-      "id": "card_min_height",
-      "label": "Card minimum height",
-      "min": 120,
-      "max": 240,
-      "step": 10,
-      "unit": "px",
-      "default": 160
-    },
+
     {
       "type": "range",
       "id": "card_radius",

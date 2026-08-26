@@ -239,8 +239,7 @@
       "name": "Apiarian Discovery Set",
       "settings": {
         "eyebrow": "NOT SURE YET",
-        "heading": "Try all five first,",
-        "heading_italic": "then commit.",
+        "heading": "Try all five first, <em>then commit.</em>",
         "text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
         "button_label": "Add the set — $28",
         "note": "Credited toward your first full bottle",
@@ -362,8 +361,7 @@
       "name": "Ingredients & sourcing",
       "settings": {
         "eyebrow": "INGREDIENTS & SOURCING",
-        "heading": "Four things,",
-        "heading_italic": "nothing hidden.",
+        "heading": "Four things, <em>nothing hidden.</em>",
         "text": "<p>Every bottle is blended by hand in Fort Collins, in batches small enough that each one carries its own character.</p>",
         "eyebrow_color": "#8a6a1f",
         "heading_color": "#2a2118",
@@ -505,8 +503,7 @@
       "type": "apiarian-pairs-well",
       "name": "Apiarian Pairs Well",
       "settings": {
-        "heading": "Pairs well",
-        "heading_italic": "with.",
+        "heading": "Pairs well <em>with.</em>",
         "link_prefix": "All",
         "link_suffix": "scents",
         "link_url": "",
@@ -601,8 +598,7 @@
       "name": "Good to know",
       "settings": {
         "eyebrow": "GOOD TO KNOW",
-        "heading": "Shipping, returns",
-        "heading_italic": "and the rest.",
+        "heading": "Shipping, returns <em>and the rest.</em>",
         "first_open": true,
         "background_color": "#fffcf6",
         "eyebrow_color": "#9a711a",
