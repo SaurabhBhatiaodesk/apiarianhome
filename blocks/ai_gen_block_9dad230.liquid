@@ -1,0 +1,115 @@
+{% doc %}
+  @prompt
+    Add a single editable line of text (a custom subheading or description field) on the gift card product page, positioned below the product title and above the denomination/variant selector. The text should be configurable via a theme block or section setting so the merchant can update it without touching code. It should match the store's existing typography and styling.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-subheading-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    margin: {{ block.settings.spacing_top }}px 0 {{ block.settings.spacing_bottom }}px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.5;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-product-subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.font_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-product-subheading-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.subheading_text != blank %}
+    {{ block.settings.subheading_text }}
+  {% else %}
+    <span style="opacity: 0.5; font-style: italic;">Add your custom text here</span>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Product subheading",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "subheading_text",
+      "label": "Subheading text",
+      "default": "Perfect for any occasion"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#11151c"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "spacing_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "spacing_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product subheading"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

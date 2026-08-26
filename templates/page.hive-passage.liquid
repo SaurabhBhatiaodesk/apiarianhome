@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hive Passage — {{ shop.name }}</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Favicon (uses your Shopify store favicon) -->
+  {{ 'favicon.ico' | asset_url | prepend: '<link rel="icon" href="' | append: '">' }}
+
+  <style>
+    /* ============================================
+       CSS VARIABLES
+       ============================================ */
+    :root {
+      --bg-primary: #1a1611;
+      --bg-card: #2a2319;
+      --bg-card-hover: #302920;
+      --gold: #c4973a;
+      --gold-light: #d4aa4f;
+      --gold-muted: #8a7340;
+      --honey: #e8b84b;
+      --cream: #f0e6d0;
+      --cream-muted: #bfb49e;
+      --warm-white: #f5efe3;
+      --dark: #0f0d0a;
+      
+      /* Chamber accent colors */
+      --hive: #c4973a;
+      --brood: #a67c52;
+      --worker: #c9a832;
+      --drone: #8b7355;
+      --queen: #9b6b8a;
+      
+      --font-display: 'Cormorant Garamond', 'Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--cream);
+      font-family: var(--font-display);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hide Shopify theme header/footer */
+    .shopify-section-header,
+    .shopify-section-footer,
+    #shopify-section-header,
+    #shopify-section-footer,
+    header.site-header,
+    footer.site-footer,
+    .announcement-bar {
+      display: none !important;
+    }
+
+    /* ============================================
+       BACKGROUND TEXTURE
+       ============================================ */
+    .bg-texture {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+      background-size: 24px 24px;
+      opacity: 0.025;
+    }
+
+    /* ============================================
+       WELCOME PAGE
+       ============================================ */
+    .hive-passage {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    /* Fade-in animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Staggered delays */
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.5s; }
+    .delay-4 { animation-delay: 0.7s; }
+    .delay-5 { animation-delay: 0.9s; }
+    .delay-6 { animation-delay: 1.1s; }
+    .delay-7 { animation-delay: 1.3s; }
+
+    /* ============================================
+       DECORATIVE ELEMENTS
+       ============================================ */
+    .line-vertical {
+      width: 1px;
+      height: 60px;
+      margin: 0 auto;
+    }
+
+    .line-vertical--top {
+      background: linear-gradient(to bottom, transparent, rgba(196, 151, 58, 0.4));
+      margin-bottom: 30px;
+    }
+
+    .line-vertical--bottom {
+      background: linear-gradient(to bottom, rgba(196, 151, 58, 0.4), transparent);
+      margin-top: 40px;
+    }
+
+    .line-horizontal {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+      margin: 0 auto;
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .brand-name {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold-muted);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 7vw, 56px);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--gold-muted);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .welcome-text {
+      font-family: var(--font-display);
+      font-size: 19px;
+      color: var(--cream-muted);
+      line-height: 1.7;
+      max-width: 420px;
+      margin: 0 auto 16px;
+    }
+
+    .welcome-text--italic {
+      font-style: italic;
+      color: rgba(191, 180, 158, 0.6);
+      font-size: 16px;
+      max-width: 400px;
+      margin-bottom: 50px;
+    }
+
+    /* ============================================
+       AUDIO PLAYER
+       ============================================ */
+    .audio-welcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 30px;
+      padding: 10px 20px 10px 14px;
+      border: 1px solid rgba(196, 151, 58, 0.15);
+      margin-bottom: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .audio-welcome:hover {
+      border-color: rgba(196, 151, 58, 0.35);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .audio-play-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(196, 151, 58, 0.12);
+      border: 1.5px solid rgba(196, 151, 58, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .audio-welcome:hover .audio-play-btn {
+      background: rgba(196, 151, 58, 0.2);
+      border-color: rgba(196, 151, 58, 0.5);
+    }
+
+    .audio-play-btn svg {
+      width: 10px;
+      height: 12px;
+      fill: var(--gold);
+      margin-left: 2px;
+    }
+
+    .audio-play-btn .pause-icon {
+      display: none;
+      width: 10px;
+      height: 12px;
+    }
+
+    .audio-play-btn .pause-icon rect {
+      fill: var(--gold);
+    }
+
+    .audio-welcome.playing .play-icon { display: none; }
+    .audio-welcome.playing .pause-icon { display: block; }
+
+    .audio-label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: var(--gold-muted);
+      text-transform: uppercase;
+    }
+
+    .audio-progress-wrap {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 120px;
+    }
+
+    .audio-welcome.active .audio-progress-wrap {
+      display: flex;
+    }
+
+    .audio-welcome.active .audio-label-initial {
+      display: none;
+    }
+
+    .audio-progress-bar {
+      height: 3px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .audio-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, rgba(196, 151, 58, 0.6), rgba(196, 151, 58, 0.3));
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .audio-time {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      color: var(--gold-muted);
+    }
+
+    /* ============================================
+       ENTER BUTTON
+       ============================================ */
+    .enter-btn {
+      display: inline-block;
+      background: none;
+      border: 1px solid rgba(196, 151, 58, 0.4);
+      color: var(--gold);
+      padding: 14px 40px;
+      border-radius: 2px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .enter-btn:hover {
+      background: rgba(196, 151, 58, 0.1);
+      border-color: rgba(196, 151, 58, 0.6);
+      color: var(--gold-light);
+    }
+
+    .enter-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 480px) {
+      .hive-passage {
+        padding: 40px 20px;
+      }
+
+      .welcome-text {
+        font-size: 17px;
+      }
+
+      .welcome-text--italic {
+        font-size: 15px;
+      }
+
+      .audio-welcome {
+        padding: 8px 16px 8px 12px;
+      }
+
+      .audio-label {
+        font-size: 11px;
+        letter-spacing: 1px;
+      }
+
+      .enter-btn {
+        padding: 12px 32px;
+        font-size: 11px;
+      }
+
+      .line-vertical {
+        height: 40px;
+      }
+    }
+
+    /* ============================================
+       LOADING STATE
+       (shows briefly while fonts load)
+       ============================================ */
+    .hive-passage {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .hive-passage.loaded {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background texture -->
+  <div class="bg-texture"></div>
+
+  <!-- Main content -->
+  <main class="hive-passage" id="hivePassage">
+
+    <!-- Top decorative line -->
+    <div class="line-vertical line-vertical--top fade-up delay-1"></div>
+
+    <!-- Brand name -->
+    <div class="brand-name fade-up delay-2">The Apiarian Home</div>
+
+    <!-- Title -->
+    <h1 class="page-title fade-up delay-2">The Hive Passage</h1>
+
+    <!-- Subtitle -->
+    <div class="page-subtitle fade-up delay-3">A Field Guide</div>
+
+    <!-- Horizontal rule -->
+    <div class="line-horizontal fade-up delay-3" style="margin-bottom: 40px;"></div>
+
+    <!-- Welcome text -->
+    <p class="welcome-text fade-up delay-4">
+      Five fragrances. Five roles within the hive. A sensory journey through the colony — guided by the beekeeper, at your own pace.
+    </p>
+
+    <p class="welcome-text welcome-text--italic fade-up delay-4">
+      There is no right way to move through this passage. Some will open all five chambers in an evening. Some will live with one for a week. Both are honoring the hive.
+    </p>
+
+    <!-- Audio welcome -->
+    <div class="audio-welcome fade-up delay-5" id="audioWelcome" role="button" tabindex="0" aria-label="Play welcome message from Netta">
+      <div class="audio-play-btn">
+        <!-- Play icon -->
+        <svg class="play-icon" viewBox="0 0 10 12">
+          <polygon points="1,0 10,6 1,12"/>
+        </svg>
+        <!-- Pause icon -->
+        <svg class="pause-icon" viewBox="0 0 10 12">
+          <rect x="1" y="0" width="3" height="12" rx="0.5"/>
+          <rect x="6" y="0" width="3" height="12" rx="0.5"/>
+        </svg>
+      </div>
+
+      <span class="audio-label audio-label-initial">A welcome from Netta — 1:20</span>
+
+      <div class="audio-progress-wrap">
+        <span class="audio-label">Netta's welcome</span>
+        <div class="audio-progress-bar" id="progressBar">
+          <div class="audio-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="audio-time">
+          <span id="currentTime">0:00</span>
+          <span id="totalTime">1:20</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden audio element -->
+    <!-- 
+      ============================================================
+      REPLACE THE SRC BELOW WITH YOUR ACTUAL AUDIO FILE URL
+      
+      To get the URL:
+      1. Go to Shopify Admin → Settings → Files
+      2. Upload your welcome audio MP3
+      3. Click "Copy link" on the uploaded file
+      4. Paste that URL below replacing the placeholder
+      ============================================================
+    -->
+    <audio id="welcomeAudio" preload="metadata">
+      <source src="YOUR_AUDIO_FILE_URL_HERE.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Enter button -->
+    <!-- 
+      ============================================================
+      REPLACE THE HREF BELOW WITH YOUR CHAMBERS PAGE URL
+      
+      Options:
+      A) If building chambers as another Shopify page:
+         href="/pages/hive-passage-chambers"
+      B) If hosting on Base44:
+         href="https://passage.apiarianhome.com/chambers"
+      C) For now, use # as placeholder:
+         href="#"
+      ============================================================
+    -->
+    <a href="#" class="enter-btn fade-up delay-6" id="enterBtn">
+      Enter the Hive
+    </a>
+
+    <!-- Bottom decorative line -->
+    <div class="line-vertical line-vertical--bottom fade-up delay-7"></div>
+
+  </main>
+
+  <script>
+    // ============================================
+    // Wait for fonts to load, then show page
+    // ============================================
+    document.fonts.ready.then(function() {
+      document.getElementById('hivePassage').classList.add('loaded');
+    });
+
+    // Fallback: show page after 2 seconds even if fonts haven't loaded
+    setTimeout(function() {
+      document.getElementById('hivePassage').classList.add('loaded');
+    }, 2000);
+
+    // ============================================
+    // Audio player functionality
+    // ============================================
+    (function() {
+      var audio = document.getElementById('welcomeAudio');
+      var wrapper = document.getElementById('audioWelcome');
+      var progressFill = document.getElementById('progressFill');
+      var progressBar = document.getElementById('progressBar');
+      var currentTimeEl = document.getElementById('currentTime');
+      var totalTimeEl = document.getElementById('totalTime');
+      var isPlaying = false;
+
+      function formatTime(seconds) {
+        var mins = Math.floor(seconds / 60);
+        var secs = Math.floor(seconds % 60);
+        return mins + ':' + (secs < 10 ? '0' : '') + secs;
+      }
+
+      // Set total time when metadata loads
+      audio.addEventListener('loadedmetadata', function() {
+        totalTimeEl.textContent = formatTime(audio.duration);
+      });
+
+      // Update progress bar
+      audio.addEventListener('timeupdate', function() {
+        if (audio.duration) {
+          var progress = (audio.currentTime / audio.duration) * 100;
+          progressFill.style.width = progress + '%';
+          currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+      });
+
+      // Reset when ended
+      audio.addEventListener('ended', function() {
+        isPlaying = false;
+        wrapper.classList.remove('playing');
+        progressFill.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
+      });
+
+      // Click to play/pause
+      wrapper.addEventListener('click', function(e) {
+        // Don't toggle if clicking progress bar (handled separately)
+        if (e.target === progressBar || e.target === progressFill) return;
+
+        wrapper.classList.add('active');
+
+        if (isPlaying) {
+          audio.pause();
+          isPlaying = false;
+          wrapper.classList.remove('playing');
+        } else {
+          audio.play().catch(function() {
+            // Audio file not found — silently fail
+            console.log('Audio file not loaded. Replace the src with your MP3 URL.');
+          });
+          isPlaying = true;
+          wrapper.classList.add('playing');
+        }
+      });
+
+      // Click on progress bar to seek
+      progressBar.addEventListener('click', function(e) {
+        if (audio.duration) {
+          var rect = progressBar.getBoundingClientRect();
+          var clickX = e.clientX - rect.left;
+          var percent = clickX / rect.width;
+          audio.currentTime = percent * audio.duration;
+        }
+      });
+
+      // Keyboard accessibility
+      wrapper.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          wrapper.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

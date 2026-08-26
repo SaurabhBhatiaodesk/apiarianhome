@@ -1,0 +1,596 @@
+{% liquid
+  assign transparent_home = false
+  if request.page_type == 'index'
+    if section.settings.transparent_home
+      assign transparent_home = true
+    endif
+  endif
+%}
+
+<style>
+  #ApiarianHeader-{{ section.id }} {
+    --header-height: {{ section.settings.header_height }}px;
+    --mobile-header-height: {{ section.settings.mobile_header_height }}px;
+    --solid-bg: {{ section.settings.background_color }};
+    --solid-text: {{ section.settings.text_color }};
+    --border-color: {{ section.settings.border_color }};
+    --transparent-text: {{ section.settings.transparent_text_color }};
+    --transparent-count-text: {{ section.settings.transparent_cart_count_text_color }};
+    position: static;
+    width: 100%;
+    z-index: 100;
+    background: var(--solid-bg);
+    color: var(--solid-text);
+    border-bottom: 1px solid var(--border-color);
+    font-family: 'Jost', Arial, sans-serif;
+    transition: background .25s ease, color .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+
+  #ApiarianHeader-{{ section.id }}.apiarian-header--transparent-home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    color: var(--transparent-text);
+    border-bottom-color: transparent;
+  }
+
+  #ApiarianHeader-{{ section.id }}.apiarian-header--sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--solid-bg);
+    color: var(--solid-text);
+    border-bottom-color: var(--border-color);
+    box-shadow: 0 4px 18px rgba(42, 33, 24, .08);
+  }
+
+  #ApiarianHeader-{{ section.id }} *,
+  #ApiarianHeader-{{ section.id }} *::before,
+  #ApiarianHeader-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #ApiarianHeader-{{ section.id }} a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__inner {
+    height: var(--header-height);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 30px;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__left,
+  #ApiarianHeader-{{ section.id }} .apiarian-header__right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 16.6776px;
+    line-height: 1;
+    font-weight:400;
+    letter-spacing:0.06em;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__right {
+    justify-content: flex-end;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__brand {
+    justify-self: center;
+    font-family: "Bodoni Moda", serif;
+    font-size: 18.9227px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__cart {
+    position: relative;
+    width: 30px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__cart svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__cart-count {
+    position: absolute;
+    top: -2px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: currentColor;
+    font-size: 10px;
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__cart-count span {
+    color: var(--solid-bg);
+  }
+
+  #ApiarianHeader-{{ section.id }}.apiarian-header--transparent-home:not(.apiarian-header--sticky) .apiarian-header__cart-count span {
+    color: var(--transparent-count-text);
+  }
+
+  #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-toggle,
+  #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-cart,
+  #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu {
+    display: none;
+  }
+
+  #ApiarianHeaderSpacer-{{ section.id }} {
+    display: none;
+    height: var(--header-height);
+  }
+
+  #ApiarianHeaderSpacer-{{ section.id }}.is-active {
+    display: block;
+  }
+
+  @media screen and (max-width: 1100px) {
+    #ApiarianHeader-{{ section.id }} .apiarian-header__left,
+    #ApiarianHeader-{{ section.id }} .apiarian-header__right {
+      gap: 18px;
+      font-size: 15px;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__brand {
+      font-size: 18px;
+      letter-spacing: .2em;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    #ApiarianHeader-{{ section.id }} .apiarian-header__inner {
+      height: var(--mobile-header-height);
+      grid-template-columns: 42px 1fr 42px;
+      gap: 10px;
+    }
+
+    #ApiarianHeaderSpacer-{{ section.id }} {
+      height: var(--mobile-header-height);
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__desktop {
+      display: none;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-toggle {
+      display: flex;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__hamburger {
+      width: 24px;
+      display: grid;
+      gap: 6px;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__hamburger span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform-origin: center;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-toggle[aria-expanded='true'] .apiarian-header__hamburger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-toggle[aria-expanded='true'] .apiarian-header__hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-toggle[aria-expanded='true'] .apiarian-header__hamburger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__brand {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 15px;
+      letter-spacing: .15em;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-cart {
+      display: inline-flex;
+      justify-self: end;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: var(--solid-bg);
+      color: var(--solid-text);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 12px 24px rgba(42, 33, 24, .08);
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu.is-open {
+      display: block;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 12px 0;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu a {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 16px;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu li:last-child a {
+      border-bottom: 0;
+    }
+  }
+</style>
+
+<header
+  id="ApiarianHeader-{{ section.id }}"
+  class="apiarian-header{% if transparent_home %} apiarian-header--transparent-home{% endif %}"
+  data-apiarian-header
+  data-transparent-home="{% if transparent_home %}true{% else %}false{% endif %}"
+>
+  <div class="apiarian-header__inner page-width">
+    <nav class="apiarian-header__left apiarian-header__desktop" aria-label="Primary navigation">
+      {% if section.settings.left_menu != blank %}
+        {% for link in section.settings.left_menu.links %}
+          <a href="{{ link.url }}">{{ link.title | escape }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="{{ routes.all_products_collection_url }}">Shop</a>
+        <a href="/pages/how-it-works">How it works</a>
+      {% endif %}
+    </nav>
+
+    <button
+      class="apiarian-header__mobile-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="ApiarianMobileMenu-{{ section.id }}"
+      aria-label="Menu"
+      data-apiarian-menu-toggle
+    >
+      <span class="apiarian-header__hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <a class="apiarian-header__brand" href="{{ routes.root_url }}">
+      {{ section.settings.logo_text | escape }}
+    </a>
+
+    <nav class="apiarian-header__right apiarian-header__desktop" aria-label="Secondary navigation">
+      {% if section.settings.right_menu != blank %}
+        {% for link in section.settings.right_menu.links %}
+          <a href="{{ link.url }}">{{ link.title | escape }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="/pages/apitherapy">Apitherapy</a>
+        <a href="/pages/our-story">Our story</a>
+      {% endif %}
+
+      <a class="apiarian-header__cart" href="{{ routes.cart_url }}" aria-label="Cart, {{ cart.item_count }} items" data-apiarian-cart-link>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M5 8h14l-1.2 11.2a1.6 1.6 0 0 1-1.6 1.4H7.8a1.6 1.6 0 0 1-1.6-1.4L5 8z"></path>
+          <path d="M9 8V6.2a3 3 0 0 1 6 0V8"></path>
+        </svg>
+        <span class="apiarian-header__cart-count" aria-hidden="true"><span data-apiarian-cart-count>{{ cart.item_count }}</span></span>
+      </a>
+    </nav>
+
+    <a class="apiarian-header__cart apiarian-header__mobile-cart" href="{{ routes.cart_url }}" aria-label="Cart, {{ cart.item_count }} items" data-apiarian-cart-link>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <path d="M5 8h14l-1.2 11.2a1.6 1.6 0 0 1-1.6 1.4H7.8a1.6 1.6 0 0 1-1.6-1.4L5 8z"></path>
+        <path d="M9 8V6.2a3 3 0 0 1 6 0V8"></path>
+      </svg>
+      <span class="apiarian-header__cart-count" aria-hidden="true"><span data-apiarian-cart-count>{{ cart.item_count }}</span></span>
+    </a>
+  </div>
+
+  <div id="ApiarianMobileMenu-{{ section.id }}" class="apiarian-header__mobile-menu" data-apiarian-mobile-menu>
+    <nav class="page-width" aria-label="Mobile navigation">
+      <ul>
+        {% if section.settings.left_menu != blank %}
+          {% for link in section.settings.left_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+          {% endfor %}
+        {% else %}
+          <li><a href="{{ routes.all_products_collection_url }}">Shop</a></li>
+          <li><a href="/pages/how-it-works">How it works</a></li>
+        {% endif %}
+
+        {% if section.settings.right_menu != blank %}
+          {% for link in section.settings.right_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+          {% endfor %}
+        {% else %}
+          <li><a href="/pages/apitherapy">Apitherapy</a></li>
+          <li><a href="/pages/our-story">Our story</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="ApiarianHeaderSpacer-{{ section.id }}" aria-hidden="true"></div>
+
+<script>
+  (() => {
+    const header = document.getElementById('ApiarianHeader-{{ section.id }}');
+    const spacer = document.getElementById('ApiarianHeaderSpacer-{{ section.id }}');
+    if (!header) return;
+
+    const transparentHome = header.dataset.transparentHome === 'true';
+    const toggle = header.querySelector('[data-apiarian-menu-toggle]');
+    const menu = header.querySelector('[data-apiarian-mobile-menu]');
+
+    const updateHeader = () => {
+      const scrolled = window.scrollY > 4;
+      header.classList.toggle('apiarian-header--sticky', scrolled);
+      if (spacer) {
+        spacer.classList.toggle('is-active', scrolled && !transparentHome);
+      }
+    };
+
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        menu.classList.toggle('is-open', !open);
+      });
+
+      menu.addEventListener('click', (event) => {
+        if (event.target.closest('a')) {
+          toggle.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('is-open');
+        }
+      });
+    }
+
+    const setCartCount = (count) => {
+      document.querySelectorAll('[data-apiarian-cart-count]').forEach((element) => {
+        element.textContent = count;
+      });
+
+      document.querySelectorAll('[data-apiarian-cart-link]').forEach((element) => {
+        element.setAttribute('aria-label', `Cart, ${count} items`);
+      });
+    };
+
+    if (!window.__apiarianOriginalFetch) {
+      window.__apiarianOriginalFetch = window.fetch.bind(window);
+    }
+
+    const getCartCount = async () => {
+      try {
+        const root = window.Shopify && window.Shopify.routes && window.Shopify.routes.root
+          ? window.Shopify.routes.root
+          : '/';
+
+        const response = await window.__apiarianOriginalFetch(`${root}cart.js`, {
+          credentials: 'same-origin',
+          cache: 'no-store',
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        if (!response.ok) return;
+
+        const cart = await response.json();
+        setCartCount(Number(cart.item_count) || 0);
+      } catch (error) {
+        console.error('Unable to update cart count:', error);
+      }
+    };
+
+    const isCartMutationUrl = (value) => {
+      try {
+        const rawUrl = typeof value === 'string' ? value : value && value.url ? value.url : '';
+        if (!rawUrl) return false;
+        const pathname = new URL(rawUrl, window.location.origin).pathname;
+        return /\/cart\/(add|change|update|clear)(?:\.js)?\/?$/.test(pathname);
+      } catch (error) {
+        return false;
+      }
+    };
+
+    const triggerCartSync = () => {
+      window.clearTimeout(window.__apiarianCartSyncTimer);
+      window.__apiarianCartSyncTimer = window.setTimeout(() => {
+        getCartCount();
+      }, 80);
+    };
+
+    if (!window.__apiarianCartWatcherInstalled) {
+      window.__apiarianCartWatcherInstalled = true;
+
+      window.fetch = async (...args) => {
+        const response = await window.__apiarianOriginalFetch(...args);
+
+        if (response.ok && isCartMutationUrl(args[0])) {
+          triggerCartSync();
+        }
+
+        return response;
+      };
+
+      const originalXhrOpen = XMLHttpRequest.prototype.open;
+      const originalXhrSend = XMLHttpRequest.prototype.send;
+
+      XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+        this.__apiarianCartRequestUrl = url;
+        return originalXhrOpen.call(this, method, url, ...rest);
+      };
+
+      XMLHttpRequest.prototype.send = function(...args) {
+        this.addEventListener('load', () => {
+          if (
+            this.status >= 200 &&
+            this.status < 300 &&
+            isCartMutationUrl(this.__apiarianCartRequestUrl)
+          ) {
+            triggerCartSync();
+          }
+        }, { once: true });
+
+        return originalXhrSend.apply(this, args);
+      };
+    }
+
+    [
+      'cart:updated',
+      'cart-updated',
+      'cart:changed',
+      'cart:refresh',
+      'shopify:cart:lines-update'
+    ].forEach((eventName) => {
+      document.addEventListener(eventName, triggerCartSync);
+      window.addEventListener(eventName, triggerCartSync);
+    });
+
+    document.addEventListener('click', (event) => {
+      const cartControl = event.target.closest(
+        '[name="plus"], [name="minus"], [data-cart-remove], cart-remove-button, .quantity__button'
+      );
+
+      if (!cartControl) return;
+
+      window.setTimeout(getCartCount, 350);
+      window.setTimeout(getCartCount, 900);
+    });
+
+    getCartCount();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Apiarian header",
+  "tag": "section",
+  "class": "apiarian-header-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "The Apiarian Home"
+    },
+    {
+      "type": "link_list",
+      "id": "left_menu",
+      "label": "Left menu"
+    },
+    {
+      "type": "link_list",
+      "id": "right_menu",
+      "label": "Right menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_home",
+      "label": "Transparent header on home page",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "transparent_text_color",
+      "label": "Home transparent text color",
+      "default": "#fffaf2"
+    },
+    {
+      "type": "color",
+      "id": "transparent_cart_count_text_color",
+      "label": "Home cart count text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Header background",
+      "default": "#fbf9f4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Header text color",
+      "default": "#2a2118"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Bottom border color",
+      "default": "#e7e0d7"
+    },
+    {
+      "type": "range",
+      "id": "header_height",
+      "min": 60,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop header height",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "mobile_header_height",
+      "min": 56,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile header height",
+      "default": 66
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apiarian header"
+    }
+  ]
+}
+{% endschema %}

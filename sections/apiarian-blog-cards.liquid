@@ -1,0 +1,1054 @@
+{% style %}
+#shopify-section-{{ section.id }} {
+  background: {{ section.settings.section_background }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards,
+#shopify-section-{{ section.id }} .apiarian-blog-cards * {
+  box-sizing: border-box;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards {
+  position: relative;
+  width: 100%;
+  padding:
+    {{ section.settings.padding_top }}px
+    0
+    {{ section.settings.padding_bottom }}px;
+  overflow: hidden;
+  color: {{ section.settings.text_color }};
+  content-visibility: auto;
+  contain-intrinsic-size: 620px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__inner {
+  position: relative;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 34px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__heading {
+  margin: 0;
+  color: {{ section.settings.heading_color }};
+  font-size: {{ section.settings.heading_size }}px;
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -1.2px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__heading em,
+#shopify-section-{{ section.id }} .apiarian-blog-cards__heading i {
+  font-family: "Bodoni Moda", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__all-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: {{ section.settings.all_link_color }};
+  font-size:17px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__all-link:hover {
+  opacity: 0.65;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: {{ section.settings.card_gap }}px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: {{ section.settings.card_height }}px;
+  padding: 34px 36px 32px;
+  border-radius: {{ section.settings.card_radius }}px;
+  overflow: hidden;
+  text-decoration: none;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+/* Premium shine sweep on hover */
+#shopify-section-{{ section.id }} .apiarian-blog-card::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -55%;
+  z-index: 4;
+  width: 34%;
+  pointer-events: none;
+  opacity: 0;
+  transform: skewX(-18deg);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.10) 30%,
+    rgba(255, 255, 255, 0.30) 50%,
+    rgba(255, 255, 255, 0.10) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #shopify-section-{{ section.id }} .apiarian-blog-card:hover::after {
+    opacity: 1;
+    animation: apiarian-card-shine-{{ section.id }} 0.8s ease-out forwards;
+  }
+}
+
+@keyframes apiarian-card-shine-{{ section.id }} {
+  0% {
+    left: -55%;
+  }
+
+  100% {
+    left: 125%;
+  }
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display:block;
+  background:linear-gradient(180deg, rgba(20, 14, 10, 0.08) 0%, rgb(20 14 10 / 46%) 42%, rgba(20, 14, 10, 0.68) 100%);
+  pointer-events: none;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card--has-image:hover .apiarian-blog-card__image {
+  transform: scale(1.035);
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(35, 23, 15, 0.08);
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__tag {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.23);
+  color: #fffcf6;
+  font-size: 11.7064px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__bottom {
+  margin-top: auto;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__title {
+  max-width: 92%;
+  margin: 0 0 18px;
+  color: #fffcf6;
+  font-size: {{ section.settings.card_title_size }}px;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.6px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__title em,
+#shopify-section-{{ section.id }} .apiarian-blog-card__title i {
+  font-family: "Bodoni Moda", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-card__meta {
+  margin: 0;
+  color: inherit;
+  opacity: 0.72;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__bee {
+  position: absolute;
+  z-index: 3;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.6;
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__bee--one {
+  top: -54px;
+  left: 61%; 
+  width: {{ section.settings.bee_width }}px;
+  transform: rotate(18deg);
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__bee--two {
+  top: 0;
+  left: 54%;
+  width: {{ section.settings.bee_width_2 }}px;
+  transform:rotate(18deg);
+}
+
+#shopify-section-{{ section.id }} .apiarian-blog-cards__bee--three {
+  bottom:-80px;
+  left: 70%;
+  width: {{ section.settings.bee_width_3 }}px;
+  transform: rotate(-30deg);
+}
+
+
+/* =========================
+   PAGE ON SCROLL ANIMATION
+========================= */
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-cards__heading,
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-cards__all-link,
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-card {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-cards__heading {
+  transition:
+    opacity 0.5s ease 0s,
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-cards__all-link {
+  transition:
+    opacity 0.5s ease 0.08s,
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-card:nth-child(1) {
+  transition:
+    opacity 0.55s ease 0.12s,
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+    box-shadow 0.35s ease;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-card:nth-child(2) {
+  transition:
+    opacity 0.55s ease 0.20s,
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.20s,
+    box-shadow 0.35s ease;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-card:nth-child(3) {
+  transition:
+    opacity 0.55s ease 0.28s,
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.28s,
+    box-shadow 0.35s ease;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready
+.apiarian-blog-card:nth-child(n+4) {
+  transition:
+    opacity 0.55s ease 0.34s,
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.34s,
+    box-shadow 0.35s ease;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready.is-visible
+.apiarian-blog-cards__heading,
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready.is-visible
+.apiarian-blog-cards__all-link,
+#shopify-section-{{ section.id }}
+.apiarian-blog-cards.is-animation-ready.is-visible
+.apiarian-blog-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media screen and (max-width: 989px) {
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-card {
+    min-height: 330px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__bee--one,
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__bee--two {
+    display: none;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media screen and (max-width: 749px) {
+  #shopify-section-{{ section.id }} .apiarian-blog-cards {
+    padding:
+      {{ section.settings.mobile_padding_top }}px
+      0
+      {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__header {
+    align-items: flex-end;
+    margin-bottom: 26px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__heading {
+    font-size: {{ section.settings.mobile_heading_size }}px;
+    line-height: 1.08;
+    letter-spacing: -0.7px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__all-link {
+    font-size:15px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-card {
+    min-height: {{ section.settings.mobile_card_height }}px;
+    padding: 26px 24px 24px;
+    border-radius: {{ section.settings.mobile_card_radius }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-card__title {
+    max-width: 100%;
+    margin-bottom: 14px;
+    font-size: {{ section.settings.mobile_card_title_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-card__tag {
+    min-height: 27px;
+    padding: 6px 11px;
+    font-size: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-card__meta {
+    font-size: 11px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-blog-cards__bee--three {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #shopify-section-{{ section.id }}
+  .apiarian-blog-cards.is-animation-ready
+  .apiarian-blog-cards__heading,
+  #shopify-section-{{ section.id }}
+  .apiarian-blog-cards.is-animation-ready
+  .apiarian-blog-cards__all-link,
+  #shopify-section-{{ section.id }}
+  .apiarian-blog-cards.is-animation-ready
+  .apiarian-blog-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+{% endstyle %}
+
+
+<section
+  class="apiarian-blog-cards"
+  data-apiarian-blog-cards
+>
+  <div class="page-width">
+    <div class="apiarian-blog-cards__inner">
+
+      {% if section.settings.show_bee_icons %}
+        {% if section.settings.bee_image != blank %}
+          <span
+            class="apiarian-blog-cards__bee apiarian-blog-cards__bee--one"
+            style="background-image: url('{{ section.settings.bee_image | image_url: width: 240 }}');"
+            aria-hidden="true"
+          ></span>
+        {% endif %}
+
+        {% if section.settings.bee_image_2 != blank %}
+          <span
+            class="apiarian-blog-cards__bee apiarian-blog-cards__bee--two"
+            style="background-image: url('{{ section.settings.bee_image_2 | image_url: width: 240 }}');"
+            aria-hidden="true"
+          ></span>
+        {% elsif section.settings.bee_image != blank %}
+          <span
+            class="apiarian-blog-cards__bee apiarian-blog-cards__bee--two"
+            style="background-image: url('{{ section.settings.bee_image | image_url: width: 240 }}');"
+            aria-hidden="true"
+          ></span>
+        {% endif %}
+
+        {% if section.settings.bee_image_3 != blank %}
+          <span
+            class="apiarian-blog-cards__bee apiarian-blog-cards__bee--three"
+            style="background-image: url('{{ section.settings.bee_image_3 | image_url: width: 240 }}');"
+            aria-hidden="true"
+          ></span>
+        {% endif %}
+      {% endif %}
+
+
+      <div class="apiarian-blog-cards__header">
+
+        {% if section.settings.heading != blank %}
+          <div class="apiarian-blog-cards__heading">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.all_link_label != blank and section.settings.all_link != blank %}
+          <a
+            href="{{ section.settings.all_link }}"
+            class="apiarian-blog-cards__all-link"
+          >
+            {{ section.settings.all_link_label | escape }}
+          </a>
+        {% endif %}
+
+      </div>
+
+
+      <div class="apiarian-blog-cards__grid">
+
+        {% for block in section.blocks %}
+          {%- liquid
+            assign selected_article = block.settings.article
+            assign card_style = block.settings.card_style | default: 'image'
+            assign card_image = blank
+
+            # Article controls title, URL, tag and date when selected.
+            if selected_article != blank
+              assign card_title = selected_article.title
+              assign card_url = selected_article.url
+
+              assign card_tag = blank
+              if selected_article.tags.size > 0
+                assign card_tag = selected_article.tags.first
+              endif
+
+              assign card_meta = selected_article.published_at | date: '%B %d, %Y'
+            else
+              assign card_title = block.settings.title
+              assign card_url = block.settings.custom_link
+              assign card_tag = block.settings.tag
+              assign card_meta = block.settings.meta
+            endif
+
+            # Card has exactly two visual options:
+            # 1. Background color
+            # 2. Image
+            if card_style == 'image'
+              if block.settings.card_image != blank
+                assign card_image = block.settings.card_image
+              elsif selected_article != blank and selected_article.image != blank
+                assign card_image = selected_article.image
+              endif
+            endif
+          -%}
+
+          {% if card_url != blank %}
+            <a
+              href="{{ card_url }}"
+              class="apiarian-blog-card{% if card_image != blank %} apiarian-blog-card--has-image{% endif %}"
+              style="
+                background: {{ block.settings.background }};
+                color: {{ block.settings.text_color }};
+              "
+              {{ block.shopify_attributes }}
+            >
+
+              {% if card_image != blank %}
+                {{
+                  card_image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    widths: '320, 480, 640, 800',
+                    sizes: '(max-width: 749px) calc(100vw - 40px), (max-width: 989px) 50vw, 33vw',
+                    class: 'apiarian-blog-card__image',
+                    alt: card_image.alt
+                }}
+                <span class="apiarian-blog-card__overlay" aria-hidden="true"></span>
+              {% endif %}
+          {% else %}
+            <div
+              class="apiarian-blog-card{% if card_image != blank %} apiarian-blog-card--has-image{% endif %}"
+              style="
+                background: {{ block.settings.background }};
+                color: {{ block.settings.text_color }};
+              "
+              {{ block.shopify_attributes }}
+            >
+
+              {% if card_image != blank %}
+                {{
+                  card_image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    widths: '320, 480, 640, 800',
+                    sizes: '(max-width: 749px) calc(100vw - 40px), (max-width: 989px) 50vw, 33vw',
+                    class: 'apiarian-blog-card__image',
+                    alt: card_image.alt
+                }}
+                <span class="apiarian-blog-card__overlay" aria-hidden="true"></span>
+              {% endif %}
+          {% endif %}
+
+              <div class="apiarian-blog-card__content">
+
+                {% if card_tag != blank %}
+                  <span class="apiarian-blog-card__tag">
+                    {{ card_tag | escape }}
+                  </span>
+                {% endif %}
+
+                <div class="apiarian-blog-card__bottom">
+
+                  {% if card_title != blank %}
+                    {%- assign card_title_plain = card_title | strip_html | strip -%}
+                    {%- assign card_title_words = card_title_plain | split: ' ' -%}
+                    {%- assign card_title_word_count = card_title_words.size -%}
+                    {%- assign italic_start_index = card_title_word_count | minus: 2 -%}
+
+                    <div class="apiarian-blog-card__title">
+                      {% if card_title_word_count == 1 %}
+                        <em>{{ card_title_plain | escape }}</em>
+                      {% else %}
+                        {% for word in card_title_words %}
+                          {% if forloop.index0 == italic_start_index %}<em>{% endif %}
+                          {{ word | escape }}{% unless forloop.last %} {% endunless %}
+                          {% if forloop.last %}</em>{% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                  {% if card_meta != blank %}
+                    <p class="apiarian-blog-card__meta">
+                      {{ card_meta | escape }}
+                    </p>
+                  {% endif %}
+
+                </div>
+
+              </div>
+
+          {% if card_url != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+  (function () {
+    function initApiarianBlogCards() {
+      const section = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-apiarian-blog-cards]'
+      );
+
+      if (!section || section.dataset.apiarianBlogCardsInitialized === 'true') {
+        return;
+      }
+
+      section.dataset.apiarianBlogCardsInitialized = 'true';
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      if (rect.top <= viewportHeight * 1.25) {
+        return;
+      }
+
+      section.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.05,
+          rootMargin: '0px 0px 160px 0px'
+        }
+      );
+
+      observer.observe(section);
+    }
+
+    initApiarianBlogCards();
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (
+        event.target &&
+        event.target.id === 'shopify-section-{{ section.id }}'
+      ) {
+        const section = event.target.querySelector(
+          '[data-apiarian-blog-cards]'
+        );
+
+        if (section) {
+          delete section.dataset.apiarianBlogCardsInitialized;
+          section.classList.remove('is-animation-ready', 'is-visible');
+        }
+
+        initApiarianBlogCards();
+      }
+    });
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "Apiarian Blog Cards",
+  "tag": "section",
+  "class": "section-apiarian-blog-cards",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Learn the bees <em>with us.</em>"
+    },
+    {
+      "type": "text",
+      "id": "all_link_label",
+      "label": "All writing link text",
+      "default": "All writing"
+    },
+    {
+      "type": "url",
+      "id": "all_link",
+      "label": "All writing link"
+    },
+    {
+      "type": "header",
+      "content": "Decorative icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bee_icons",
+      "label": "Show decorative icons",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image",
+      "label": "Top icon 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image_2",
+      "label": "Top icon 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image_3",
+      "label": "Bottom icon (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#F8F4EB"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2A1D13"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Section text color",
+      "default": "#2A1D13"
+    },
+    {
+      "type": "color",
+      "id": "all_link_color",
+      "label": "All writing link color",
+      "default": "#2A1D13"
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 36,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Card title size",
+      "min": 24,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "Card height",
+      "min": 280,
+      "max": 520,
+      "step": 20,
+      "unit": "px",
+      "default": 360
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card gap",
+      "min": 10,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card radius",
+      "min": 0,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "bee_width",
+      "label": "Top icon 1 width",
+      "min": 40,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "bee_width_2",
+      "label": "Top icon 2 width",
+      "min": 40,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "bee_width_3",
+      "label": "Bottom icon width",
+      "min": 40,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 28,
+      "max": 46,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_title_size",
+      "label": "Card title size",
+      "min": 22,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_height",
+      "label": "Card height",
+      "min": 240,
+      "max": 420,
+      "step": 20,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_radius",
+      "label": "Card radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Blog card",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article"
+        },
+        {
+          "type": "select",
+          "id": "card_style",
+          "label": "Card style",
+          "default": "image",
+          "options": [
+            {
+              "value": "background",
+              "label": "Background color"
+            },
+            {
+              "value": "image",
+              "label": "Image"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Fallback tag (if no article)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Fallback title (if no article)"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Fallback bottom text (if no article)"
+        },
+        {
+          "type": "url",
+          "id": "custom_link",
+          "label": "Fallback custom link (if no article)"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Card background",
+          "default": "#CFA039"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Card text color",
+          "default": "#FFFFFF"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apiarian Blog Cards",
+      "blocks": [
+        {
+          "type": "article",
+          "settings": {
+            "tag": "INGREDIENTS",
+            "title": "What beeswax absolute <em>actually is</em>",
+            "meta": "PLACEHOLDER POST",
+            "background": "#CFA039",
+            "text_color": "#FFFFFF"
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "tag": "APITHERAPY",
+            "title": "Propolis, and how a hive <em>keeps itself clean</em>",
+            "meta": "PLACEHOLDER POST",
+            "background": "#2E4634",
+            "text_color": "#FFFFFF"
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "tag": "FROM THE APIARY",
+            "title": "A season of blending, <em>start to finish</em>",
+            "meta": "PLACEHOLDER POST",
+            "background": "#58212B",
+            "text_color": "#FFFFFF"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

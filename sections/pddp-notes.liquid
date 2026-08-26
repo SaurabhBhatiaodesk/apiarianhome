@@ -1,0 +1,919 @@
+{% style %}
+#shopify-section-{{ section.id }} {
+  background: {{ section.settings.section_background }};
+}
+
+#shopify-section-{{ section.id }} .pdp-notes,
+#shopify-section-{{ section.id }} .pdp-notes * {
+  box-sizing: border-box;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes {
+  width: 100%;
+  padding:
+    {{ section.settings.padding_top }}px
+    0
+    {{ section.settings.padding_bottom }}px;
+  color: {{ section.settings.text_color }};
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
+  gap:72px;
+  align-items: start;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__left {
+  position: relative;
+  min-width: 0;
+  padding-top: 8px;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__eyebrow {
+  margin: 0 0 24px;
+  color: {{ section.settings.eyebrow_color }};
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__heading {
+  max-width: 760px;
+  margin: 0;
+  color: {{ section.settings.heading_color }};
+  font-size: {{ section.settings.heading_size }}px;
+  font-weight:300;
+  line-height: 1.05;
+  letter-spacing: -1.6px;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__heading em,
+#shopify-section-{{ section.id }} .pdp-notes__heading i {
+  font-family: "Bodoni Moda", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__intro {
+  max-width: 539px;
+  margin-top: 17px;
+  color: {{ section.settings.body_color }};
+    font-size: 19px;
+    font-weight: 300;
+   line-height: 1.62;
+   position:relative;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__intro p {
+  margin: 0;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bees {
+  position: relative;
+  width: 100%;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bee {
+  position: absolute;
+  display: block;
+  z-index: 2;
+  line-height: 0;
+  opacity: 1;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bee img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bee--one {
+  width: 48px;
+  right:0;
+  top: -25px;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bee--one img {
+  transform: rotate(323deg);
+  width: 49px;
+  height: 48px;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bee--two {
+    right: 22%;
+    top: -6px;
+}
+#shopify-section-{{ section.id }} .pdp-notes__bee--two img {
+    width: 17px;
+    height: 22px;
+    opacity: 0.32;
+    transform:rotate(-38deg);
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bee--three {
+    width: 30px;
+    left: 3%;
+    top: 35px;
+    height: 30px;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__bee--three img {
+    transform: rotate(-26deg);
+    opacity: 0.4;
+    width: 53px;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__timeline {
+  min-width: 0;
+  border-top: 1px solid {{ section.settings.border_color }};
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__row {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  gap: 28px;
+  padding: 27px 0 28px;
+  border-bottom:0.5px solid {{ section.settings.border_color }};
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__label {
+  padding-top: 3px;
+  color: {{ section.settings.eyebrow_color }};
+  font-size: 13.9515px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__row-title {
+  margin: 0 0 10px;
+  color: {{ section.settings.heading_color }};
+  font-size: 21.1677px;
+  font-weight:400;
+  line-height: 1.25;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__row-text {
+  margin: 0;
+  color: {{ section.settings.body_color }};
+    font-size: 18px;
+    font-weight: 300;
+    line-height: normal;
+}
+
+#shopify-section-{{ section.id }} .pdp-notes__row-text p {
+  margin: 0;
+}
+
+
+/* =========================
+   PAGE ON SCROLL ANIMATION
+========================= */
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__eyebrow,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__heading,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__intro,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__bee,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__row {
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: opacity, transform;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__eyebrow {
+  transition:
+    opacity 0.5s ease 0s,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0s;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__heading {
+  transition:
+    opacity 0.55s ease 0.08s,
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__intro {
+  transition:
+    opacity 0.5s ease 0.16s,
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.16s;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__bee {
+  transition:
+    opacity 0.5s ease 0.22s,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__row:nth-child(1) {
+  transition:
+    opacity 0.5s ease 0.10s,
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.10s;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__row:nth-child(2) {
+  transition:
+    opacity 0.5s ease 0.18s,
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready
+.pdp-notes__row:nth-child(3) {
+  transition:
+    opacity 0.5s ease 0.26s,
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.26s;
+}
+
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready.is-visible
+.pdp-notes__eyebrow,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready.is-visible
+.pdp-notes__heading,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready.is-visible
+.pdp-notes__intro,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready.is-visible
+.pdp-notes__bee,
+#shopify-section-{{ section.id }}
+.pdp-notes.is-animation-ready.is-visible
+.pdp-notes__row {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media screen and (max-width: 989px) {
+  #shopify-section-{{ section.id }} .pdp-notes {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 40px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__heading {
+    font-size: clamp(38px, 5.7vw, calc({{ section.settings.heading_size }}px * 0.78));
+    line-height: 1.06;
+    letter-spacing: -1.2px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__intro {
+    max-width: 100%;
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.58;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__row {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 18px;
+    padding: 23px 0 24px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__label {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__row-title {
+    font-size: 19px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__row-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--one {
+    width: 42px;
+    right: 0;
+    top: -22px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--one img {
+    width: 43px;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--two {
+    right: 18%;
+    top: -4px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--two img {
+    width: 16px;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--three {
+    width: 26px;
+    right: 2%;
+    top: 30px;
+    height: 26px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--three img {
+    width: 21px;
+    height: auto;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media screen and (max-width: 749px) {
+  #shopify-section-{{ section.id }} .pdp-notes {
+    padding:
+      {{ section.settings.mobile_padding_top }}px
+      0
+      {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__layout {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__left {
+    padding-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__eyebrow {
+    margin-bottom: 16px;
+    font-size: 10px;
+    line-height: 1.3;
+    letter-spacing: 3px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__heading {
+    max-width: 100%;
+    font-size: clamp(31px, 9.4vw, {{ section.settings.mobile_heading_size }}px);
+    line-height: 1.06;
+    letter-spacing: -0.7px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__intro {
+    max-width: 100%;
+    margin-top: 16px;
+    font-size: clamp(14px, 4.1vw, 16px);
+    line-height: 1.55;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__intro p {
+    margin: 0;
+  }
+
+  /*
+    Bee 2 is inside the intro text, so keep it positioned relative to
+    the intro instead of allowing it to create horizontal overflow.
+  */
+  #shopify-section-{{ section.id }} .pdp-notes__intro
+  .pdp-notes__bee--two {
+    right: 17%;
+    top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__intro
+  .pdp-notes__bee--two img {
+    width: 13px;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bees {
+    min-height: 145px;
+    height: 145px;
+    margin-top: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--one {
+    width: 42px;
+    right: 3%;
+    top: -4px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--one img {
+    width: 43px;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--two {
+    right: 20%;
+    top: 50px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--two img {
+    width: 15px;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--three {
+    width: 25px;
+    right: 8%;
+    top: 86px;
+    height: 25px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__bee--three img {
+    width: 20px;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__timeline {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__row {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    padding: 20px 0 21px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__label {
+    padding-top: 0;
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: 2.4px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__row-title {
+    margin-bottom: 6px;
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__row-text {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  #shopify-section-{{ section.id }} .pdp-notes__heading {
+    font-size: 30px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__intro {
+    font-size: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__layout {
+    gap: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .pdp-notes__row {
+    padding: 18px 0 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #shopify-section-{{ section.id }}
+  .pdp-notes.is-animation-ready
+  .pdp-notes__eyebrow,
+  #shopify-section-{{ section.id }}
+  .pdp-notes.is-animation-ready
+  .pdp-notes__heading,
+  #shopify-section-{{ section.id }}
+  .pdp-notes.is-animation-ready
+  .pdp-notes__intro,
+  #shopify-section-{{ section.id }}
+  .pdp-notes.is-animation-ready
+  .pdp-notes__bee,
+  #shopify-section-{{ section.id }}
+  .pdp-notes.is-animation-ready
+  .pdp-notes__row {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+{% endstyle %}
+
+
+<section
+  class="pdp-notes"
+  data-pdp-notes
+>
+  <div class="page-width">
+    <div class="pdp-notes__layout">
+
+      <div class="pdp-notes__left">
+
+        {% if section.settings.eyebrow != blank %}
+          <p class="pdp-notes__eyebrow">
+            {{ section.settings.eyebrow | escape }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <div class="pdp-notes__heading">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+      {% if section.settings.intro_text != blank %}
+        <div class="pdp-notes__intro">
+          {{ section.settings.intro_text }}
+
+          {% if section.settings.bee_image_two != blank %}
+            <span class="pdp-notes__bee pdp-notes__bee--two">
+              {{
+                section.settings.bee_image_two
+                | image_url: width: 260
+                | image_tag:
+                  loading: 'lazy', 
+                  decoding: 'async',
+                  widths: '80, 120, 160, 220, 260',
+                  alt: ''
+              }}
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+        {% if section.settings.bee_image_one != blank or section.settings.bee_image_two != blank or section.settings.bee_image_three != blank %}
+          <div class="pdp-notes__bees" aria-hidden="true">
+
+            {% if section.settings.bee_image_one != blank %}
+              <div class="pdp-notes__bee pdp-notes__bee--one">
+                {{
+                  section.settings.bee_image_one
+                  | image_url: width: 320
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    widths: '80, 120, 160, 220, 320',
+                    alt: ''
+                }}
+              </div>
+            {% endif %}
+
+
+
+            {% if section.settings.bee_image_three != blank %}
+              <div class="pdp-notes__bee pdp-notes__bee--three">
+                {{
+                  section.settings.bee_image_three
+                  | image_url: width: 220
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    widths: '60, 90, 120, 160, 220',
+                    alt: ''
+                }}
+              </div>
+            {% endif %}
+
+          </div>
+        {% endif %}
+
+      </div>
+
+
+      <div class="pdp-notes__timeline">
+
+        {% for block in section.blocks %}
+          <div
+            class="pdp-notes__row"
+            {{ block.shopify_attributes }}
+          >
+
+            <div class="pdp-notes__label">
+              {{ block.settings.label | escape }}
+            </div>
+
+            <div class="pdp-notes__content">
+
+              {% if block.settings.heading != blank %}
+                <h3 class="pdp-notes__row-title">
+                  {{ block.settings.heading | escape }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="pdp-notes__row-text">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+
+            </div>
+
+          </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+  (function () {
+    function initPdpNotes() {
+      const section = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-pdp-notes]'
+      );
+
+      if (!section || section.dataset.pdpNotesInitialized === 'true') {
+        return;
+      }
+
+      section.dataset.pdpNotesInitialized = 'true';
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      if (rect.top <= viewportHeight * 1.08) {
+        return;
+      }
+
+      section.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px 70px 0px'
+        }
+      );
+
+      observer.observe(section);
+    }
+
+    initPdpNotes();
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (
+        event.target &&
+        event.target.id === 'shopify-section-{{ section.id }}'
+      ) {
+        const section = event.target.querySelector(
+          '[data-pdp-notes]'
+        );
+
+        if (section) {
+          delete section.dataset.pdpNotesInitialized;
+          section.classList.remove('is-animation-ready', 'is-visible');
+        }
+
+        initPdpNotes();
+      }
+    });
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "PDP Notes",
+  "tag": "section",
+  "class": "section-pdp-notes",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "HOW THE SCENT UNFOLDS"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A fragrance that <em>moves through the evening.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "<p>Beeswax is a matrix of long-chain lipids. It binds the aromatic compounds of the oils and slows their evaporation, so the blend arrives in stages instead of all at once.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image_one",
+      "label": "Bee Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image_two",
+      "label": "Bee Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image_three",
+      "label": "Bee Image 3"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 38,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 54
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#F8F4EB"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow / timeline label",
+      "default": "#A46B18"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body text color",
+      "default": "#8C6B4D"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Section text color",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Divider color",
+      "default": "#DED7CB"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 30,
+      "max": 52,
+      "step": 1,
+      "unit": "px",
+      "default": 39
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stage",
+      "name": "Scent stage",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "FIRST SPRAY"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "The light notes lift"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Citrus, herbs and florals open first, bright and immediate on fabric.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Notes",
+      "blocks": [
+        {
+          "type": "stage",
+          "settings": {
+            "label": "FIRST SPRAY",
+            "heading": "The light notes lift",
+            "text": "<p>Citrus, herbs and florals open first, bright and immediate on fabric.</p>"
+          }
+        },
+        {
+          "type": "stage",
+          "settings": {
+            "label": "AN HOUR IN",
+            "heading": "The heart settles",
+            "text": "<p>Resins and spices come forward as the top notes ease off.</p>"
+          }
+        },
+        {
+          "type": "stage",
+          "settings": {
+            "label": "LATE EVENING",
+            "heading": "The wax holds",
+            "text": "<p>Beeswax lingers underneath, warm and soft, long after the rest has gone quiet.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

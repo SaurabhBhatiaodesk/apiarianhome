@@ -1,0 +1,340 @@
+{% comment %} 
+  Renders product variant-picker 
+
+  Accepts: 
+  - product: {Object} product object. 
+  - block: {Object} passing the block information. 
+  - product_form_id: {String} Id of the product form to which the variant picker is associated. 
+  Usage: 
+  {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %} 
+{% endcomment %} 
+
+{% style %} 
+  #variant-selects-{{ section.id }} .product-form__input--custom { 
+    max-width: 100%; 
+    margin: 0 0 1.6rem; 
+    padding: 0; 
+    border: 0; 
+  } 
+
+  #variant-selects-{{ section.id }} .product-form__input--custom .form__label { 
+    display: block; 
+    margin-bottom: 1rem; 
+    text-transform: uppercase; 
+    color:#987c39; 
+    font-size:13px; 
+    font-weight:400;
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    gap: 1.2rem; 
+    width: 100%; 
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-option { 
+    position: relative; 
+    min-width: 0; 
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-option input { 
+    position: absolute; 
+    opacity: 0; 
+    pointer-events: none; 
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-card { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    gap: 0.6rem; 
+    min-height: auto; 
+    padding:16px 20px; 
+    border: 1px solid rgb(42 33 24); 
+    border-radius: 16px; 
+    cursor: pointer; 
+    transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease; 
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-card:hover { 
+    border-color: rgba(var(--color-foreground), 0.55); 
+    transform: translateY(-1px); 
+  } 
+
+  #variant-selects-{{ section.id }} 
+    .custom-variant-option 
+    input:checked 
+    + .custom-variant-card { 
+    border-color: rgb(var(--color-foreground)); 
+    background: #f4eee1; 
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-card__value { 
+    font-size: 16px; 
+    line-height: normal; 
+    font-weight: 500; 
+    color: rgb(42 33 24); 
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-card__price { 
+    font-size: 13px; 
+    line-height: 1.2; 
+    color: #6b5a3e; 
+    font-weight: 500; 
+  } 
+
+  #variant-selects-{{ section.id }} .custom-variant-option.is-unavailable { 
+    opacity: 0.45; 
+  }
+
+  /* TABLET / SMALL DESKTOP */
+  @media screen and (min-width: 750px) and (max-width: 1199px) {
+    #variant-selects-{{ section.id }} .custom-variant-grid {
+      gap: 10px;
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-card {
+      padding: 14px 12px;
+      border-radius: 8px;
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-card__value {
+      font-size: 15px;
+      line-height: 1.3;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-card__price {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 749px) { 
+    #variant-selects-{{ section.id }} .product-form__input--custom .form__label {
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-card { 
+      min-width: 0;
+      padding: 12px 10px; 
+      border-radius: 7px; 
+    } 
+
+    #variant-selects-{{ section.id }} .custom-variant-card__price { 
+      font-size: 13px; 
+    } 
+
+    #variant-selects-{{ section.id }} .custom-variant-card__value { 
+      font-size: 15px;
+      line-height: 1.3;
+      overflow-wrap: normal;
+      word-break: normal;
+    } 
+  } 
+
+  @media screen and (max-width: 420px) { 
+    #variant-selects-{{ section.id }} .custom-variant-grid { 
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: 7px; 
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-card {
+      padding: 10px 8px;
+      border-radius: 6px;
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-card__value {
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    #variant-selects-{{ section.id }} .custom-variant-card__price {
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (max-width: 340px) {
+    #variant-selects-{{ section.id }} .custom-variant-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %} 
+
+{%- unless product.has_only_default_variant -%} 
+  <variant-selects 
+    id="variant-selects-{{ section.id }}" 
+    data-section="{{ section.id }}" 
+    {{ block.shopify_attributes }} 
+  > 
+    {%- for option in product.options_with_values -%} 
+      {%- liquid 
+        assign swatch_count = option.values | map: 'swatch' | compact | size 
+        assign picker_type = block.settings.picker_type 
+
+        if picker_type != 'custom' and swatch_count > 0 and block.settings.swatch_shape != 'none' 
+          if block.settings.picker_type == 'dropdown' 
+            assign picker_type = 'swatch_dropdown' 
+          else 
+            assign picker_type = 'swatch' 
+          endif 
+        endif 
+      -%} 
+
+      {%- if picker_type == 'custom' -%} 
+        <fieldset class="js product-form__input product-form__input--custom"> 
+          <legend class="form__label">{{ option.name }}</legend> 
+
+          <div class="custom-variant-grid"> 
+            {%- for value in option.values -%} 
+              {%- liquid 
+                assign option_index = option.position | minus: 1 
+                assign matched_variant = nil 
+                assign fallback_variant = nil 
+
+                for variant in product.variants 
+                  if variant.options[option_index] == value 
+                    if fallback_variant == nil 
+                      assign fallback_variant = variant 
+                    endif 
+
+                    assign matches_selected = true 
+
+                    for compare_option in product.options_with_values 
+                      unless compare_option.position == option.position 
+                        assign compare_index = compare_option.position | minus: 1 
+
+                        if variant.options[compare_index] != compare_option.selected_value 
+                          assign matches_selected = false 
+                          break 
+                        endif 
+                      endunless 
+                    endfor 
+
+                    if matches_selected 
+                      assign matched_variant = variant 
+                      break 
+                    endif 
+                  endif 
+                endfor 
+
+                if matched_variant == nil 
+                  assign matched_variant = fallback_variant 
+                endif 
+
+                assign option_price = product.price 
+
+                if matched_variant 
+                  assign option_price = matched_variant.price 
+                endif 
+
+                assign custom_id = 'CustomVariant-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 
+              -%} 
+
+              <div class="custom-variant-option{% unless value.available %} is-unavailable{% endunless %}"> 
+                <input 
+                  type="radio" 
+                  id="{{ custom_id }}" 
+                  name="options[{{ option.name | escape }}]" 
+                  value="{{ value | escape }}" 
+                  form="{{ product_form_id }}" 
+                  data-option-value-id="{{ value.id }}" 
+                  {% if value.product_url != blank %} 
+                    data-product-url="{{ value.product_url }}" 
+                  {% endif %} 
+                  {% if option.selected_value == value %} 
+                    checked 
+                  {% endif %} 
+                  {% unless value.available %} 
+                    disabled 
+                  {% endunless %} 
+                > 
+
+                <label for="{{ custom_id }}" class="custom-variant-card"> 
+                  <span class="custom-variant-card__value">{{ value }}</span> 
+                  <span class="custom-variant-card__price">{{ option_price | money }}</span> 
+                </label> 
+              </div> 
+            {%- endfor -%} 
+          </div> 
+        </fieldset> 
+
+      {%- elsif picker_type == 'swatch' -%} 
+        <fieldset class="js product-form__input product-form__input--swatch"> 
+          <legend class="form__label"> 
+            {{ option.name }}: 
+            <span data-selected-value> 
+              {{- option.selected_value -}} 
+            </span> 
+          </legend> 
+
+          {% render 'product-variant-options', 
+            product: product, 
+            option: option, 
+            block: block, 
+            picker_type: picker_type 
+          %} 
+        </fieldset> 
+
+      {%- elsif picker_type == 'button' -%} 
+        <fieldset class="js product-form__input product-form__input--pill"> 
+          <legend class="form__label">{{ option.name }}</legend> 
+
+          {% render 'product-variant-options', 
+            product: product, 
+            option: option, 
+            block: block, 
+            picker_type: picker_type 
+          %} 
+        </fieldset> 
+
+      {%- else -%} 
+        <div class="product-form__input product-form__input--dropdown"> 
+          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}"> 
+            {{ option.name }} 
+          </label> 
+
+          <div class="select"> 
+            {%- if picker_type == 'swatch_dropdown' -%} 
+              <span 
+                data-selected-value 
+                class="dropdown-swatch" 
+              > 
+                {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %} 
+              </span> 
+            {%- endif -%} 
+
+            <select 
+              id="Option-{{ section.id }}-{{ forloop.index0 }}" 
+              class="select__select" 
+              name="options[{{ option.name | escape }}]" 
+              form="{{ product_form_id }}" 
+            > 
+              {% render 'product-variant-options', 
+                product: product, 
+                option: option, 
+                block: block, 
+                picker_type: picker_type 
+              %} 
+            </select> 
+
+            <span class="svg-wrapper"> 
+              {{- 'icon-caret.svg' | inline_asset_content -}} 
+            </span> 
+          </div> 
+        </div> 
+      {%- endif -%} 
+    {%- endfor -%} 
+
+    <script type="application/json" data-selected-variant> 
+      {{ product.selected_or_first_available_variant | json }} 
+    </script> 
+  </variant-selects> 
+{%- endunless -%} 

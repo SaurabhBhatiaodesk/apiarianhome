@@ -1,0 +1,261 @@
+{% comment %}
+  Snippet: product_description_readmore.liquid
+
+  Render:
+  {% render 'product_description_readmore', product: product, block: block %}
+{% endcomment %}
+
+{%- if product.description != blank -%}
+
+  <style>
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }},
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }} * {
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }} {
+      width: 100%;
+      color: {{ block.settings.description_color }};
+      font-size: {{ block.settings.description_font_size }}px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__preview {
+      display: block;
+      color: #5c4b2e;
+      font-size: 17px;
+      font-weight: inherit;
+      line-height: 1.62;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__preview-text,
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__ellipsis {
+      color: inherit;
+      font: inherit;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__ellipsis {
+      margin-right: 5px;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__toggle {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: {{ block.settings.read_more_color }};
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: 400;
+      line-height: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__full {
+      display: none;
+      color: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      font-weight: inherit;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__full > * {
+      color: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__full > *:first-child {
+      margin-top: 0;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__full > *:last-child {
+      margin-bottom: 0;
+    }
+
+    #shopify-section-{{ section.id }} .product-description-{{ block.id }}__read-less {
+      display: none;
+      margin: 8px 0 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: {{ block.settings.read_more_color }};
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: 400;
+      line-height: 1.3;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+    
+    #shopify-section-{{ section.id }}
+    .product-description-{{ block.id }}.is-expanded
+    .product-description-{{ block.id }}__preview {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }}
+    .product-description-{{ block.id }}.is-expanded
+    .product-description-{{ block.id }}__full {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }}
+    .product-description-{{ block.id }}.is-expanded
+    .product-description-{{ block.id }}__read-less {
+      display: inline-block;
+    }
+    .product__description.product-description-description{
+      margin:0;
+    }
+    #shopify-section-{{ section.id }}
+    .product-description-{{ block.id }}.no-truncation
+    .product-description-{{ block.id }}__ellipsis,
+    #shopify-section-{{ section.id }}
+    .product-description-{{ block.id }}.no-truncation
+    .product-description-{{ block.id }}__toggle {
+      display: none;
+    }
+
+    @media all and (max-width:575px){
+      #shopify-section-{{ section.id }} .product-description-{{ block.id }}{
+        font-size:14px;
+      }
+    }
+  </style>
+
+  <div
+    class="product__description quick-add-hidden product-description-{{ block.id }}"
+    data-product-description
+    data-visible-lines="{{ block.settings.description_lines | default: 2 }}"
+    {{ block.shopify_attributes }}
+  >
+    <div
+      class="product-description-{{ block.id }}__preview"
+      data-description-preview
+    >
+      <span
+        class="product-description-{{ block.id }}__preview-text"
+        data-description-preview-text
+      ></span><span
+        class="product-description-{{ block.id }}__ellipsis"
+        data-description-ellipsis
+      >...</span><button
+        type="button"
+        class="product-description-{{ block.id }}__toggle"
+        data-description-more
+        aria-expanded="false"
+      >Read more</button>
+    </div>
+
+    <div
+      class="product-description-{{ block.id }}__full rte"
+      data-description-full
+    >
+      {{ product.description }}
+    </div>
+
+    <button
+      type="button"
+      class="product-description-{{ block.id }}__read-less"
+      data-description-less
+      aria-expanded="true"
+    >
+      Read less
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      const root = document.querySelector(
+        '#shopify-section-{{ section.id }} .product-description-{{ block.id }}'
+      );
+
+      if (!root || root.dataset.initialized === 'true') return;
+      root.dataset.initialized = 'true';
+
+      const preview = root.querySelector('[data-description-preview]');
+      const previewText = root.querySelector('[data-description-preview-text]');
+      const full = root.querySelector('[data-description-full]');
+      const moreButton = root.querySelector('[data-description-more]');
+      const lessButton = root.querySelector('[data-description-less]');
+
+      if (!preview || !previewText || !full || !moreButton || !lessButton) return;
+
+      const fullText = (full.textContent || '').replace(/\s+/g, ' ').trim();
+      const visibleLines = parseInt(root.dataset.visibleLines, 10) || 2;
+
+      function fitsWithinLines() {
+        const styles = window.getComputedStyle(preview);
+        const lineHeight = parseFloat(styles.lineHeight);
+        if (!lineHeight) return true;
+
+        return preview.getBoundingClientRect().height <=
+          (lineHeight * visibleLines) + 1;
+      }
+
+      function buildPreview() {
+        root.classList.remove('no-truncation');
+        previewText.textContent = fullText;
+
+        requestAnimationFrame(function () {
+          if (fitsWithinLines()) {
+            root.classList.add('no-truncation');
+            return;
+          }
+
+          let low = 0;
+          let high = fullText.length;
+          let best = 0;
+
+          while (low <= high) {
+            const mid = Math.floor((low + high) / 2);
+            previewText.textContent = fullText.slice(0, mid).trimEnd();
+
+            if (fitsWithinLines()) {
+              best = mid;
+              low = mid + 1;
+            } else {
+              high = mid - 1;
+            }
+          }
+
+          let finalText = fullText.slice(0, best).trimEnd();
+
+          const lastSpace = finalText.lastIndexOf(' ');
+          if (lastSpace > 0) {
+            finalText = finalText.slice(0, lastSpace);
+          }
+
+          previewText.textContent = finalText;
+        });
+      }
+
+      buildPreview();
+
+      let resizeTimer;
+
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildPreview, 120);
+      });
+
+      moreButton.addEventListener('click', function () {
+        root.classList.add('is-expanded');
+        moreButton.setAttribute('aria-expanded', 'true');
+      });
+
+      lessButton.addEventListener('click', function () {
+        root.classList.remove('is-expanded');
+        moreButton.setAttribute('aria-expanded', 'false');
+        buildPreview();
+      });
+    })();
+  </script>
+
+{%- endif -%}

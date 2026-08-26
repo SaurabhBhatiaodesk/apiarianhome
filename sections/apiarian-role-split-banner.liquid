@@ -1,0 +1,651 @@
+{% comment %}
+  Section: Apiarian Role Split Banner
+  Dynamic source:
+  - Product metafield: custom.the_role_in_the_colony
+  - Metaobject type: the_role_in_the_colony
+  - Fields: sub_heading, heading, content, image, backround_color, color
+  - Right content background comes from metaobject key: backround_color
+  - Text color comes from metaobject key: color
+  - Full section background comes from Theme Editor setting: section_background
+  - Section renders only when the product metafield has a metaobject entry
+{% endcomment %}
+
+{%- liquid
+  # CURRENT PRODUCT FIRST.
+  # 1) Try the product metafield reference.
+  # 2) If that is blank, resolve the matching metaobject from the current product handle/title.
+
+  assign role_namespace = section.settings.metafield_namespace | default: 'custom' | strip
+  assign role_key = section.settings.metafield_key | default: 'the_role_in_the_colony' | strip
+  assign role_metaobject_type = section.settings.metaobject_type | default: 'the_role_in_the_colony' | strip
+
+  assign role_metafield = product.metafields[role_namespace][role_key]
+
+  if role_metafield == blank
+    assign role_metafield = product.metafields.custom.the_role_in_the_colony
+  endif
+
+  assign role_entry = blank
+
+  if role_metafield != blank
+    if role_metafield.type == 'list.metaobject_reference'
+      assign role_entry = role_metafield.value | first
+    elsif role_metafield.type == 'metaobject_reference'
+      assign role_entry = role_metafield.value
+    else
+      assign role_raw_value = role_metafield.value
+      if role_raw_value != blank
+        assign role_entry = shop.metaobjects[role_metaobject_type][role_raw_value]
+      endif
+    endif
+  endif
+
+  # Automatic current-product fallback.
+  # Example: worker-fragrance -> worker
+  if role_entry == blank
+    assign role_handle_1 = product.handle
+    assign role_handle_2 = product.handle | remove: '-fragrance'
+    assign role_handle_3 = product.title | handleize
+    assign role_handle_4 = role_handle_3 | remove: '-fragrance'
+    assign role_handle_5 = role_handle_4 | remove_first: 'the-'
+
+    assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_1]
+
+    if role_entry == blank
+      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_2]
+    endif
+
+    if role_entry == blank
+      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_3]
+    endif
+
+    if role_entry == blank
+      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_4]
+    endif
+
+    if role_entry == blank
+      assign role_entry = shop.metaobjects[role_metaobject_type][role_handle_5]
+    endif
+  endif
+
+  if role_entry != blank
+    assign role_sub_heading = role_entry.sub_heading.value
+    assign role_heading = role_entry.heading.value
+    assign role_content_field = role_entry.content
+    assign role_content = role_content_field.value
+    assign role_image = role_entry.image.value
+    assign role_background = role_entry.backround_color.value
+    assign role_color = role_entry.color.value
+  endif
+-%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background: {{ section.settings.section_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split,
+  #shopify-section-{{ section.id }} .apiarian-role-split * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ section.settings.border_radius }}px;
+    background: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__media {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #ece6dc;
+    color: #7d7466;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__content {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: {{ section.settings.content_padding_vertical }}px {{ section.settings.content_padding_horizontal }}px;
+    background: {{ role_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__content-inner {
+    width: 100%;
+    max-width: {{ section.settings.content_max_width }}px;
+    margin:0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__eyebrow {
+    margin: 0 0 18px;
+    color: {{ role_color }};
+    font-size: {{ section.settings.eyebrow_size }}px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: {{ section.settings.eyebrow_letter_spacing }}px;
+    text-transform: uppercase;
+    opacity: 0.88;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__heading {
+    margin:20px 0;
+    color: {{ role_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__heading br {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__text {
+    color: {{ role_color }};
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: 300;
+    line-height: 1.7;
+    opacity: 0.88;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__text > *:first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split__text > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split.is-animation-ready .apiarian-role-split__media,
+  #shopify-section-{{ section.id }} .apiarian-role-split.is-animation-ready .apiarian-role-split__content {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .45s ease, transform .6s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split.is-animation-ready .apiarian-role-split__content {
+    transition-delay: .08s;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-role-split.is-animation-ready.is-visible .apiarian-role-split__media,
+  #shopify-section-{{ section.id }} .apiarian-role-split.is-animation-ready.is-visible .apiarian-role-split__content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media screen and (max-width: 1199px) {
+    #shopify-section-{{ section.id }} .apiarian-role-split__content {
+      padding: {{ section.settings.content_padding_vertical | times: 0.8 | round: 0 }}px {{ section.settings.content_padding_horizontal | times: 0.75 | round: 0 }}px;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .apiarian-role-split__card {
+      grid-template-columns: 1fr;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__media {
+      height: auto;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__image {
+      position: static;
+      height: auto;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__placeholder {
+      position: static;
+      min-height: 280px;
+      height: auto;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__content {
+      padding: 56px 44px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__content-inner {
+      max-width: none;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .apiarian-role-split {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__card {
+      border-radius: {{ section.settings.mobile_border_radius }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__content {
+      padding: {{ section.settings.mobile_content_padding_vertical }}px {{ section.settings.mobile_content_padding_horizontal }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__eyebrow {
+      margin-bottom: 18px;
+      font-size: {{ section.settings.mobile_eyebrow_size }}px;
+      letter-spacing: {{ section.settings.mobile_eyebrow_letter_spacing }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__heading {
+      margin-bottom: 18px;
+      font-size: {{ section.settings.mobile_heading_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-role-split__text {
+      font-size: {{ section.settings.mobile_text_size }}px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .apiarian-role-split.is-animation-ready .apiarian-role-split__media,
+    #shopify-section-{{ section.id }} .apiarian-role-split.is-animation-ready .apiarian-role-split__content {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+{% endstyle %}
+
+
+{%- if role_entry != blank -%}
+  <section
+    class="apiarian-role-split page-width"
+    data-apiarian-role-split
+  >
+    <div
+      class="apiarian-role-split__card"
+    >
+      <div class="apiarian-role-split__media">
+        {% if role_image != blank %}
+          {{
+            role_image
+            | image_url: width: 1800
+            | image_tag:
+              class: 'apiarian-role-split__image',
+              widths: '450, 700, 900, 1200, 1600, 1800',
+              sizes: '(min-width: 990px) 50vw, 100vw',
+              loading: 'lazy',
+              alt: role_image.alt | default: role_heading | escape
+          }}
+        {% endif %}
+      </div>
+
+      <div
+        class="apiarian-role-split__content"
+
+      >
+        <div class="apiarian-role-split__content-inner">
+          {% if role_sub_heading != blank %}
+            <p class="apiarian-role-split__eyebrow">
+              {{ role_sub_heading | escape }}
+            </p>
+          {% endif %}
+
+          {% if role_heading != blank %}
+            <h2 class="apiarian-role-split__heading">
+              {{ role_heading | escape | newline_to_br }}
+            </h2>
+          {% endif %}
+
+          {% if role_content_field != blank %}
+            <div class="apiarian-role-split__text">
+              {% if role_content_field.type == 'rich_text_field' %}
+                {{ role_content_field | metafield_tag }}
+              {% else %}
+                {{ role_content | escape | newline_to_br }}
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+<script>
+  (function () {
+    function initApiarianRoleSplit() {
+      const section = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-apiarian-role-split]'
+      );
+
+      if (!section || section.dataset.initialized === 'true') return;
+      section.dataset.initialized = 'true';
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (rect.top <= viewportHeight * 0.94) {
+        return;
+      }
+
+      section.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: '0px 0px -4% 0px'
+        }
+      );
+
+      observer.observe(section);
+    }
+
+    initApiarianRoleSplit();
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (event.target && event.target.id === 'shopify-section-{{ section.id }}') {
+        const section = event.target.querySelector('[data-apiarian-role-split]');
+
+        if (section) {
+          delete section.dataset.initialized;
+          section.classList.remove('is-animation-ready', 'is-visible');
+        }
+
+        initApiarianRoleSplit();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Apiarian role split",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Metafield source"
+    },
+    {
+      "type": "text",
+      "id": "metafield_namespace",
+      "label": "Metafield namespace",
+      "default": "custom",
+      "info": "Example: custom"
+    },
+    {
+      "type": "text",
+      "id": "metafield_key",
+      "label": "Metafield key",
+      "default": "the_role_in_the_colony",
+      "info": "Use the exact key from Settings > Custom data > Products"
+    },
+    {
+      "type": "text",
+      "id": "metaobject_type",
+      "label": "Metaobject type",
+      "default": "the_role_in_the_colony",
+      "info": "Use the exact metaobject type/handle"
+    },
+    {
+      "type": "header",
+      "content": "Section background"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#FBF8F1"
+    },
+    {
+      "type": "header",
+      "content": "Desktop typography"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_letter_spacing",
+      "label": "Eyebrow letter spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 28,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 62
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "min": 360,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 580
+    },
+    {
+      "type": "range",
+      "id": "content_padding_vertical",
+      "label": "Content padding top/bottom",
+      "min": 40,
+      "max": 160,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "content_padding_horizontal",
+      "label": "Content padding left/right",
+      "min": 30,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_letter_spacing",
+      "label": "Eyebrow letter spacing",
+      "min": 0,
+      "max": 8,
+      "step": 0.5,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 52,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_size",
+      "label": "Text size",
+      "min": 13,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding_vertical",
+      "label": "Content padding top/bottom",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding_horizontal",
+      "label": "Content padding left/right",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apiarian role split"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,599 @@
+{% doc %}
+  @prompt
+    In the "Image with text" section, create a block with an inline email sign-up form that subscribes customers to the store's email list. The form should be clean, minimal, and premium in style — matching a luxury home fragrance brand. Include an email input field and a submit button, and use Shopify's native customer email subscription endpoint. Also include a customizable image setting above or beside the form, so a merchant can upload their own image via the theme editor.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-email-signup-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding-top: 0px;
+    padding-bottom: 20px;
+  }
+
+  .ai-email-signup-container-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: {{ block.settings.layout }};
+    gap: {{ block.settings.spacing }}px;
+    align-items: center;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-email-signup-image-wrapper-{{ ai_gen_id }} {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ai-email-signup-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-email-signup-image-placeholder-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f6f1e8;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-email-signup-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-email-signup-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #452b11;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .ai-email-signup-form-wrapper-{{ ai_gen_id }} {
+    flex: 1;
+    min-width: 0;
+    padding-right: 30px;
+  }
+
+  .ai-email-signup-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_spacing }}px;
+  }
+
+  .ai-email-signup-heading-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-style: {{ block.settings.heading_font.style }};
+    line-height: 1.2;
+  }
+
+  .ai-email-signup-subtext-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  .ai-email-signup-form-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-email-signup-input-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    flex-direction: {{ block.settings.button_position }};
+  }
+
+  .ai-email-signup-input-{{ ai_gen_id }} {
+    flex: 1;
+    padding: {{ block.settings.input_padding }}px;
+    border: {{ block.settings.input_border_thickness }}px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    font-size: {{ block.settings.input_text_size }}px;
+    background-color: {{ block.settings.input_background }};
+    color: {{ block.settings.input_text_color }};
+    transition: border-color 0.2s ease;
+    font-family: 'Platypi', Georgia, serif;
+  }
+
+  .ai-email-signup-input-{{ ai_gen_id }}::placeholder {
+    color: {{ block.settings.input_text_color }};
+    opacity: 0.5;
+  }
+
+  .ai-email-signup-input-{{ ai_gen_id }}:focus {
+    outline: none;
+    border-color: {{ block.settings.button_background }};
+  }
+
+  .ai-email-signup-button-{{ ai_gen_id }} {
+    padding: {{ block.settings.input_padding }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: 'Platypi', Georgia, serif;
+
+  }
+
+  .ai-email-signup-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  .ai-email-signup-message-{{ ai_gen_id }} {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .ai-email-signup-success-{{ ai_gen_id }} {
+    color: {{ block.settings.success_color }};
+  }
+
+  .ai-email-signup-error-{{ ai_gen_id }} {
+    color: {{ block.settings.error_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-email-signup-container-{{ ai_gen_id }} {
+      flex-direction: column;
+      width: 100%;
+      padding-bottom: 35px;
+      padding-left: 20px;
+    }
+
+    .ai-email-signup-input-wrapper-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-email-signup-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+
+    .ai-email-signup-subtext-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.text_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<email-signup-{{ ai_gen_id }} class="ai-email-signup-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-email-signup-container-{{ ai_gen_id }}">
+    <div class="ai-email-signup-image-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.image %}
+        <img
+          src="{{ block.settings.image | image_url: width: 1000 }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          class="ai-email-signup-image-{{ ai_gen_id }}"
+        >
+      {% else %}
+        <div class="ai-email-signup-image-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-email-signup-empty-state-{{ ai_gen_id }}">
+            Add an image
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-email-signup-form-wrapper-{{ ai_gen_id }}">
+      {%- form 'customer', class: 'ai-email-signup-form-{{ ai_gen_id }}' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        
+        <div class="ai-email-signup-content-{{ ai_gen_id }}">
+          {% if block.settings.heading != blank %}
+            <h2 class="ai-email-signup-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+          {% endif %}
+
+          {% if block.settings.subtext != blank %}
+            <div class="ai-email-signup-subtext-{{ ai_gen_id }}">{{ block.settings.subtext }}</div>
+          {% endif %}
+
+          <div class="ai-email-signup-input-wrapper-{{ ai_gen_id }}">
+            <input
+              type="email"
+              name="contact[email]"
+              class="ai-email-signup-input-{{ ai_gen_id }}"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="ai-email-signup-error-{{ ai_gen_id }}"
+              {% endif %}
+              {% if form.posted_successfully? %}
+                aria-describedby="ai-email-signup-success-{{ ai_gen_id }}"
+              {% endif %}
+              placeholder="{{ block.settings.email_placeholder }}"
+              required
+            >
+            <button
+              type="submit"
+              class="ai-email-signup-button-{{ ai_gen_id }}"
+            >
+              {{ block.settings.button_label }}
+            </button>
+          </div>
+
+          {% if form.errors %}
+            <p
+              id="ai-email-signup-error-{{ ai_gen_id }}"
+              class="ai-email-signup-message-{{ ai_gen_id }} ai-email-signup-error-{{ ai_gen_id }}"
+            >
+              {{ form.errors.messages.email }}
+            </p>
+          {% endif %}
+
+          {% if form.posted_successfully? %}
+            <p
+              id="ai-email-signup-success-{{ ai_gen_id }}"
+              class="ai-email-signup-message-{{ ai_gen_id }} ai-email-signup-success-{{ ai_gen_id }}"
+            >
+              {{ block.settings.success_message }}
+            </p>
+          {% endif %}
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</email-signup-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class EmailSignup{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const form = this.querySelector('.ai-email-signup-form-{{ ai_gen_id }}');
+        if (form) {
+          form.addEventListener('submit', this.handleSubmit.bind(this));
+        }
+      }
+
+      handleSubmit(event) {
+        const emailInput = this.querySelector('.ai-email-signup-input-{{ ai_gen_id }}');
+        if (emailInput && !emailInput.value.trim()) {
+          event.preventDefault();
+        }
+      }
+    }
+
+    customElements.define('email-signup-{{ ai_gen_id }}', EmailSignup{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Email signup",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "row",
+          "label": "Image left, form right"
+        },
+        {
+          "value": "row-reverse",
+          "label": "Form left, image right"
+        }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Space between image and form",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "label": "Content spacing",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join our community"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "platypi_n5"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>Subscribe to receive exclusive updates, new scent releases, and special offers.</p>"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Subtext size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#452b11"
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "select",
+      "id": "button_position",
+      "label": "Button position",
+      "options": [
+        {
+          "value": "row",
+          "label": "Inline with input"
+        },
+        {
+          "value": "column",
+          "label": "Below input"
+        }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "richtext",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "<p>Thank you for subscribing!</p>"
+    },
+    {
+      "type": "header",
+      "content": "Input style"
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Text color",
+      "default": "#452b11"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Border color",
+      "default": "#c88a2b"
+    },
+    {
+      "type": "range",
+      "id": "input_border_thickness",
+      "label": "Border thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "input_padding",
+      "label": "Padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "input_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#c88a2b"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#f6f1e8"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#452b11"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#f6f1e8"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Messages"
+    },
+    {
+      "type": "color",
+      "id": "success_color",
+      "label": "Success color",
+      "default": "#4c6762"
+    },
+    {
+      "type": "color",
+      "id": "error_color",
+      "label": "Error color",
+      "default": "#c88a2b"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email signup"
+    }
+  ]
+}
+{% endschema %}

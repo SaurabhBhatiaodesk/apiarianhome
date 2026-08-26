@@ -1,0 +1,885 @@
+{% style %}
+
+  /* =========================================================
+     SECTION
+     page-width = theme container
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-breadcrumbs,
+  #shopify-section-{{ section.id }} .apiarian-breadcrumbs * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-breadcrumbs {
+    width: 100%;
+
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+
+    background: {{ section.settings.background_color }};
+  }
+
+
+  /* =========================================================
+     LIST
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-breadcrumbs__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+
+  /* =========================================================
+     ITEM
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-breadcrumbs__item {
+    display: inline-flex;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+
+    color: {{ section.settings.current_color }};
+
+    font-size: {{ section.settings.font_size }}px;
+    font-weight:300;
+    line-height: 1.5;
+  }
+
+
+  /* =========================================================
+     SEPARATOR
+  ========================================================= */
+
+  #shopify-section-{{ section.id }}
+  .apiarian-breadcrumbs__item:not(:last-child)::after {
+    content: "{{ section.settings.separator }}";
+
+    display: inline-block;
+
+    margin-left: {{ section.settings.separator_spacing }}px;
+    margin-right: {{ section.settings.separator_spacing }}px;
+
+    color: {{ section.settings.separator_color }};
+
+    font-size: inherit;
+    font-weight:300;
+    line-height: 1;
+
+    opacity: 0.75;
+  }
+
+
+  /* =========================================================
+     LINKS
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-breadcrumbs__link {
+    position: relative;
+
+    color: {{ section.settings.link_color }};
+
+    text-decoration: none;
+
+    font-size: inherit;
+    font-weight: 400;
+    line-height: inherit;
+
+    transition:
+      color 0.25s ease;
+  }
+
+
+  /* =========================================================
+     LINK UNDERLINE
+  ========================================================= */
+
+  #shopify-section-{{ section.id }}
+  .apiarian-breadcrumbs__link:not([aria-current="page"])::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: scaleX(0);
+    transform-origin: right center;
+
+    transition:
+      transform 0.3s ease;
+  }
+
+
+  #shopify-section-{{ section.id }}
+  .apiarian-breadcrumbs__link:not([aria-current="page"]):hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+
+  #shopify-section-{{ section.id }}
+  .apiarian-breadcrumbs__link:not([aria-current="page"]):hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+
+  /* =========================================================
+     CURRENT PAGE
+  ========================================================= */
+
+  #shopify-section-{{ section.id }}
+  .apiarian-breadcrumbs__link[aria-current="page"] {
+    color: {{ section.settings.current_color }};
+
+    text-decoration: none;
+
+    cursor: default;
+  }
+
+
+  /* =========================================================
+     PAGE ON SCROLL ANIMATION
+     Non-blocking
+  ========================================================= */
+
+  #shopify-section-{{ section.id }}
+  .apiarian-breadcrumbs.is-animation-ready
+  .apiarian-breadcrumbs__list {
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+      opacity 0.42s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  #shopify-section-{{ section.id }}
+  .apiarian-breadcrumbs.is-animation-ready.is-visible
+  .apiarian-breadcrumbs__list {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media screen and (max-width: 749px) {
+
+    #shopify-section-{{ section.id }} .apiarian-breadcrumbs {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+
+    #shopify-section-{{ section.id }} .apiarian-breadcrumbs__item {
+      font-size: {{ section.settings.mobile_font_size }}px;
+    }
+
+
+    #shopify-section-{{ section.id }}
+    .apiarian-breadcrumbs__item:not(:last-child)::after {
+      margin-left: {{ section.settings.mobile_separator_spacing }}px;
+      margin-right: {{ section.settings.mobile_separator_spacing }}px;
+    }
+
+  }
+
+
+  /* =========================================================
+     REDUCED MOTION
+  ========================================================= */
+
+  @media (prefers-reduced-motion: reduce) {
+
+    #shopify-section-{{ section.id }}
+    .apiarian-breadcrumbs.is-animation-ready
+    .apiarian-breadcrumbs__list {
+      opacity: 1;
+
+      transform: none;
+
+      transition: none;
+    }
+
+  }
+
+{% endstyle %}
+
+  {% comment %} or template == 'cart'
+  or template == 'list-collections' {% endcomment %}
+{%- unless
+  template == 'index'
+
+  or template == '404'
+-%}
+
+  {%- assign breadcrumb_template = template | split: '.' | first -%}
+
+
+  <nav
+    class="apiarian-breadcrumbs page-width"
+    data-apiarian-breadcrumbs
+    role="navigation"
+    aria-label="Breadcrumb"
+  >
+
+    <ol class="apiarian-breadcrumbs__list">
+
+
+      <!-- ===================================================
+           HOME
+      ==================================================== -->
+
+      <li class="apiarian-breadcrumbs__item">
+
+        <a
+          class="apiarian-breadcrumbs__link"
+          href="{{ routes.root_url }}"
+        >
+          {{ section.settings.home_label | escape }}
+        </a>
+
+      </li>
+
+
+
+      <!-- ===================================================
+           BREADCRUMB ITEMS
+      ==================================================== -->
+
+      {%- case breadcrumb_template -%}
+
+
+        <!-- =================================================
+             PAGE
+        ================================================== -->
+
+        {%- when 'page' -%}
+
+          <li class="apiarian-breadcrumbs__item">
+
+            <a
+              class="apiarian-breadcrumbs__link"
+              href="{{ page.url }}"
+              aria-current="page"
+            >
+              {{ page.title | escape }}
+            </a>
+
+          </li>
+
+
+
+        <!-- =================================================
+             PRODUCT
+        ================================================== -->
+
+        {%- when 'product' -%}
+
+
+          {%- if collection != blank and collection.url != blank -%}
+
+            <li class="apiarian-breadcrumbs__item">
+
+              <a
+                class="apiarian-breadcrumbs__link"
+                href="{{ collection.url }}"
+              >
+                {{ collection.title | escape }}
+              </a>
+
+            </li>
+
+          {%- endif -%}
+
+
+          <li class="apiarian-breadcrumbs__item">
+
+            <a
+              class="apiarian-breadcrumbs__link"
+              href="{{ product.url }}"
+              aria-current="page"
+            >
+              {{ product.title | escape }}
+            </a>
+
+          </li>
+
+
+
+        <!-- =================================================
+             COLLECTION
+        ================================================== -->
+
+        {%- when 'collection' -%}
+
+
+          {%- if collection.handle -%}
+
+
+            {%- if current_tags -%}
+
+
+              <li class="apiarian-breadcrumbs__item">
+
+                <a
+                  class="apiarian-breadcrumbs__link"
+                  href="{{ collection.url }}"
+                >
+                  {{ collection.title | escape }}
+                </a>
+
+              </li>
+
+
+              <li class="apiarian-breadcrumbs__item">
+
+                {%- capture tag_url -%}
+                  {{ collection.url }}/{{ current_tags | join: '+' }}
+                {%- endcapture -%}
+
+                <a
+                  class="apiarian-breadcrumbs__link"
+                  href="{{ tag_url | strip }}"
+                  aria-current="page"
+                >
+                  {{ current_tags | join: ' + ' | escape }}
+                </a>
+
+              </li>
+
+
+            {%- else -%}
+
+
+              <li class="apiarian-breadcrumbs__item">
+
+                <a
+                  class="apiarian-breadcrumbs__link"
+                  href="{{ collection.url }}"
+                  aria-current="page"
+                >
+                  {{ collection.title | escape }}
+                </a>
+
+              </li>
+
+
+            {%- endif -%}
+
+
+          {%- endif -%}
+
+
+
+        <!-- =================================================
+             BLOG
+        ================================================== -->
+
+        {%- when 'blog' -%}
+
+
+          {%- if current_tags -%}
+
+
+            <li class="apiarian-breadcrumbs__item">
+
+              <a
+                class="apiarian-breadcrumbs__link"
+                href="{{ blog.url }}"
+              >
+                {{ blog.title | escape }}
+              </a>
+
+            </li>
+
+
+            <li class="apiarian-breadcrumbs__item">
+
+              {%- capture blog_tag_url -%}
+                {{ blog.url }}/tagged/{{ current_tags | join: '+' }}
+              {%- endcapture -%}
+
+              <a
+                class="apiarian-breadcrumbs__link"
+                href="{{ blog_tag_url | strip }}"
+                aria-current="page"
+              >
+                {{ current_tags | join: ' + ' | escape }}
+              </a>
+
+            </li>
+
+
+          {%- else -%}
+
+
+            <li class="apiarian-breadcrumbs__item">
+
+              <a
+                class="apiarian-breadcrumbs__link"
+                href="{{ blog.url }}"
+                aria-current="page"
+              >
+                {{ blog.title | escape }}
+              </a>
+
+            </li>
+
+
+          {%- endif -%}
+
+
+
+        <!-- =================================================
+             ARTICLE
+        ================================================== -->
+
+        {%- when 'article' -%}
+
+
+          <li class="apiarian-breadcrumbs__item">
+
+            <a
+              class="apiarian-breadcrumbs__link"
+              href="{{ blog.url }}"
+            >
+              {{ blog.title | escape }}
+            </a>
+
+          </li>
+
+
+          <li class="apiarian-breadcrumbs__item">
+
+            <a
+              class="apiarian-breadcrumbs__link"
+              href="{{ article.url }}"
+              aria-current="page"
+            >
+              {{ article.title | escape }}
+            </a>
+
+          </li>
+
+
+
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
+
+        {%- when 'search' -%}
+
+          <li class="apiarian-breadcrumbs__item">
+
+            <a
+              class="apiarian-breadcrumbs__link"
+              href="{{ routes.search_url }}"
+              aria-current="page"
+            >
+              {{ page_title | escape }}
+            </a>
+
+          </li>
+
+
+
+        <!-- =================================================
+             OTHER
+        ================================================== -->
+
+        {%- else -%}
+
+          <li class="apiarian-breadcrumbs__item">
+
+            <a
+              class="apiarian-breadcrumbs__link"
+              href="{{ request.path }}"
+              aria-current="page"
+            >
+              {{ page_title | escape }}
+            </a>
+
+          </li>
+
+
+      {%- endcase -%}
+
+
+    </ol>
+
+  </nav>
+
+
+
+  <!-- =====================================================
+       NON-BLOCKING SCROLL ANIMATION
+  ====================================================== -->
+
+  <script>
+    (function () {
+
+      function initApiarianBreadcrumbs() {
+
+        const breadcrumb =
+          document.querySelector(
+            '#shopify-section-{{ section.id }} [data-apiarian-breadcrumbs]'
+          );
+
+
+        if (!breadcrumb) return;
+
+
+        if (
+          breadcrumb.dataset.breadcrumbInitialized === 'true'
+        ) {
+          return;
+        }
+
+
+        breadcrumb.dataset.breadcrumbInitialized = 'true';
+
+
+        /*
+         * Accessibility / browser fallback
+         */
+
+        if (
+          window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches ||
+          !('IntersectionObserver' in window)
+        ) {
+          return;
+        }
+
+
+        const rect =
+          breadcrumb.getBoundingClientRect();
+
+
+        const viewportHeight =
+          window.innerHeight ||
+          document.documentElement.clientHeight;
+
+
+        /*
+         * Already visible during initial load:
+         * keep content immediately visible.
+         */
+
+        if (
+          rect.top <= viewportHeight * 0.94
+        ) {
+          return;
+        }
+
+
+        /*
+         * Below viewport:
+         * enable scroll animation.
+         */
+
+        breadcrumb.classList.add(
+          'is-animation-ready'
+        );
+
+
+        const observer =
+          new IntersectionObserver(
+
+            function (entries) {
+
+              entries.forEach(
+                function (entry) {
+
+                  if (!entry.isIntersecting) {
+                    return;
+                  }
+
+
+                  entry.target.classList.add(
+                    'is-visible'
+                  );
+
+
+                  observer.unobserve(
+                    entry.target
+                  );
+
+                }
+              );
+
+            },
+
+            {
+              threshold: 0.1,
+              rootMargin: '0px 0px -3% 0px'
+            }
+
+          );
+
+
+        observer.observe(
+          breadcrumb
+        );
+
+      }
+
+
+      initApiarianBreadcrumbs();
+
+
+      /*
+       * Shopify Theme Editor
+       */
+
+      document.addEventListener(
+        'shopify:section:load',
+        function (event) {
+
+          if (
+            event.target &&
+            event.target.id ===
+              'shopify-section-{{ section.id }}'
+          ) {
+
+            const breadcrumb =
+              event.target.querySelector(
+                '[data-apiarian-breadcrumbs]'
+              );
+
+
+            if (breadcrumb) {
+
+              delete breadcrumb.dataset
+                .breadcrumbInitialized;
+
+
+              breadcrumb.classList.remove(
+                'is-animation-ready',
+                'is-visible'
+              );
+
+            }
+
+
+            initApiarianBreadcrumbs();
+
+          }
+
+        }
+      );
+
+    })();
+  </script>
+
+
+{%- endunless -%}
+
+
+
+{% schema %}
+{
+  "name": "Apiarian Breadcrumbs",
+  "tag": "section",
+  "class": "section-apiarian-breadcrumbs",
+
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Breadcrumb"
+    },
+
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Home label",
+      "default": "Home"
+    },
+
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "/"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FAF8F3"
+    },
+
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#806346"
+    },
+
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#2A1D13"
+    },
+
+    {
+      "type": "color",
+      "id": "current_color",
+      "label": "Current page color",
+      "default": "#2A1D13"
+    },
+
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator color",
+      "default": "#A89076"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop typography"
+    },
+
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+
+    {
+      "type": "range",
+      "id": "separator_spacing",
+      "label": "Separator spacing",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_separator_spacing",
+      "label": "Separator spacing",
+      "min": 3,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 7
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Apiarian Breadcrumbs"
+    }
+  ]
+}
+{% endschema %}

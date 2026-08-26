@@ -1,0 +1,1377 @@
+{% style %}
+
+  /* =========================================================
+     SECTION
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.section_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-impact {
+    position: relative;
+    width: 100%;
+
+    padding:
+      {{ section.settings.padding_top }}px
+      0
+      {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-impact,
+  #shopify-section-{{ section.id }} .apiarian-impact * {
+    box-sizing: border-box;
+  }
+
+
+  /* =========================================================
+     BANNER
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__banner {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    background-color: {{ section.settings.fallback_background }};
+    border-radius: {{ section.settings.border_radius }}px;
+
+    isolation: isolate;
+  }
+
+
+  /* =========================================================
+     BACKGROUND IMAGE
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__media {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    z-index: 0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-impact__image {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+
+    object-fit: cover;
+    object-position: {{ section.settings.desktop_image_position }};
+
+    opacity: 1;
+    visibility: visible;
+  }
+
+
+  /* =========================================================
+     OVERLAY
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__overlay {
+    position: absolute;
+    inset: 0;
+    display:block;
+    z-index: 1;
+
+    background-color: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+
+    pointer-events: none;
+  }
+
+
+  /* =========================================================
+     CONTENT
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: {{ section.settings.content_width }}px;
+
+    padding:
+      {{ section.settings.content_padding_vertical }}px
+      {{ section.settings.content_padding_horizontal }}px;
+  }
+
+
+  /* =========================================================
+     EYEBROW
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__eyebrow {
+    margin: 0 0 26px;
+
+    color: {{ section.settings.eyebrow_color }};
+
+    font-size: {{ section.settings.eyebrow_size }}px;
+    font-weight: 400;
+    line-height: 1.3;
+
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+
+  /* =========================================================
+     HEADING
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__heading {
+    margin: 0 0 24px;
+
+    color: {{ section.settings.heading_color }};
+
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 400;
+
+    line-height: 1.08;
+    letter-spacing: -1px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-impact__heading em,
+  #shopify-section-{{ section.id }} .apiarian-impact__heading i {
+    font-style: italic;
+    font-weight: 400;
+    font-family: "Bodoni Moda", serif;
+  }
+
+
+  /* =========================================================
+     DESCRIPTION
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__text {
+    width: 100%;
+
+    color: {{ section.settings.text_color }};
+
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: 400;
+
+    line-height: 1.65;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-impact__text p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact__text p + p {
+    margin-top: 5px;
+  }
+
+
+  /* =========================================================
+     BUTTON
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__button-wrap {
+    margin-top: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-impact__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: {{ section.settings.button_height }}px;
+
+    padding: 12px 34px;
+
+    border: 1px solid {{ section.settings.button_background }};
+    border-radius: 999px;
+
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text }};
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact__button:hover {
+    background-color: {{ section.settings.button_hover_background }};
+    border-color: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text }};
+
+    transform: translateY(-2px);
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact__button:active {
+    transform: translateY(0);
+  }
+
+
+  /* =========================================================
+     DECORATION
+  ========================================================= */
+
+  #shopify-section-{{ section.id }} .apiarian-impact__decoration {
+    position: absolute;
+
+    top: {{ section.settings.decoration_top }}px;
+    left: {{ section.settings.decoration_position }}%;
+
+    width: {{ section.settings.decoration_width }}px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    transform:
+      translateX(-50%)
+      rotate({{ section.settings.decoration_rotation }}deg);
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact__decoration img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+  }
+
+
+  /* =========================================================
+     LIGHTWEIGHT SCROLL ANIMATION
+
+     Banner and image always remain visible.
+  ========================================================= */
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready
+    .apiarian-impact__eyebrow {
+    opacity: 0;
+    transform: translateY(12px);
+
+    transition:
+      opacity 0.4s ease,
+      transform 0.55s ease;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready
+    .apiarian-impact__heading {
+    opacity: 0;
+    transform: translateY(16px);
+
+    transition:
+      opacity 0.45s ease 0.05s,
+      transform 0.6s ease 0.05s;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready
+    .apiarian-impact__text {
+    opacity: 0;
+    transform: translateY(14px);
+
+    transition:
+      opacity 0.45s ease 0.1s,
+      transform 0.6s ease 0.1s;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready
+    .apiarian-impact__button-wrap {
+    opacity: 0;
+    transform: translateY(12px);
+
+    transition:
+      opacity 0.45s ease 0.15s,
+      transform 0.6s ease 0.15s;
+  }
+
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready.is-visible
+    .apiarian-impact__eyebrow,
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready.is-visible
+    .apiarian-impact__heading,
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready.is-visible
+    .apiarian-impact__text,
+
+  #shopify-section-{{ section.id }}
+    .apiarian-impact.is-animation-ready.is-visible
+    .apiarian-impact__button-wrap {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  /* =========================================================
+     TABLET
+  ========================================================= */
+
+  @media screen and (max-width: 990px) {
+
+    #shopify-section-{{ section.id }} .apiarian-impact {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-impact__content {
+      max-width: 680px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-impact__heading {
+      font-size: 46px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-impact__text {
+      font-size: 17px;
+    }
+
+  }
+
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media screen and (max-width: 749px) {
+
+    #shopify-section-{{ section.id }} .apiarian-impact {
+      padding:
+        {{ section.settings.mobile_padding_top }}px
+        0
+        {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+
+    /* Banner */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__banner {
+      align-items: flex-end;
+
+      border-radius:
+        {{ section.settings.mobile_border_radius }}px;
+    }
+
+
+    /* Image */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__image {
+      object-position:
+        {{ section.settings.mobile_image_position }};
+    }
+
+
+    /* Stronger mobile overlay for readability */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__overlay {
+      background:
+        linear-gradient(
+          0deg,
+          {{ section.settings.overlay_color }} 0%,
+          {{ section.settings.overlay_color }} 42%,
+          transparent 100%
+        );
+
+      opacity:
+        {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    }
+
+
+    /* Content */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__content {
+      width: 100%;
+      max-width: 100%;
+
+      padding:
+        {{ section.settings.mobile_content_padding_vertical }}px
+        {{ section.settings.mobile_content_padding_horizontal }}px;
+    }
+
+
+    /* Eyebrow */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__eyebrow {
+      margin-bottom: 18px;
+
+      font-size: 12px;
+
+      letter-spacing: 3px;
+    }
+
+
+    /* Heading */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__heading {
+      margin-bottom: 18px;
+
+      font-size:
+        {{ section.settings.mobile_heading_size }}px;
+
+      line-height: 1.1;
+
+      letter-spacing: -0.5px;
+    }
+
+
+    /* Text */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__text {
+      font-size:
+        {{ section.settings.mobile_text_size }}px;
+
+      line-height: 1.6;
+    }
+
+
+    /* Button */
+
+    #shopify-section-{{ section.id }} .apiarian-impact__button-wrap {
+      margin-top: 22px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-impact__button {
+      min-height:
+        {{ section.settings.mobile_button_height }}px;
+
+      padding: 11px 26px;
+
+      font-size: 14px;
+    }
+
+
+    /* Decoration */
+
+    #shopify-section-{{ section.id }}
+      .apiarian-impact__decoration {
+      top:
+        {{ section.settings.mobile_decoration_top }}px;
+
+      left:
+        {{ section.settings.mobile_decoration_position }}%;
+
+      width:
+        {{ section.settings.mobile_decoration_width }}px;
+    }
+
+  }
+
+
+  /* =========================================================
+     SMALL MOBILE
+  ========================================================= */
+
+  @media screen and (max-width: 400px) {
+
+    #shopify-section-{{ section.id }} .apiarian-impact__heading {
+      font-size:
+        calc(
+          {{ section.settings.mobile_heading_size }}px
+          - 3px
+        );
+    }
+
+  }
+
+
+  /* =========================================================
+     REDUCED MOTION
+  ========================================================= */
+
+  @media (prefers-reduced-motion: reduce) {
+
+    #shopify-section-{{ section.id }}
+      .apiarian-impact.is-animation-ready
+      .apiarian-impact__eyebrow,
+
+    #shopify-section-{{ section.id }}
+      .apiarian-impact.is-animation-ready
+      .apiarian-impact__heading,
+
+    #shopify-section-{{ section.id }}
+      .apiarian-impact.is-animation-ready
+      .apiarian-impact__text,
+
+    #shopify-section-{{ section.id }}
+      .apiarian-impact.is-animation-ready
+      .apiarian-impact__button-wrap {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+  }
+
+{% endstyle %}
+
+
+<section
+  class="apiarian-impact"
+  data-apiarian-impact
+>
+  <div class="page-width">
+
+
+  <!-- =====================================================
+       DECORATION
+  ====================================================== -->
+
+  {% if section.settings.decoration_image != blank %}
+
+    <div class="apiarian-impact__decoration">
+
+      {{
+        section.settings.decoration_image
+        | image_url: width: 200
+        | image_tag:
+          loading: 'lazy',
+          widths: '50, 75, 100, 150, 200',
+          alt: section.settings.decoration_image.alt
+      }}
+
+    </div>
+
+  {% endif %}
+
+
+  <!-- =====================================================
+       BANNER
+  ====================================================== -->
+
+  <div class="apiarian-impact__banner">
+
+
+    <!-- ===================================================
+         BACKGROUND IMAGE
+    ==================================================== -->
+
+    <div class="apiarian-impact__media">
+
+      {% if section.settings.background_image != blank %}
+
+        <img
+          class="apiarian-impact__image"
+
+          src="{{ section.settings.background_image | image_url: width: 1600 }}"
+
+          srcset="
+            {{ section.settings.background_image | image_url: width: 600 }} 600w,
+            {{ section.settings.background_image | image_url: width: 900 }} 900w,
+            {{ section.settings.background_image | image_url: width: 1200 }} 1200w,
+            {{ section.settings.background_image | image_url: width: 1600 }} 1600w,
+            {{ section.settings.background_image | image_url: width: 2000 }} 2000w
+          "
+
+          sizes="100vw"
+
+          width="{{ section.settings.background_image.width }}"
+          height="{{ section.settings.background_image.height }}"
+
+          loading="eager"
+
+          alt="{{ section.settings.background_image.alt | escape }}"
+        >
+
+      {% endif %}
+
+    </div>
+
+
+    <!-- ===================================================
+         OVERLAY
+    ==================================================== -->
+
+    <div
+      class="apiarian-impact__overlay"
+      aria-hidden="true"
+    ></div>
+
+
+    <!-- ===================================================
+         CONTENT
+    ==================================================== -->
+
+    <div class="apiarian-impact__content">
+
+
+      {% if section.settings.eyebrow != blank %}
+
+        <p class="apiarian-impact__eyebrow">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+
+      {% endif %}
+
+
+      {% if section.settings.heading != blank %}
+
+        <div class="apiarian-impact__heading">
+          {{ section.settings.heading }}
+        </div>
+
+      {% endif %}
+
+
+      {% if section.settings.description != blank %}
+
+        <div class="apiarian-impact__text">
+          {{ section.settings.description }}
+        </div>
+
+      {% endif %}
+
+
+      {% if section.settings.button_label != blank %}
+
+        <div class="apiarian-impact__button-wrap">
+
+          {% if section.settings.button_link != blank %}
+
+            <a
+              href="{{ section.settings.button_link }}"
+              class="apiarian-impact__button"
+            >
+              {{ section.settings.button_label | escape }}
+            </a>
+
+          {% else %}
+
+            <span class="apiarian-impact__button">
+              {{ section.settings.button_label | escape }}
+            </span>
+
+          {% endif %}
+
+        </div>
+
+      {% endif %}
+
+
+    </div>
+
+  </div>
+
+  </div>
+</section>
+
+
+<script>
+  (function () {
+
+    const sectionElement = document.querySelector(
+      '#shopify-section-{{ section.id }} [data-apiarian-impact]'
+    );
+
+    if (!sectionElement) return;
+
+
+    if (
+      window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches
+    ) {
+      return;
+    }
+
+
+    if (!('IntersectionObserver' in window)) {
+      return;
+    }
+
+
+    const rect =
+      sectionElement.getBoundingClientRect();
+
+
+    const viewportHeight =
+      window.innerHeight ||
+      document.documentElement.clientHeight;
+
+
+    /*
+     * If section is already visible:
+     * show immediately.
+     */
+
+    if (rect.top <= viewportHeight * 0.92) {
+      return;
+    }
+
+
+    /*
+     * Only below-fold content animates.
+     */
+
+    sectionElement.classList.add(
+      'is-animation-ready'
+    );
+
+
+    const observer =
+      new IntersectionObserver(
+
+        function (entries) {
+
+          entries.forEach(function (entry) {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+
+            entry.target.classList.add(
+              'is-visible'
+            );
+
+
+            observer.unobserve(
+              entry.target
+            );
+
+          });
+
+        },
+
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -3% 0px'
+        }
+
+      );
+
+
+    observer.observe(sectionElement);
+
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "Apiarian Impact",
+  "tag": "section",
+  "class": "section-apiarian-impact",
+
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "IMPACT"
+    },
+
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "None of this exists <em>without the honeybee.</em>"
+    },
+
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>A portion of every sale goes to the People and Pollinators Action Network.<br>What the honeybee needs, every other pollinator depends on too.</p>"
+    },
+
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "See where it goes"
+    },
+
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Desktop image position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "left top",
+          "label": "Left top"
+        },
+        {
+          "value": "left center",
+          "label": "Left center"
+        },
+        {
+          "value": "left bottom",
+          "label": "Left bottom"
+        },
+        {
+          "value": "center top",
+          "label": "Center top"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center bottom",
+          "label": "Center bottom"
+        },
+        {
+          "value": "right top",
+          "label": "Right top"
+        },
+        {
+          "value": "right center",
+          "label": "Right center"
+        },
+        {
+          "value": "right bottom",
+          "label": "Right bottom"
+        }
+      ]
+    },
+
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile image position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "left top",
+          "label": "Left top"
+        },
+        {
+          "value": "left center",
+          "label": "Left center"
+        },
+        {
+          "value": "left bottom",
+          "label": "Left bottom"
+        },
+        {
+          "value": "center top",
+          "label": "Center top"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center bottom",
+          "label": "Center bottom"
+        },
+        {
+          "value": "right top",
+          "label": "Right top"
+        },
+        {
+          "value": "right center",
+          "label": "Right center"
+        },
+        {
+          "value": "right bottom",
+          "label": "Right bottom"
+        }
+      ]
+    },
+
+
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#1D140E"
+    },
+
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 35
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#FAF8F3"
+    },
+
+    {
+      "type": "color",
+      "id": "fallback_background",
+      "label": "Fallback background",
+      "default": "#2A211A"
+    },
+
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#F1C36D"
+    },
+
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#2A1F15"
+    },
+
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#F1C36D"
+    },
+
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button hover text",
+      "default": "#2A1F15"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop typography"
+    },
+
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+
+    {
+      "type": "range",
+      "id": "button_height",
+      "label": "Button height",
+      "min": 44,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop content padding"
+    },
+
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content maximum width",
+      "min": 500,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 800
+    },
+
+    {
+      "type": "range",
+      "id": "content_padding_vertical",
+      "label": "Content padding top/bottom",
+      "min": 30,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "content_padding_horizontal",
+      "label": "Content padding left/right",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop section spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "desktop_side_padding",
+      "label": "Side padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+
+
+    {
+      "type": "header",
+      "content": "Decoration"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "decoration_image",
+      "label": "Decoration image"
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_width",
+      "label": "Decoration width",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 65
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_position",
+      "label": "Horizontal position",
+      "min": 10,
+      "max": 90,
+      "step": 1,
+      "unit": "%",
+      "default": 68
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_top",
+      "label": "Top position",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_rotation",
+      "label": "Rotation",
+      "min": -45,
+      "max": 45,
+      "step": 1,
+      "unit": "deg",
+      "default": 10
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 26,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 38
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_text_size",
+      "label": "Text size",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_content_padding_vertical",
+      "label": "Content padding top/bottom",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_content_padding_horizontal",
+      "label": "Content padding left/right",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_button_height",
+      "label": "Button height",
+      "min": 44,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 52
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile section spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Side padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile decoration"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_decoration_width",
+      "label": "Decoration width",
+      "min": 25,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_decoration_position",
+      "label": "Horizontal position",
+      "min": 10,
+      "max": 90,
+      "step": 1,
+      "unit": "%",
+      "default": 70
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_decoration_top",
+      "label": "Top position",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Apiarian Impact"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1251 @@
+{% style %}
+
+  /* ========================================
+     SECTION
+  ======================================== */
+
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.section_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter {
+    width: 100%;
+    padding:
+      {{ section.settings.padding_top }}px
+      0
+      {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter,
+  #shopify-section-{{ section.id }} .apiarian-newsletter * {
+    box-sizing: border-box;
+  }
+
+
+  /* ========================================
+     CARD
+  ======================================== */
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__card {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(500px, 0.95fr);
+    align-items: center;
+
+    gap: {{ section.settings.column_gap }}px;
+
+    width: 100%;
+
+    padding:
+      {{ section.settings.card_padding_vertical }}px
+      {{ section.settings.card_padding_horizontal }}px;
+
+    background-color: {{ section.settings.card_background }};
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+
+
+  /* ========================================
+     CONTENT
+  ======================================== */
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__content {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__heading {
+    margin: 0 0 18px;
+
+    color: {{ section.settings.heading_color }};
+
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -1px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__heading em,
+  #shopify-section-{{ section.id }} .apiarian-newsletter__heading i {
+    font-style: italic;
+    font-weight: 400;
+      font-family: "Bodoni Moda", serif;
+
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__text {
+    color: {{ section.settings.text_color }};
+
+    font-size: {{ section.settings.text_size }}px;
+    font-weight:300;
+    line-height: 1.7;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__text p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__text
+    p + p {
+    margin-top: 4px;
+  }
+
+
+  /* ========================================
+     FORM
+  ======================================== */
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__form-wrap {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__form {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__form-row {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__input {
+    display: block;
+
+    width: 100%;
+    height: {{ section.settings.field_height }}px;
+
+    margin: 0;
+    padding: 0 26px;
+
+    border: 1px solid {{ section.settings.input_border }};
+    border-radius: 999px;
+
+    background-color: {{ section.settings.input_background }};
+    color: {{ section.settings.input_text }};
+
+    box-shadow: none;
+    outline: none;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__input::placeholder {
+    color: {{ section.settings.placeholder_color }};
+    opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__input:focus {
+    border-color: {{ section.settings.button_background }};
+    box-shadow: 0 0 0 2px rgba(42, 31, 21, 0.06);
+  }
+
+
+  /* ========================================
+     BUTTON
+  ======================================== */
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__button {
+    flex: 0 0 auto;
+
+    min-width: 132px;
+    height: {{ section.settings.field_height }}px;
+
+    margin: 0;
+    padding: 0 30px;
+
+    border: 1px solid {{ section.settings.button_background }};
+    border-radius: 999px;
+
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text }};
+
+    box-shadow: none;
+    outline: none;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__button:hover {
+    background-color: {{ section.settings.button_hover_background }};
+    border-color: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text }};
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__button:active {
+    transform: translateY(0);
+  }
+
+
+  /* ========================================
+     MESSAGES
+  ======================================== */
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__message {
+    margin: 14px 0 0;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__message--success {
+    color: {{ section.settings.success_color }};
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__message--error {
+    color: {{ section.settings.error_color }};
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__message--error
+    ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+
+  /* ========================================
+     DECORATION IMAGE
+  ======================================== */
+
+  #shopify-section-{{ section.id }} .apiarian-newsletter__decoration {
+    position: absolute;
+
+    left: {{ section.settings.decoration_position }}%;
+    bottom: -{{ section.settings.decoration_offset }}px;
+
+    width: {{ section.settings.decoration_width }}px;
+
+    transform:
+      translateX(-50%)
+      rotate({{ section.settings.decoration_rotation }}deg);
+
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter__decoration img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+  }
+
+
+  /* ========================================
+     LARGE TABLET
+  ======================================== */
+
+  @media screen and (max-width: 1200px) {
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__card {
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
+      gap: 45px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__heading {
+      font-size: 40px;
+    }
+
+  }
+
+
+  /* ========================================
+     TABLET
+  ======================================== */
+
+  @media screen and (max-width: 990px) {
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__card {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__content {
+      max-width: 650px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__form-wrap {
+      max-width: 100%;
+    }
+
+  }
+
+
+  /* ========================================
+     MOBILE
+  ======================================== */
+
+  @media screen and (max-width: 749px) {
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter {
+      padding:
+        {{ section.settings.mobile_padding_top }}px
+        0
+        {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__card {
+      display: block;
+
+      padding:
+        {{ section.settings.mobile_card_padding_vertical }}px
+        {{ section.settings.mobile_card_padding_horizontal }}px;
+
+      border-radius: {{ section.settings.mobile_border_radius }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__content {
+      max-width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__heading {
+      margin-bottom: 16px;
+
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__text {
+      font-size: {{ section.settings.mobile_text_size }}px;
+      line-height: 1.65;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__form-wrap {
+      margin-top: 30px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__form-row {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__input {
+      height: {{ section.settings.mobile_field_height }}px;
+
+      padding: 0 20px;
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__button {
+      width: 100%;
+      min-width: 0;
+      height: {{ section.settings.mobile_field_height }}px;
+
+      margin-top: 12px;
+
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__decoration {
+      left: {{ section.settings.mobile_decoration_position }}%;
+      bottom: -{{ section.settings.mobile_decoration_offset }}px;
+
+      width: {{ section.settings.mobile_decoration_width }}px;
+    }
+
+  }
+
+
+  /* ========================================
+     SMALL MOBILE
+  ======================================== */
+
+  @media screen and (max-width: 400px) {
+
+    #shopify-section-{{ section.id }} .apiarian-newsletter__heading {
+      font-size: calc({{ section.settings.mobile_heading_size }}px - 2px);
+    }
+
+  }
+
+
+
+  /* ========================================
+     PAGE SCROLL REVEAL ANIMATION
+  ======================================== */
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready
+    .apiarian-newsletter__card {
+    opacity: 0;
+    transform: translateY(36px) scale(0.985);
+    transition:
+      opacity 0.8s ease,
+      transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready.is-visible
+    .apiarian-newsletter__card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready
+    .apiarian-newsletter__content {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s ease 0.18s,
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+    will-change: opacity, transform;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready.is-visible
+    .apiarian-newsletter__content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready
+    .apiarian-newsletter__form-wrap {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s ease 0.32s,
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.32s;
+    will-change: opacity, transform;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready.is-visible
+    .apiarian-newsletter__form-wrap {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready
+    .apiarian-newsletter__decoration {
+    opacity: 0.65;
+    transform:
+      translateX(-50%)
+      translateY(18px)
+      rotate({{ section.settings.decoration_rotation }}deg)
+      scale(0.9);
+    transition:
+      opacity 0.75s ease 0.45s,
+      transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
+    will-change: opacity, transform;
+  }
+
+  #shopify-section-{{ section.id }}
+    .apiarian-newsletter.is-animation-ready.is-visible
+    .apiarian-newsletter__decoration {
+    opacity: 0.65;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      rotate({{ section.settings.decoration_rotation }}deg)
+      scale(1);
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }}
+      .apiarian-newsletter.is-animation-ready
+      .apiarian-newsletter__card {
+      transform: translateY(28px) scale(0.99);
+    }
+
+    #shopify-section-{{ section.id }}
+      .apiarian-newsletter.is-animation-ready.is-visible
+      .apiarian-newsletter__card {
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }}
+      .apiarian-newsletter.is-animation-ready
+      .apiarian-newsletter__card,
+    #shopify-section-{{ section.id }}
+      .apiarian-newsletter.is-animation-ready
+      .apiarian-newsletter__content,
+    #shopify-section-{{ section.id }}
+      .apiarian-newsletter.is-animation-ready
+      .apiarian-newsletter__form-wrap {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      will-change: auto;
+    }
+
+    #shopify-section-{{ section.id }}
+      .apiarian-newsletter.is-animation-ready
+      .apiarian-newsletter__decoration {
+      opacity: 0.65;
+      transform:
+        translateX(-50%)
+        rotate({{ section.settings.decoration_rotation }}deg);
+      transition: none;
+      will-change: auto;
+    }
+  }
+
+{% endstyle %}
+
+
+<section class="apiarian-newsletter">
+  <div class="page-width">
+
+  <div class="apiarian-newsletter__card">
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <div class="apiarian-newsletter__content">
+
+      {% if section.settings.heading != blank %}
+
+        <div class="apiarian-newsletter__heading">
+          {{ section.settings.heading }}
+        </div>
+
+      {% endif %}
+
+
+      {% if section.settings.description != blank %}
+
+        <div class="apiarian-newsletter__text">
+          {{ section.settings.description }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+
+    <!-- =========================
+         NEWSLETTER FORM
+    ========================== -->
+
+    <div class="apiarian-newsletter__form-wrap">
+
+      {% form 'customer', class: 'apiarian-newsletter__form' %}
+
+        <input
+          type="hidden"
+          name="contact[tags]"
+          value="newsletter"
+        >
+
+
+        <div class="apiarian-newsletter__form-row">
+
+          <div class="apiarian-newsletter__field">
+
+            <input
+              id="ApiarianNewsletterEmail-{{ section.id }}"
+              class="apiarian-newsletter__input"
+              type="email"
+              name="contact[email]"
+              value="{{ form.email }}"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              placeholder="{{ section.settings.email_placeholder | escape }}"
+              aria-label="{{ section.settings.email_placeholder | escape }}"
+              required
+            >
+
+          </div>
+
+
+          <button
+            class="apiarian-newsletter__button"
+            type="submit"
+            name="commit"
+          >
+            {{ section.settings.button_label | escape }}
+          </button>
+
+        </div>
+
+
+        {% if form.posted_successfully? %}
+
+          <p
+            class="
+              apiarian-newsletter__message
+              apiarian-newsletter__message--success
+            "
+            tabindex="-1"
+          >
+            {{ section.settings.success_message | escape }}
+          </p>
+
+        {% endif %}
+
+
+        {% if form.errors %}
+
+          <div
+            class="
+              apiarian-newsletter__message
+              apiarian-newsletter__message--error
+            "
+          >
+            {{ form.errors | default_errors }}
+          </div>
+
+        {% endif %}
+
+      {% endform %}
+
+    </div>
+
+
+    <!-- =========================
+         DECORATION IMAGE
+    ========================== -->
+
+    {% if section.settings.decoration_image != blank %}
+
+      <div class="apiarian-newsletter__decoration">
+
+        {{
+          section.settings.decoration_image
+          | image_url: width: 300
+          | image_tag:
+            loading: 'lazy',
+            widths: '50, 75, 100, 150, 200, 300',
+            alt: section.settings.decoration_image.alt
+        }}
+
+      </div>
+
+    {% endif %}
+
+
+  </div>
+
+  </div>
+</section>
+
+
+
+
+<script>
+  (function () {
+
+    function initApiarianNewsletterAnimation() {
+
+      const sectionElement = document.querySelector(
+        '#shopify-section-{{ section.id }} .apiarian-newsletter'
+      );
+
+      if (!sectionElement) return;
+
+      if (sectionElement.dataset.scrollAnimationInitialized === 'true') {
+        return;
+      }
+
+      sectionElement.dataset.scrollAnimationInitialized = 'true';
+
+      const reducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      if (reducedMotion || !('IntersectionObserver' in window)) {
+        sectionElement.classList.add('is-visible');
+        return;
+      }
+
+      sectionElement.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries, observerInstance) {
+
+          entries.forEach(function (entry) {
+
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observerInstance.unobserve(entry.target);
+
+          });
+
+        },
+        {
+          threshold: 0.18,
+          rootMargin: '0px 0px -8% 0px'
+        }
+      );
+
+      observer.observe(sectionElement);
+
+    }
+
+    if (document.readyState === 'loading') {
+
+      document.addEventListener(
+        'DOMContentLoaded',
+        initApiarianNewsletterAnimation
+      );
+
+    } else {
+
+      initApiarianNewsletterAnimation();
+
+    }
+
+    document.addEventListener(
+      'shopify:section:load',
+      function (event) {
+
+        if (
+          event.target &&
+          event.target.id === 'shopify-section-{{ section.id }}'
+        ) {
+
+          initApiarianNewsletterAnimation();
+
+        }
+
+      }
+    );
+
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "Apiarian Newsletter",
+  "tag": "section",
+  "class": "section-apiarian-newsletter",
+
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One letter a month, <em>from the apiary.</em>"
+    },
+
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>The hive, the season, and what is happening in the frames.<br>No selling.</p>"
+    },
+
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Your email"
+    },
+
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Sign up"
+    },
+
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you for joining our newsletter."
+    },
+
+
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop heading size",
+      "min": 28,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Desktop text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile heading size",
+      "min": 22,
+      "max": 44,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_text_size",
+      "label": "Mobile text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+
+
+    {
+      "type": "header",
+      "content": "Decoration"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "decoration_image",
+      "label": "Decoration image"
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_width",
+      "label": "Desktop decoration width",
+      "min": 30,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 65
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_position",
+      "label": "Desktop horizontal position",
+      "min": 10,
+      "max": 90,
+      "step": 1,
+      "unit": "%",
+      "default": 42
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_offset",
+      "label": "Desktop bottom offset",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_rotation",
+      "label": "Decoration rotation",
+      "min": -45,
+      "max": 45,
+      "step": 1,
+      "unit": "deg",
+      "default": 20
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#FAF8F3"
+    },
+
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#F1EBDD"
+    },
+
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2C2117"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description color",
+      "default": "#8C541D"
+    },
+
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Input background",
+      "default": "#FBFAF7"
+    },
+
+    {
+      "type": "color",
+      "id": "input_border",
+      "label": "Input border",
+      "default": "#CFC8BE"
+    },
+
+    {
+      "type": "color",
+      "id": "input_text",
+      "label": "Input text",
+      "default": "#2C2117"
+    },
+
+    {
+      "type": "color",
+      "id": "placeholder_color",
+      "label": "Placeholder color",
+      "default": "#7A746E"
+    },
+
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#2A1F15"
+    },
+
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#8C541D"
+    },
+
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button hover text",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "success_color",
+      "label": "Success message color",
+      "default": "#406B45"
+    },
+
+    {
+      "type": "color",
+      "id": "error_color",
+      "label": "Error message color",
+      "default": "#A72A2A"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop card"
+    },
+
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+
+    {
+      "type": "range",
+      "id": "card_padding_vertical",
+      "label": "Card vertical padding",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 75
+    },
+
+    {
+      "type": "range",
+      "id": "card_padding_horizontal",
+      "label": "Card horizontal padding",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "field_height",
+      "label": "Input and button height",
+      "min": 44,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 68
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop padding top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop padding bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "desktop_side_padding",
+      "label": "Desktop side padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile card"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_border_radius",
+      "label": "Mobile border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_card_padding_vertical",
+      "label": "Mobile card vertical padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_card_padding_horizontal",
+      "label": "Mobile card horizontal padding",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_field_height",
+      "label": "Mobile input and button height",
+      "min": 44,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Mobile side padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile decoration"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_decoration_width",
+      "label": "Mobile decoration width",
+      "min": 25,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_decoration_position",
+      "label": "Mobile horizontal position",
+      "min": 10,
+      "max": 90,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_decoration_offset",
+      "label": "Mobile bottom offset",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Apiarian Newsletter"
+    }
+  ]
+}
+{% endschema %}

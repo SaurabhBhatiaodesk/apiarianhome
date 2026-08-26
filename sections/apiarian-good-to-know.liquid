@@ -1,0 +1,721 @@
+{% comment %}
+  Section: Apiarian Good To Know
+  Two-column heading + accordion section.
+{% endcomment %}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background: {{ section.settings.background_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know,
+  #shopify-section-{{ section.id }} .apiarian-good-to-know * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+    gap: 70px;
+    align-items: start;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__intro,
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__accordion {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__eyebrow {
+    margin: 0 0 26px;
+    color: {{ section.settings.eyebrow_color }};
+    font-size: {{ section.settings.eyebrow_size }}px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: {{ section.settings.eyebrow_letter_spacing }}px;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__heading {
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.8px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__heading em {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__accordion {
+    border-top: 1px solid {{ section.settings.divider_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__item {
+    border-bottom: 1px solid {{ section.settings.divider_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__button {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    margin: 0;
+    padding:20px 0;
+    border: 0;
+    background: transparent;
+    color: {{ section.settings.question_color }};
+    font-family: inherit;
+    font-size: {{ section.settings.question_size }}px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__icon {
+    position: relative;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    color: {{ section.settings.icon_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__icon::before,
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 1.5px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition: transform .25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  #shopify-section-{{ section.id }}
+  .apiarian-good-to-know__button[aria-expanded="true"]
+  .apiarian-good-to-know__icon::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  #shopify-section-{{ section.id }}
+  .apiarian-good-to-know__button[aria-expanded="true"]
+  .apiarian-good-to-know__icon::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__item.is-open
+  .apiarian-good-to-know__answer {
+    grid-template-rows: 1fr;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__answer-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__answer-content {
+    max-width: 720px;
+    padding: 0 42px 30px 0;
+    color: {{ section.settings.answer_color }};
+    font-size: {{ section.settings.answer_size }}px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know__answer-content p {
+    margin: 0;
+  }
+
+  /* lightweight page-on-scroll animation */
+  #shopify-section-{{ section.id }} .apiarian-good-to-know.is-animation-ready
+  .apiarian-good-to-know__intro,
+  #shopify-section-{{ section.id }} .apiarian-good-to-know.is-animation-ready
+  .apiarian-good-to-know__accordion {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity .45s ease,
+      transform .6s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know.is-animation-ready
+  .apiarian-good-to-know__accordion {
+    transition-delay: .08s;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-good-to-know.is-animation-ready.is-visible
+  .apiarian-good-to-know__intro,
+  #shopify-section-{{ section.id }} .apiarian-good-to-know.is-animation-ready.is-visible
+  .apiarian-good-to-know__accordion {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__inner {
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__intro,
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__accordion {
+      min-width: 0;
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .apiarian-good-to-know {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__inner {
+      gap: 34px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__eyebrow {
+      margin-bottom: 20px;
+      font-size: {{ section.settings.mobile_eyebrow_size }}px;
+      letter-spacing: {{ section.settings.mobile_eyebrow_letter_spacing }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__heading {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__button {
+      padding: 22px 0;
+      font-size: {{ section.settings.mobile_question_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__answer-content {
+      max-width: none;
+      padding: 0 28px 24px 0;
+      font-size: {{ section.settings.mobile_answer_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__heading,
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__button,
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__answer-content {
+      overflow-wrap: anywhere;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__inner {
+      gap: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__button {
+      gap: 14px;
+      padding: 20px 0;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__answer-content {
+      padding-right: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .apiarian-good-to-know.is-animation-ready
+    .apiarian-good-to-know__intro,
+    #shopify-section-{{ section.id }} .apiarian-good-to-know.is-animation-ready
+    .apiarian-good-to-know__accordion {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-good-to-know__answer {
+      transition: none;
+    }
+  }
+{% endstyle %}
+
+<section
+  class="apiarian-good-to-know"
+  data-apiarian-good-to-know
+>
+  <div class="page-width">
+    <div class="apiarian-good-to-know__inner">
+
+      <div class="apiarian-good-to-know__intro">
+      {% if section.settings.eyebrow != blank %}
+        <p class="apiarian-good-to-know__eyebrow">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank or section.settings.heading_italic != blank %}
+        <h2 class="apiarian-good-to-know__heading">
+          {{ section.settings.heading | escape }}
+          {% if section.settings.heading_italic != blank %}
+            <em>{{ section.settings.heading_italic | escape }}</em>
+          {% endif %}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="apiarian-good-to-know__accordion">
+      {% for block in section.blocks %}
+        {%- assign open_item = false -%}
+        {%- if forloop.first and section.settings.first_open -%}
+          {%- assign open_item = true -%}
+        {%- endif -%}
+
+        <div
+          class="apiarian-good-to-know__item{% if open_item %} is-open{% endif %}"
+          data-accordion-item
+          {{ block.shopify_attributes }}
+        >
+          <button
+            type="button"
+            class="apiarian-good-to-know__button"
+            data-accordion-button
+            aria-expanded="{% if open_item %}true{% else %}false{% endif %}"
+            aria-controls="Accordion-{{ section.id }}-{{ block.id }}"
+          >
+            <span>{{ block.settings.question | escape }}</span>
+            <span class="apiarian-good-to-know__icon" aria-hidden="true"></span>
+          </button>
+
+          <div
+            id="Accordion-{{ section.id }}-{{ block.id }}"
+            class="apiarian-good-to-know__answer"
+            data-accordion-answer
+          >
+            <div class="apiarian-good-to-know__answer-inner">
+              {% if block.settings.answer != blank %}
+                <div class="apiarian-good-to-know__answer-content">
+                  {{ block.settings.answer }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    function initGoodToKnow() {
+      const section = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-apiarian-good-to-know]'
+      );
+
+      if (!section || section.dataset.initialized === 'true') return;
+      section.dataset.initialized = 'true';
+
+      const items = section.querySelectorAll('[data-accordion-item]');
+
+      items.forEach(function (item) {
+        const button = item.querySelector('[data-accordion-button]');
+
+        if (!button) return;
+
+        button.addEventListener('click', function () {
+          const isOpen = item.classList.contains('is-open');
+
+          items.forEach(function (otherItem) {
+            const otherButton = otherItem.querySelector('[data-accordion-button]');
+
+            otherItem.classList.remove('is-open');
+
+            if (otherButton) {
+              otherButton.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          if (!isOpen) {
+            item.classList.add('is-open');
+            button.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      if (rect.top <= viewportHeight * 0.94) return;
+
+      section.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: '0px 0px -4% 0px'
+        }
+      );
+
+      observer.observe(section);
+    }
+
+    initGoodToKnow();
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (
+        event.target &&
+        event.target.id === 'shopify-section-{{ section.id }}'
+      ) {
+        const section = event.target.querySelector('[data-apiarian-good-to-know]');
+
+        if (section) {
+          delete section.dataset.initialized;
+          section.classList.remove('is-animation-ready', 'is-visible');
+        }
+
+        initGoodToKnow();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Good to know",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "GOOD TO KNOW"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shipping, returns"
+    },
+    {
+      "type": "text",
+      "id": "heading_italic",
+      "label": "Italic heading",
+      "default": "and the rest."
+    },
+    {
+      "type": "checkbox",
+      "id": "first_open",
+      "label": "Open first item by default",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FBF8F1"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#9A711A"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2A2118"
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question color",
+      "default": "#17100B"
+    },
+    {
+      "type": "color",
+      "id": "answer_color",
+      "label": "Answer color",
+      "default": "#8B5D21"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#9A711A"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#DDD6C9"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop typography"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_letter_spacing",
+      "label": "Eyebrow letter spacing",
+      "min": 0,
+      "max": 8,
+      "step": 0.5,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 36,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "question_size",
+      "label": "Question size",
+      "min": 15,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "answer_size",
+      "label": "Answer size",
+      "min": 13,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_letter_spacing",
+      "label": "Eyebrow letter spacing",
+      "min": 0,
+      "max": 6,
+      "step": 0.5,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 28,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "mobile_question_size",
+      "label": "Question size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_answer_size",
+      "label": "Answer size",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Shipping"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Orders leave Fort Collins within two business days. Free U.S. shipping over $60, flat $6 below that.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Good to know",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "question": "Shipping",
+            "answer": "<p>Orders leave Fort Collins within two business days. Free U.S. shipping over $60, flat $6 below that.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "Returns",
+            "answer": "<p>Returns are accepted according to your store policy.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "Is it safe around pets?",
+            "answer": "<p>Add your pet-safety guidance here.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "Where should I spray it?",
+            "answer": "<p>Add your usage guidance here.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "How long does a bottle last?",
+            "answer": "<p>Add your bottle-duration guidance here.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "Do you offer refills?",
+            "answer": "<p>Add your refill information here.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

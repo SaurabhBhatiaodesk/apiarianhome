@@ -1,0 +1,119 @@
+{%- doc -%}
+  Apiarian product card used by the Apiarian Collection Tabs section.
+
+  @param {object} product - Shopify product object.
+  @param {object} section - Parent section object.
+  @param {boolean} show_tags - Whether the first three product tags should be shown.
+  @param {number} description_limit - Description truncate limit.
+  @param {string} card_group - Collection/tab identifier used for unique form IDs.
+  @param {number} card_index - Product index used for unique form IDs.
+{%- enddoc -%}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign product_form_id = 'ApiarianProductForm-' | append: section.id | append: '-' | append: card_group | append: '-' | append: card_index | append: '-' | append: product.id
+  assign quantity_value = variant.quantity_rule.min | default: 1
+
+  assign mobile_columns = section.settings.mobile_columns | default: 2
+  assign mobile_card_vw = 100 | divided_by: mobile_columns
+  assign responsive_image_sizes = '(max-width: 749px) ' | append: mobile_card_vw | append: 'vw, (max-width: 1100px) 33vw, 20vw'
+-%}
+
+
+
+<article class="apiarian-product-card">
+  <a href="{{ product.url }}" class="apiarian-product-card__media">
+    {%- assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value -%}
+
+    {% if show_tags and section.settings.show_product_tags and custom_product_tags != blank %}
+      <div class="apiarian-product-card__tags">
+        {% for tag in custom_product_tags limit: 3 %}
+          <span class="apiarian-product-card__tag">{{ tag | escape }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {%- assign hover_preview_image = blank -%}
+    {%- if product.media.size > 1 and product.media[1].preview_image != blank -%}
+      {%- assign hover_preview_image = product.media[1].preview_image -%}
+    {%- endif -%}
+
+    {% if product.featured_image != blank %}
+      {{
+        product.featured_image
+        | image_url: width: 1200
+        | image_tag:
+          loading: 'lazy',
+          decoding: 'async',
+          widths: '320, 480, 640, 800, 1000, 1200',
+          sizes: responsive_image_sizes,
+          class: 'apiarian-product-card__image apiarian-product-card__image--primary',
+          alt: product.featured_image.alt
+      }}
+    {% endif %}
+
+    {% if hover_preview_image != blank %}
+      <img
+        class="apiarian-product-card__image apiarian-product-card__image--hover"
+        data-apiarian-hover-image
+        data-src="{{ hover_preview_image | image_url: width: 1000 }}"
+        data-srcset="{{ hover_preview_image | image_url: width: 320 }} 320w, {{ hover_preview_image | image_url: width: 480 }} 480w, {{ hover_preview_image | image_url: width: 640 }} 640w, {{ hover_preview_image | image_url: width: 800 }} 800w, {{ hover_preview_image | image_url: width: 1000 }} 1000w"
+        data-sizes="{{ responsive_image_sizes }}"
+        width="{{ hover_preview_image.width }}"
+        height="{{ hover_preview_image.height }}"
+        alt="{{ hover_preview_image.alt | escape }}"
+        loading="lazy"
+        decoding="async"
+      >
+    {% endif %}
+  </a>
+
+  <div class="apiarian-product-card__content">
+    <div class="apiarian-product-card__top">
+      <h3 class="apiarian-product-card__title">
+        <a href="{{ product.url }}">{{ product.title | escape }}</a>
+      </h3>
+
+      <div class="apiarian-product-card__price">
+        {% if product.price_varies %}
+          <span class="apiarian-product-card__price-prefix">
+            {{ section.settings.price_prefix | escape }}
+          </span>
+        {% endif %}
+        {{ product.price | money }}
+      </div>
+    </div>
+
+    {% if section.settings.show_description %}
+      <div class="apiarian-product-card__description">
+        {{ product.description | strip_html | truncate: description_limit }}
+      </div>
+    {% endif %}
+
+    <div class="apiarian-product-card__form">
+      {%- form 'product',
+        product,
+        id: product_form_id,
+        class: 'shopify-product-form apiarian-product-card__ajax-form',
+        novalidate: 'novalidate',
+        data-apiarian-add-to-cart-form: ''
+      -%}
+        <input type="hidden" name="id" value="{{ variant.id }}">
+        <input type="hidden" name="quantity" value="{{ quantity_value }}">
+
+        <button
+          type="submit"
+          name="add"
+          class="apiarian-product-card__button"
+          {% unless variant.available %}disabled{% endunless %}
+        >
+          {% if variant.available %}
+            {{ section.settings.add_to_cart_label | escape }}
+          {% else %}
+            {{ section.settings.sold_out_label | escape }}
+          {% endif %}
+        </button>
+      {%- endform -%}
+    </div>
+  </div>
+</article>

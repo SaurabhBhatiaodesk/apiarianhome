@@ -1,0 +1,492 @@
+{% style %}
+#shopify-section-{{ section.id }} {
+  background: {{ section.settings.section_background }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-values {
+  padding:
+    {{ section.settings.padding_top }}px
+    0
+    {{ section.settings.padding_bottom }}px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__box {
+  position: relative;
+  /* overflow: hidden; */
+  padding: 62px 62px 58px;
+  border-radius: {{ section.settings.box_radius }}px;
+  background: {{ section.settings.box_background }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 54px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__item {
+  min-width: 0;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 22px;
+  border-radius: 999px;
+  background: {{ section.settings.number_background }};
+  color: {{ section.settings.number_color }};
+  font-family: "Bodoni Moda", serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__title {
+  margin:0 0 5px;
+  color: {{ section.settings.heading_color }};
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__text {
+  max-width: 330px;
+  margin: 0;
+  color: {{ section.settings.text_color }};
+    font-size: 15px;
+    font-weight: 300;
+    line-height: normal;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__text p {
+  margin: 0;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__bee {
+  position: absolute;
+  top: -34px;
+  right: -10px;
+  opacity: 0.7;
+  z-index: 2;
+  width: {{ section.settings.bee_width }}px;
+  pointer-events: none;
+  transform: rotate(-15deg);
+}
+
+#shopify-section-{{ section.id }} .apiarian-values__bee img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* page-on-scroll reveal */
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__box,
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__item {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__box {
+  transition:
+    opacity 0.55s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__item {
+  transition:
+    opacity 0.5s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__item:nth-child(1) {
+  transition-delay: 0.08s;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__item:nth-child(2) {
+  transition-delay: 0.14s;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__item:nth-child(3) {
+  transition-delay: 0.20s;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__item:nth-child(4) {
+  transition-delay: 0.26s;
+}
+
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready.is-visible .apiarian-values__box,
+#shopify-section-{{ section.id }} .apiarian-values.is-animation-ready.is-visible .apiarian-values__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media screen and (max-width: 989px) {
+  #shopify-section-{{ section.id }} .apiarian-values__box {
+    padding: 48px 36px 44px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 42px 32px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__bee {
+    top: -20px;
+    right: -6px;
+    width: calc({{ section.settings.bee_width }}px * 0.82);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  #shopify-section-{{ section.id }} .apiarian-values {
+    padding:
+      {{ section.settings.mobile_padding_top }}px
+      0
+      {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__box {
+    padding: 36px 24px 34px;
+    border-radius: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__number {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__title {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__text {
+    max-width: none;
+    font-size: 15px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-values__bee {
+    top: -18px;
+    right: -8px;
+    width: 74px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__box,
+  #shopify-section-{{ section.id }} .apiarian-values.is-animation-ready .apiarian-values__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+{% endstyle %}
+
+<section
+  class="apiarian-values"
+  data-apiarian-values
+>
+  <div class="page-width">
+    <div class="apiarian-values__box">
+
+      {% if section.settings.bee_image != blank %}
+        <div class="apiarian-values__bee">
+          {{
+            section.settings.bee_image
+            | image_url: width: 260
+            | image_tag:
+              loading: 'lazy',
+              widths: '100, 140, 180, 220, 260',
+              alt: section.settings.bee_image.alt
+          }}
+        </div>
+      {% endif %}
+
+      <div class="apiarian-values__grid{% if section.blocks.size == 3 %} apiarian-values__grid--3{% endif %}">
+        {% for block in section.blocks %}
+          <div
+            class="apiarian-values__item"
+            {{ block.shopify_attributes }}
+          >
+            <div class="apiarian-values__number">
+              {{ block.settings.number | escape }}
+            </div>
+
+            {% if block.settings.heading != blank %}
+              <h3 class="apiarian-values__title">
+                {{ block.settings.heading | escape }}
+              </h3>
+            {% endif %}
+
+            {% if block.settings.text != blank %}
+              <div class="apiarian-values__text">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    function initApiarianValues() {
+      const section = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-apiarian-values]'
+      );
+
+      if (!section || section.dataset.apiarianValuesInitialized === 'true') {
+        return;
+      }
+
+      section.dataset.apiarianValuesInitialized = 'true';
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      if (rect.top <= viewportHeight * 1.08) {
+        return;
+      }
+
+      section.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: '0px 0px 70px 0px'
+        }
+      );
+
+      observer.observe(section);
+    }
+
+    initApiarianValues();
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (
+        event.target &&
+        event.target.id === 'shopify-section-{{ section.id }}'
+      ) {
+        const section = event.target.querySelector('[data-apiarian-values]');
+
+        if (section) {
+          delete section.dataset.apiarianValuesInitialized;
+          section.classList.remove('is-animation-ready', 'is-visible');
+        }
+
+        initApiarianValues();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Apiarian Values",
+  "tag": "section",
+  "class": "section-apiarian-values",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bee_image",
+      "label": "Bee image"
+    },
+    {
+      "type": "range",
+      "id": "bee_width",
+      "label": "Bee width",
+      "min": 70,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 105
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#F8F4EB"
+    },
+    {
+      "type": "color",
+      "id": "box_background",
+      "label": "Box background",
+      "default": "#EFE8DA"
+    },
+    {
+      "type": "color",
+      "id": "number_background",
+      "label": "Number background",
+      "default": "#F5D991"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Number color",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#8C6B4D"
+    },
+    {
+      "type": "range",
+      "id": "box_radius",
+      "label": "Box radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 35
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Beeswax at the base"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Beeswax absolute anchors every blend and slows how fast the scent leaves the room.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apiarian Values",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "number": "01",
+            "heading": "Beeswax at the base",
+            "text": "<p>Beeswax absolute anchors every blend and slows how fast the scent leaves the room.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "number": "02",
+            "heading": "Nothing synthetic",
+            "text": "<p>Essential oils and resins only. No fillers, no undisclosed fragrance compounds.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "number": "03",
+            "heading": "Made by a beekeeper",
+            "text": "<p>Blended by hand by a certified apitherapist with her own hives.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "number": "04",
+            "heading": "Gives back to pollinators",
+            "text": "<p>A portion of every sale funds the People and Pollinators Action Network.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

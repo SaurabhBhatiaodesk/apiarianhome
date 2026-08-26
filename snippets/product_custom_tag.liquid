@@ -1,0 +1,75 @@
+{% comment %}
+  Snippet: product_custom_tag.liquid
+
+  Render:
+  {% render 'product_custom_tag', product: product, block: block %}
+{% endcomment %}
+
+{%- assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value -%}
+
+{% if custom_product_tags != blank %}
+
+  <style>
+    #shopify-section-{{ section.id }} .product-custom-tags-{{ block.id }},
+    #shopify-section-{{ section.id }} .product-custom-tags-{{ block.id }} * {
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .product-custom-tags-{{ block.id }} {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #shopify-section-{{ section.id }} .product-custom-tags-{{ block.id }}__item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 24px;
+      padding: 5px 10px;
+
+      border-radius: 999px;
+
+      background: {{ block.settings.background_color }};
+      color: {{ block.settings.text_color }};
+
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1;
+
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .product-custom-tags-{{ block.id }} {
+        gap: 5px;
+      }
+
+      #shopify-section-{{ section.id }} .product-custom-tags-{{ block.id }}__item {
+        min-height: 22px;
+        padding: 4px 8px;
+        font-size: 9px;
+      }
+    }
+  </style>
+
+  <div
+    class="product-custom-tags-{{ block.id }}"
+    {{ block.shopify_attributes }}
+  >
+    {% for tag in custom_product_tags limit: 3 %}
+      {% if tag != blank %}
+        <span class="product-custom-tags-{{ block.id }}__item">
+          {{ tag | escape }}
+        </span>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+{% endif %}

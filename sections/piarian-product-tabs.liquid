@@ -1,0 +1,1526 @@
+{% style %}
+
+#shopify-section-{{ section.id }} {
+  background: {{ section.settings.background_color }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs,
+#shopify-section-{{ section.id }} .apiarian-product-tabs * {
+  box-sizing: border-box;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs {
+  width: 100%;
+  padding: 44px 0 68px;
+  color: {{ section.settings.text_color }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__container {
+  width: 100%;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__header {
+  max-width: 1100px;
+  margin: 0 auto 58px;
+  text-align: center;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__decoration {
+  width: 52px;
+  margin: 0 auto 28px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__decoration img {
+  display: block;
+  width: 100%;
+  height: 62px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__eyebrow {
+  margin: 0 0 30px;
+  color: {{ section.settings.eyebrow_color }};
+  font-size: 15px;
+  font-weight: 400;
+  line-height:0.28em;
+  letter-spacing: 6px;
+  padding-top:10px;
+  text-transform: uppercase;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__heading {
+  max-width: 1040px;
+  margin: 0 auto;
+  color: {{ section.settings.heading_color }};
+  font-size: 62px;
+  font-weight:300;
+  line-height: 1.06;
+  letter-spacing: -1.5px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__heading em,
+#shopify-section-{{ section.id }} .apiarian-product-tabs__heading i {
+  font-style: italic;
+  font-weight: 400;
+  font-family: "Bodoni Moda", serif;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__switcher {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 34px;
+  padding: 5px;
+  border-radius: 999px;
+  background: {{ section.settings.tab_background }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__tab {
+  min-height: 47px;
+  padding: 14px 30px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: {{ section.settings.tab_text_color }};
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs__tab.is-active {
+  background: {{ section.settings.active_tab_background }};
+  color: {{ section.settings.active_tab_text }};
+}
+
+
+/* =========================
+   PANELS
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__panel {
+  display: none;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs__panel.is-active {
+  display: block;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-tabs__grid {
+  display: grid;
+  width: 100%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+
+/* First collection = 5 cards */
+
+#shopify-section-{{ section.id }}
+[data-panel="collection-1"]
+.apiarian-product-tabs__grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+
+/* Second collection = 3 cards */
+
+#shopify-section-{{ section.id }}
+[data-panel="collection-2"]
+.apiarian-product-tabs__grid {
+  max-width: 1230px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+
+/* =========================
+   PRODUCT CARD
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__media {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  background: {{ section.settings.card_background }};
+}
+
+
+/* Colony cards */
+
+#shopify-section-{{ section.id }}
+[data-panel="collection-1"]
+.apiarian-product-card__media {
+  aspect-ratio: 3 / 4;
+}
+
+
+/* Best seller cards */
+
+#shopify-section-{{ section.id }}
+[data-panel="collection-2"]
+.apiarian-product-card__media {
+  aspect-ratio: 3 / 4;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s ease;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__image--hover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-card:hover
+.apiarian-product-card__image--primary {
+  transform: scale(1.02);
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-card.is-hover-image-loaded:hover
+.apiarian-product-card__image--hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+
+/* =========================
+   PRODUCT TAGS
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-card__tags {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  right: 13px;
+  z-index: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  pointer-events: none;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__tag {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background:#ebc9a6;
+  color: {{ section.settings.tag_text_color }};
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  padding-top: 22px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-direction: column;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__title {
+  margin: 0;
+
+  color: {{ section.settings.product_title_color }};
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.18;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__price {
+  flex: 0 0 auto;
+
+  color: {{ section.settings.price_color }};
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.25;
+
+  white-space: nowrap;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__price-prefix {
+  margin-right: 4px;
+  font-size:15px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__description {
+  margin-top:5px;
+
+  color: {{ section.settings.description_color }};
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__description p {
+  margin: 0;
+}
+
+
+/* =========================
+   ADD TO CART
+========================= */
+
+#shopify-section-{{ section.id }} .apiarian-product-card__form {
+  display: block;
+  width: 100%;
+
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__form .shopify-product-form {
+  display: block;
+  width: 100%;
+}
+
+#shopify-section-{{ section.id }} .apiarian-product-card__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding:13px 16px;
+
+  border: 1px solid {{ section.settings.button_background }};
+  border-radius: 999px;
+
+  background: {{ section.settings.button_background }};
+  color: {{ section.settings.button_text }};
+
+  cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+  line-height: 1;
+  text-transform:capitalize;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-card__button:hover:not(:disabled) {
+  background: {{ section.settings.button_hover_background }};
+  border-color: {{ section.settings.button_hover_background }};
+  color: {{ section.settings.button_hover_text }};
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-card__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media screen and (max-width: 1100px) {
+
+  #shopify-section-{{ section.id }}
+  [data-panel="collection-1"]
+  .apiarian-product-tabs__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  #shopify-section-{{ section.id }}
+  [data-panel="collection-2"]
+  .apiarian-product-tabs__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media screen and (max-width: 749px) {
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs {
+    padding:
+      {{ section.settings.mobile_padding_top }}px
+      0
+      {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs__header {
+    margin-bottom: 26px;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs__decoration {
+    width: {{ section.settings.mobile_decoration_width }}px;
+    margin-bottom: 10px;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs__eyebrow {
+    margin-bottom: 12px;
+
+    font-size: 11px;
+    letter-spacing: 4px;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs__heading {
+    font-size: {{ section.settings.mobile_heading_size }}px;
+    line-height: 1.1;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs__switcher {
+    margin-top: 18px;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs__tab {
+    min-height: 32px;
+
+    padding: 7px 15px;
+
+    font-size: {{ section.settings.mobile_tab_font_size }}px;
+  }
+
+
+  /* Mobile vertical grid */
+
+  #shopify-section-{{ section.id }} .apiarian-product-tabs__grid,
+  #shopify-section-{{ section.id }}
+  [data-panel="collection-1"]
+  .apiarian-product-tabs__grid,
+  #shopify-section-{{ section.id }}
+  [data-panel="collection-2"]
+  .apiarian-product-tabs__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.mobile_columns }}, minmax(0, 1fr));
+    gap: 12px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-card {
+    min-width: 0;
+    width: 100%;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-card__title {
+    font-size: 20px;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-card__description {
+    font-size: 14px;
+    line-height:normal;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-card__tag {
+    min-height: 24px;
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+
+  #shopify-section-{{ section.id }} .apiarian-product-card__button {
+    font-size:14px;
+  }
+
+}
+
+
+@media screen and (max-width: 420px) {
+
+  #shopify-section-{{ section.id }} .apiarian-product-card {
+    width: 100%;
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  #shopify-section-{{ section.id }} .apiarian-product-card__image {
+    transition: none;
+  }
+
+}
+
+
+
+/* =========================
+   PAGE ON SCROLL ANIMATION
+   Non-blocking: only enabled below the initial viewport
+========================= */
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-tabs__decoration,
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-tabs__eyebrow,
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-tabs__heading,
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-tabs__switcher {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-tabs__switcher {
+  transition-delay: 0.08s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-card {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-card:nth-child(2) {
+  transition-delay: 0.04s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-card:nth-child(3) {
+  transition-delay: 0.08s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-card:nth-child(4) {
+  transition-delay: 0.12s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready
+.apiarian-product-card:nth-child(5) {
+  transition-delay: 0.16s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready.is-visible
+.apiarian-product-tabs__decoration,
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready.is-visible
+.apiarian-product-tabs__eyebrow,
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready.is-visible
+.apiarian-product-tabs__heading,
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready.is-visible
+.apiarian-product-tabs__switcher,
+#shopify-section-{{ section.id }}
+.apiarian-product-tabs.is-animation-ready.is-visible
+.apiarian-product-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #shopify-section-{{ section.id }}
+  .apiarian-product-tabs.is-animation-ready
+  .apiarian-product-tabs__decoration,
+  #shopify-section-{{ section.id }}
+  .apiarian-product-tabs.is-animation-ready
+  .apiarian-product-tabs__eyebrow,
+  #shopify-section-{{ section.id }}
+  .apiarian-product-tabs.is-animation-ready
+  .apiarian-product-tabs__heading,
+  #shopify-section-{{ section.id }}
+  .apiarian-product-tabs.is-animation-ready
+  .apiarian-product-tabs__switcher,
+  #shopify-section-{{ section.id }}
+  .apiarian-product-tabs.is-animation-ready
+  .apiarian-product-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+{% endstyle %}
+
+
+<section
+  class="apiarian-product-tabs"
+  data-apiarian-product-tabs
+>
+  <div class="page-width apiarian-product-tabs__container">
+
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <div class="apiarian-product-tabs__header">
+    {% if section.settings.decoration_image != blank %}
+
+      <div class="apiarian-product-tabs__decoration">
+
+        {{
+          section.settings.decoration_image
+          | image_url: width: 160
+          | image_tag:
+            loading: 'lazy',
+            widths: '40, 60, 80, 120, 160',
+            alt: section.settings.decoration_image.alt
+        }}
+
+      </div>
+
+    {% endif %}
+
+
+    {% if section.settings.eyebrow != blank %}
+
+      <p class="apiarian-product-tabs__eyebrow">
+        {{ section.settings.eyebrow | escape }}
+      </p>
+
+    {% endif %}
+
+
+    {% if section.settings.heading != blank %}
+
+      <div class="apiarian-product-tabs__heading">
+        {{ section.settings.heading }}
+      </div>
+
+    {% endif %}
+
+
+    <!-- =========================
+         COLLECTION TABS
+    ========================== -->
+
+    <div
+      class="apiarian-product-tabs__switcher"
+      role="tablist"
+    >
+
+      <button
+        type="button"
+        class="apiarian-product-tabs__tab is-active"
+        data-tab="collection-1"
+        role="tab"
+        aria-selected="true"
+      >
+        {{ section.settings.collection_1_label | escape }}
+      </button>
+
+
+      <button
+        type="button"
+        class="apiarian-product-tabs__tab"
+        data-tab="collection-2"
+        role="tab"
+        aria-selected="false"
+      >
+        {{ section.settings.collection_2_label | escape }}
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+  {% assign collection_1 = section.settings.collection_1 %}
+  {% assign collection_2 = section.settings.collection_2 %}
+
+
+  <!-- =========================
+       FIRST COLLECTION
+  ========================== -->
+
+  <div
+    class="apiarian-product-tabs__panel is-active"
+    data-panel="collection-1"
+    role="tabpanel"
+  >
+
+    <div class="apiarian-product-tabs__grid">
+
+
+      {% if collection_1 != blank %}
+
+        {% for product in collection_1.products limit: 5 %}
+          {% render 'apiarian-product-card',
+            product: product,
+            section: section,
+            show_tags: true,
+            description_limit:55,
+            card_group: 'collection-1',
+            card_index: forloop.index
+          %}
+        {% endfor %}
+
+      {% endif %}
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       SECOND COLLECTION
+  ========================== -->
+
+  <div
+    class="apiarian-product-tabs__panel"
+    data-panel="collection-2"
+    role="tabpanel"
+  >
+
+    <div class="apiarian-product-tabs__grid">
+
+
+      {% if collection_2 != blank %}
+
+        {% for product in collection_2.products limit: 3 %}
+          {% render 'apiarian-product-card',
+            product: product,
+            section: section,
+            show_tags: true,
+            description_limit:60,
+            card_group: 'collection-2',
+            card_index: forloop.index
+          %}
+        {% endfor %}
+
+      {% endif %}
+
+
+    </div>
+
+  </div>
+
+  </div>
+</section>
+
+
+<script>
+  (function () {
+
+    function initApiarianCollectionTabs() {
+
+      const section = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-apiarian-product-tabs]'
+      );
+
+      if (!section) return;
+
+      if (section.dataset.apiarianInitialized === 'true') {
+        return;
+      }
+
+      section.dataset.apiarianInitialized = 'true';
+
+      /* =========================
+         PERFORMANCE: LOAD HOVER IMAGE ONLY WHEN NEEDED
+         Prevents every secondary product image loading on page load.
+      ========================== */
+
+      function loadApiarianHoverImage(card) {
+        if (!card || card.dataset.apiarianHoverRequested === 'true') return;
+
+        const hoverImage = card.querySelector('[data-apiarian-hover-image]');
+        if (!hoverImage) return;
+
+        card.dataset.apiarianHoverRequested = 'true';
+
+        hoverImage.addEventListener(
+          'load',
+          function () {
+            card.classList.add('is-hover-image-loaded');
+          },
+          { once: true }
+        );
+
+        if (hoverImage.dataset.srcset) {
+          hoverImage.srcset = hoverImage.dataset.srcset;
+        }
+
+        if (hoverImage.dataset.sizes) {
+          hoverImage.sizes = hoverImage.dataset.sizes;
+        }
+
+        if (hoverImage.dataset.src) {
+          hoverImage.src = hoverImage.dataset.src;
+        }
+
+        if (hoverImage.complete && hoverImage.naturalWidth > 0) {
+          card.classList.add('is-hover-image-loaded');
+        }
+      }
+
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        section.addEventListener(
+          'pointerover',
+          function (event) {
+            const card = event.target.closest('.apiarian-product-card');
+            if (!card || !section.contains(card)) return;
+
+            loadApiarianHoverImage(card);
+          },
+          { passive: true }
+        );
+      }
+
+      section.addEventListener('focusin', function (event) {
+        const card = event.target.closest('.apiarian-product-card');
+        if (!card || !section.contains(card)) return;
+
+        loadApiarianHoverImage(card);
+      });
+
+      /* =========================
+         THEME-NATIVE CART DRAWER ADD TO CART
+      ========================== */
+
+      const addToCartForms = section.querySelectorAll(
+        '[data-apiarian-add-to-cart-form]'
+      );
+
+      addToCartForms.forEach(function (form) {
+        if (form.dataset.apiarianCartBound === 'true') return;
+
+        form.dataset.apiarianCartBound = 'true';
+
+        form.addEventListener('submit', async function (event) {
+          const cartDrawer = document.querySelector('cart-drawer');
+
+          if (
+            !cartDrawer ||
+            typeof cartDrawer.renderContents !== 'function' ||
+            typeof cartDrawer.getSectionsToRender !== 'function'
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const submitButton = form.querySelector(
+            '.apiarian-product-card__button[type="submit"]'
+          );
+
+          if (submitButton && submitButton.disabled) return;
+
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-disabled', 'true');
+          }
+
+          try {
+            const formData = new FormData(form);
+
+            const sectionsToRender = cartDrawer
+              .getSectionsToRender()
+              .map(function (item) {
+                return item.id;
+              });
+
+            formData.append('sections', sectionsToRender.join(','));
+            formData.append('sections_url', window.location.pathname);
+
+            if (typeof cartDrawer.setActiveElement === 'function') {
+              cartDrawer.setActiveElement(
+                document.activeElement || submitButton
+              );
+            }
+
+            const response = await fetch(form.action, {
+              method: 'POST',
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                Accept: 'application/javascript'
+              },
+              body: formData
+            });
+
+            const parsedState = await response.json();
+
+            if (!response.ok || parsedState.status) {
+              throw new Error(
+                parsedState.description ||
+                parsedState.message ||
+                'Unable to add this product to the cart.'
+              );
+            }
+
+            cartDrawer.renderContents(parsedState);
+
+            /*
+             * Important for Dawn-style drawers:
+             * when the cart was empty before this add, the outer <cart-drawer>
+             * keeps its old `is-empty` class because renderContents() only
+             * replaces #CartDrawer inner HTML. Remove that stale state so the
+             * newly rendered cart item becomes visible immediately.
+             */
+            if (cartDrawer.classList.contains('is-empty')) {
+              cartDrawer.classList.remove('is-empty');
+            }
+          } catch (error) {
+            console.error('Apiarian add to cart error:', error);
+
+            window.alert(
+              error && error.message
+                ? error.message
+                : 'Unable to add this product to the cart. Please try again.'
+            );
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.removeAttribute('aria-disabled');
+            }
+          }
+        });
+      });
+
+      /* Collection tabs */
+      const tabs = section.querySelectorAll('[data-tab]');
+      const panels = section.querySelectorAll('[data-panel]');
+
+      tabs.forEach(function (tab) {
+
+        tab.addEventListener('click', function () {
+
+          const target = tab.dataset.tab;
+
+          tabs.forEach(function (item) {
+            const active = item.dataset.tab === target;
+
+            item.classList.toggle('is-active', active);
+            item.setAttribute(
+              'aria-selected',
+              active ? 'true' : 'false'
+            );
+          });
+
+          panels.forEach(function (panel) {
+            panel.classList.toggle(
+              'is-active',
+              panel.dataset.panel === target
+            );
+          });
+
+        });
+
+      });
+
+      /* Lightweight page-on-scroll reveal */
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      /*
+       * If the section is already close to the viewport on initial load,
+       * do not hide it first. This avoids a false "slow loading" feeling.
+       */
+      if (rect.top <= viewportHeight * 1.08) {
+        return;
+      }
+
+      section.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.08,
+          rootMargin: '0px 0px 80px 0px'
+        }
+      );
+
+      observer.observe(section);
+
+    }
+
+    initApiarianCollectionTabs();
+
+    document.addEventListener(
+      'shopify:section:load',
+      function (event) {
+
+        if (
+          event.target &&
+          event.target.id === 'shopify-section-{{ section.id }}'
+        ) {
+
+          const section =
+            event.target.querySelector('[data-apiarian-product-tabs]');
+
+          if (section) {
+            delete section.dataset.apiarianInitialized;
+            section.classList.remove(
+              'is-animation-ready',
+              'is-visible'
+            );
+          }
+
+          initApiarianCollectionTabs();
+
+        }
+
+      }
+    );
+
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "Apiarian Collection Tabs",
+  "tag": "section",
+  "class": "section-apiarian-collection-tabs",
+
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Header"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "decoration_image",
+      "label": "Bee / decoration image"
+    },
+
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "FIND YOUR SCENT"
+    },
+
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Five roles in the colony, <em>five ways to begin.</em>"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Collection tabs"
+    },
+
+    {
+      "type": "text",
+      "id": "collection_1_label",
+      "label": "First tab label",
+      "default": "The colony"
+    },
+
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "First collection"
+    },
+
+    {
+      "type": "text",
+      "id": "collection_2_label",
+      "label": "Second tab label",
+      "default": "Best sellers"
+    },
+
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Second collection"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_product_tags",
+      "label": "Show first 3 product tags on first tab",
+      "default": true
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show product description",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "price_prefix",
+      "label": "Price prefix when price varies",
+      "default": "From "
+    },
+
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Add to cart text",
+      "default": "Add to cart"
+    },
+
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Sold out text",
+      "default": "Sold out"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#F8F4EB"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#241A12"
+    },
+
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#A46B18"
+    },
+
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#21170F"
+    },
+
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product title color",
+      "default": "#20170F"
+    },
+
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#6D4B2B"
+    },
+
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#8F6E52"
+    },
+
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card image background",
+      "default": "#EFE8DB"
+    },
+
+    {
+      "type": "color",
+      "id": "tag_background",
+      "label": "Tag background",
+      "default": "#EADBAE"
+    },
+
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Tag text",
+      "default": "#47361F"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Tab colors"
+    },
+
+    {
+      "type": "color",
+      "id": "tab_background",
+      "label": "Tab background",
+      "default": "#EEE6D7"
+    },
+
+    {
+      "type": "color",
+      "id": "tab_text_color",
+      "label": "Tab text",
+      "default": "#271D14"
+    },
+
+    {
+      "type": "color",
+      "id": "active_tab_background",
+      "label": "Active tab background",
+      "default": "#2A1D13"
+    },
+
+    {
+      "type": "color",
+      "id": "active_tab_text",
+      "label": "Active tab text",
+      "default": "#FFFFFF"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Button colors"
+    },
+
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#2A1D13"
+    },
+
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#A66E22"
+    },
+
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button hover text",
+      "default": "#FFFFFF"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop typography"
+    },
+
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "label": "Tab font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+
+    {
+      "type": "range",
+      "id": "button_height",
+      "label": "Button height",
+      "min": 40,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+
+    {
+      "type": "range",
+      "id": "decoration_width",
+      "label": "Decoration width",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Product gap",
+      "min": 8,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "side_padding",
+      "label": "Side padding",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+
+   {
+    "type": "range",
+    "id": "mobile_columns",
+    "label": "Products per row",
+    "min": 1,
+    "max": 3,
+    "step": 1,
+    "default": 2
+  },
+
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 26,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 38
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_tab_font_size",
+      "label": "Tab font size",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_decoration_width",
+      "label": "Decoration width",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 35
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Side padding",
+      "min": 12,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Apiarian Collection Tabs"
+    }
+  ]
+}
+{% endschema %}

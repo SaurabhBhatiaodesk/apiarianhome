@@ -1,0 +1,1178 @@
+{% style %}
+#shopify-section-{{ section.id }} {
+  background: {{ section.settings.section_background }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature,
+#shopify-section-{{ section.id }} .apiarian-discovery-feature * {
+  box-sizing: border-box;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature {
+  width: 100%;
+  padding:
+    {{ section.settings.padding_top }}px
+    0
+    {{ section.settings.padding_bottom }}px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: {{ section.settings.radius }}px;
+  background: {{ section.settings.panel_background }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  padding:
+    {{ section.settings.content_padding_vertical }}px
+    {{ section.settings.content_padding_horizontal }}px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__eyebrow {
+  margin: 0 0 24px;
+  color: {{ section.settings.accent_color }};
+  font-size: {{ section.settings.eyebrow_size }}px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__heading {
+  max-width: 480px;
+  margin: 0;
+  color: {{ section.settings.heading_color }};
+  font-size: {{ section.settings.heading_size }}px;
+  font-weight:300;
+  line-height: 1.03;
+  letter-spacing: -1.4px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__heading em,
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__heading i {
+  font-family: "Bodoni Moda", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__text {
+  max-width: 610px;
+  margin-top: 26px;
+  color: {{ section.settings.body_color }};
+  font-size: {{ section.settings.body_size }}px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__text p {
+  margin: 0;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__bee {
+  position: absolute;
+  top: 38px;
+  right: 34px;
+  width: {{ section.settings.bee_width }}px;
+  opacity: {{ section.settings.bee_opacity | divided_by: 100.0 }};
+  opacity: 0.5;
+  pointer-events: none;
+  transform: rotate(-16deg);
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__bee img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__list {
+  display: grid;
+  gap: 13px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__list-item {
+  position: relative;
+  padding-left: 24px;
+  color: {{ section.settings.body_color }};
+  font-size: {{ section.settings.list_size }}px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__list-item::before {
+  content: "";
+  position: absolute;
+  top: 0.52em;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border: 1.2px solid {{ section.settings.accent_color }};
+  transform: rotate(30deg);
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__button {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding:17px 28px;
+  border: 1px solid {{ section.settings.button_background }};
+  border-radius: 999px;
+  background: {{ section.settings.button_background }};
+  color: {{ section.settings.button_text }};
+  font-size: {{ section.settings.button_size }}px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__button:hover {
+  background: {{ section.settings.button_hover_background }};
+  border-color: {{ section.settings.button_hover_background }};
+  color: {{ section.settings.button_hover_text }};
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__button[disabled] {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__note {
+  color: {{ section.settings.body_color }};
+  font-size: {{ section.settings.note_size }}px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__media {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__image,
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__image {
+  object-fit: cover;
+  object-position: {{ section.settings.image_position }};
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__panel:hover .apiarian-discovery-feature__image {
+  transform: scale(1.015);
+}
+
+#shopify-section-{{ section.id }} .apiarian-discovery-feature__image-placeholder {
+  background: #d8d2c8;
+}
+
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__panel {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.82s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__eyebrow,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__heading,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__text,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__list,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__actions,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__media {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__eyebrow {
+  transition:
+    opacity 0.5s ease 0.08s,
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__heading {
+  transition:
+    opacity 0.55s ease 0.14s,
+    transform 0.74s cubic-bezier(0.22, 1, 0.36, 1) 0.14s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__text {
+  transition:
+    opacity 0.5s ease 0.20s,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.20s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__list {
+  transition:
+    opacity 0.5s ease 0.26s,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.26s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__actions {
+  transition:
+    opacity 0.5s ease 0.32s,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.32s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready
+.apiarian-discovery-feature__media {
+  transition:
+    opacity 0.6s ease 0.18s,
+    transform 0.82s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+}
+
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready.is-visible
+.apiarian-discovery-feature__panel,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready.is-visible
+.apiarian-discovery-feature__eyebrow,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready.is-visible
+.apiarian-discovery-feature__heading,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready.is-visible
+.apiarian-discovery-feature__text,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready.is-visible
+.apiarian-discovery-feature__list,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready.is-visible
+.apiarian-discovery-feature__actions,
+#shopify-section-{{ section.id }}
+.apiarian-discovery-feature.is-animation-ready.is-visible
+.apiarian-discovery-feature__media {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media screen and (max-width: 989px) {
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__panel {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: stretch;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__content {
+    padding: 46px 40px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__heading {
+    font-size: calc({{ section.settings.heading_size }}px * 0.82);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__image,
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__image-placeholder {
+    min-height: 0;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media screen and (max-width: 749px) {
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature {
+    padding:
+      {{ section.settings.mobile_padding_top }}px
+      0
+      {{ section.settings.mobile_padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__panel {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    border-radius: 22px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__content {
+    order: 1;
+    padding: 38px 24px 34px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__media {
+    order: 2;
+    min-height: 0;
+    height: 420px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__eyebrow {
+    margin-bottom: 18px;
+    font-size: {{ section.settings.mobile_eyebrow_size }}px;
+    letter-spacing: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__heading {
+    max-width: 100%;
+    font-size: {{ section.settings.mobile_heading_size }}px;
+    line-height: 1.05;
+    letter-spacing: -0.8px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__text {
+    margin-top: 18px;
+    font-size: {{ section.settings.mobile_body_size }}px;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__bee {
+    top: 24px;
+    right: 18px;
+    width: {{ section.settings.mobile_bee_width }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__list {
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__list-item {
+    padding-left: 22px;
+    font-size: {{ section.settings.mobile_list_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__actions {
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__button {
+    min-height: 52px;
+    padding: 14px 22px;
+    font-size: {{ section.settings.mobile_button_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__note {
+    font-size: {{ section.settings.mobile_note_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__image,
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__image-placeholder {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__media {
+    height: 360px;
+  }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  #shopify-section-{{ section.id }} .apiarian-discovery-feature__image {
+    transition: none;
+  }
+
+  #shopify-section-{{ section.id }}
+  .apiarian-discovery-feature.is-animation-ready
+  .apiarian-discovery-feature__panel,
+  #shopify-section-{{ section.id }}
+  .apiarian-discovery-feature.is-animation-ready
+  .apiarian-discovery-feature__eyebrow,
+  #shopify-section-{{ section.id }}
+  .apiarian-discovery-feature.is-animation-ready
+  .apiarian-discovery-feature__heading,
+  #shopify-section-{{ section.id }}
+  .apiarian-discovery-feature.is-animation-ready
+  .apiarian-discovery-feature__text,
+  #shopify-section-{{ section.id }}
+  .apiarian-discovery-feature.is-animation-ready
+  .apiarian-discovery-feature__list,
+  #shopify-section-{{ section.id }}
+  .apiarian-discovery-feature.is-animation-ready
+  .apiarian-discovery-feature__actions,
+  #shopify-section-{{ section.id }}
+  .apiarian-discovery-feature.is-animation-ready
+  .apiarian-discovery-feature__media {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+{% endstyle %}
+
+
+<section
+  class="apiarian-discovery-feature"
+  data-apiarian-discovery-feature
+>
+  <div class="page-width">
+    {%- liquid
+      assign api_set_total = 0
+
+      for block in section.blocks
+        if block.settings.product != blank
+          assign api_set_price_variant = block.settings.product.selected_or_first_available_variant
+          assign api_set_total = api_set_total | plus: api_set_price_variant.price
+        endif
+      endfor
+    -%}
+
+    <div class="apiarian-discovery-feature__panel">
+
+      <div class="apiarian-discovery-feature__content">
+
+        {% if section.settings.bee_image != blank %}
+          <div class="apiarian-discovery-feature__bee">
+            {{
+              section.settings.bee_image
+              | image_url: width: 240
+              | image_tag:
+                loading: 'lazy',
+                decoding: 'async',
+                widths: '80, 120, 160, 200, 240',
+                alt: section.settings.bee_image.alt
+            }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.eyebrow != blank %}
+          <p class="apiarian-discovery-feature__eyebrow">
+            {{ section.settings.eyebrow | escape }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <div class="apiarian-discovery-feature__heading">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="apiarian-discovery-feature__text">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <ul class="apiarian-discovery-feature__list">
+            {% for block in section.blocks %}
+              {% if block.settings.product != blank %}
+                {%- assign set_variant = block.settings.product.selected_or_first_available_variant -%}
+
+                <li
+                  class="apiarian-discovery-feature__list-item"
+                  data-apiarian-set-item
+                  data-variant-id="{{ set_variant.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.product.title | escape }}
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if api_set_total > 0 or section.settings.note != blank %}
+          <div class="apiarian-discovery-feature__actions">
+
+            {% if api_set_total > 0 %}
+              <button
+                type="button"
+                class="apiarian-discovery-feature__button"
+                data-apiarian-add-set
+              >
+                <span data-apiarian-add-set-label>
+                  Add the set
+                  {% if api_set_total > 0 %}
+                    <span aria-hidden="true"> — </span>{{ api_set_total | money_with_currency }}
+                  {% endif %}
+                </span>
+              </button>
+            {% endif %}
+
+            {% if section.settings.note != blank %}
+              <span class="apiarian-discovery-feature__note">
+                {{ section.settings.note | escape }}
+              </span>
+            {% endif %}
+
+          </div>
+        {% endif %}
+
+      </div>
+
+      <div class="apiarian-discovery-feature__media">
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1800
+            | image_tag:
+              loading: 'lazy',
+              decoding: 'async',
+              widths: '500, 700, 900, 1200, 1500, 1800',
+              sizes: '(max-width: 749px) 100vw, 50vw',
+              class: 'apiarian-discovery-feature__image',
+              alt: section.settings.image.alt
+          }}
+        {% else %}
+          <div class="apiarian-discovery-feature__image-placeholder"></div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+  (function () {
+    function initApiarianDiscoveryFeature() {
+      const section = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-apiarian-discovery-feature]'
+      );
+
+      if (
+        !section ||
+        section.dataset.apiarianDiscoveryFeatureInitialized === 'true'
+      ) {
+        return;
+      }
+
+      section.dataset.apiarianDiscoveryFeatureInitialized = 'true';
+
+      /* =========================
+         ADD THE WHOLE PRODUCT SET
+      ========================== */
+
+      const addSetButton = section.querySelector('[data-apiarian-add-set]');
+
+      if (addSetButton) {
+        addSetButton.addEventListener('click', async function () {
+          if (addSetButton.disabled) return;
+
+          const setItems = Array.from(
+            section.querySelectorAll(
+              '[data-apiarian-set-item][data-variant-id]'
+            )
+          )
+            .map(function (item) {
+              return {
+                id: Number(item.dataset.variantId),
+                quantity: 1
+              };
+            })
+            .filter(function (item) {
+              return Number.isFinite(item.id) && item.id > 0;
+            });
+
+          if (!setItems.length) {
+            console.warn('Apiarian set: no products selected.');
+            return;
+          }
+
+          const cartDrawer = document.querySelector('cart-drawer');
+          const originalLabel = addSetButton.textContent.trim();
+
+          addSetButton.disabled = true;
+          addSetButton.setAttribute('aria-disabled', 'true');
+
+          try {
+            const payload = {
+              items: setItems,
+              sections: 'cart-drawer,cart-icon-bubble',
+              sections_url: window.location.pathname
+            };
+
+            const response = await fetch(
+              window.routes && window.routes.cart_add_url
+                ? window.routes.cart_add_url
+                : '/cart/add.js',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Accept: 'application/json',
+                  'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify(payload)
+              }
+            );
+
+            const parsedState = await response.json();
+
+            if (!response.ok || parsedState.status) {
+              throw new Error(
+                parsedState.description ||
+                parsedState.message ||
+                'Unable to add the set to the cart.'
+              );
+            }
+
+            /*
+             * Use the existing theme cart drawer class supplied by the theme.
+             * Its renderContents() refreshes the drawer and opens it.
+             */
+            if (
+              cartDrawer &&
+              typeof cartDrawer.renderContents === 'function'
+            ) {
+              if (typeof cartDrawer.setActiveElement === 'function') {
+                cartDrawer.setActiveElement(addSetButton);
+              }
+
+              cartDrawer.renderContents(parsedState);
+
+              if (cartDrawer.classList.contains('is-empty')) {
+                cartDrawer.classList.remove('is-empty');
+              }
+            } else {
+              window.location.href =
+                window.routes && window.routes.cart_url
+                  ? window.routes.cart_url
+                  : '/cart';
+            }
+          } catch (error) {
+            console.error('Apiarian set add error:', error);
+
+            window.alert(
+              error && error.message
+                ? error.message
+                : 'Unable to add the set to the cart. Please try again.'
+            );
+          } finally {
+            addSetButton.disabled = false;
+            addSetButton.removeAttribute('aria-disabled');
+
+            const label = addSetButton.querySelector(
+              '[data-apiarian-add-set-label]'
+            );
+
+            if (label && originalLabel) {
+              label.textContent = originalLabel;
+            }
+          }
+        });
+      }
+
+      /* =========================
+         PAGE ON SCROLL ANIMATION
+      ========================== */
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      if (rect.top <= viewportHeight * 1.08) {
+        return;
+      }
+
+      section.classList.add('is-animation-ready');
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px 70px 0px'
+        }
+      );
+
+      observer.observe(section);
+    }
+
+    initApiarianDiscoveryFeature();
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (
+        event.target &&
+        event.target.id === 'shopify-section-{{ section.id }}'
+      ) {
+        const section = event.target.querySelector(
+          '[data-apiarian-discovery-feature]'
+        );
+
+        if (section) {
+          delete section.dataset.apiarianDiscoveryFeatureInitialized;
+          section.classList.remove('is-animation-ready', 'is-visible');
+        }
+
+        initApiarianDiscoveryFeature();
+      }
+    });
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "Discovery Set Feature",
+  "tag": "section",
+  "class": "section-apiarian-discovery-feature",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Feature image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image",
+      "label": "Bee decoration"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "START HERE"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Colony <em>Discovery Set</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Five 2 mL bottles, tester strips, and a QR code that opens a guided journey through the hive, written and spoken. Smell all five, learn the colony one bee at a time, then choose the one that belongs in your home.</p>"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Button side note",
+      "default": "Free U.S. shipping"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#F8F4EB"
+    },
+    {
+      "type": "color",
+      "id": "panel_background",
+      "label": "Panel background",
+      "default": "#EFE8D8"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#A46B18"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body text color",
+      "default": "#8C6B4D"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#F1D58B"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#E5C56D"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button hover text",
+      "default": "#21170F"
+    },
+    {
+      "type": "range",
+      "id": "radius",
+      "label": "Panel radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "content_padding_vertical",
+      "label": "Content vertical padding",
+      "min": 25,
+      "max": 90,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "content_padding_horizontal",
+      "label": "Content horizontal padding",
+      "min": 30,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "bee_width",
+      "label": "Bee width",
+      "min": 50,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "bee_opacity",
+      "label": "Bee opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 38,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 54
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Description size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "list_size",
+      "label": "List size",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button text size",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "note_size",
+      "label": "Side note size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 30,
+      "max": 52,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_body_size",
+      "label": "Description size",
+      "min": 13,
+      "max": 19,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_list_size",
+      "label": "List size",
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_size",
+      "label": "Button size",
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_note_size",
+      "label": "Side note size",
+      "min": 12,
+      "max": 17,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_bee_width",
+      "label": "Bee width",
+      "min": 50,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Set product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Discovery Set Feature",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

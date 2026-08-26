@@ -1,0 +1,1188 @@
+{% comment %}
+  Section: Apiarian Reviews — Judge.me Embed Custom Design
+
+  Flow:
+  1. Render the normal Judge.me product review embed off-screen.
+  2. Wait for Judge.me to populate .jdgm-rev elements.
+  3. Read those rendered reviews.
+  4. Render them into our custom Apiarian design.
+
+  No Judge.me API token required.
+{% endcomment %}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background: {{ section.settings.section_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews,
+  #shopify-section-{{ section.id }} .apiarian-reviews * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews {
+    width: 100%;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    color: {{ section.settings.text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__header {
+    margin: 0 auto 42px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__eyebrow {
+    margin: 0 0 18px;
+    color: {{ section.settings.eyebrow_color }};
+    font-size: {{ section.settings.eyebrow_size }}px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: {{ section.settings.eyebrow_letter_spacing }}px;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__heading {
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -1px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__heading em,
+  #shopify-section-{{ section.id }} .apiarian-reviews__heading i {
+    font-style: italic;
+    font-weight: 400;
+    font-family: "Bodoni Moda", serif;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__shell {
+    position: relative;
+    width: 100%;
+    padding: {{ section.settings.shell_padding_vertical }}px {{ section.settings.shell_padding_horizontal }}px;
+    border-radius: {{ section.settings.shell_radius }}px;
+    background: {{ section.settings.shell_background }};
+    overflow: visible;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__bee {
+    position: absolute;
+    top: -36px;
+    left: -24px;
+    z-index: 2;
+    width: {{ section.settings.bee_width }}px;
+    pointer-events: none;
+    transform:rotate(16deg);
+    opacity:0.65;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__bee img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: {{ section.settings.card_gap }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    padding: {{ section.settings.card_padding }}px;
+    border-radius: {{ section.settings.card_radius }}px;
+    background: {{ section.settings.card_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__stars {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 18px;
+    color: {{ section.settings.star_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__star {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__star svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__title {
+    margin: 0 0 12px;
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.review_title_size }}px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__body {
+    margin: 0;
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.review_text_size }}px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__reviewer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 22px;
+    color: {{ section.settings.meta_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: {{ section.settings.shell_background }};
+    color: {{ section.settings.heading_color }};
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__reviewer-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 3px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__reviewer-name {
+    display: block;
+    color: {{ section.settings.meta_color }};
+    font-size: {{ section.settings.meta_size }}px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__date {
+    display: block;
+    margin: 0;
+    color: {{ section.settings.meta_color }};
+    font-size: calc({{ section.settings.meta_size }}px - 1px);
+    font-weight: 400;
+    line-height: 1.35;
+    opacity: .72;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__status {
+    display: none;
+    padding: 28px 0;
+    text-align: center;
+    color: {{ section.settings.meta_color }};
+    font-size: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews__status.is-visible {
+    display: block;
+  }
+
+  /*
+    Keep the official Judge.me embed alive for JS,
+    but completely outside the visible layout.
+  */
+  #shopify-section-{{ section.id }} .apiarian-reviews__judgeme-source {
+    position: absolute !important;
+    left: -99999px !important;
+    top: 0 !important;
+    width: 1200px !important;
+    height: auto !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews.is-animation-ready
+  .apiarian-reviews__header,
+  #shopify-section-{{ section.id }} .apiarian-reviews.is-animation-ready
+  .apiarian-reviews__shell {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity .45s ease,
+      transform .6s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews.is-animation-ready
+  .apiarian-reviews__shell {
+    transition-delay: .08s;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-reviews.is-animation-ready.is-visible
+  .apiarian-reviews__header,
+  #shopify-section-{{ section.id }} .apiarian-reviews.is-animation-ready.is-visible
+  .apiarian-reviews__shell {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .apiarian-reviews__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .apiarian-reviews {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__header {
+      margin-bottom: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__eyebrow {
+      margin-bottom: 14px;
+      font-size: {{ section.settings.mobile_eyebrow_size }}px;
+      letter-spacing: {{ section.settings.mobile_eyebrow_letter_spacing }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__heading {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      letter-spacing: -.5px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__shell {
+      padding: {{ section.settings.mobile_shell_padding_vertical }}px {{ section.settings.mobile_shell_padding_horizontal }}px;
+      border-radius: {{ section.settings.mobile_shell_radius }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__bee {
+      top: -28px;
+      left: -4px;
+      width: {{ section.settings.mobile_bee_width }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__grid {
+      grid-template-columns: 1fr;
+      gap: {{ section.settings.mobile_card_gap }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__card {
+      padding: {{ section.settings.mobile_card_padding }}px;
+      border-radius: {{ section.settings.mobile_card_radius }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__title {
+      font-size: {{ section.settings.mobile_review_title_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__body {
+      font-size: {{ section.settings.mobile_review_text_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__reviewer {
+      gap: 10px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__avatar {
+      flex-basis: 38px;
+      width: 38px;
+      height: 38px;
+      font-size: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__reviewer-name {
+      font-size: {{ section.settings.mobile_meta_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-reviews__date {
+      font-size: calc({{ section.settings.mobile_meta_size }}px - 1px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .apiarian-reviews.is-animation-ready
+    .apiarian-reviews__header,
+    #shopify-section-{{ section.id }} .apiarian-reviews.is-animation-ready
+    .apiarian-reviews__shell {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+{% endstyle %}
+
+<section
+  class="apiarian-reviews"
+  data-apiarian-reviews
+  data-review-limit="{{ section.settings.review_limit }}"
+  data-design-mode="{% if request.design_mode %}true{% else %}false{% endif %}"
+>
+  <div class="page-width">
+
+    <div class="apiarian-reviews__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="apiarian-reviews__eyebrow">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <div class="apiarian-reviews__heading">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="apiarian-reviews__shell">
+      {% if section.settings.bee_image != blank %}
+        <div class="apiarian-reviews__bee">
+          {{
+            section.settings.bee_image
+            | image_url: width: 260
+            | image_tag:
+              loading: 'lazy',
+              widths: '80, 120, 160, 220, 260',
+              alt: section.settings.bee_image.alt
+          }}
+        </div>
+      {% endif %}
+
+      <div
+        class="apiarian-reviews__grid"
+        data-apiarian-review-grid
+      ></div>
+
+      <div
+        class="apiarian-reviews__status"
+        data-apiarian-review-status
+      ></div>
+    </div>
+
+    <div class="apiarian-reviews__judgeme-source" data-judgeme-source>
+      <!-- Judge.me All Reviews / Happy Customers source -->
+      {% assign has_legacy_all_reviews = false %}
+      {% if shop.metafields.judgeme.all_reviews_header.size > 20 %}
+        {% assign has_legacy_all_reviews = true %}
+      {% endif %}
+
+      <div
+        class="jdgm-widget jdgm-all-reviews-widget-v2025"
+        data-widget="all-reviews-v2025"
+        data-auto-install="false"
+        data-entry-point="all_reviews_widget_v2025.js"
+        data-entry-key="all-reviews-widget-v2025/main.js"
+      >
+        {% if has_legacy_all_reviews %}
+          <div class="jdgm-legacy-widget-content" style="display:none;">
+            <article class="jdgm-widget jdgm-all-reviews-widget">
+              {{ shop.metafields.judgeme.all_reviews_header }}
+
+              <div class="jdgm-all-reviews__body">
+                {% assign all_reviews_prefix = 'all_reviews_' %}
+
+                {% for count in (0..65535) %}
+                  {% assign all_reviews_key = all_reviews_prefix | append: count %}
+                  {% assign all_reviews_metafield = shop.metafields.judgeme[all_reviews_key] %}
+
+                  {% unless all_reviews_metafield %}
+                    {% break %}
+                  {% endunless %}
+
+                  {{ all_reviews_metafield }}
+                {% endfor %}
+              </div>
+            </article>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if shop.metafields.judgeme.all_reviews_widget_v2025_data %}
+        <script>
+          jdgm.data ||= {};
+          jdgm.data.allReviewsWidgetV2025 =
+            {{ shop.metafields.judgeme.all_reviews_widget_v2025_data }};
+        </script>
+      {% endif %}
+      <!-- End Judge.me source -->
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    function initApiarianReviews() {
+      const root = document.querySelector(
+        '#shopify-section-{{ section.id }} [data-apiarian-reviews]'
+      );
+
+      if (!root || root.dataset.initialized === 'true') return;
+      root.dataset.initialized = 'true';
+
+      const source = root.querySelector('[data-judgeme-source]');
+      const grid = root.querySelector('[data-apiarian-review-grid]');
+      const status = root.querySelector('[data-apiarian-review-status]');
+
+      const reviewLimit = parseInt(root.dataset.reviewLimit || '3', 10);
+      const designMode = root.dataset.designMode === 'true';
+
+      function showStatus(message) {
+        if (!status) return;
+
+        status.textContent = message || '';
+
+        if (message) {
+          status.classList.add('is-visible');
+        } else {
+          status.classList.remove('is-visible');
+        }
+      }
+
+      function cleanText(value) {
+        return String(value || '').replace(/\s+/g, ' ').trim();
+      }
+
+      function getReviewerInitial(name) {
+        const cleanName = cleanText(name);
+
+        if (!cleanName) return '';
+
+        return cleanName.charAt(0).toUpperCase();
+      }
+
+      function formatReviewDate(value) {
+        const rawDate = cleanText(value);
+
+        if (!rawDate) return '';
+
+        /*
+          Judge.me may return:
+          2026-08-18 12:33:44 UTC
+
+          Keep the calendar date stable and show:
+          18 Aug 2026
+        */
+        const dateParts = rawDate.match(
+          /^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2})(?::(\d{2}))?)?\s*(?:UTC|Z)?$/i
+        );
+
+        let parsedDate;
+
+        if (dateParts) {
+          parsedDate = new Date(
+            Date.UTC(
+              Number(dateParts[1]),
+              Number(dateParts[2]) - 1,
+              Number(dateParts[3]),
+              Number(dateParts[4] || 0),
+              Number(dateParts[5] || 0),
+              Number(dateParts[6] || 0)
+            )
+          );
+        } else {
+          const timestamp = Date.parse(rawDate);
+
+          if (Number.isNaN(timestamp)) {
+            return rawDate;
+          }
+
+          parsedDate = new Date(timestamp);
+        }
+
+        try {
+          return new Intl.DateTimeFormat('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            timeZone: 'UTC'
+          }).format(parsedDate);
+        } catch (error) {
+          return rawDate;
+        }
+      }
+
+      function starSvg() {
+        return `
+          <span class="apiarian-reviews__star" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.7l2.85 5.78 6.38.93-4.62 4.5 1.09 6.35L12 17.27l-5.7 2.99 1.09-6.35-4.62-4.5 6.38-.93L12 2.7z"></path>
+            </svg>
+          </span>
+        `;
+      }
+
+      function makeStars(score) {
+        const safeScore = Math.max(
+          0,
+          Math.min(5, Math.round(Number(score) || 0))
+        );
+
+        let html = '';
+
+        for (let index = 0; index < safeScore; index += 1) {
+          html += starSvg();
+        }
+
+        return html;
+      }
+
+      function readReview(reviewNode) {
+        const ratingNode =
+          reviewNode.querySelector('.jdgm-rev__rating') ||
+          reviewNode.querySelector('[data-score]');
+
+        let rating = 0;
+
+        if (ratingNode) {
+          rating =
+            ratingNode.getAttribute('data-score') ||
+            ratingNode.dataset.score ||
+            0;
+        }
+
+        if (!rating) {
+          rating =
+            reviewNode.querySelectorAll('.jdgm-star.jdgm--on').length;
+        }
+
+        const titleNode =
+          reviewNode.querySelector('.jdgm-rev__title');
+
+        const bodyNode =
+          reviewNode.querySelector('.jdgm-rev__body');
+
+        const authorNode =
+          reviewNode.querySelector('.jdgm-rev__author');
+
+        const timestampNode =
+          reviewNode.querySelector('.jdgm-rev__timestamp');
+
+        return {
+          rating: Number(rating) || 0,
+          title: cleanText(titleNode ? titleNode.textContent : ''),
+          body: cleanText(bodyNode ? bodyNode.textContent : ''),
+          author: cleanText(authorNode ? authorNode.textContent : ''),
+          date: cleanText(
+            timestampNode
+              ? (
+                  timestampNode.getAttribute('data-content') ||
+                  timestampNode.textContent
+                )
+              : ''
+          )
+        };
+      }
+
+      function createCard(review) {
+        const card = document.createElement('article');
+        card.className = 'apiarian-reviews__card';
+
+        if (review.rating > 0) {
+          const stars = document.createElement('div');
+          stars.className = 'apiarian-reviews__stars';
+          stars.setAttribute(
+            'aria-label',
+            review.rating + ' out of 5 stars'
+          );
+          stars.innerHTML = makeStars(review.rating);
+          card.appendChild(stars);
+        }
+
+        if (review.title) {
+          const title = document.createElement('h3');
+          title.className = 'apiarian-reviews__title';
+          title.textContent = review.title;
+          card.appendChild(title);
+        }
+
+        if (review.body) {
+          const body = document.createElement('p');
+          body.className = 'apiarian-reviews__body';
+          body.textContent = review.body;
+          card.appendChild(body);
+        }
+
+        if (review.author || review.date) {
+          const reviewer = document.createElement('div');
+          reviewer.className = 'apiarian-reviews__reviewer';
+
+          if (review.author) {
+            const avatar = document.createElement('div');
+            avatar.className = 'apiarian-reviews__avatar';
+            avatar.setAttribute('aria-hidden', 'true');
+            avatar.textContent = getReviewerInitial(review.author);
+            reviewer.appendChild(avatar);
+          }
+
+          const reviewerContent = document.createElement('div');
+          reviewerContent.className = 'apiarian-reviews__reviewer-content';
+
+          if (review.author) {
+            const name = document.createElement('span');
+            name.className = 'apiarian-reviews__reviewer-name';
+            name.textContent = review.author;
+            reviewerContent.appendChild(name);
+          }
+
+          if (review.date) {
+            const date = document.createElement('time');
+            date.className = 'apiarian-reviews__date';
+            date.textContent = formatReviewDate(review.date);
+            reviewerContent.appendChild(date);
+          }
+
+          reviewer.appendChild(reviewerContent);
+          card.appendChild(reviewer);
+        }
+
+        return card;
+      }
+
+      function collectReviews() {
+        if (!source || !grid) return false;
+
+        const reviewNodes = Array.from(
+          source.querySelectorAll('.jdgm-rev')
+        );
+
+        if (!reviewNodes.length) return false;
+
+        const reviews = reviewNodes
+          .map(readReview)
+          .filter(function (review) {
+            return review.title || review.body;
+          })
+          .slice(0, reviewLimit);
+
+        if (!reviews.length) return false;
+
+        grid.innerHTML = '';
+
+        reviews.forEach(function (review) {
+          grid.appendChild(createCard(review));
+        });
+
+        showStatus('');
+        return true;
+      }
+
+      if (!collectReviews()) {
+        const observer = new MutationObserver(function () {
+          if (collectReviews()) {
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(source, {
+          childList: true,
+          subtree: true
+        });
+
+        window.setTimeout(function () {
+          if (!grid.children.length) {
+            observer.disconnect();
+
+            if (designMode) {
+              showStatus(
+                'Judge.me store reviews were not rendered yet. Make sure the Judge.me app embed is enabled and published reviews exist.'
+              );
+            } else {
+              root.hidden = true;
+            }
+          }
+        }, 8000);
+      }
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        return;
+      }
+
+      const rect = root.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      if (rect.top <= viewportHeight * 0.94) {
+        return;
+      }
+
+      root.classList.add('is-animation-ready');
+
+      const revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: '0px 0px -4% 0px'
+        }
+      );
+
+      revealObserver.observe(root);
+    }
+
+    initApiarianReviews();
+
+    document.addEventListener(
+      'shopify:section:load',
+      function (event) {
+        if (
+          event.target &&
+          event.target.id === 'shopify-section-{{ section.id }}'
+        ) {
+          const root =
+            event.target.querySelector('[data-apiarian-reviews]');
+
+          if (root) {
+            delete root.dataset.initialized;
+            root.hidden = false;
+            root.classList.remove(
+              'is-animation-ready',
+              'is-visible'
+            );
+
+            const grid =
+              root.querySelector('[data-apiarian-review-grid]');
+
+            if (grid) {
+              grid.innerHTML = '';
+            }
+          }
+
+          initApiarianReviews();
+        }
+      }
+    );
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Apiarian Reviews",
+  "tag": "section",
+  "class": "section-apiarian-reviews",
+  "settings": [
+    {
+      "type": "range",
+      "id": "review_limit",
+      "label": "Reviews to show",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "KIND WORDS"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What people notice <em>first.</em>"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image",
+      "label": "Bee image"
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#F8F4EB"
+    },
+    {
+      "type": "color",
+      "id": "shell_background",
+      "label": "Review area background",
+      "default": "#EFE7D7"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Review card background",
+      "default": "#F8F4EB"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#A46B18"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Review text color",
+      "default": "#21170F"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Reviewer text color",
+      "default": "#7B674D"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#A46B18"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop typography"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_letter_spacing",
+      "label": "Eyebrow letter spacing",
+      "min": 0,
+      "max": 8,
+      "step": 0.5,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 36,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 54
+    },
+    {
+      "type": "range",
+      "id": "review_title_size",
+      "label": "Review title size",
+      "min": 15,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "review_text_size",
+      "label": "Review text size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "meta_size",
+      "label": "Reviewer text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "range",
+      "id": "shell_padding_vertical",
+      "label": "Review area padding top/bottom",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "shell_padding_horizontal",
+      "label": "Review area padding left/right",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "shell_radius",
+      "label": "Review area radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Review card gap",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Review card padding",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Review card radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "bee_width",
+      "label": "Bee width",
+      "min": 60,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Section padding top",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Section padding bottom",
+      "min": 0,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_letter_spacing",
+      "label": "Eyebrow letter spacing",
+      "min": 0,
+      "max": 6,
+      "step": 0.5,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading size",
+      "min": 28,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_review_title_size",
+      "label": "Review title size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_review_text_size",
+      "label": "Review text size",
+      "min": 13,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_meta_size",
+      "label": "Reviewer text size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_shell_padding_vertical",
+      "label": "Review area padding top/bottom",
+      "min": 16,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_shell_padding_horizontal",
+      "label": "Review area padding left/right",
+      "min": 12,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_shell_radius",
+      "label": "Review area radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_gap",
+      "label": "Review card gap",
+      "min": 8,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding",
+      "label": "Review card padding",
+      "min": 14,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_radius",
+      "label": "Review card radius",
+      "min": 0,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_bee_width",
+      "label": "Bee width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Section padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Section padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 45
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apiarian Reviews"
+    }
+  ]
+}
+{% endschema %}

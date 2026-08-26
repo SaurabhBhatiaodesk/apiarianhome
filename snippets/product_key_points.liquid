@@ -1,0 +1,108 @@
+{% comment %}
+  Snippet: product_key_points.liquid
+
+  Render:
+  {% render 'product_key_points', block: block %}
+{% endcomment %}
+
+{%- assign has_points = false -%}
+
+{%- if block.settings.point_1 != blank
+  or block.settings.point_2 != blank
+  or block.settings.point_3 != blank
+  or block.settings.point_4 != blank
+  or block.settings.point_5 != blank
+  or block.settings.point_6 != blank
+-%}
+  {%- assign has_points = true -%}
+{%- endif -%}
+
+{% if has_points %}
+
+  <style>
+    #shopify-section-{{ section.id }} .product-key-points-{{ block.id }},
+    #shopify-section-{{ section.id }} .product-key-points-{{ block.id }} * {
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .product-key-points-{{ block.id }} {
+      display: flex;
+      flex-direction: column;
+      gap: {{ block.settings.item_gap }}px;
+      width: 100%;
+      margin: 0;
+      padding:22px 0 0 0;
+      border-top:1px solid #2a211824;
+    }
+
+    #shopify-section-{{ section.id }} .product-key-points-{{ block.id }}__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 0;
+      color: {{ block.settings.text_color }};
+      font-size: {{ block.settings.font_size }}px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    #shopify-section-{{ section.id }} .product-key-points-{{ block.id }}__icon {
+      flex: 0 0 auto;
+      width: {{ block.settings.icon_size }}px;
+      height: {{ block.settings.icon_size }}px;
+      margin-top: 3px;
+      color: {{ block.settings.icon_color }};
+    }
+
+    #shopify-section-{{ section.id }} .product-key-points-{{ block.id }}__icon svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .product-key-points-{{ block.id }} {
+        gap: {{ block.settings.mobile_item_gap }}px;
+      }
+
+      #shopify-section-{{ section.id }} .product-key-points-{{ block.id }}__item {
+        gap: 10px;
+        font-size: {{ block.settings.mobile_font_size }}px;
+      }
+
+      #shopify-section-{{ section.id }} .product-key-points-{{ block.id }}__icon {
+        width: {{ block.settings.mobile_icon_size }}px;
+        height: {{ block.settings.mobile_icon_size }}px;
+        margin-top: 2px;
+      }
+    }
+  </style>
+
+  <div
+    class="product-key-points-{{ block.id }}"
+    {{ block.shopify_attributes }}
+  >
+    {% for i in (1..6) %}
+      {%- assign point_key = 'point_' | append: i -%}
+      {%- assign point = block.settings[point_key] -%}
+
+      {% if point != blank %}
+        <p class="product-key-points-{{ block.id }}__item">
+          <span class="product-key-points-{{ block.id }}__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2.75L19.5 7.1V15.9L12 20.25L4.5 15.9V7.1L12 2.75Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+
+          <span>{{ point | escape }}</span>
+        </p>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+{% endif %}

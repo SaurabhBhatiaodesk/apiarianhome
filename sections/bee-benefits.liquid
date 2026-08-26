@@ -1,0 +1,386 @@
+{% comment %}
+  Bee Benefits Section
+  Container width comes from the theme's global .section class.
+{% endcomment %}
+
+<section
+  id="bee-benefits-{{ section.id }}"
+  class="bee-benefits"
+  style="
+    --bee-section-bg: {{ section.settings.section_background }};
+    --bee-card-bg: {{ section.settings.card_background }};
+    --bee-number-bg: {{ section.settings.number_background }};
+    --bee-heading-color: {{ section.settings.heading_color }};
+    --bee-text-color: {{ section.settings.text_color }};
+  "
+>
+  <div class="section">
+    <div class="bee-benefits__box">
+
+      {% if section.settings.bee_image != blank %}
+        <div class="bee-benefits__bee">
+          {{
+            section.settings.bee_image
+            | image_url: width: 240
+            | image_tag:
+              loading: 'lazy',
+              widths: '100, 150, 200, 240',
+              alt: section.settings.bee_image.alt
+          }}
+        </div>
+      {% endif %}
+
+      <div class="bee-benefits__grid">
+        {% for block in section.blocks %}
+          <div
+            class="bee-benefits__item"
+            {{ block.shopify_attributes }}
+          >
+            <div class="bee-benefits__number">
+              {% if forloop.index < 10 %}
+                0{{ forloop.index }}
+              {% else %}
+                {{ forloop.index }}
+              {% endif %}
+            </div>
+
+            {% if block.settings.heading != blank %}
+              <h3 class="bee-benefits__heading">
+                {{ block.settings.heading }}
+              </h3>
+            {% endif %}
+
+            {% if block.settings.text != blank %}
+              <div class="bee-benefits__text">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #bee-benefits-{{ section.id }} {
+    background: var(--bee-section-bg);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+
+  /*
+    IMPORTANT:
+    .section is intentionally NOT styled here.
+    It will use your Shopify theme's global .section CSS.
+  */
+
+  #bee-benefits-{{ section.id }} .bee-benefits__box {
+    position: relative;
+    background: var(--bee-card-bg);
+    border-radius: {{ section.settings.border_radius }}px;
+    padding: 62px 62px 60px;
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 66px;
+    row-gap: 40px;
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__item {
+    min-width: 0;
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bee-number-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 400;
+    color: var(--bee-heading-color);
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__heading {
+    margin: 0 0 14px;
+    padding: 0;
+
+    color: var(--bee-heading-color);
+    font-size: 25px;
+    line-height: 1.25;
+    font-weight: 400;
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__text {
+    margin: 0;
+    color: var(--bee-text-color);
+    font-size: 17px;
+    line-height: 1.85;
+    font-weight: 400;
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__text p {
+    margin: 0;
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__bee {
+    position: absolute;
+    right: -12px;
+    top: -52px;
+    width: {{ section.settings.bee_width }}px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  #bee-benefits-{{ section.id }} .bee-benefits__bee img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+
+  /* =========================
+     TABLET
+  ========================== */
+  @media screen and (max-width: 1100px) {
+    #bee-benefits-{{ section.id }} .bee-benefits__box {
+      padding: 54px 42px;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 50px;
+      row-gap: 46px;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__bee {
+      right: -5px;
+      top: -42px;
+      width: 90px;
+    }
+  }
+
+
+  /* =========================
+     MOBILE
+  ========================== */
+  @media screen and (max-width: 749px) {
+    #bee-benefits-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__box {
+      padding: 42px 24px 38px;
+      border-radius: 18px;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__grid {
+      grid-template-columns: 1fr;
+      row-gap: 38px;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__number {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__heading {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__text {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    #bee-benefits-{{ section.id }} .bee-benefits__bee {
+      width: 72px;
+      right: 3px;
+      top: -32px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Bee Benefits",
+  "tag": "section",
+  "class": "section-bee-benefits",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bee_image",
+      "label": "Bee image"
+    },
+    {
+      "type": "range",
+      "id": "bee_width",
+      "label": "Bee image width",
+      "min": 60,
+      "max": 180,
+      "step": 5,
+      "default": 105,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#fbf8f3"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#f2ecdf"
+    },
+    {
+      "type": "color",
+      "id": "number_background",
+      "label": "Number background",
+      "default": "#f5d98b"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#18120d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#76512f"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Box border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 26,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 110,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 90,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 70,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Beeswax at the base"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Beeswax absolute anchors every blend and slows how fast the scent leaves the room.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bee Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "heading": "Beeswax at the base",
+            "text": "<p>Beeswax absolute anchors every blend and slows how fast the scent leaves the room.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "heading": "Nothing synthetic",
+            "text": "<p>Essential oils and resins only. No fillers, no undisclosed fragrance compounds.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "heading": "Made by a beekeeper",
+            "text": "<p>Blended by hand by a certified apitherapist with her own hives.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "heading": "Gives back to pollinators",
+            "text": "<p>A portion of every sale funds the People and Pollinators Action Network.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
