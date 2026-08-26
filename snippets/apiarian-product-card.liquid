@@ -17,16 +17,46 @@
   assign mobile_columns = section.settings.mobile_columns | default: 2
   assign mobile_card_vw = 100 | divided_by: mobile_columns
   assign responsive_image_sizes = '(max-width: 749px) ' | append: mobile_card_vw | append: 'vw, (max-width: 1100px) 33vw, 20vw'
+
+  assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value
+  assign tag_background = product.metafields.custom.product_badge_color.value
+
+  if tag_background == blank
+    assign role_handle_1 = product.handle
+    assign role_handle_2 = product.handle | remove: '-fragrance'
+    assign role_handle_3 = product.title | handleize
+    assign role_handle_4 = role_handle_3 | remove: '-fragrance'
+    assign role_handle_5 = role_handle_4 | remove_first: 'the-'
+
+    if role_handle_2 != role_handle_1
+      assign tag_source_product = all_products[role_handle_2]
+    endif
+
+    if tag_source_product == blank and role_handle_4 != role_handle_1
+      assign tag_source_product = all_products[role_handle_4]
+    endif
+
+    if tag_source_product == blank and role_handle_5 != role_handle_1
+      assign tag_source_product = all_products[role_handle_5]
+    endif
+
+    if tag_source_product != blank
+      assign tag_background = tag_source_product.metafields.custom.product_badge_color.value
+    endif
+  endif
 -%}
 
 
 
 <article class="apiarian-product-card">
   <a href="{{ product.url }}" class="apiarian-product-card__media">
-    {%- assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value -%}
-
     {% if show_tags and section.settings.show_product_tags and custom_product_tags != blank %}
-      <div class="apiarian-product-card__tags">
+      <div
+        class="apiarian-product-card__tags"
+        {% if tag_background != blank %}
+          style="--apiarian-product-card-tag-background: {{ tag_background }};"
+        {% endif %}
+      >
         {% for tag in custom_product_tags limit: 3 %}
           <span class="apiarian-product-card__tag">{{ tag | escape }}</span>
         {% endfor %}
