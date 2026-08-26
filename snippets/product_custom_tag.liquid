@@ -5,7 +5,37 @@
   {% render 'product_custom_tag', product: product, block: block %}
 {% endcomment %}
 
-{%- assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value -%}
+{%- liquid
+  assign custom_product_tags = product.metafields.custom.custom_porudct_tag.value
+  assign tag_background = product.metafields.custom.product_badge_color.value
+
+  if tag_background == blank
+    assign role_handle_1 = product.handle
+    assign role_handle_2 = product.handle | remove: '-fragrance'
+    assign role_handle_3 = product.title | handleize
+    assign role_handle_4 = role_handle_3 | remove: '-fragrance'
+    assign role_handle_5 = role_handle_4 | remove_first: 'the-'
+
+    if role_handle_2 != role_handle_1
+      assign tag_source_product = all_products[role_handle_2]
+    endif
+
+    if tag_source_product == blank and role_handle_4 != role_handle_1
+      assign tag_source_product = all_products[role_handle_4]
+    endif
+
+    if tag_source_product == blank and role_handle_5 != role_handle_1
+      assign tag_source_product = all_products[role_handle_5]
+    endif
+
+    if tag_source_product != blank
+      assign tag_background = tag_source_product.metafields.custom.product_badge_color.value
+    endif
+  endif
+
+  assign tag_background = tag_background | default: '#efe8da'
+  assign tag_background_opacity = block.settings.background_opacity | default: 100 | divided_by: 100.0
+-%}
 
 {% if custom_product_tags != blank %}
 
@@ -35,7 +65,7 @@
 
       border-radius: 999px;
 
-      background: {{ block.settings.background_color }};
+      background: {{ tag_background | color_modify: 'alpha', tag_background_opacity }};
       color: {{ block.settings.text_color }};
 
       font-size: 10px;

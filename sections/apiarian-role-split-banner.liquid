@@ -7,7 +7,7 @@
   - Right content background comes from metaobject key: background_color or backround_color
   - Text color comes from metaobject key: color
   - Full section background comes from Theme Editor setting: section_background
-  - Section renders only when the product metafield has a metaobject entry
+  - Section renders when the product, or a matching product handle, has a metaobject entry
 {% endcomment %}
 
 {%- liquid
@@ -40,21 +40,29 @@
 
   if role_metafield == blank and role_handle_2 != role_handle_1
     assign role_source_product = all_products[role_handle_2]
+  endif
 
-    if role_source_product != blank
-      assign role_metafield = role_source_product.metafields[role_namespace][role_key]
+  if role_metafield == blank and role_source_product == blank and role_handle_4 != role_handle_1
+    assign role_source_product = all_products[role_handle_4]
+  endif
 
-      if role_metafield == blank
-        assign role_metafield = role_source_product.metafields.custom.the_role_in_the_colony
-      endif
+  if role_metafield == blank and role_source_product == blank and role_handle_5 != role_handle_1
+    assign role_source_product = all_products[role_handle_5]
+  endif
 
-      if role_metafield == blank
-        assign role_metafield = role_source_product.metafields.custom.the_role_in_colony
-      endif
+  if role_metafield == blank and role_source_product != blank
+    assign role_metafield = role_source_product.metafields[role_namespace][role_key]
 
-      if role_metafield == blank
-        assign role_metafield = role_source_product.metafields.custom.role_in_the_colony
-      endif
+    if role_metafield == blank
+      assign role_metafield = role_source_product.metafields.custom.the_role_in_the_colony
+    endif
+
+    if role_metafield == blank
+      assign role_metafield = role_source_product.metafields.custom.the_role_in_colony
+    endif
+
+    if role_metafield == blank
+      assign role_metafield = role_source_product.metafields.custom.role_in_the_colony
     endif
   endif
 
