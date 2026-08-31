@@ -502,7 +502,7 @@
         "section_background": "#fffcf6",
         "shell_background": "#efe7d7",
         "card_background": "#f8f4eb",
-        "eyebrow_color": "#8A6A1F",
+        "eyebrow_color": "#8a6a1f",
         "heading_color": "#21170f",
         "text_color": "#21170f",
         "meta_color": "#7b674d",
@@ -662,6 +662,48 @@
         "mobile_question_size": 18,
         "mobile_answer_size": 15
       }
+    },
+    "1788180393be3c151b": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_snippet_widget_cHh784": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "reviews_selection": "auto",
+            "products": [],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "min_star_rating": "inherit",
+            "show_review_media": true,
+            "max_reviews": 5,
+            "review_length": "medium",
+            "text_size": "medium",
+            "max_width": 1100,
+            "max_image_size": "small",
+            "arrows_visibility": "always_shown",
+            "transition_speed": 5,
+            "corner_styling": "inherit",
+            "text_color": "",
+            "card_color": "",
+            "stars_color": "",
+            "arrows_color": "",
+            "arrows_background_color": ""
+          }
+        },
+        "judge_me_reviews_all_reviews_text_xwEUJE": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_snippet_widget_cHh784",
+        "judge_me_reviews_all_reviews_text_xwEUJE"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -675,6 +717,7 @@
     "apiarian_ingredients_sourcing_JfrKaA",
     "apiarian_kind_words_prxhUq",
     "apiarian_pairs_well_kPXe4y",
-    "apiarian_good_to_know_GfbiQc"
+    "apiarian_good_to_know_GfbiQc",
+    "1788180393be3c151b"
   ]
 }
