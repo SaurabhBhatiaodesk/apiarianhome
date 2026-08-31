@@ -138,7 +138,7 @@
   #{{ section_id }}.apiarian-stats-bar-section.is-animation-ready
   .apiarian-stats-bar__bee {
     opacity: 0;
-    transform: translateY(-50%) scale(0.94);
+    transform:rotate(-24deg);
     transition:
       opacity 0.6s ease 0.18s,
       transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
@@ -175,7 +175,7 @@
   #{{ section_id }}.apiarian-stats-bar-section.is-animation-ready.is-visible
   .apiarian-stats-bar__bee {
     opacity: {{ section.settings.bee_opacity | divided_by: 100.0 }};
-    transform: translateY(-50%) scale(1);
+    transform:rotate(-24deg);
   }
 
   @media screen and (max-width: 749px) {
