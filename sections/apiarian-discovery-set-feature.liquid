@@ -481,14 +481,7 @@
 >
   <div class="page-width">
     {%- liquid
-      assign api_set_total = 0
-
-      for block in section.blocks
-        if block.settings.product != blank
-          assign api_set_price_variant = block.settings.product.selected_or_first_available_variant
-          assign api_set_total = api_set_total | plus: api_set_price_variant.price
-        endif
-      endfor
+      assign feature_items = section.settings.feature_items | newline_to_br | split: '<br />'
     -%}
 
     <div class="apiarian-discovery-feature__panel">
@@ -527,49 +520,24 @@
           </div>
         {% endif %}
 
-        {% if section.blocks.size > 0 %}
+        {% if section.settings.feature_items != blank %}
           <ul class="apiarian-discovery-feature__list">
-            {% for block in section.blocks %}
-              {% if block.settings.product != blank %}
-                {%- assign set_variant = block.settings.product.selected_or_first_available_variant -%}
-
-                <li
-                  class="apiarian-discovery-feature__list-item"
-                  data-apiarian-set-item
-                  data-variant-id="{{ set_variant.id }}"
-                  {{ block.shopify_attributes }}
-                >
-                  {{ block.settings.product.title | escape }}
+            {% for item in feature_items %}
+              {% assign item_text = item | strip_html | strip %}
+              {% if item_text != blank %}
+                <li class="apiarian-discovery-feature__list-item">
+                  {{ item_text | escape }}
                 </li>
               {% endif %}
             {% endfor %}
           </ul>
         {% endif %}
 
-        {% if api_set_total > 0 or section.settings.note != blank %}
+        {% if section.settings.note != blank %}
           <div class="apiarian-discovery-feature__actions">
-
-            {% if api_set_total > 0 %}
-              <button
-                type="button"
-                class="apiarian-discovery-feature__button"
-                data-apiarian-add-set
-              >
-                <span data-apiarian-add-set-label>
-                  Add the set
-                  {% if api_set_total > 0 %}
-                    <span aria-hidden="true"> — </span>{{ api_set_total | money_with_currency }}
-                  {% endif %}
-                </span>
-              </button>
-            {% endif %}
-
-            {% if section.settings.note != blank %}
-              <span class="apiarian-discovery-feature__note">
-                {{ section.settings.note | escape }}
-              </span>
-            {% endif %}
-
+            <span class="apiarian-discovery-feature__note">
+              {{ section.settings.note | escape }}
+            </span>
           </div>
         {% endif %}
 
@@ -613,120 +581,6 @@
       }
 
       section.dataset.apiarianDiscoveryFeatureInitialized = 'true';
-
-      /* =========================
-         ADD THE WHOLE PRODUCT SET
-      ========================== */
-
-      const addSetButton = section.querySelector('[data-apiarian-add-set]');
-
-      if (addSetButton) {
-        addSetButton.addEventListener('click', async function () {
-          if (addSetButton.disabled) return;
-
-          const setItems = Array.from(
-            section.querySelectorAll(
-              '[data-apiarian-set-item][data-variant-id]'
-            )
-          )
-            .map(function (item) {
-              return {
-                id: Number(item.dataset.variantId),
-                quantity: 1
-              };
-            })
-            .filter(function (item) {
-              return Number.isFinite(item.id) && item.id > 0;
-            });
-
-          if (!setItems.length) {
-            console.warn('Apiarian set: no products selected.');
-            return;
-          }
-
-          const cartDrawer = document.querySelector('cart-drawer');
-          const originalLabel = addSetButton.textContent.trim();
-
-          addSetButton.disabled = true;
-          addSetButton.setAttribute('aria-disabled', 'true');
-
-          try {
-            const payload = {
-              items: setItems,
-              sections: 'cart-drawer,cart-icon-bubble',
-              sections_url: window.location.pathname
-            };
-
-            const response = await fetch(
-              window.routes && window.routes.cart_add_url
-                ? window.routes.cart_add_url
-                : '/cart/add.js',
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Accept: 'application/json',
-                  'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify(payload)
-              }
-            );
-
-            const parsedState = await response.json();
-
-            if (!response.ok || parsedState.status) {
-              throw new Error(
-                parsedState.description ||
-                parsedState.message ||
-                'Unable to add the set to the cart.'
-              );
-            }
-
-            /*
-             * Use the existing theme cart drawer class supplied by the theme.
-             * Its renderContents() refreshes the drawer and opens it.
-             */
-            if (
-              cartDrawer &&
-              typeof cartDrawer.renderContents === 'function'
-            ) {
-              if (typeof cartDrawer.setActiveElement === 'function') {
-                cartDrawer.setActiveElement(addSetButton);
-              }
-
-              cartDrawer.renderContents(parsedState);
-
-              if (cartDrawer.classList.contains('is-empty')) {
-                cartDrawer.classList.remove('is-empty');
-              }
-            } else {
-              window.location.href =
-                window.routes && window.routes.cart_url
-                  ? window.routes.cart_url
-                  : '/cart';
-            }
-          } catch (error) {
-            console.error('Apiarian set add error:', error);
-
-            window.alert(
-              error && error.message
-                ? error.message
-                : 'Unable to add the set to the cart. Please try again.'
-            );
-          } finally {
-            addSetButton.disabled = false;
-            addSetButton.removeAttribute('aria-disabled');
-
-            const label = addSetButton.querySelector(
-              '[data-apiarian-add-set-label]'
-            );
-
-            if (label && originalLabel) {
-              label.textContent = originalLabel;
-            }
-          }
-        });
-      }
 
       /* =========================
          PAGE ON SCROLL ANIMATION
@@ -796,8 +650,14 @@
   "name": "Discovery Set Feature",
   "tag": "section",
   "class": "section-apiarian-discovery-feature",
-  "max_blocks": 8,
   "settings": [
+    {
+      "type": "textarea",
+      "id": "feature_items",
+      "label": "Feature list",
+      "default": "Five 2 mL glass bottles, one per role\nFragrance tester strips\nA written and spoken journey through the colony\nCredited toward your first full bottle",
+      "info": "Add one feature per line."
+    },
     {
       "type": "image_picker",
       "id": "image",
@@ -1139,39 +999,9 @@
       "default": 30
     }
   ],
-  "blocks": [
-    {
-      "type": "feature",
-      "name": "Set product",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Discovery Set Feature",
-      "blocks": [
-        {
-          "type": "feature"
-        },
-        {
-          "type": "feature"
-        },
-        {
-          "type": "feature"
-        },
-        {
-          "type": "feature"
-        },
-        {
-          "type": "feature"
-        }
-      ]
+      "name": "Discovery Set Feature"
     }
   ]
 }
