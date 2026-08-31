@@ -416,6 +416,12 @@
     "apiarian_discovery_set_feature_LPr4Kf": {
       "type": "apiarian-discovery-set-feature",
       "blocks": {
+        "feature_Q3c6wr": {
+          "type": "feature",
+          "settings": {
+            "product": "worker"
+          }
+        },
         "feature_6wETgB": {
           "type": "feature",
           "settings": {
@@ -442,6 +448,7 @@
         }
       },
       "block_order": [
+        "feature_Q3c6wr",
         "feature_6wETgB",
         "feature_VVRNN4",
         "feature_Lc9Uqf",
