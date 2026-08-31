@@ -482,6 +482,14 @@
   <div class="page-width">
     {%- liquid
       assign feature_items = section.settings.feature_items | newline_to_br | split: '<br />'
+      assign api_set_total = 0
+
+      for block in section.blocks
+        if block.settings.product != blank
+          assign api_set_price_variant = block.settings.product.selected_or_first_available_variant
+          assign api_set_total = api_set_total | plus: api_set_price_variant.price
+        endif
+      endfor
     -%}
 
     <div class="apiarian-discovery-feature__panel">
@@ -533,11 +541,48 @@
           </ul>
         {% endif %}
 
-        {% if section.settings.note != blank %}
+        {% if section.blocks.size > 0 %}
+          <div
+            class="apiarian-discovery-feature__product-data"
+            data-apiarian-set-products
+            hidden
+          >
+            {% for block in section.blocks %}
+              {% if block.settings.product != blank %}
+                {%- assign set_variant = block.settings.product.selected_or_first_available_variant -%}
+                {% if set_variant.available %}
+                  <input
+                    type="hidden"
+                    data-apiarian-set-variant
+                    value="{{ set_variant.id }}"
+                    {{ block.shopify_attributes }}
+                  >
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if api_set_total > 0 or section.settings.note != blank %}
           <div class="apiarian-discovery-feature__actions">
-            <span class="apiarian-discovery-feature__note">
-              {{ section.settings.note | escape }}
-            </span>
+            {% if api_set_total > 0 %}
+              <button
+                type="button"
+                class="apiarian-discovery-feature__button"
+                data-apiarian-add-set
+              >
+                <span data-apiarian-add-set-label>
+                  {{ section.settings.button_label | default: 'Add the set' | escape }}
+                  <span aria-hidden="true"> — </span>{{ api_set_total | money_with_currency }}
+                </span>
+              </button>
+            {% endif %}
+
+            {% if section.settings.note != blank %}
+              <span class="apiarian-discovery-feature__note">
+                {{ section.settings.note | escape }}
+              </span>
+            {% endif %}
           </div>
         {% endif %}
 
@@ -581,6 +626,120 @@
       }
 
       section.dataset.apiarianDiscoveryFeatureInitialized = 'true';
+
+      /* =========================
+         ADD THE WHOLE PRODUCT SET
+      ========================== */
+
+      const addSetButton = section.querySelector('[data-apiarian-add-set]');
+      const addSetLabel = section.querySelector('[data-apiarian-add-set-label]');
+      const variantInputs = Array.from(
+        section.querySelectorAll('[data-apiarian-set-variant]')
+      );
+
+      if (addSetButton && variantInputs.length) {
+        addSetButton.addEventListener('click', async function () {
+          if (addSetButton.disabled) return;
+
+          const variantIds = variantInputs
+            .map(function (input) {
+              return Number(input.value);
+            })
+            .filter(function (id) {
+              return Number.isFinite(id) && id > 0;
+            });
+
+          if (!variantIds.length) return;
+
+          const originalLabel = addSetLabel
+            ? addSetLabel.textContent
+            : addSetButton.textContent;
+
+          addSetButton.disabled = true;
+
+          if (addSetLabel) {
+            addSetLabel.textContent = 'Adding set…';
+          } else {
+            addSetButton.textContent = 'Adding set…';
+          }
+
+          try {
+            const response = await fetch(
+              (window.Shopify && window.Shopify.routes
+                ? window.Shopify.routes.root
+                : '/') + 'cart/add.js',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                  items: variantIds.map(function (id) {
+                    return {
+                      id: id,
+                      quantity: 1
+                    };
+                  })
+                })
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error('Unable to add discovery set to cart.');
+            }
+
+            await response.json();
+
+            document.dispatchEvent(
+              new CustomEvent('cart:refresh', {
+                bubbles: true
+              })
+            );
+
+            if (window.Shopify && window.Shopify.theme && window.Shopify.theme.cart) {
+              document.dispatchEvent(
+                new CustomEvent('cart:updated', {
+                  bubbles: true
+                })
+              );
+            }
+
+            if (
+              window.Shopify &&
+              window.Shopify.routes &&
+              window.location.pathname.indexOf('/cart') === -1
+            ) {
+              window.location.href = window.Shopify.routes.root + 'cart';
+              return;
+            }
+
+            if (addSetLabel) {
+              addSetLabel.textContent = 'Added to cart';
+            } else {
+              addSetButton.textContent = 'Added to cart';
+            }
+          } catch (error) {
+            console.error('[Apiarian Discovery Set]', error);
+
+            if (addSetLabel) {
+              addSetLabel.textContent = 'Unable to add set';
+            } else {
+              addSetButton.textContent = 'Unable to add set';
+            }
+
+            window.setTimeout(function () {
+              if (addSetLabel) {
+                addSetLabel.textContent = originalLabel;
+              } else {
+                addSetButton.textContent = originalLabel;
+              }
+            }, 2200);
+          } finally {
+            addSetButton.disabled = false;
+          }
+        });
+      }
 
       /* =========================
          PAGE ON SCROLL ANIMATION
@@ -691,6 +850,12 @@
       "id": "note",
       "label": "Button side note",
       "default": "Free U.S. shipping"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Add set button label",
+      "default": "Add the set"
     },
     {
       "type": "select",
@@ -999,9 +1164,40 @@
       "default": 30
     }
   ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Set product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
   "presets": [
     {
-      "name": "Discovery Set Feature"
+      "name": "Discovery Set Feature",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
     }
   ]
 }
