@@ -1,1 +1,921 @@
-{"sections":{"apiarian_main_banner_bjTCYr":{"type":"apiarian-main-banner","name":"Apiarian Main Banner","settings":{"eyebrow":"THE COLLECTION","heading":"Fragrance from <em>the hive.<\/em>","description":"<p>Five beeswax-infused home fragrances, each built on a role in the colony.<\/p>","button_label":"Shop now","button_link":"shopify:\/\/collections\/all","background_image":"shopify:\/\/shop_images\/9fc8b510-9463-42b9-95e6-2b4e6b01d603.jpg","desktop_image_position":"center center","mobile_image_position":"center center","left_overlay":40,"center_overlay":45,"right_overlay":80,"fallback_background":"#1d1712","eyebrow_color":"#ffffff","heading_color":"#ffffff","description_color":"#ffffff","button_background":"#f0d58c","button_text":"#261d14","button_hover_background":"#8a6a1f","button_hover_text":"#ffffff","heading_size":82,"description_size":20,"content_width":1100,"description_width":520,"padding_top":260,"padding_bottom":120,"side_padding":50,"mobile_heading_size":40,"mobile_description_size":16,"mobile_padding_top":260,"mobile_padding_bottom":50,"mobile_side_padding":20}},"apiarian_marquee_UACfpg":{"type":"apiarian-marquee","blocks":{"text_FLqfV7":{"type":"text","settings":{"text":"A PORTION OF EVERY SALE FUNDS POLLINATORS"}},"text_xr4xw9":{"type":"text","settings":{"text":"BEESWAX-INFUSED"}},"text_wpJJXF":{"type":"text","settings":{"text":"NOTHING SYNTHETIC"}},"text_qq8X6k":{"type":"text","settings":{"text":"HAND POURED IN SMALL BATCHES"}},"text_MJWf8y":{"type":"text","settings":{"text":"FREE U.S. SHIPPING"}}},"block_order":["text_FLqfV7","text_xr4xw9","text_wpJJXF","text_qq8X6k","text_MJWf8y"],"name":"Apiarian Marquee","settings":{"separator":"•","accessibility_label":"Store highlights","speed":28,"pause_on_hover":false,"background_color":"#f0d89b","text_color":"#2a1d13","height":50,"font_size":14,"font_weight":"400","letter_spacing":2.8,"item_gap":34,"dot_gap":6,"dot_size":11,"dot_opacity":75,"mobile_height":46,"mobile_font_size":13,"mobile_letter_spacing":2.2,"mobile_item_gap":24,"mobile_dot_gap":4,"mobile_dot_size":9}},"piarian_product_tabs_8B4YKm":{"type":"piarian-product-tabs","name":"Apiarian Collection Tabs","settings":{"decoration_image":"shopify:\/\/shop_images\/169685a6-5cef-40d3-b451-452fa102b428_1.png","eyebrow":"FIND YOUR SCENT","heading":"Five roles in the colony, <em>five ways to begin.<\/em>","collection_1_label":"The colony","collection_1":"the-colony","collection_2_label":"Best sellers","collection_2":"best-sellers","show_product_tags":true,"show_description":true,"price_prefix":"From","add_to_cart_label":"Add to cart","sold_out_label":"Sold out","background_color":"#fffcf6","text_color":"#241a12","eyebrow_color":"#8a6a1f","heading_color":"#21170f","product_title_color":"#20170f","price_color":"#6d4b2b","description_color":"#2a2118","card_background":"#efe8db","tag_background":"#eadbae","tag_text_color":"#47361f","tab_background":"#eee6d7","tab_text_color":"#271d14","active_tab_background":"#2a1d13","active_tab_text":"#ffffff","button_background":"#2a1d13","button_text":"#ffffff","button_hover_background":"#4a3a1c","button_hover_text":"#ffffff","eyebrow_size":15,"heading_size":50,"tab_font_size":16,"button_height":60,"decoration_width":40,"card_gap":12,"card_radius":12,"padding_top":55,"padding_bottom":55,"side_padding":40,"mobile_columns":2,"mobile_heading_size":32,"mobile_tab_font_size":11,"mobile_decoration_width":35,"mobile_padding_top":45,"mobile_padding_bottom":45,"mobile_side_padding":16}},"apiarian_values_baCzpt":{"type":"apiarian-values","blocks":{"item_QMycJR":{"type":"item","settings":{"number":"01","heading":"Beeswax at the base","text":"<p>Beeswax absolute anchors every blend and slows how fast the scent leaves the room.<\/p>"}},"item_ehLzK7":{"type":"item","settings":{"number":"02","heading":"Nothing synthetic","text":"<p>Essential oils and resins only. No fillers, no undisclosed fragrance compounds.<\/p>"}},"item_pYCFqH":{"type":"item","settings":{"number":"03","heading":"Made by a beekeeper","text":"<p>Blended by hand by a certified apitherapist with her own hives.<\/p>"}},"item_Q87qgd":{"type":"item","settings":{"number":"04","heading":"Gives back to pollinators","text":"<p>A portion of every sale funds the People and Pollinators Action Network.<\/p>"}}},"block_order":["item_QMycJR","item_ehLzK7","item_pYCFqH","item_Q87qgd"],"name":"Apiarian Values","settings":{"bee_image":"shopify:\/\/shop_images\/169685a6-5cef-40d3-b451-452fa102b428.png","bee_width":85,"section_background":"#fffcf6","box_background":"#efe8da","number_background":"#f5d991","number_color":"#21170f","heading_color":"#21170f","text_color":"#2a2118","box_radius":24,"padding_top":0,"padding_bottom":55,"mobile_padding_top":0,"mobile_padding_bottom":35}},"apiarian_responsive_banner_c9LzYh":{"type":"apiarian-responsive-banner","name":"Responsive Image Banner","settings":{"desktop_image":"shopify:\/\/shop_images\/ChatGPT_Image_Aug_18_2026_04_21_49_PM.png","mobile_image":"shopify:\/\/shop_images\/ChatGPT_Image_Aug_18_2026_04_24_47_PM.png"}},"apiarian_scent_flow_hfmrfg":{"type":"apiarian-scent-flow","blocks":{"stage_waFxpj":{"type":"stage","settings":{"label":"FIRST SPRAY","heading":"The light notes lift","text":"<p>Citrus, herbs and florals open first, bright and immediate on fabric.<\/p>"}},"stage_7knkai":{"type":"stage","settings":{"label":"AN HOUR IN","heading":"The heart settles","text":"<p>Resins and spices come forward as the top notes ease off.<\/p>"}},"stage_LB4Apt":{"type":"stage","settings":{"label":"LATE EVENING","heading":"The wax holds","text":"<p>Beeswax lingers underneath, warm and soft, long after the rest has gone quiet.<\/p>"}}},"block_order":["stage_waFxpj","stage_7knkai","stage_LB4Apt"],"name":"Apiarian Scent Flow","settings":{"eyebrow":"HOW THE SCENT UNFOLDS","heading":"A fragrance that <em>moves through the evening.<\/em>","intro_text":"<p>Beeswax is a matrix of long-chain lipids. It binds the aromatic compounds of the oils and slows their evaporation, so the blend arrives in stages instead of all at once.<\/p>","bee_image_one":"shopify:\/\/shop_images\/2f206379-97b3-4eba-8fa2-01621f42dc4c.png","bee_image_two":"shopify:\/\/shop_images\/2f206379-97b3-4eba-8fa2-01621f42dc4c_1.png","bee_image_three":"shopify:\/\/shop_images\/2f206379-97b3-4eba-8fa2-01621f42dc4c_2.png","heading_size":54,"section_background":"#fffcf6","eyebrow_color":"#8a6a1f","heading_color":"#21170f","body_color":"#5c4b2e","text_color":"#21170f","border_color":"#ded7cb","padding_top":70,"padding_bottom":70,"mobile_heading_size":39,"mobile_padding_top":45,"mobile_padding_bottom":45}},"apiarian_stats_bar_Ld8Gjz":{"type":"apiarian-stats-bar","blocks":{"stat_7Ga7de":{"type":"stat","settings":{"number":"5","text":"Roles in the colony, one fragrance each"}},"stat_RLkPxb":{"type":"stat","settings":{"number":"100%","text":"Naturally derived ingredients, hand poured"}},"stat_j3XbER":{"type":"stat","settings":{"number":"0","text":"Synthetic fragrance compounds, ever"}},"stat_T8h7aL":{"type":"stat","settings":{"number":"8lb","text":"Of honey a colony eats to make a pound of wax"}}},"block_order":["stat_7Ga7de","stat_RLkPxb","stat_j3XbER","stat_T8h7aL"],"name":"Apiarian Stats Bar","settings":{"bg_color":"#2a2118","number_color":"#ecd28b","text_color":"#fffcf6","bee_image":"shopify:\/\/shop_images\/1b8838ac-bdda-4c36-9c26-ab31f3631b75.png","bee_width":260,"bee_opacity":18,"number_size":70,"text_size":16,"border_radius":28,"padding_top":0,"padding_bottom":0,"mobile_padding_top":0,"mobile_padding_bottom":0,"mobile_number_size":56,"mobile_text_size":18,"mobile_bee_width":150,"mobile_bee_opacity":13}},"three_ways_hive_PDrdkK":{"type":"three-ways-hive","blocks":{"card_pUCQkJ":{"type":"card","settings":{"collection":"discovery-set","title":"Discovery Set","text":"<p>Five in 2 mL & the guided journey<\/p>","cta":"$28","link":""}},"card_6VJLpL":{"type":"card","settings":{"collection":"the-collection","title":"The Collection","text":"<p>Five fragrances, 50 and 100 mL<\/p>","cta":"SHOP NOW","link":""}},"card_thhcwQ":{"type":"card","settings":{"collection":"apitherapy","title":"Apitherapy","text":"<p>A hive protocol built around you<\/p>","cta":"FREE 15-MINUTE CONSULT","link":""}}},"block_order":["card_pUCQkJ","card_6VJLpL","card_thhcwQ"],"name":"Apiarian Entry Cards","settings":{"heading":"Three ways into <em>the hive.<\/em>","intro":"<p>Start with a scent, sample the whole colony, or work with Netta one to one.<\/p>","section_background":"#fffcf6","heading_color":"#21170f","intro_color":"#2a2118","card_background":"#d8d2c8","card_text_color":"#ffffff","cta_color":"#f1d57e","overlay_bottom_opacity":90,"heading_size":54,"intro_size":18,"card_title_size":32,"card_text_size":16,"cta_size":14,"card_gap":20,"card_radius":20,"padding_top":70,"padding_bottom":70,"mobile_heading_size":40,"mobile_intro_size":15,"mobile_card_title_size":28,"mobile_card_text_size":15,"mobile_cta_size":13,"mobile_padding_top":45,"mobile_padding_bottom":45}},"apiarian_discovery_set_feature_LPr4Kf":{"type":"apiarian-discovery-set-feature","blocks":{"feature_6wETgB":{"type":"feature","settings":{"product":"the-apiarian-home-gift-card"}},"feature_VVRNN4":{"type":"feature","settings":{"product":"brood-fragrance"}},"feature_Lc9Uqf":{"type":"feature","settings":{"product":"the-colony-discovery-set"}},"feature_79t8bU":{"type":"feature","settings":{"product":"drone-fragrance"}}},"block_order":["feature_6wETgB","feature_VVRNN4","feature_Lc9Uqf","feature_79t8bU"],"name":"Discovery Set Feature","settings":{"image":"shopify:\/\/shop_images\/7ba0dd7f-2a35-4640-8c5a-faba40c3efa8.jpg","bee_image":"shopify:\/\/shop_images\/cecc2cf7-8072-4811-ac3f-dedc7fce1336.png","eyebrow":"START HERE","heading":"The Colony <em>Discovery Set<\/em>","text":"<p>Five 2 mL bottles, tester strips, and a QR code that opens a guided journey through the hive, written and spoken. Smell all five, learn the colony one bee at a time, then choose the one that belongs in your home.<\/p>","note":"Free U.S. shipping","image_position":"center center","section_background":"#fffcf6","panel_background":"#efe8d8","accent_color":"#8a6a1f","heading_color":"#2a2118","body_color":"#5c4b2e","button_background":"#f0d58c","button_text":"#2a2118","button_hover_background":"#5c4b2e","button_hover_text":"#f7f9fa","radius":20,"content_padding_vertical":50,"content_padding_horizontal":60,"bee_width":70,"bee_opacity":69,"eyebrow_size":14,"heading_size":54,"body_size":19,"list_size":16,"button_size":16,"note_size":14,"padding_top":0,"padding_bottom":60,"mobile_eyebrow_size":11,"mobile_heading_size":40,"mobile_body_size":15,"mobile_list_size":14,"mobile_button_size":15,"mobile_note_size":13,"mobile_bee_width":70,"mobile_padding_top":0,"mobile_padding_bottom":30}},"apiarian_kind_words_zdqBpm":{"type":"apiarian-kind-words","name":"Apiarian Kind Words","settings":{"review_limit":3,"eyebrow":"KIND WORDS","heading":"What people notice <em>about Brood.<\/em>","bee_image":"shopify:\/\/shop_images\/e31427df-b43c-48a8-b977-3265d3569483.png","section_background":"#fffcf6","shell_background":"#efe7d7","card_background":"#f8f4eb","eyebrow_color":"#8a6a1f","heading_color":"#21170f","text_color":"#21170f","meta_color":"#7b674d","star_color":"#a46b18","eyebrow_size":14,"eyebrow_letter_spacing":5,"heading_size":54,"review_title_size":19,"review_text_size":17,"meta_size":14,"shell_padding_vertical":40,"shell_padding_horizontal":70,"shell_radius":26,"card_gap":18,"card_padding":28,"card_radius":18,"bee_width":75,"padding_top":0,"padding_bottom":60,"mobile_eyebrow_size":11,"mobile_eyebrow_letter_spacing":4,"mobile_heading_size":40,"mobile_review_title_size":18,"mobile_review_text_size":16,"mobile_meta_size":13,"mobile_shell_padding_vertical":28,"mobile_shell_padding_horizontal":16,"mobile_shell_radius":20,"mobile_card_gap":14,"mobile_card_padding":22,"mobile_card_radius":16,"mobile_bee_width":70,"mobile_padding_top":0,"mobile_padding_bottom":50}},"apiarian_founder_story_y8TCfp":{"type":"apiarian-founder-story","name":"Apiarian Founder Story","settings":{"main_image":"shopify:\/\/shop_images\/3b510f7b-18b4-437c-a296-1c9130380600.jpg","small_image":"shopify:\/\/shop_images\/d89e7733-b0c9-4e2f-ba6a-b9e631e7c6f7.jpg","eyebrow":"THE PERSON BEHIND IT","heading":"<em>Through my studies, my years keeping bees, and my own healing journey, I came to understand how deeply the hive reaches all of our senses. I chose to begin with scent.<\/em>","text":"<p>Netta Caligari keeps bees in Fort Collins, Colorado, and is a certified apitherapist. Every bottle is blended by hand at her kitchen counter, in batches small enough that each one carries its own character.<\/p>","author_name":"Netta Caligari","author_role":"Founder · Beekeeper · Certified Apitherapist","button_label":"Read her story","button_link":"shopify:\/\/pages\/about","section_bg":"#fffcf6","eyebrow_color":"#8a6a1f","heading_color":"#2a2118","text_color":"#2a2118","button_border":"#b9a994","button_text_color":"#2a2118","button_hover_bg":"#2a2118","button_hover_text":"#ffffff","heading_size":34,"text_size":19,"padding_top":0,"padding_bottom":60,"mobile_heading_size":25,"mobile_text_size":15,"mobile_padding_top":0,"mobile_padding_bottom":0}},"apiarian_apitherapy_hBtBFx":{"type":"apiarian-apitherapy","blocks":{"resource_6KnUXb":{"type":"resource","settings":{"title":"Free introductory resource","link_label":"DOWNLOAD","link":""}},"resource_D94HBz":{"type":"resource","settings":{"title":"Fifteen-minute consultation","link_label":"NO CHARGE","link":""}},"resource_reCxXe":{"type":"resource","settings":{"title":"Customized hive protocol, one to one","link_label":"BOOK","link":""}}},"block_order":["resource_6KnUXb","resource_D94HBz","resource_reCxXe"],"name":"Apiarian Apitherapy","settings":{"image":"shopify:\/\/shop_images\/104f6cc8-b4d6-49f2-864e-41ff8baf06a8.jpg","desktop_image_position":"center center","panel_art":"shopify:\/\/shop_images\/f763e9e5-2065-4496-9970-97a5fcd1f8fb.png","art_width":475,"art_opacity":15,"eyebrow":"APITHERAPY","heading":"The scent is one way in. <em>There is more of the hive to work with.<\/em>","text":"<p>Apitherapy is the therapeutic use of the honeybee’s gifts: honey, pollen, propolis, royal jelly, beeswax and venom. In a one-to-one session, Netta maps a hive protocol around your own goals, and you leave with written guidance you keep. It works alongside your existing care, never in place of it.<\/p>","button_label":"Book a free consultation","button_link":"","section_background":"#fffcf6","panel_background":"#2c2016","heading_color":"#f8f4eb","text_color":"#f8f4eb","body_color":"#eee7dd","accent_color":"#f0d47c","divider_color":"#8e8e8e","button_background":"#f0d47c","button_text":"#2c2016","button_hover_background":"#fffcf6","button_hover_text":"#2c2016","heading_size":52,"body_size":20,"card_radius":20,"padding_top":0,"padding_bottom":0,"mobile_image_position":"center center","mobile_image_height":440,"mobile_heading_size":36,"mobile_body_size":15,"mobile_card_radius":20,"mobile_padding_top":0,"mobile_padding_bottom":0}},"apiarian_blog_cards_xqFQk7":{"type":"apiarian-blog-cards","blocks":{"article_rJ9HB8":{"type":"article","settings":{"article":"into-the-hive-the-apiarian-home-blog\/exploring-frequency-through-scent","card_style":"background","tag":"INGREDIENTS","title":"What beeswax absolute <em>actually is<\/em>","meta":"PLACEHOLDER POST","custom_link":"","background":"#cfa039","text_color":"#ffffff"}},"article_tte9br":{"type":"article","settings":{"article":"into-the-hive-the-apiarian-home-blog\/welcome-to-the-apiarian-home","card_style":"background","tag":"APITHERAPY","title":"Propolis, and how a hive <em>keeps itself clean<\/em>","meta":"PLACEHOLDER POST","custom_link":"","background":"#2e4634","text_color":"#ffffff"}},"article_i3pwLK":{"type":"article","settings":{"article":"into-the-hive-the-apiarian-home-blog\/listening-to-what-the-hive-teaches","card_style":"background","tag":"FROM THE APIARY","title":"A season of blending, <em>start to finish<\/em>","meta":"PLACEHOLDER POST","custom_link":"","background":"#58212b","text_color":"#ffffff"}}},"block_order":["article_rJ9HB8","article_tte9br","article_i3pwLK"],"name":"Apiarian Blog Cards","settings":{"heading":"Learn the bees <em>with us.<\/em>","all_link_label":"All writing","all_link":"shopify:\/\/blogs\/into-the-hive-the-apiarian-home-blog","show_bee_icons":true,"bee_image":"shopify:\/\/shop_images\/cecc2cf7-8072-4811-ac3f-dedc7fce1336_1.png","bee_image_2":"shopify:\/\/shop_images\/9703787e-5dc4-4779-8e97-a868e847608e.png","bee_image_3":"shopify:\/\/shop_images\/cecc2cf7-8072-4811-ac3f-dedc7fce1336_2.png","section_background":"#fffcf6","heading_color":"#2a1d13","text_color":"#2a1d13","all_link_color":"#2a1d13","heading_size":52,"card_title_size":43,"card_height":360,"card_gap":18,"card_radius":20,"bee_width":50,"bee_width_2":90,"bee_width_3":75,"padding_top":70,"padding_bottom":95,"mobile_heading_size":36,"mobile_card_title_size":28,"mobile_card_height":300,"mobile_card_radius":18,"mobile_padding_top":60,"mobile_padding_bottom":60}},"apiarian_impact_banner_fAFP4X":{"type":"apiarian-impact-banner","name":"Apiarian Impact","settings":{"eyebrow":"IMPACT","heading":"None of this exists <em>without the honeybee.<\/em>","description":"<p>A portion of every sale goes to the People and Pollinators Action Network.<br\/>What the honeybee needs, every other pollinator depends on too.<\/p>","button_label":"See where it goes","button_link":"","background_image":"shopify:\/\/shop_images\/13b1ce12-d2c8-4aea-969e-2e2eb6cec0b5.jpg","desktop_image_position":"center center","mobile_image_position":"center center","overlay_color":"#1d140e","overlay_opacity":60,"section_background":"#fffcf6","fallback_background":"#2a211a","eyebrow_color":"#f1c36d","heading_color":"#ffffff","text_color":"#ffffff","button_background":"#ffffff","button_text":"#2a1f15","button_hover_background":"#8a6a1f","button_hover_text":"#ffffff","eyebrow_size":15,"heading_size":56,"text_size":20,"button_height":50,"content_width":800,"content_padding_vertical":65,"content_padding_horizontal":70,"border_radius":28,"padding_top":0,"padding_bottom":0,"desktop_side_padding":40,"decoration_width":65,"decoration_position":68,"decoration_top":10,"decoration_rotation":10,"mobile_heading_size":38,"mobile_text_size":16,"mobile_content_padding_vertical":40,"mobile_content_padding_horizontal":30,"mobile_button_height":52,"mobile_border_radius":22,"mobile_padding_top":0,"mobile_padding_bottom":0,"mobile_side_padding":20,"mobile_decoration_width":50,"mobile_decoration_position":70,"mobile_decoration_top":10}},"apiarian_newsletter_b6YVzy":{"type":"apiarian-newsletter","name":"Apiarian Newsletter","settings":{"heading":"One letter a month, <em>from the apiary.<\/em>","description":"<p>The hive, the season, and what is happening in the frames.<br\/>No selling.<\/p>","email_placeholder":"Your email","button_label":"Sign up","success_message":"Thank you for joining our newsletter.","heading_size":46,"text_size":18,"mobile_heading_size":32,"mobile_text_size":15,"decoration_image":"shopify:\/\/shop_images\/1dfada75-1a2b-48e3-abc2-1298786585fa.png","decoration_width":55,"decoration_position":42,"decoration_offset":46,"decoration_rotation":-45,"section_background":"#fffcf6","card_background":"#f4eee1","heading_color":"#2a2118","text_color":"#5C4B2E","input_background":"#fbfaf7","input_border":"#cfc8be","input_text":"#2a2118","placeholder_color":"#7a746e","button_background":"#2a2118","button_text":"#ffffff","button_hover_background":"#8a6a1f","button_hover_text":"#ffffff","success_color":"#406b45","error_color":"#a72a2a","border_radius":28,"card_padding_vertical":75,"card_padding_horizontal":60,"column_gap":80,"field_height":56,"padding_top":60,"padding_bottom":80,"desktop_side_padding":48,"mobile_border_radius":20,"mobile_card_padding_vertical":40,"mobile_card_padding_horizontal":25,"mobile_field_height":46,"mobile_padding_top":40,"mobile_padding_bottom":60,"mobile_side_padding":20,"mobile_decoration_width":50,"mobile_decoration_position":50,"mobile_decoration_offset":30}},"blocks_Ahr3tY":{"type":"_blocks","blocks":{"ai_gen_block_be9a0a0_TF4QHt":{"type":"ai_gen_block_be9a0a0","settings":{"heading":"<p>What our customers say<\/p>","subheading":"<p>Trusted by those who value quality and craftsmanship<\/p>","heading_alignment":"center","section_padding":60,"container_width":1200,"background_color":"#f6f1e8","heading_size":36,"heading_color":"#11151c","subheading_size":16,"subheading_color":"#11151c","heading_spacing":40,"card_width":350,"card_gap":20,"card_background":"#ffffff","card_padding":24,"card_border_radius":0,"card_border_thickness":0,"card_border_color":"#e5e5e5","card_shadow_opacity":5,"card_shadow_vertical":4,"card_shadow_blur":12,"star_size":18,"star_color":"#c88a2b","review_text_size":15,"review_text_color":"#11151c","author_name_size":14,"author_name_color":"#11151c","author_meta_size":12,"author_meta_color":"#666666","avatar_background":"#c88a2b","avatar_text_color":"#ffffff","show_controls":true,"button_background":"#ffffff","button_border_color":"#e5e5e5","button_icon_color":"#11151c","button_hover_background":"#c88a2b","button_hover_icon_color":"#ffffff","review_1_text":"The quality and attention to detail is exceptional. Every product tells a story.","review_1_author_name":"Sarah M.","review_1_author_meta":"Verified Buyer","review_1_rating":5,"review_2_text":"Absolutely love the craftsmanship. It's clear that every detail matters to this brand.","review_2_author_name":"James L.","review_2_author_meta":"Verified Buyer","review_2_rating":5,"review_3_text":"A truly premium experience from start to finish. Highly recommend to anyone seeking quality.","review_3_author_name":"Emily R.","review_3_author_meta":"Verified Buyer","review_3_rating":5,"review_4_text":"","review_4_author_name":"","review_4_author_meta":"","review_4_rating":5,"review_5_text":"","review_5_author_name":"","review_5_author_meta":"","review_5_rating":5,"review_6_text":"","review_6_author_name":"","review_6_author_meta":"","review_6_rating":5},"blocks":{}}},"block_order":["ai_gen_block_be9a0a0_TF4QHt"],"disabled":true,"name":"Reviews carousel","settings":{}}},"order":["apiarian_main_banner_bjTCYr","apiarian_marquee_UACfpg","piarian_product_tabs_8B4YKm","apiarian_values_baCzpt","apiarian_responsive_banner_c9LzYh","apiarian_scent_flow_hfmrfg","apiarian_stats_bar_Ld8Gjz","three_ways_hive_PDrdkK","apiarian_discovery_set_feature_LPr4Kf","apiarian_kind_words_zdqBpm","apiarian_founder_story_y8TCfp","apiarian_apitherapy_hBtBFx","apiarian_blog_cards_xqFQk7","apiarian_impact_banner_fAFP4X","apiarian_newsletter_b6YVzy","blocks_Ahr3tY"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "apiarian_main_banner_bjTCYr": {
+      "type": "apiarian-main-banner",
+      "name": "Apiarian Main Banner",
+      "settings": {
+        "eyebrow": "THE COLLECTION",
+        "heading": "Fragrance from <em>the hive.</em>",
+        "description": "<p>Five beeswax-infused home fragrances, each built on a role in the colony.</p>",
+        "button_label": "Shop now",
+        "button_link": "shopify://collections/all",
+        "background_image": "shopify://shop_images/9fc8b510-9463-42b9-95e6-2b4e6b01d603.jpg",
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "left_overlay": 40,
+        "center_overlay": 45,
+        "right_overlay": 80,
+        "fallback_background": "#1d1712",
+        "eyebrow_color": "#ffffff",
+        "heading_color": "#ffffff",
+        "description_color": "#ffffff",
+        "button_background": "#f0d58c",
+        "button_text": "#261d14",
+        "button_hover_background": "#8a6a1f",
+        "button_hover_text": "#ffffff",
+        "heading_size": 82,
+        "description_size": 20,
+        "content_width": 1100,
+        "description_width": 520,
+        "padding_top": 260,
+        "padding_bottom": 120,
+        "side_padding": 50,
+        "mobile_heading_size": 40,
+        "mobile_description_size": 16,
+        "mobile_padding_top": 260,
+        "mobile_padding_bottom": 50,
+        "mobile_side_padding": 20
+      }
+    },
+    "apiarian_marquee_UACfpg": {
+      "type": "apiarian-marquee",
+      "blocks": {
+        "text_FLqfV7": {
+          "type": "text",
+          "settings": {
+            "text": "A PORTION OF EVERY SALE FUNDS POLLINATORS"
+          }
+        },
+        "text_xr4xw9": {
+          "type": "text",
+          "settings": {
+            "text": "BEESWAX-INFUSED"
+          }
+        },
+        "text_wpJJXF": {
+          "type": "text",
+          "settings": {
+            "text": "NOTHING SYNTHETIC"
+          }
+        },
+        "text_qq8X6k": {
+          "type": "text",
+          "settings": {
+            "text": "HAND POURED IN SMALL BATCHES"
+          }
+        },
+        "text_MJWf8y": {
+          "type": "text",
+          "settings": {
+            "text": "FREE U.S. SHIPPING"
+          }
+        }
+      },
+      "block_order": [
+        "text_FLqfV7",
+        "text_xr4xw9",
+        "text_wpJJXF",
+        "text_qq8X6k",
+        "text_MJWf8y"
+      ],
+      "name": "Apiarian Marquee",
+      "settings": {
+        "separator": "•",
+        "accessibility_label": "Store highlights",
+        "speed": 28,
+        "pause_on_hover": false,
+        "background_color": "#f0d89b",
+        "text_color": "#2a1d13",
+        "height": 50,
+        "font_size": 14,
+        "font_weight": "400",
+        "letter_spacing": 2.8,
+        "item_gap": 34,
+        "dot_gap": 6,
+        "dot_size": 11,
+        "dot_opacity": 75,
+        "mobile_height": 46,
+        "mobile_font_size": 13,
+        "mobile_letter_spacing": 2.2,
+        "mobile_item_gap": 24,
+        "mobile_dot_gap": 4,
+        "mobile_dot_size": 9
+      }
+    },
+    "piarian_product_tabs_8B4YKm": {
+      "type": "piarian-product-tabs",
+      "name": "Apiarian Collection Tabs",
+      "settings": {
+        "decoration_image": "shopify://shop_images/169685a6-5cef-40d3-b451-452fa102b428_1.png",
+        "eyebrow": "FIND YOUR SCENT",
+        "heading": "Five roles in the colony, <em>five ways to begin.</em>",
+        "collection_1_label": "The colony",
+        "collection_1": "the-colony",
+        "collection_2_label": "Best sellers",
+        "collection_2": "best-sellers",
+        "show_product_tags": true,
+        "show_description": true,
+        "price_prefix": "From",
+        "add_to_cart_label": "Add to cart",
+        "sold_out_label": "Sold out",
+        "background_color": "#fffcf6",
+        "text_color": "#241a12",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#21170f",
+        "product_title_color": "#20170f",
+        "price_color": "#6d4b2b",
+        "description_color": "#5c4b2e",
+        "card_background": "#efe8db",
+        "tag_background": "#eadbae",
+        "tag_text_color": "#47361f",
+        "tab_background": "#eee6d7",
+        "tab_text_color": "#271d14",
+        "active_tab_background": "#2a1d13",
+        "active_tab_text": "#ffffff",
+        "button_background": "#2a1d13",
+        "button_text": "#FFFCF6",
+        "button_hover_background": "#4a3a1c",
+        "button_hover_text": "#FFFCF6",
+        "eyebrow_size": 15,
+        "heading_size": 50,
+        "tab_font_size": 16,
+        "button_height": 60,
+        "decoration_width": 40,
+        "card_gap": 12,
+        "card_radius": 12,
+        "padding_top": 55,
+        "padding_bottom": 55,
+        "side_padding": 40,
+        "mobile_columns": 2,
+        "mobile_heading_size": 32,
+        "mobile_tab_font_size": 11,
+        "mobile_decoration_width": 35,
+        "mobile_padding_top": 45,
+        "mobile_padding_bottom": 45,
+        "mobile_side_padding": 16
+      }
+    },
+    "apiarian_values_baCzpt": {
+      "type": "apiarian-values",
+      "blocks": {
+        "item_QMycJR": {
+          "type": "item",
+          "settings": {
+            "number": "01",
+            "heading": "Beeswax at the base",
+            "text": "<p>Beeswax absolute anchors every blend and slows how fast the scent leaves the room.</p>"
+          }
+        },
+        "item_ehLzK7": {
+          "type": "item",
+          "settings": {
+            "number": "02",
+            "heading": "Nothing synthetic",
+            "text": "<p>Essential oils and resins only. No fillers, no undisclosed fragrance compounds.</p>"
+          }
+        },
+        "item_pYCFqH": {
+          "type": "item",
+          "settings": {
+            "number": "03",
+            "heading": "Made by a beekeeper",
+            "text": "<p>Blended by hand by a certified apitherapist with her own hives.</p>"
+          }
+        },
+        "item_Q87qgd": {
+          "type": "item",
+          "settings": {
+            "number": "04",
+            "heading": "Gives back to pollinators",
+            "text": "<p>A portion of every sale funds the People and Pollinators Action Network.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_QMycJR",
+        "item_ehLzK7",
+        "item_pYCFqH",
+        "item_Q87qgd"
+      ],
+      "name": "Apiarian Values",
+      "settings": {
+        "bee_image": "shopify://shop_images/169685a6-5cef-40d3-b451-452fa102b428.png",
+        "bee_width": 85,
+        "section_background": "#fffcf6",
+        "box_background": "#efe8da",
+        "number_background": "#f5d991",
+        "number_color": "#21170f",
+        "heading_color": "#21170f",
+        "text_color": "#2a2118",
+        "box_radius": 24,
+        "padding_top": 0,
+        "padding_bottom": 55,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 35
+      }
+    },
+    "apiarian_responsive_banner_c9LzYh": {
+      "type": "apiarian-responsive-banner",
+      "name": "Responsive Image Banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/ChatGPT_Image_Aug_18_2026_04_21_49_PM.png",
+        "mobile_image": "shopify://shop_images/ChatGPT_Image_Aug_18_2026_04_24_47_PM.png"
+      }
+    },
+    "apiarian_scent_flow_hfmrfg": {
+      "type": "apiarian-scent-flow",
+      "blocks": {
+        "stage_waFxpj": {
+          "type": "stage",
+          "settings": {
+            "label": "FIRST SPRAY",
+            "heading": "The light notes lift",
+            "text": "<p>Citrus, herbs and florals open first, bright and immediate on fabric.</p>"
+          }
+        },
+        "stage_7knkai": {
+          "type": "stage",
+          "settings": {
+            "label": "AN HOUR IN",
+            "heading": "The heart settles",
+            "text": "<p>Resins and spices come forward as the top notes ease off.</p>"
+          }
+        },
+        "stage_LB4Apt": {
+          "type": "stage",
+          "settings": {
+            "label": "LATE EVENING",
+            "heading": "The wax holds",
+            "text": "<p>Beeswax lingers underneath, warm and soft, long after the rest has gone quiet.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "stage_waFxpj",
+        "stage_7knkai",
+        "stage_LB4Apt"
+      ],
+      "name": "Apiarian Scent Flow",
+      "settings": {
+        "eyebrow": "HOW THE SCENT UNFOLDS",
+        "heading": "A fragrance that <em>moves through the evening.</em>",
+        "intro_text": "<p>Beeswax is a matrix of long-chain lipids. It binds the aromatic compounds of the oils and slows their evaporation, so the blend arrives in stages instead of all at once.</p>",
+        "bee_image_one": "shopify://shop_images/2f206379-97b3-4eba-8fa2-01621f42dc4c.png",
+        "bee_image_two": "shopify://shop_images/2f206379-97b3-4eba-8fa2-01621f42dc4c_1.png",
+        "bee_image_three": "shopify://shop_images/2f206379-97b3-4eba-8fa2-01621f42dc4c_2.png",
+        "heading_size": 54,
+        "section_background": "#fffcf6",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#21170f",
+        "body_color": "#5c4b2e",
+        "text_color": "#21170f",
+        "border_color": "#ded7cb",
+        "padding_top": 70,
+        "padding_bottom": 70,
+        "mobile_heading_size": 39,
+        "mobile_padding_top": 45,
+        "mobile_padding_bottom": 45
+      }
+    },
+    "apiarian_stats_bar_Ld8Gjz": {
+      "type": "apiarian-stats-bar",
+      "blocks": {
+        "stat_7Ga7de": {
+          "type": "stat",
+          "settings": {
+            "number": "5",
+            "text": "Roles in the colony, one fragrance each"
+          }
+        },
+        "stat_RLkPxb": {
+          "type": "stat",
+          "settings": {
+            "number": "100%",
+            "text": "Naturally derived ingredients, hand poured"
+          }
+        },
+        "stat_j3XbER": {
+          "type": "stat",
+          "settings": {
+            "number": "0",
+            "text": "Synthetic fragrance compounds, ever"
+          }
+        },
+        "stat_T8h7aL": {
+          "type": "stat",
+          "settings": {
+            "number": "8lb",
+            "text": "Of honey a colony eats to make a pound of wax"
+          }
+        }
+      },
+      "block_order": [
+        "stat_7Ga7de",
+        "stat_RLkPxb",
+        "stat_j3XbER",
+        "stat_T8h7aL"
+      ],
+      "name": "Apiarian Stats Bar",
+      "settings": {
+        "bg_color": "#2a2118",
+        "number_color": "#ecd28b",
+        "text_color": "#fffcf6",
+        "bee_image": "shopify://shop_images/1b8838ac-bdda-4c36-9c26-ab31f3631b75.png",
+        "bee_width": 260,
+        "bee_opacity": 18,
+        "number_size": 70,
+        "text_size": 16,
+        "border_radius": 28,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_number_size": 56,
+        "mobile_text_size": 18,
+        "mobile_bee_width": 150,
+        "mobile_bee_opacity": 13
+      }
+    },
+    "three_ways_hive_PDrdkK": {
+      "type": "three-ways-hive",
+      "blocks": {
+        "card_pUCQkJ": {
+          "type": "card",
+          "settings": {
+            "collection": "discovery-set",
+            "title": "Discovery Set",
+            "text": "<p>Five in 2 mL & the guided journey</p>",
+            "cta": "$28",
+            "link": ""
+          }
+        },
+        "card_6VJLpL": {
+          "type": "card",
+          "settings": {
+            "collection": "the-collection",
+            "title": "The Collection",
+            "text": "<p>Five fragrances, 50 and 100 mL</p>",
+            "cta": "SHOP NOW",
+            "link": ""
+          }
+        },
+        "card_thhcwQ": {
+          "type": "card",
+          "settings": {
+            "collection": "apitherapy",
+            "title": "Apitherapy",
+            "text": "<p>A hive protocol built around you</p>",
+            "cta": "FREE 15-MINUTE CONSULT",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_pUCQkJ",
+        "card_6VJLpL",
+        "card_thhcwQ"
+      ],
+      "name": "Apiarian Entry Cards",
+      "settings": {
+        "heading": "Three ways into <em>the hive.</em>",
+        "intro": "<p>Start with a scent, sample the whole colony, or work with Netta one to one.</p>",
+        "section_background": "#fffcf6",
+        "heading_color": "#21170f",
+        "intro_color": "#2a2118",
+        "card_background": "#d8d2c8",
+        "card_text_color": "#fffcf6",
+        "cta_color": "#f1d57e",
+        "overlay_bottom_opacity": 90,
+        "heading_size": 54,
+        "intro_size": 18,
+        "card_title_size": 29,
+        "card_text_size": 16,
+        "cta_size": 14,
+        "card_gap": 20,
+        "card_radius": 20,
+        "padding_top": 70,
+        "padding_bottom": 70,
+        "mobile_heading_size": 40,
+        "mobile_intro_size": 15,
+        "mobile_card_title_size": 28,
+        "mobile_card_text_size": 15,
+        "mobile_cta_size": 13,
+        "mobile_padding_top": 45,
+        "mobile_padding_bottom": 45
+      }
+    },
+    "apiarian_discovery_set_feature_LPr4Kf": {
+      "type": "apiarian-discovery-set-feature",
+      "blocks": {
+        "feature_6wETgB": {
+          "type": "feature",
+          "settings": {
+            "product": "the-apiarian-home-gift-card"
+          }
+        },
+        "feature_VVRNN4": {
+          "type": "feature",
+          "settings": {
+            "product": "brood-fragrance"
+          }
+        },
+        "feature_Lc9Uqf": {
+          "type": "feature",
+          "settings": {
+            "product": "the-colony-discovery-set"
+          }
+        },
+        "feature_79t8bU": {
+          "type": "feature",
+          "settings": {
+            "product": "drone-fragrance"
+          }
+        }
+      },
+      "block_order": [
+        "feature_6wETgB",
+        "feature_VVRNN4",
+        "feature_Lc9Uqf",
+        "feature_79t8bU"
+      ],
+      "name": "Discovery Set Feature",
+      "settings": {
+        "image": "shopify://shop_images/7ba0dd7f-2a35-4640-8c5a-faba40c3efa8.jpg",
+        "bee_image": "shopify://shop_images/cecc2cf7-8072-4811-ac3f-dedc7fce1336.png",
+        "eyebrow": "START HERE",
+        "heading": "The Colony <em>Discovery Set</em>",
+        "text": "<p>Five 2 mL bottles, tester strips, and a QR code that opens a guided journey through the hive, written and spoken. Smell all five, learn the colony one bee at a time, then choose the one that belongs in your home.</p>",
+        "note": "Free U.S. shipping",
+        "image_position": "center center",
+        "section_background": "#fffcf6",
+        "panel_background": "#efe8d8",
+        "accent_color": "#8a6a1f",
+        "heading_color": "#2a2118",
+        "body_color": "#5c4b2e",
+        "button_background": "#f0d58c",
+        "button_text": "#2a2118",
+        "button_hover_background": "#5c4b2e",
+        "button_hover_text": "#f7f9fa",
+        "radius": 20,
+        "content_padding_vertical": 50,
+        "content_padding_horizontal": 60,
+        "bee_width": 70,
+        "bee_opacity": 69,
+        "eyebrow_size": 14,
+        "heading_size": 54,
+        "body_size": 19,
+        "list_size": 16,
+        "button_size": 16,
+        "note_size": 14,
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "mobile_eyebrow_size": 11,
+        "mobile_heading_size": 40,
+        "mobile_body_size": 15,
+        "mobile_list_size": 14,
+        "mobile_button_size": 15,
+        "mobile_note_size": 13,
+        "mobile_bee_width": 70,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 30
+      }
+    },
+    "apiarian_kind_words_zdqBpm": {
+      "type": "apiarian-kind-words",
+      "name": "Apiarian Kind Words",
+      "settings": {
+        "review_limit": 3,
+        "eyebrow": "KIND WORDS",
+        "heading": "What people notice <em>about Brood.</em>",
+        "bee_image": "shopify://shop_images/e31427df-b43c-48a8-b977-3265d3569483.png",
+        "section_background": "#fffcf6",
+        "shell_background": "#efe7d7",
+        "card_background": "#f8f4eb",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#21170f",
+        "text_color": "#21170f",
+        "meta_color": "#7b674d",
+        "star_color": "#a46b18",
+        "eyebrow_size": 14,
+        "eyebrow_letter_spacing": 5,
+        "heading_size": 54,
+        "review_title_size": 19,
+        "review_text_size": 17,
+        "meta_size": 14,
+        "shell_padding_vertical": 40,
+        "shell_padding_horizontal": 70,
+        "shell_radius": 26,
+        "card_gap": 18,
+        "card_padding": 28,
+        "card_radius": 18,
+        "bee_width": 75,
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "mobile_eyebrow_size": 11,
+        "mobile_eyebrow_letter_spacing": 4,
+        "mobile_heading_size": 40,
+        "mobile_review_title_size": 18,
+        "mobile_review_text_size": 16,
+        "mobile_meta_size": 13,
+        "mobile_shell_padding_vertical": 28,
+        "mobile_shell_padding_horizontal": 16,
+        "mobile_shell_radius": 20,
+        "mobile_card_gap": 14,
+        "mobile_card_padding": 22,
+        "mobile_card_radius": 16,
+        "mobile_bee_width": 70,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 50
+      }
+    },
+    "apiarian_founder_story_y8TCfp": {
+      "type": "apiarian-founder-story",
+      "name": "Apiarian Founder Story",
+      "settings": {
+        "main_image": "shopify://shop_images/3b510f7b-18b4-437c-a296-1c9130380600.jpg",
+        "small_image": "shopify://shop_images/d89e7733-b0c9-4e2f-ba6a-b9e631e7c6f7.jpg",
+        "eyebrow": "THE PERSON BEHIND IT",
+        "heading": "<em>Through my studies, my years keeping bees, and my own healing journey, I came to understand how deeply the hive reaches all of our senses. I chose to begin with scent.</em>",
+        "text": "<p>Netta Caligari keeps bees in Fort Collins, Colorado, and is a certified apitherapist. Every bottle is blended by hand at her kitchen counter, in batches small enough that each one carries its own character.</p>",
+        "author_name": "Netta Caligari",
+        "author_role": "Founder · Beekeeper · Certified Apitherapist",
+        "button_label": "Read her story",
+        "button_link": "shopify://pages/about",
+        "section_bg": "#fffcf6",
+        "eyebrow_color": "#8a6a1f",
+        "heading_color": "#2a2118",
+        "text_color": "#2a2118",
+        "button_border": "#b9a994",
+        "button_text_color": "#2a2118",
+        "button_hover_bg": "#2a2118",
+        "button_hover_text": "#ffffff",
+        "heading_size": 34,
+        "text_size": 17,
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "mobile_heading_size": 25,
+        "mobile_text_size": 15,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "apiarian_apitherapy_hBtBFx": {
+      "type": "apiarian-apitherapy",
+      "blocks": {
+        "resource_6KnUXb": {
+          "type": "resource",
+          "settings": {
+            "title": "Free introductory resource",
+            "link_label": "DOWNLOAD",
+            "link": ""
+          }
+        },
+        "resource_D94HBz": {
+          "type": "resource",
+          "settings": {
+            "title": "Fifteen-minute consultation",
+            "link_label": "NO CHARGE",
+            "link": ""
+          }
+        },
+        "resource_reCxXe": {
+          "type": "resource",
+          "settings": {
+            "title": "Customized hive protocol, one to one",
+            "link_label": "BOOK",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "resource_6KnUXb",
+        "resource_D94HBz",
+        "resource_reCxXe"
+      ],
+      "name": "Apiarian Apitherapy",
+      "settings": {
+        "image": "shopify://shop_images/104f6cc8-b4d6-49f2-864e-41ff8baf06a8.jpg",
+        "desktop_image_position": "center center",
+        "panel_art": "shopify://shop_images/f763e9e5-2065-4496-9970-97a5fcd1f8fb.png",
+        "art_width": 475,
+        "art_opacity": 15,
+        "eyebrow": "APITHERAPY",
+        "heading": "The scent is one way in. <em>There is more of the hive to work with.</em>",
+        "text": "<p>Apitherapy is the therapeutic use of the honeybee’s gifts: honey, pollen, propolis, royal jelly, beeswax and venom. In a one-to-one session, Netta maps a hive protocol around your own goals, and you leave with written guidance you keep. It works alongside your existing care, never in place of it.</p>",
+        "button_label": "Book a free consultation",
+        "button_link": "",
+        "section_background": "#fffcf6",
+        "panel_background": "#2c2016",
+        "heading_color": "#f8f4eb",
+        "text_color": "#f8f4eb",
+        "body_color": "#eee7dd",
+        "accent_color": "#f0d47c",
+        "divider_color": "#8e8e8e",
+        "button_background": "#f0d47c",
+        "button_text": "#2c2016",
+        "button_hover_background": "#fffcf6",
+        "button_hover_text": "#2c2016",
+        "heading_size": 52,
+        "body_size": 20,
+        "card_radius": 20,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_image_position": "center center",
+        "mobile_image_height": 440,
+        "mobile_heading_size": 36,
+        "mobile_body_size": 15,
+        "mobile_card_radius": 20,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "apiarian_blog_cards_xqFQk7": {
+      "type": "apiarian-blog-cards",
+      "blocks": {
+        "article_rJ9HB8": {
+          "type": "article",
+          "settings": {
+            "article": "into-the-hive-the-apiarian-home-blog/exploring-frequency-through-scent",
+            "card_style": "background",
+            "tag": "INGREDIENTS",
+            "title": "What beeswax absolute <em>actually is</em>",
+            "meta": "PLACEHOLDER POST",
+            "custom_link": "",
+            "background": "#cfa039",
+            "text_color": "#ffffff"
+          }
+        },
+        "article_tte9br": {
+          "type": "article",
+          "settings": {
+            "article": "into-the-hive-the-apiarian-home-blog/welcome-to-the-apiarian-home",
+            "card_style": "background",
+            "tag": "APITHERAPY",
+            "title": "Propolis, and how a hive <em>keeps itself clean</em>",
+            "meta": "PLACEHOLDER POST",
+            "custom_link": "",
+            "background": "#2e4634",
+            "text_color": "#ffffff"
+          }
+        },
+        "article_i3pwLK": {
+          "type": "article",
+          "settings": {
+            "article": "into-the-hive-the-apiarian-home-blog/listening-to-what-the-hive-teaches",
+            "card_style": "background",
+            "tag": "FROM THE APIARY",
+            "title": "A season of blending, <em>start to finish</em>",
+            "meta": "PLACEHOLDER POST",
+            "custom_link": "",
+            "background": "#58212b",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "article_rJ9HB8",
+        "article_tte9br",
+        "article_i3pwLK"
+      ],
+      "name": "Apiarian Blog Cards",
+      "settings": {
+        "heading": "Learn the bees <em>with us.</em>",
+        "all_link_label": "All writing",
+        "all_link": "shopify://blogs/into-the-hive-the-apiarian-home-blog",
+        "show_bee_icons": true,
+        "bee_image": "shopify://shop_images/cecc2cf7-8072-4811-ac3f-dedc7fce1336_1.png",
+        "bee_image_2": "shopify://shop_images/9703787e-5dc4-4779-8e97-a868e847608e.png",
+        "bee_image_3": "shopify://shop_images/cecc2cf7-8072-4811-ac3f-dedc7fce1336_2.png",
+        "section_background": "#fffcf6",
+        "heading_color": "#2a1d13",
+        "text_color": "#2a1d13",
+        "all_link_color": "#2a1d13",
+        "heading_size": 52,
+        "card_title_size": 43,
+        "card_height": 360,
+        "card_gap": 18,
+        "card_radius": 20,
+        "bee_width": 50,
+        "bee_width_2": 90,
+        "bee_width_3": 75,
+        "padding_top": 70,
+        "padding_bottom": 95,
+        "mobile_heading_size": 36,
+        "mobile_card_title_size": 28,
+        "mobile_card_height": 300,
+        "mobile_card_radius": 18,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60
+      }
+    },
+    "apiarian_impact_banner_fAFP4X": {
+      "type": "apiarian-impact-banner",
+      "name": "Apiarian Impact",
+      "settings": {
+        "eyebrow": "IMPACT",
+        "heading": "None of this exists <em>without the honeybee.</em>",
+        "description": "<p>A portion of every sale goes to the People and Pollinators Action Network.<br/>What the honeybee needs, every other pollinator depends on too.</p>",
+        "button_label": "See where it goes",
+        "button_link": "",
+        "background_image": "shopify://shop_images/13b1ce12-d2c8-4aea-969e-2e2eb6cec0b5.jpg",
+        "desktop_image_position": "center center",
+        "mobile_image_position": "center center",
+        "overlay_color": "#1d140e",
+        "overlay_opacity": 60,
+        "section_background": "#fffcf6",
+        "fallback_background": "#2a211a",
+        "eyebrow_color": "#f1c36d",
+        "heading_color": "#ffffff",
+        "text_color": "#ffffff",
+        "button_background": "#ffffff",
+        "button_text": "#2a1f15",
+        "button_hover_background": "#8a6a1f",
+        "button_hover_text": "#ffffff",
+        "eyebrow_size": 15,
+        "heading_size": 56,
+        "text_size": 20,
+        "button_height": 50,
+        "content_width": 800,
+        "content_padding_vertical": 65,
+        "content_padding_horizontal": 70,
+        "border_radius": 28,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "desktop_side_padding": 40,
+        "decoration_width": 65,
+        "decoration_position": 68,
+        "decoration_top": 10,
+        "decoration_rotation": 10,
+        "mobile_heading_size": 38,
+        "mobile_text_size": 16,
+        "mobile_content_padding_vertical": 40,
+        "mobile_content_padding_horizontal": 30,
+        "mobile_button_height": 52,
+        "mobile_border_radius": 22,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_side_padding": 20,
+        "mobile_decoration_width": 50,
+        "mobile_decoration_position": 70,
+        "mobile_decoration_top": 10
+      }
+    },
+    "apiarian_newsletter_b6YVzy": {
+      "type": "apiarian-newsletter",
+      "name": "Apiarian Newsletter",
+      "settings": {
+        "heading": "One letter a month, <em>from the apiary.</em>",
+        "description": "<p>The hive, the season, and what is happening in the frames.<br/>No selling.</p>",
+        "email_placeholder": "Your email",
+        "button_label": "Sign up",
+        "success_message": "Thank you for joining our newsletter.",
+        "heading_size": 46,
+        "text_size": 18,
+        "mobile_heading_size": 32,
+        "mobile_text_size": 15,
+        "decoration_image": "shopify://shop_images/1dfada75-1a2b-48e3-abc2-1298786585fa.png",
+        "decoration_width": 55,
+        "decoration_position": 42,
+        "decoration_offset": 46,
+        "decoration_rotation": -45,
+        "section_background": "#fffcf6",
+        "card_background": "#f4eee1",
+        "heading_color": "#2a2118",
+        "text_color": "#5c4b2e",
+        "input_background": "#fbfaf7",
+        "input_border": "#cfc8be",
+        "input_text": "#2a2118",
+        "placeholder_color": "#7a746e",
+        "button_background": "#2a2118",
+        "button_text": "#ffffff",
+        "button_hover_background": "#8a6a1f",
+        "button_hover_text": "#ffffff",
+        "success_color": "#406b45",
+        "error_color": "#a72a2a",
+        "border_radius": 28,
+        "card_padding_vertical": 75,
+        "card_padding_horizontal": 60,
+        "column_gap": 80,
+        "field_height": 56,
+        "padding_top": 60,
+        "padding_bottom": 80,
+        "desktop_side_padding": 48,
+        "mobile_border_radius": 20,
+        "mobile_card_padding_vertical": 40,
+        "mobile_card_padding_horizontal": 25,
+        "mobile_field_height": 46,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 60,
+        "mobile_side_padding": 20,
+        "mobile_decoration_width": 50,
+        "mobile_decoration_position": 50,
+        "mobile_decoration_offset": 30
+      }
+    },
+    "blocks_Ahr3tY": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_be9a0a0_TF4QHt": {
+          "type": "ai_gen_block_be9a0a0",
+          "settings": {
+            "heading": "<p>What our customers say</p>",
+            "subheading": "<p>Trusted by those who value quality and craftsmanship</p>",
+            "heading_alignment": "center",
+            "section_padding": 60,
+            "container_width": 1200,
+            "background_color": "#f6f1e8",
+            "heading_size": 36,
+            "heading_color": "#11151c",
+            "subheading_size": 16,
+            "subheading_color": "#11151c",
+            "heading_spacing": 40,
+            "card_width": 350,
+            "card_gap": 20,
+            "card_background": "#ffffff",
+            "card_padding": 24,
+            "card_border_radius": 0,
+            "card_border_thickness": 0,
+            "card_border_color": "#e5e5e5",
+            "card_shadow_opacity": 5,
+            "card_shadow_vertical": 4,
+            "card_shadow_blur": 12,
+            "star_size": 18,
+            "star_color": "#c88a2b",
+            "review_text_size": 15,
+            "review_text_color": "#11151c",
+            "author_name_size": 14,
+            "author_name_color": "#11151c",
+            "author_meta_size": 12,
+            "author_meta_color": "#666666",
+            "avatar_background": "#c88a2b",
+            "avatar_text_color": "#ffffff",
+            "show_controls": true,
+            "button_background": "#ffffff",
+            "button_border_color": "#e5e5e5",
+            "button_icon_color": "#11151c",
+            "button_hover_background": "#c88a2b",
+            "button_hover_icon_color": "#ffffff",
+            "review_1_text": "The quality and attention to detail is exceptional. Every product tells a story.",
+            "review_1_author_name": "Sarah M.",
+            "review_1_author_meta": "Verified Buyer",
+            "review_1_rating": 5,
+            "review_2_text": "Absolutely love the craftsmanship. It's clear that every detail matters to this brand.",
+            "review_2_author_name": "James L.",
+            "review_2_author_meta": "Verified Buyer",
+            "review_2_rating": 5,
+            "review_3_text": "A truly premium experience from start to finish. Highly recommend to anyone seeking quality.",
+            "review_3_author_name": "Emily R.",
+            "review_3_author_meta": "Verified Buyer",
+            "review_3_rating": 5,
+            "review_4_text": "",
+            "review_4_author_name": "",
+            "review_4_author_meta": "",
+            "review_4_rating": 5,
+            "review_5_text": "",
+            "review_5_author_name": "",
+            "review_5_author_meta": "",
+            "review_5_rating": 5,
+            "review_6_text": "",
+            "review_6_author_name": "",
+            "review_6_author_meta": "",
+            "review_6_rating": 5
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_be9a0a0_TF4QHt"
+      ],
+      "disabled": true,
+      "name": "Reviews carousel",
+      "settings": {}
+    }
+  },
+  "order": [
+    "apiarian_main_banner_bjTCYr",
+    "apiarian_marquee_UACfpg",
+    "piarian_product_tabs_8B4YKm",
+    "apiarian_values_baCzpt",
+    "apiarian_responsive_banner_c9LzYh",
+    "apiarian_scent_flow_hfmrfg",
+    "apiarian_stats_bar_Ld8Gjz",
+    "three_ways_hive_PDrdkK",
+    "apiarian_discovery_set_feature_LPr4Kf",
+    "apiarian_kind_words_zdqBpm",
+    "apiarian_founder_story_y8TCfp",
+    "apiarian_apitherapy_hBtBFx",
+    "apiarian_blog_cards_xqFQk7",
+    "apiarian_impact_banner_fAFP4X",
+    "apiarian_newsletter_b6YVzy",
+    "blocks_Ahr3tY"
+  ]
+}
