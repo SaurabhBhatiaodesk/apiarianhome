@@ -621,7 +621,7 @@
         "heading": "The scent is one way in. <em>There is more of the hive to work with.</em>",
         "text": "<p>Apitherapy is the therapeutic use of the honeybee’s gifts: honey, pollen, propolis, royal jelly, beeswax and venom. In a one-to-one session, Netta maps a hive protocol around your own goals, and you leave with written guidance you keep. It works alongside your existing care, never in place of it.</p>",
         "button_label": "Book a free consultation",
-        "button_link": "",
+        "button_link": "shopify://pages/contact-us",
         "section_background": "#fffcf6",
         "panel_background": "#2c2016",
         "heading_color": "#f8f4eb",
