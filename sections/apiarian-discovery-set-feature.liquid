@@ -700,29 +700,115 @@
 
             const cartResponse = await response.json();
 
-            /* Keep the existing cart drawer behaviour.
-               Do not redirect the customer to /cart. */
-            const cartDrawer = document.querySelector('cart-drawer');
+            /*
+              Refresh the existing Shopify cart drawer through its own
+              section endpoint. This is more reliable than relying only
+              on renderContents(), especially when the drawer markup is
+              rendered by the theme as a custom element.
+            */
+            async function refreshCartDrawer() {
+              const root =
+                window.Shopify && window.Shopify.routes
+                  ? window.Shopify.routes.root
+                  : '/';
 
-            if (
-              cartDrawer &&
-              typeof cartDrawer.renderContents === 'function' &&
-              cartResponse.sections
-            ) {
-              cartDrawer.renderContents(cartResponse);
-            } else if (
-              cartDrawer &&
-              typeof cartDrawer.open === 'function'
-            ) {
-              if (
-                typeof cartDrawer.renderContents === 'function' &&
-                cartResponse.sections
-              ) {
-                cartDrawer.renderContents(cartResponse);
+              const sectionIds = [
+                'cart-drawer',
+                'cart-icon-bubble',
+                'cart-live-region-text'
+              ];
+
+              let refreshed = false;
+
+              try {
+                const sectionResponse = await fetch(
+                  root + '?sections=' + encodeURIComponent(sectionIds.join(',')),
+                  {
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json'
+                    },
+                    cache: 'no-store'
+                  }
+                );
+
+                if (sectionResponse.ok) {
+                  const sections = await sectionResponse.json();
+
+                  /*
+                    Use Shopify's section renderer when available.
+                    This updates the drawer's actual inner HTML instead
+                    of only changing the cart count.
+                  */
+                  const drawer = document.querySelector('cart-drawer');
+
+                  if (
+                    drawer &&
+                    typeof drawer.renderContents === 'function'
+                  ) {
+                    drawer.renderContents({
+                      sections: sections,
+                      item_count: cartResponse.item_count
+                    });
+                    refreshed = true;
+                  }
+
+                  /*
+                    Generic fallback: replace the cart drawer section
+                    with the freshly rendered server HTML.
+                  */
+                  if (!refreshed && sections['cart-drawer']) {
+                    const currentDrawer =
+                      document.querySelector('#CartDrawer') ||
+                      document.querySelector('cart-drawer');
+
+                    if (currentDrawer) {
+                      const wrapper = document.createElement('div');
+                      wrapper.innerHTML = sections['cart-drawer'];
+
+                      const newDrawer =
+                        wrapper.querySelector('cart-drawer') ||
+                        wrapper.firstElementChild;
+
+                      if (newDrawer) {
+                        currentDrawer.replaceWith(newDrawer);
+                        refreshed = true;
+                      }
+                    }
+                  }
+
+                  /*
+                    Refresh the cart icon bubble if the theme provides it.
+                  */
+                  if (sections['cart-icon-bubble']) {
+                    const currentBubble =
+                      document.querySelector('#cart-icon-bubble');
+
+                    if (currentBubble) {
+                      const bubbleWrapper = document.createElement('div');
+                      bubbleWrapper.innerHTML =
+                        sections['cart-icon-bubble'];
+
+                      const newBubble =
+                        bubbleWrapper.querySelector('#cart-icon-bubble') ||
+                        bubbleWrapper.firstElementChild;
+
+                      if (newBubble) {
+                        currentBubble.replaceWith(newBubble);
+                      }
+                    }
+                  }
+                }
+              } catch (drawerError) {
+                console.warn(
+                  '[Apiarian Discovery Set] Drawer refresh failed',
+                  drawerError
+                );
               }
-              cartDrawer.open();
-            } else {
-              /* Support themes/apps that listen for cart refresh events. */
+
+              /*
+                Let the theme/apps perform any additional cart updates.
+              */
               document.dispatchEvent(
                 new CustomEvent('cart:refresh', {
                   bubbles: true,
@@ -737,7 +823,21 @@
                 })
               );
 
-              /* Fallback for a standard details-based drawer. */
+              /*
+                Finally open the drawer. Re-query it because the previous
+                step may have replaced the element with fresh markup.
+              */
+              const currentDrawer =
+                document.querySelector('cart-drawer');
+
+              if (
+                currentDrawer &&
+                typeof currentDrawer.open === 'function'
+              ) {
+                currentDrawer.open();
+                return;
+              }
+
               const detailsDrawer = document.querySelector(
                 'details.cart-drawer, details#CartDrawer, .cart-drawer details'
               );
@@ -746,6 +846,8 @@
                 detailsDrawer.open = true;
               }
             }
+
+            await refreshCartDrawer();
 
             if (addSetLabel) {
               addSetLabel.textContent = 'Added to cart';
