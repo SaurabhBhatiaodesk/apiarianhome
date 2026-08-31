@@ -415,47 +415,9 @@
     },
     "apiarian_discovery_set_feature_LPr4Kf": {
       "type": "apiarian-discovery-set-feature",
-      "blocks": {
-        "feature_Q3c6wr": {
-          "type": "feature",
-          "settings": {
-            "product": "worker"
-          }
-        },
-        "feature_6wETgB": {
-          "type": "feature",
-          "settings": {
-            "product": "brood"
-          }
-        },
-        "feature_VVRNN4": {
-          "type": "feature",
-          "settings": {
-            "product": "drone"
-          }
-        },
-        "feature_Lc9Uqf": {
-          "type": "feature",
-          "settings": {
-            "product": "hive"
-          }
-        },
-        "feature_79t8bU": {
-          "type": "feature",
-          "settings": {
-            "product": "queen"
-          }
-        }
-      },
-      "block_order": [
-        "feature_Q3c6wr",
-        "feature_6wETgB",
-        "feature_VVRNN4",
-        "feature_Lc9Uqf",
-        "feature_79t8bU"
-      ],
       "name": "Discovery Set Feature",
       "settings": {
+        "feature_items": "Five 2 mL glass bottles, one per role\nFragrance tester strips\nA written and spoken journey through the colony\nCredited toward your first full bottle",
         "image": "shopify://shop_images/7ba0dd7f-2a35-4640-8c5a-faba40c3efa8.jpg",
         "bee_image": "shopify://shop_images/cecc2cf7-8072-4811-ac3f-dedc7fce1336.png",
         "eyebrow": "START HERE",
@@ -502,7 +464,7 @@
       "settings": {
         "review_limit": 3,
         "eyebrow": "KIND WORDS",
-        "heading": "What people notice <em>about Brood.</em>",
+        "heading": "What people notice <em>first.</em>",
         "bee_image": "shopify://shop_images/e31427df-b43c-48a8-b977-3265d3569483.png",
         "section_background": "#fffcf6",
         "shell_background": "#efe7d7",
