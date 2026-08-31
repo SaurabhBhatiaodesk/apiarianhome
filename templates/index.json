@@ -415,6 +415,45 @@
     },
     "apiarian_discovery_set_feature_LPr4Kf": {
       "type": "apiarian-discovery-set-feature",
+      "blocks": {
+        "feature_n8NFFR": {
+          "type": "feature",
+          "settings": {
+            "product": "worker"
+          }
+        },
+        "feature_9aWm7i": {
+          "type": "feature",
+          "settings": {
+            "product": "queen"
+          }
+        },
+        "feature_BCQzCf": {
+          "type": "feature",
+          "settings": {
+            "product": "hive"
+          }
+        },
+        "feature_GhgfNL": {
+          "type": "feature",
+          "settings": {
+            "product": "drone"
+          }
+        },
+        "feature_AAKNFr": {
+          "type": "feature",
+          "settings": {
+            "product": "brood"
+          }
+        }
+      },
+      "block_order": [
+        "feature_n8NFFR",
+        "feature_9aWm7i",
+        "feature_BCQzCf",
+        "feature_GhgfNL",
+        "feature_AAKNFr"
+      ],
       "name": "Discovery Set Feature",
       "settings": {
         "feature_items": "Five 2 mL glass bottles, one per role\nFragrance tester strips\nA written and spoken journey through the colony\nCredited toward your first full bottle",
@@ -424,6 +463,7 @@
         "heading": "The Colony <em>Discovery Set</em>",
         "text": "<p>Five 2 mL bottles, tester strips, and a QR code that opens a guided journey through the hive, written and spoken. Smell all five, learn the colony one bee at a time, then choose the one that belongs in your home.</p>",
         "note": "Free U.S. shipping",
+        "button_label": "Add the set",
         "image_position": "center center",
         "section_background": "#fffcf6",
         "panel_background": "#efe8d8",
