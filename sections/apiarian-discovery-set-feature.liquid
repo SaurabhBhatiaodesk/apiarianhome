@@ -664,271 +664,93 @@
           }
 
           try {
-            const shopifyRoot =
-              window.Shopify && window.Shopify.routes
-                ? window.Shopify.routes.root
-                : '/';
+            const payload = {
+              items: variantIds.map(function (id) {
+                return {
+                  id: id,
+                  quantity: 1
+                };
+              }),
+              sections: 'cart-drawer,cart-icon-bubble',
+              sections_url: window.location.pathname
+            };
 
             const response = await fetch(
-              shopifyRoot + 'cart/add.js',
+              window.routes && window.routes.cart_add_url
+                ? window.routes.cart_add_url
+                : '/cart/add.js',
               {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
-                  'Accept': 'application/json'
+                  'Accept': 'application/json',
+                  'X-Requested-With': 'XMLHttpRequest'
                 },
-                body: JSON.stringify({
-                  items: variantIds.map(function (id) {
-                    return {
-                      id: id,
-                      quantity: 1
-                    };
-                  }),
-                  sections: [
-                    'cart-drawer',
-                    'cart-icon-bubble',
-                    'cart-live-region-text'
-                  ],
-                  sections_url: window.location.pathname
-                })
+                body: JSON.stringify(payload)
               }
             );
 
-            if (!response.ok) {
-              throw new Error('Unable to add discovery set to cart.');
+            const parsedState = await response.json();
+
+            if (!response.ok || parsedState.status) {
+              throw new Error(
+                parsedState.description ||
+                parsedState.message ||
+                'Unable to add the set to the cart.'
+              );
             }
 
-            const cartResponse = await response.json();
-
             /*
-              Refresh the existing Shopify cart drawer through its own
-              section endpoint. This is more reliable than relying only
-              on renderContents(), especially when the drawer markup is
-              rendered by the theme as a custom element.
+              Use the theme's native cart drawer renderer.
+
+              This is important because renderContents() knows the exact
+              drawer selectors and replaces the cart items, totals,
+              empty-state and cart icon without a page refresh.
             */
-            async function refreshCartDrawer() {
-              const root =
-                window.Shopify && window.Shopify.routes
-                  ? window.Shopify.routes.root
-                  : '/';
+            const cartDrawer = document.querySelector('cart-drawer');
 
-              /*
-                IMPORTANT:
-                Do not hard-code the drawer section IDs. Different Shopify
-                themes can use different section IDs/selectors.
-
-                If the theme's cart-drawer custom element exposes
-                getSectionsToRender(), use exactly the sections that the
-                theme itself expects.
-              */
-              const cartDrawer = document.querySelector('cart-drawer');
-
-              let sectionsToRender = [];
-
-              if (
-                cartDrawer &&
-                typeof cartDrawer.getSectionsToRender === 'function'
-              ) {
-                sectionsToRender = cartDrawer.getSectionsToRender();
+            if (
+              cartDrawer &&
+              typeof cartDrawer.renderContents === 'function'
+            ) {
+              if (typeof cartDrawer.setActiveElement === 'function') {
+                cartDrawer.setActiveElement(addSetButton);
               }
 
-              /*
-                Fallback for themes where getSectionsToRender() is not
-                exposed. These are the standard Shopify/Dawn IDs.
-              */
-              if (!sectionsToRender.length) {
-                sectionsToRender = [
-                  {
-                    id: 'cart-drawer',
-                    selector: '#CartDrawer'
-                  },
-                  {
-                    id: 'cart-icon-bubble',
-                    selector: '#cart-icon-bubble'
-                  },
-                  {
-                    id: 'cart-live-region-text',
-                    selector: '#cart-live-region-text'
-                  }
-                ];
+              cartDrawer.renderContents(parsedState);
+
+              if (cartDrawer.classList.contains('is-empty')) {
+                cartDrawer.classList.remove('is-empty');
               }
-
-              const sectionIds = sectionsToRender
-                .map(function (section) {
-                  return section && section.id;
-                })
-                .filter(Boolean);
-
-              let refreshed = false;
-              let sectionResponse = null;
-
-              try {
-                const query =
-                  '?sections=' +
-                  encodeURIComponent(sectionIds.join(','));
-
-                const response = await fetch(
-                  root + query,
-                  {
-                    method: 'GET',
-                    headers: {
-                      'Accept': 'application/json'
-                    },
-                    cache: 'no-store'
-                  }
-                );
-
-                if (!response.ok) {
-                  throw new Error(
-                    'Cart sections HTTP ' + response.status
-                  );
-                }
-
-                sectionResponse = await response.json();
-
-                /*
-                  This is the important part: Shopify's own cart drawer
-                  component knows how to replace the product list,
-                  totals, empty state, etc. using its configured selectors.
-                */
-                const currentDrawer =
-                  document.querySelector('cart-drawer');
-
-                if (
-                  currentDrawer &&
-                  typeof currentDrawer.renderContents === 'function'
-                ) {
-                  currentDrawer.renderContents({
-                    sections: sectionResponse,
-                    item_count: cartResponse.item_count
-                  });
-
-                  refreshed = true;
-                }
-
-                /*
-                  Some themes expose a refresh() method instead of
-                  renderContents().
-                */
-                if (
-                  !refreshed &&
-                  currentDrawer &&
-                  typeof currentDrawer.refresh === 'function'
-                ) {
-                  await currentDrawer.refresh();
-                  refreshed = true;
-                }
-
-                /*
-                  Generic selector fallback. This uses the selectors
-                  returned by the theme rather than assuming #CartDrawer.
-                */
-                if (!refreshed) {
-                  sectionsToRender.forEach(function (section) {
-                    if (!section || !section.id) return;
-
-                    const html =
-                      sectionResponse &&
-                      sectionResponse[section.id];
-
-                    if (!html) return;
-
-                    const selector =
-                      section.selector ||
-                      ('#' + section.id);
-
-                    const currentElement =
-                      document.querySelector(selector);
-
-                    if (!currentElement) return;
-
-                    const wrapper =
-                      document.createElement('div');
-
-                    wrapper.innerHTML = html;
-
-                    const newElement =
-                      wrapper.querySelector(selector) ||
-                      wrapper.firstElementChild;
-
-                    if (newElement) {
-                      currentElement.replaceWith(newElement);
-                      refreshed = true;
-                    }
-                  });
-                }
-              } catch (drawerError) {
-                console.warn(
-                  '[Apiarian Discovery Set] Cart drawer refresh failed',
-                  drawerError
-                );
-              }
-
+            } else {
               /*
-                Notify any theme/app cart listeners after the cart has
-                actually been updated.
+                Fallback only if this theme does not expose the native
+                cart-drawer component.
               */
               document.dispatchEvent(
                 new CustomEvent('cart:refresh', {
                   bubbles: true,
-                  detail: cartResponse
+                  detail: parsedState
                 })
               );
 
               document.dispatchEvent(
                 new CustomEvent('cart:updated', {
                   bubbles: true,
-                  detail: cartResponse
+                  detail: parsedState
                 })
               );
 
-              /*
-                Re-query the element because a section refresh can replace
-                the original cart-drawer element.
-              */
-              const drawerAfterRefresh =
-                document.querySelector('cart-drawer');
-
-              if (
-                drawerAfterRefresh &&
-                typeof drawerAfterRefresh.open === 'function'
-              ) {
-                drawerAfterRefresh.open();
-                return;
-              }
-
-              /*
-                Standard <details> fallback.
-              */
-              const detailsDrawer =
-                document.querySelector(
-                  'details.cart-drawer, details#CartDrawer, .cart-drawer details'
-                );
-
-              if (detailsDrawer) {
-                detailsDrawer.open = true;
-                return;
-              }
-
-              /*
-                If the theme has a cart toggle but no directly accessible
-                open() method, trigger the existing cart button. The theme
-                then handles opening and rendering the current cart.
-              */
-              const cartToggle =
-                document.querySelector(
-                  '[aria-controls="CartDrawer"], ' +
-                  '[data-cart-toggle], ' +
-                  '[data-cart-drawer-toggle], ' +
-                  'a[href$="/cart"]'
-                );
+              const cartToggle = document.querySelector(
+                '[aria-controls="CartDrawer"], ' +
+                '[data-cart-toggle], ' +
+                '[data-cart-drawer-toggle]'
+              );
 
               if (cartToggle) {
                 cartToggle.click();
               }
             }
-
-            await refreshCartDrawer();
 
             if (addSetLabel) {
               addSetLabel.textContent = 'Added to cart';
