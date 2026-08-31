@@ -712,17 +712,63 @@
                   ? window.Shopify.routes.root
                   : '/';
 
-              const sectionIds = [
-                'cart-drawer',
-                'cart-icon-bubble',
-                'cart-live-region-text'
-              ];
+              /*
+                IMPORTANT:
+                Do not hard-code the drawer section IDs. Different Shopify
+                themes can use different section IDs/selectors.
+
+                If the theme's cart-drawer custom element exposes
+                getSectionsToRender(), use exactly the sections that the
+                theme itself expects.
+              */
+              const cartDrawer = document.querySelector('cart-drawer');
+
+              let sectionsToRender = [];
+
+              if (
+                cartDrawer &&
+                typeof cartDrawer.getSectionsToRender === 'function'
+              ) {
+                sectionsToRender = cartDrawer.getSectionsToRender();
+              }
+
+              /*
+                Fallback for themes where getSectionsToRender() is not
+                exposed. These are the standard Shopify/Dawn IDs.
+              */
+              if (!sectionsToRender.length) {
+                sectionsToRender = [
+                  {
+                    id: 'cart-drawer',
+                    selector: '#CartDrawer'
+                  },
+                  {
+                    id: 'cart-icon-bubble',
+                    selector: '#cart-icon-bubble'
+                  },
+                  {
+                    id: 'cart-live-region-text',
+                    selector: '#cart-live-region-text'
+                  }
+                ];
+              }
+
+              const sectionIds = sectionsToRender
+                .map(function (section) {
+                  return section && section.id;
+                })
+                .filter(Boolean);
 
               let refreshed = false;
+              let sectionResponse = null;
 
               try {
-                const sectionResponse = await fetch(
-                  root + '?sections=' + encodeURIComponent(sectionIds.join(',')),
+                const query =
+                  '?sections=' +
+                  encodeURIComponent(sectionIds.join(','));
+
+                const response = await fetch(
+                  root + query,
                   {
                     method: 'GET',
                     headers: {
@@ -732,82 +778,95 @@
                   }
                 );
 
-                if (sectionResponse.ok) {
-                  const sections = await sectionResponse.json();
+                if (!response.ok) {
+                  throw new Error(
+                    'Cart sections HTTP ' + response.status
+                  );
+                }
 
-                  /*
-                    Use Shopify's section renderer when available.
-                    This updates the drawer's actual inner HTML instead
-                    of only changing the cart count.
-                  */
-                  const drawer = document.querySelector('cart-drawer');
+                sectionResponse = await response.json();
 
-                  if (
-                    drawer &&
-                    typeof drawer.renderContents === 'function'
-                  ) {
-                    drawer.renderContents({
-                      sections: sections,
-                      item_count: cartResponse.item_count
-                    });
-                    refreshed = true;
-                  }
+                /*
+                  This is the important part: Shopify's own cart drawer
+                  component knows how to replace the product list,
+                  totals, empty state, etc. using its configured selectors.
+                */
+                const currentDrawer =
+                  document.querySelector('cart-drawer');
 
-                  /*
-                    Generic fallback: replace the cart drawer section
-                    with the freshly rendered server HTML.
-                  */
-                  if (!refreshed && sections['cart-drawer']) {
-                    const currentDrawer =
-                      document.querySelector('#CartDrawer') ||
-                      document.querySelector('cart-drawer');
+                if (
+                  currentDrawer &&
+                  typeof currentDrawer.renderContents === 'function'
+                ) {
+                  currentDrawer.renderContents({
+                    sections: sectionResponse,
+                    item_count: cartResponse.item_count
+                  });
 
-                    if (currentDrawer) {
-                      const wrapper = document.createElement('div');
-                      wrapper.innerHTML = sections['cart-drawer'];
+                  refreshed = true;
+                }
 
-                      const newDrawer =
-                        wrapper.querySelector('cart-drawer') ||
-                        wrapper.firstElementChild;
+                /*
+                  Some themes expose a refresh() method instead of
+                  renderContents().
+                */
+                if (
+                  !refreshed &&
+                  currentDrawer &&
+                  typeof currentDrawer.refresh === 'function'
+                ) {
+                  await currentDrawer.refresh();
+                  refreshed = true;
+                }
 
-                      if (newDrawer) {
-                        currentDrawer.replaceWith(newDrawer);
-                        refreshed = true;
-                      }
+                /*
+                  Generic selector fallback. This uses the selectors
+                  returned by the theme rather than assuming #CartDrawer.
+                */
+                if (!refreshed) {
+                  sectionsToRender.forEach(function (section) {
+                    if (!section || !section.id) return;
+
+                    const html =
+                      sectionResponse &&
+                      sectionResponse[section.id];
+
+                    if (!html) return;
+
+                    const selector =
+                      section.selector ||
+                      ('#' + section.id);
+
+                    const currentElement =
+                      document.querySelector(selector);
+
+                    if (!currentElement) return;
+
+                    const wrapper =
+                      document.createElement('div');
+
+                    wrapper.innerHTML = html;
+
+                    const newElement =
+                      wrapper.querySelector(selector) ||
+                      wrapper.firstElementChild;
+
+                    if (newElement) {
+                      currentElement.replaceWith(newElement);
+                      refreshed = true;
                     }
-                  }
-
-                  /*
-                    Refresh the cart icon bubble if the theme provides it.
-                  */
-                  if (sections['cart-icon-bubble']) {
-                    const currentBubble =
-                      document.querySelector('#cart-icon-bubble');
-
-                    if (currentBubble) {
-                      const bubbleWrapper = document.createElement('div');
-                      bubbleWrapper.innerHTML =
-                        sections['cart-icon-bubble'];
-
-                      const newBubble =
-                        bubbleWrapper.querySelector('#cart-icon-bubble') ||
-                        bubbleWrapper.firstElementChild;
-
-                      if (newBubble) {
-                        currentBubble.replaceWith(newBubble);
-                      }
-                    }
-                  }
+                  });
                 }
               } catch (drawerError) {
                 console.warn(
-                  '[Apiarian Discovery Set] Drawer refresh failed',
+                  '[Apiarian Discovery Set] Cart drawer refresh failed',
                   drawerError
                 );
               }
 
               /*
-                Let the theme/apps perform any additional cart updates.
+                Notify any theme/app cart listeners after the cart has
+                actually been updated.
               */
               document.dispatchEvent(
                 new CustomEvent('cart:refresh', {
@@ -824,26 +883,48 @@
               );
 
               /*
-                Finally open the drawer. Re-query it because the previous
-                step may have replaced the element with fresh markup.
+                Re-query the element because a section refresh can replace
+                the original cart-drawer element.
               */
-              const currentDrawer =
+              const drawerAfterRefresh =
                 document.querySelector('cart-drawer');
 
               if (
-                currentDrawer &&
-                typeof currentDrawer.open === 'function'
+                drawerAfterRefresh &&
+                typeof drawerAfterRefresh.open === 'function'
               ) {
-                currentDrawer.open();
+                drawerAfterRefresh.open();
                 return;
               }
 
-              const detailsDrawer = document.querySelector(
-                'details.cart-drawer, details#CartDrawer, .cart-drawer details'
-              );
+              /*
+                Standard <details> fallback.
+              */
+              const detailsDrawer =
+                document.querySelector(
+                  'details.cart-drawer, details#CartDrawer, .cart-drawer details'
+                );
 
               if (detailsDrawer) {
                 detailsDrawer.open = true;
+                return;
+              }
+
+              /*
+                If the theme has a cart toggle but no directly accessible
+                open() method, trigger the existing cart button. The theme
+                then handles opening and rendering the current cart.
+              */
+              const cartToggle =
+                document.querySelector(
+                  '[aria-controls="CartDrawer"], ' +
+                  '[data-cart-toggle], ' +
+                  '[data-cart-drawer-toggle], ' +
+                  'a[href$="/cart"]'
+                );
+
+              if (cartToggle) {
+                cartToggle.click();
               }
             }
 
