@@ -664,10 +664,13 @@
           }
 
           try {
-            const response = await fetch(
-              (window.Shopify && window.Shopify.routes
+            const shopifyRoot =
+              window.Shopify && window.Shopify.routes
                 ? window.Shopify.routes.root
-                : '/') + 'cart/add.js',
+                : '/';
+
+            const response = await fetch(
+              shopifyRoot + 'cart/add.js',
               {
                 method: 'POST',
                 headers: {
@@ -680,7 +683,13 @@
                       id: id,
                       quantity: 1
                     };
-                  })
+                  }),
+                  sections: [
+                    'cart-drawer',
+                    'cart-icon-bubble',
+                    'cart-live-region-text'
+                  ],
+                  sections_url: window.location.pathname
                 })
               }
             );
@@ -689,29 +698,53 @@
               throw new Error('Unable to add discovery set to cart.');
             }
 
-            await response.json();
+            const cartResponse = await response.json();
 
-            document.dispatchEvent(
-              new CustomEvent('cart:refresh', {
-                bubbles: true
-              })
-            );
-
-            if (window.Shopify && window.Shopify.theme && window.Shopify.theme.cart) {
-              document.dispatchEvent(
-                new CustomEvent('cart:updated', {
-                  bubbles: true
-                })
-              );
-            }
+            /* Keep the existing cart drawer behaviour.
+               Do not redirect the customer to /cart. */
+            const cartDrawer = document.querySelector('cart-drawer');
 
             if (
-              window.Shopify &&
-              window.Shopify.routes &&
-              window.location.pathname.indexOf('/cart') === -1
+              cartDrawer &&
+              typeof cartDrawer.renderContents === 'function' &&
+              cartResponse.sections
             ) {
-              window.location.href = window.Shopify.routes.root + 'cart';
-              return;
+              cartDrawer.renderContents(cartResponse);
+            } else if (
+              cartDrawer &&
+              typeof cartDrawer.open === 'function'
+            ) {
+              if (
+                typeof cartDrawer.renderContents === 'function' &&
+                cartResponse.sections
+              ) {
+                cartDrawer.renderContents(cartResponse);
+              }
+              cartDrawer.open();
+            } else {
+              /* Support themes/apps that listen for cart refresh events. */
+              document.dispatchEvent(
+                new CustomEvent('cart:refresh', {
+                  bubbles: true,
+                  detail: cartResponse
+                })
+              );
+
+              document.dispatchEvent(
+                new CustomEvent('cart:updated', {
+                  bubbles: true,
+                  detail: cartResponse
+                })
+              );
+
+              /* Fallback for a standard details-based drawer. */
+              const detailsDrawer = document.querySelector(
+                'details.cart-drawer, details#CartDrawer, .cart-drawer details'
+              );
+
+              if (detailsDrawer) {
+                detailsDrawer.open = true;
+              }
             }
 
             if (addSetLabel) {
