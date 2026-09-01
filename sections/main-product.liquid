@@ -178,8 +178,8 @@
                     assign selected_price_option = ''
                   endif
 
-                  assign selected_price_option = selected_price_option | split: '/' | first | strip
-                  assign selected_price_descriptor = product.metafields.custom.price_descriptor.value | default: product.type | default: 'beeswax-infused home fragrance' | strip | downcase
+                  assign selected_price_option = selected_price_option | split: '/' | first | strip | replace: ' ML', ' mL' | replace: ' Ml', ' mL' | replace: ' ml', ' mL' | replace: 'ML', ' mL' | replace: 'Ml', ' mL' | replace: 'ml', ' mL' | replace: '  ', ' '
+                  assign selected_price_descriptor = 'beeswax-infused home fragrance'
                 -%}
                 <div id="price-{{ section.id }}" class="product__price-row" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
