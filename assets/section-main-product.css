@@ -28,6 +28,34 @@ product-info {
     margin-bottom: 0;
 }
 
+.product__price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.product__price-row .price {
+  margin: 0;
+}
+
+.product__selected-price-meta {
+  color: #6d5942;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+@media screen and (max-width: 749px) {
+  .product__price-row {
+    gap: 0.6rem;
+  }
+
+  .product__selected-price-meta {
+    font-size: 14px;
+  }
+}
+
 .product {
   margin: 0;
 }

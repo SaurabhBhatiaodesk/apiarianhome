@@ -159,13 +159,48 @@
                   </a>
                 </div>
               {%- when 'price' -%}
-                <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                {%- liquid
+                  assign selected_price_variant = product.selected_or_first_available_variant
+                  assign selected_price_option = ''
+
+                  for option in product.options_with_values
+                    assign option_name = option.name | downcase
+                    if option_name contains 'volume' or option_name contains 'size'
+                      assign selected_price_option = option.selected_value
+                    endif
+                  endfor
+
+                  if selected_price_option == blank and product.has_only_default_variant == false
+                    assign selected_price_option = selected_price_variant.option1
+                  endif
+
+                  if selected_price_option == 'Default Title'
+                    assign selected_price_option = ''
+                  endif
+
+                  assign selected_price_option = selected_price_option | split: '/' | first | strip
+                  assign selected_price_descriptor = product.metafields.custom.price_descriptor.value | default: product.type | strip | downcase
+                -%}
+                <div id="price-{{ section.id }}" class="product__price-row" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
                     product: product,
                     use_variant: true,
                     show_badges: true,
                     price_class: 'price--large'
                   -%}
+                  {%- if selected_price_option != blank or selected_price_descriptor != blank -%}
+                    <span class="product__selected-price-meta">
+                      {%- if selected_price_option != blank -%}
+                        {{- selected_price_option | escape -}}
+                      {%- endif -%}
+                      {%- if selected_price_option != blank and selected_price_descriptor != blank -%}
+                        <span aria-hidden="true"> &middot; </span>
+                      {%- endif -%}
+                      {%- if selected_price_descriptor != blank -%}
+                        {{- selected_price_descriptor | escape -}}
+                      {%- endif -%}
+                    </span>
+                  {%- endif -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
