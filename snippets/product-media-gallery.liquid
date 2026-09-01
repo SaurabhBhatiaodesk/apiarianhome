@@ -424,11 +424,14 @@
       rails.forEach(function (slider) {
         const list = slider.querySelector('.thumbnail-list');
 
-        if (!list || slider.dataset.verticalRailInitialized === 'true') return;
+        if (!list) return;
 
-        slider.dataset.verticalRailInitialized = 'true';
         syncVerticalThumbnailRailHeight(slider);
         updateVerticalThumbnailButtons(slider, list);
+
+        if (slider.dataset.verticalRailInitialized === 'true') return;
+
+        slider.dataset.verticalRailInitialized = 'true';
 
         list.addEventListener('scroll', function () {
           updateVerticalThumbnailButtons(slider, list);
