@@ -440,7 +440,7 @@
                 {%- if custom_product_tags.size > 0 -%}
                   <p class="apiarian-pairs-well__tags">
                     {%- for product_tag in custom_product_tags limit: 3 -%}
-                      {{- product_tag | escape -}}{%- unless forloop.last -%}, {%- endunless -%}
+                     <span> {{- product_tag | escape -}}{%- unless forloop.last -%}, {%- endunless -%}</span>
                     {%- endfor -%}
                   </p>
                 {%- endif -%}
