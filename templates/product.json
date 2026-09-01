@@ -580,8 +580,8 @@
         "mobile_card_width": 82,
         "mobile_card_gap": 14,
         "mobile_card_radius": 16,
-        "mobile_padding_top": 25,
-        "mobile_padding_bottom": 0
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 10
       }
     },
     "apiarian_good_to_know_GfbiQc": {
