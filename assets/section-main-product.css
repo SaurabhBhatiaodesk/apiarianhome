@@ -1683,11 +1683,11 @@ a.product__text {
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .product--desktop-thumbs-right .product__media-wrapper {
-    overflow: hidden;
+    overflow: visible;
   }
 
   .product--desktop-thumbs-right.product--thumbnail
@@ -1857,7 +1857,7 @@ a.product__text {
   }
   .product--desktop-thumbs-right .product__media-wrapper media-gallery {
     display: block;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .product--desktop-thumbs-right .product__media-wrapper .thumbnail-slider {
