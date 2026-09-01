@@ -1829,6 +1829,7 @@ a.product__text {
   }
   .product--desktop-thumbs-right .product__media-wrapper media-gallery {
     display: block;
+    overflow: hidden;
   }
 
   .product--desktop-thumbs-right .product__media-wrapper .thumbnail-slider {

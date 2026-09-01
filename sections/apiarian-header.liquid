@@ -227,15 +227,17 @@
     }
 
     #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu {
-      position: absolute;
-      top: 100%;
+      position: fixed;
+      top: var(--mobile-header-height);
       left: 0;
       right: 0;
+      bottom: 0;
       z-index: 9999;
+      display: none;
+      overflow-y: auto;
       background: var(--solid-bg);
       color: var(--solid-text);
       border-top: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
       box-shadow: 0 12px 24px rgba(42, 33, 24, .08);
     }
 
@@ -381,12 +383,22 @@
         const open = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
         menu.classList.toggle('is-open', !open);
+        document.body.classList.toggle('overflow-hidden', !open);
       });
 
       menu.addEventListener('click', (event) => {
         if (event.target.closest('a')) {
           toggle.setAttribute('aria-expanded', 'false');
           menu.classList.remove('is-open');
+          document.body.classList.remove('overflow-hidden');
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 989) {
+          toggle.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('is-open');
+          document.body.classList.remove('overflow-hidden');
         }
       });
     }
