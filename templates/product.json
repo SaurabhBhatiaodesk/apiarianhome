@@ -347,7 +347,7 @@
         "eyebrow_letter_spacing": 3,
         "heading_size": 46,
         "text_size": 17,
-        "content_max_width": 600,
+        "content_max_width": 500,
         "content_padding_vertical": 160,
         "content_padding_horizontal": 60,
         "border_radius": 20,
