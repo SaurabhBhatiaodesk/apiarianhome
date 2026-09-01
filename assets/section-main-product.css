@@ -1860,7 +1860,7 @@ a.product__text {
   }
 
   .product--desktop-thumbs-right .product__media-wrapper .thumbnail-slider {
-    width: 100%;
+    /* width: 100%; */
     height: auto;
     margin-top: 1rem;
   }
