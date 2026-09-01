@@ -136,7 +136,7 @@
         "constrain_to_viewport": true,
         "media_fit": "cover",
         "gallery_layout": "thumbnail_slider",
-        "desktop_thumbnail_position": "bottom",
+        "desktop_thumbnail_position": "right",
         "main_gallery_ratio": "landscape",
         "gallery_border_radius_desktop": 18,
         "gallery_border_radius_mobile": 18,
