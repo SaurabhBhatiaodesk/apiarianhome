@@ -250,7 +250,7 @@
         "body_color": "#5c4b2e",
         "text_color": "#21170f",
         "border_color": "#ded7cb",
-        "padding_top": 0,
+        "padding_top": 45,
         "padding_bottom": 0,
         "mobile_heading_size": 39,
         "mobile_padding_top": 45,
