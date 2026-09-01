@@ -365,6 +365,27 @@
       }
     }
 
+    function syncVerticalThumbnailRailHeight(slider) {
+      const product = slider.closest('.product--desktop-thumbs-right');
+
+      if (!product || !window.matchMedia('(min-width: 750px)').matches) {
+        slider.style.removeProperty('height');
+        slider.style.removeProperty('max-height');
+        return;
+      }
+
+      const viewer = product.querySelector('[id^="GalleryViewer-"]');
+
+      if (!viewer) return;
+
+      const viewerHeight = viewer.getBoundingClientRect().height;
+
+      if (viewerHeight > 0) {
+        slider.style.height = viewerHeight + 'px';
+        slider.style.maxHeight = viewerHeight + 'px';
+      }
+    }
+
     function onVerticalThumbnailButtonClick(event) {
       const button = event.target.closest('.thumbnail-slider .slider-button');
 
@@ -406,11 +427,33 @@
         if (!list || slider.dataset.verticalRailInitialized === 'true') return;
 
         slider.dataset.verticalRailInitialized = 'true';
+        syncVerticalThumbnailRailHeight(slider);
         updateVerticalThumbnailButtons(slider, list);
 
         list.addEventListener('scroll', function () {
           updateVerticalThumbnailButtons(slider, list);
         });
+
+        const product = slider.closest('.product--desktop-thumbs-right');
+        const viewer = product && product.querySelector('[id^="GalleryViewer-"]');
+
+        if ('ResizeObserver' in window && viewer) {
+          const resizeObserver = new ResizeObserver(function () {
+            syncVerticalThumbnailRailHeight(slider);
+            updateVerticalThumbnailButtons(slider, list);
+          });
+
+          resizeObserver.observe(viewer);
+        }
+
+        if (viewer) {
+          viewer.querySelectorAll('img').forEach(function (image) {
+            image.addEventListener('load', function () {
+              syncVerticalThumbnailRailHeight(slider);
+              updateVerticalThumbnailButtons(slider, list);
+            });
+          });
+        }
       });
     }
 
@@ -419,6 +462,19 @@
 
     document.addEventListener('shopify:section:load', function (event) {
       initVerticalThumbnailRails(event.target);
+    });
+
+    window.addEventListener('resize', function () {
+      initVerticalThumbnailRails(document);
+
+      document
+        .querySelectorAll('.product--desktop-thumbs-right .thumbnail-slider')
+        .forEach(function (slider) {
+          const list = slider.querySelector('.thumbnail-list');
+
+          syncVerticalThumbnailRailHeight(slider);
+          updateVerticalThumbnailButtons(slider, list);
+        });
     });
   })();
 </script>
