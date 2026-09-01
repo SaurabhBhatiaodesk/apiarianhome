@@ -137,7 +137,7 @@
         "media_fit": "cover",
         "gallery_layout": "thumbnail_slider",
         "desktop_thumbnail_position": "right",
-        "main_gallery_ratio": "landscape",
+        "main_gallery_ratio": "square",
         "gallery_border_radius_desktop": 18,
         "gallery_border_radius_mobile": 18,
         "mobile_thumbnails": "show",
