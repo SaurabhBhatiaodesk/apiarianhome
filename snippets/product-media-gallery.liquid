@@ -330,3 +330,95 @@
     </slider-component>
   {%- endif -%}
 </media-gallery>
+
+<script>
+  (function () {
+    function isRightThumbnailRail(button) {
+      if (!window.matchMedia('(min-width: 750px)').matches) return false;
+
+      const product = button.closest('.product--desktop-thumbs-right');
+
+      return Boolean(product && button.closest('.thumbnail-slider'));
+    }
+
+    function getVerticalThumbnailList(button) {
+      const slider = button.closest('slider-component');
+
+      if (!slider) return null;
+
+      return slider.querySelector('.thumbnail-list');
+    }
+
+    function updateVerticalThumbnailButtons(slider, list) {
+      if (!slider || !list) return;
+
+      const prevButton = slider.querySelector('button[name="previous"]');
+      const nextButton = slider.querySelector('button[name="next"]');
+      const maxScrollTop = Math.max(0, list.scrollHeight - list.clientHeight);
+
+      if (prevButton) {
+        prevButton.toggleAttribute('disabled', list.scrollTop <= 1);
+      }
+
+      if (nextButton) {
+        nextButton.toggleAttribute('disabled', list.scrollTop >= maxScrollTop - 1);
+      }
+    }
+
+    function onVerticalThumbnailButtonClick(event) {
+      const button = event.target.closest('.thumbnail-slider .slider-button');
+
+      if (!button || !isRightThumbnailRail(button)) return;
+
+      const list = getVerticalThumbnailList(button);
+      const slider = button.closest('slider-component');
+      const firstItem = list && list.querySelector('.thumbnail-list__item');
+
+      if (!list || !firstItem) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      const styles = window.getComputedStyle(list);
+      const gap = parseFloat(styles.rowGap || styles.gap || 0);
+      const step = parseInt(button.dataset.step || '1', 10);
+      const direction = button.name === 'next' ? 1 : -1;
+      const distance = (firstItem.offsetHeight + gap) * step;
+
+      list.scrollBy({
+        top: direction * distance,
+        behavior: 'smooth'
+      });
+
+      window.setTimeout(function () {
+        updateVerticalThumbnailButtons(slider, list);
+      }, 350);
+    }
+
+    function initVerticalThumbnailRails(scope) {
+      const rails = (scope || document).querySelectorAll(
+        '.product--desktop-thumbs-right .thumbnail-slider'
+      );
+
+      rails.forEach(function (slider) {
+        const list = slider.querySelector('.thumbnail-list');
+
+        if (!list || slider.dataset.verticalRailInitialized === 'true') return;
+
+        slider.dataset.verticalRailInitialized = 'true';
+        updateVerticalThumbnailButtons(slider, list);
+
+        list.addEventListener('scroll', function () {
+          updateVerticalThumbnailButtons(slider, list);
+        });
+      });
+    }
+
+    document.addEventListener('click', onVerticalThumbnailButtonClick, true);
+    initVerticalThumbnailRails(document);
+
+    document.addEventListener('shopify:section:load', function (event) {
+      initVerticalThumbnailRails(event.target);
+    });
+  })();
+</script>
