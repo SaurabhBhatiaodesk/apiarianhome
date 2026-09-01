@@ -436,9 +436,10 @@
                   </p>
                 </div>
 
-                {%- if card_product.tags.size > 0 -%}
+                {%- assign custom_product_tags = card_product.metafields.custom.custom_porudct_tag.value -%}
+                {%- if custom_product_tags.size > 0 -%}
                   <p class="apiarian-pairs-well__tags">
-                    {%- for product_tag in card_product.tags limit: 3 -%}
+                    {%- for product_tag in custom_product_tags limit: 3 -%}
                       {{- product_tag | escape -}}{%- unless forloop.last -%}, {%- endunless -%}
                     {%- endfor -%}
                   </p>
