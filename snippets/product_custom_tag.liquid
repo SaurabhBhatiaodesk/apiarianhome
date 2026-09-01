@@ -28,7 +28,7 @@
 
   assign tag_background = tag_source_product.metafields.custom.product_badge_color.value
   assign tag_background = tag_background | default: '#efe8da'
-  assign tag_background_opacity = block.settings.background_opacity | default: 100 | divided_by: 100.0
+  assign tag_background_opacity = 0.5
 -%}
 
 {% if custom_product_tags != blank %}
