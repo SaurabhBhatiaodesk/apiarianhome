@@ -546,6 +546,7 @@
       "name": "Apiarian Pairs Well",
       "settings": {
         "heading": "Pairs well <em>with.</em>",
+        "products_collection": "the-collection",
         "link_prefix": "All",
         "link_suffix": "scents",
         "link_url": "shopify://collections/all",

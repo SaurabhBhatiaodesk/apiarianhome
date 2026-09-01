@@ -31,7 +31,6 @@ product-info {
 .product__price-row {
   display: flex;
   align-items: baseline;
-  flex-wrap: wrap;
   gap: 0.8rem;
 }
 
@@ -52,7 +51,7 @@ product-info {
   }
 
   .product__selected-price-meta {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
@@ -254,7 +253,7 @@ product-info {
     min-height: 54px;
 }
 .product-form__shipping-message {
-    margin: 0;
+    margin:15px 0;
     color: #6b5a3e;
     font-size: 12px;
     line-height: 1.4;

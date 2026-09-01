@@ -1,11 +1,42 @@
 {% comment %}
   Section: Apiarian Pairs Well
-  Dynamic Shopify recommended products section
-  - Shows Shopify related products only
+  Collection-based products section
+  - Shows products from the selected collection
   - Desktop grid
   - Mobile slider with pagination
   - Optional autoplay from settings
 {% endcomment %}
+
+{%- liquid
+  assign pairs_collection = section.settings.products_collection
+  assign link_product_count = pairs_collection.products_count | default: section.settings.products_limit
+  assign link_product_count_word = link_product_count
+
+  case link_product_count
+    when 0
+      assign link_product_count_word = 'zero'
+    when 1
+      assign link_product_count_word = 'one'
+    when 2
+      assign link_product_count_word = 'two'
+    when 3
+      assign link_product_count_word = 'three'
+    when 4
+      assign link_product_count_word = 'four'
+    when 5
+      assign link_product_count_word = 'five'
+    when 6
+      assign link_product_count_word = 'six'
+    when 7
+      assign link_product_count_word = 'seven'
+    when 8
+      assign link_product_count_word = 'eight'
+    when 9
+      assign link_product_count_word = 'nine'
+    when 10
+      assign link_product_count_word = 'ten'
+  endcase
+-%}
 
 {% style %}
   #shopify-section-{{ section.id }} {
@@ -66,11 +97,12 @@
 
   #shopify-section-{{ section.id }} .apiarian-pairs-well__viewport {
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   #shopify-section-{{ section.id }} .apiarian-pairs-well__track {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: {{ section.settings.card_gap }}px;
     transition: transform .4s ease;
     will-change: transform;
@@ -232,8 +264,16 @@
   }
 
   @media screen and (max-width: 989px) and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .apiarian-pairs-well__track {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     #shopify-section-{{ section.id }} .apiarian-pairs-well__card {
-      flex-basis: calc((100% - {{ section.settings.card_gap }}px) / 2);
+      flex-basis: auto;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-pairs-well__pagination {
+      display: none;
     }
   }
 
@@ -257,7 +297,12 @@
       font-size: {{ section.settings.mobile_link_size }}px;
     }
 
+    #shopify-section-{{ section.id }} .apiarian-pairs-well__viewport {
+      overflow: hidden;
+    }
+
     #shopify-section-{{ section.id }} .apiarian-pairs-well__track {
+      display: flex;
       gap: {{ section.settings.mobile_card_gap }}px;
     }
 
@@ -286,6 +331,12 @@
 
   }
 
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .apiarian-pairs-well__pagination {
+      display: none;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #shopify-section-{{ section.id }} .apiarian-pairs-well.is-animation-ready .apiarian-pairs-well__header,
     #shopify-section-{{ section.id }} .apiarian-pairs-well.is-animation-ready .apiarian-pairs-well__viewport,
@@ -304,12 +355,6 @@
 <section
   class="apiarian-pairs-well"
   data-apiarian-pairs-well
-  data-product-id="{{ product.id }}"
-  data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
-  data-price-prefix="{{ section.settings.price_prefix | escape }}"
-  data-link-prefix="{{ section.settings.link_prefix | escape }}"
-  data-link-suffix="{{ section.settings.link_suffix | escape }}"
-  data-products-limit="{{ section.settings.products_limit }}"
   data-mobile-breakpoint="749"
   data-autoplay="{{ section.settings.enable_autoplay }}"
   data-autoplay-speed="{{ section.settings.autoplay_speed }}"
@@ -323,18 +368,86 @@
       {% endif %}
 
       <a
-        href="{% if section.settings.link_url != blank %}{{ section.settings.link_url }}{% else %}#pdp{% endif %}"
+        href="{% if section.settings.link_url != blank %}{{ section.settings.link_url }}{% elsif pairs_collection != blank %}{{ pairs_collection.url }}{% else %}#pdp{% endif %}"
         class="apiarian-pairs-well__link"
         data-pairs-link
       >
         <span data-pairs-link-text>
-          {{ section.settings.link_prefix }} {{ section.settings.products_limit | default: 5 }} {{ section.settings.link_suffix }}
+          {{ section.settings.link_prefix }} {{ link_product_count_word }} {{ section.settings.link_suffix }}
         </span>
       </a>
     </div>
 
     <div class="apiarian-pairs-well__viewport" data-pairs-viewport>
-      <div class="apiarian-pairs-well__track" data-recommended-products></div>
+      <div class="apiarian-pairs-well__track" data-recommended-products>
+        {%- if pairs_collection != blank -%}
+          {%- assign rendered_products = 0 -%}
+          {%- for card_product in pairs_collection.products -%}
+            {%- if rendered_products >= section.settings.products_limit -%}
+              {%- break -%}
+            {%- endif -%}
+
+            {%- if product != blank and card_product.id == product.id -%}
+              {%- continue -%}
+            {%- endif -%}
+
+            {%- assign rendered_products = rendered_products | plus: 1 -%}
+            {%- assign primary_image = card_product.featured_image -%}
+            {%- assign preview_image = card_product.images[1] -%}
+
+            <a
+              href="{{ card_product.url }}"
+              class="apiarian-pairs-well__card{% if preview_image != blank %} has-preview-image{% endif %}"
+            >
+              <div class="apiarian-pairs-well__media">
+                {%- if primary_image != blank -%}
+                  {{
+                    primary_image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '320, 480, 640, 800, 900',
+                      class: 'apiarian-pairs-well__image apiarian-pairs-well__image--primary',
+                      alt: card_product.title
+                  }}
+                {%- endif -%}
+
+                {%- if preview_image != blank -%}
+                  {{
+                    preview_image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '320, 480, 640, 800, 900',
+                      class: 'apiarian-pairs-well__image apiarian-pairs-well__image--preview',
+                      alt: ''
+                  }}
+                {%- endif -%}
+              </div>
+
+              <div class="apiarian-pairs-well__content">
+                <div class="apiarian-pairs-well__meta">
+                  <h3 class="apiarian-pairs-well__title">
+                    {{ card_product.title | escape }}
+                  </h3>
+
+                  <p class="apiarian-pairs-well__price">
+                    {{ section.settings.price_prefix }}{{ card_product.price_min | money_without_trailing_zeros }}
+                  </p>
+                </div>
+
+                {%- if card_product.tags.size > 0 -%}
+                  <p class="apiarian-pairs-well__tags">
+                    {%- for product_tag in card_product.tags limit: 3 -%}
+                      {{- product_tag | escape -}}{%- unless forloop.last -%}, {%- endunless -%}
+                    {%- endfor -%}
+                  </p>
+                {%- endif -%}
+              </div>
+            </a>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
     </div>
 
     <div class="apiarian-pairs-well__pagination" data-pairs-pagination></div>
@@ -351,181 +464,21 @@
       if (!root || root.dataset.initialized === 'true') return;
       root.dataset.initialized = 'true';
 
-      const productId = root.dataset.productId;
       const grid = root.querySelector('[data-recommended-products]');
       const viewport = root.querySelector('[data-pairs-viewport]');
       const pagination = root.querySelector('[data-pairs-pagination]');
-      const linkText = root.querySelector('[data-pairs-link-text]');
 
-      if (!productId || !grid) {
+      if (!grid) {
         root.hidden = true;
         return;
       }
 
-      const currency = root.dataset.currency || 'USD';
-      const pricePrefix = root.dataset.pricePrefix || '';
-      const linkPrefix = root.dataset.linkPrefix || '';
-      const linkSuffix = root.dataset.linkSuffix || '';
-      const productsLimit = parseInt(root.dataset.productsLimit || '5', 10);
-      const mobileBreakpoint = parseInt(root.dataset.mobileBreakpoint || '749', 10);
       const autoplayEnabled = root.dataset.autoplay === 'true';
       const autoplaySpeed = parseInt(root.dataset.autoplaySpeed || '4', 10) * 1000;
 
       let sliderIndex = 0;
       let autoplayTimer = null;
       let cards = [];
-
-      function numberToWord(value) {
-        const words = {
-          0: 'zero',
-          1: 'one',
-          2: 'two',
-          3: 'three',
-          4: 'four',
-          5: 'five',
-          6: 'six',
-          7: 'seven',
-          8: 'eight',
-          9: 'nine',
-          10: 'ten'
-        };
-
-        return words[value] || String(value);
-      }
-
-      function updateLinkCount(count) {
-        if (!linkText) return;
-       linkText.textContent = linkPrefix.trim() + ' ' + numberToWord(count) + ' ' + linkSuffix.trim();
-      }
-
-      function formatMoney(cents) {
-        const amount = Number(cents || 0) / 100;
-
-        try {
-          return new Intl.NumberFormat(
-            document.documentElement.lang || 'en-US',
-            {
-              style: 'currency',
-              currency: currency,
-              minimumFractionDigits: amount % 1 === 0 ? 0 : 2,
-              maximumFractionDigits: 2
-            }
-          ).format(amount);
-        } catch (error) {
-          return '$' + amount.toFixed(2);
-        }
-      }
-
-      function normaliseImageSource(image) {
-        if (!image) return '';
-
-        if (typeof image === 'string') {
-          return image;
-        }
-
-        if (typeof image === 'object') {
-          return image.src || image.url || '';
-        }
-
-        return '';
-      }
-
-      function getProductImages(item) {
-        const imageSources = [];
-
-        const featuredImage = normaliseImageSource(item.featured_image);
-
-        if (featuredImage) {
-          imageSources.push(featuredImage);
-        }
-
-        if (Array.isArray(item.images)) {
-          item.images.forEach(function (image) {
-            const source = normaliseImageSource(image);
-
-            if (source && imageSources.indexOf(source) === -1) {
-              imageSources.push(source);
-            }
-          });
-        }
-
-        return {
-          primary: imageSources[0] || '',
-          preview: imageSources[1] || ''
-        };
-      }
-
-      function createCard(item) {
-        const card = document.createElement('a');
-        card.className = 'apiarian-pairs-well__card';
-        card.href = item.url;
-
-        const media = document.createElement('div');
-        media.className = 'apiarian-pairs-well__media';
-
-        const productImages = getProductImages(item);
-
-        if (productImages.primary) {
-          const image = document.createElement('img');
-          image.className =
-            'apiarian-pairs-well__image apiarian-pairs-well__image--primary';
-          image.src = productImages.primary;
-          image.alt = item.title || '';
-          image.loading = 'lazy';
-          image.decoding = 'async';
-          media.appendChild(image);
-        }
-
-        if (productImages.preview) {
-          const previewImage = document.createElement('img');
-          previewImage.className =
-            'apiarian-pairs-well__image apiarian-pairs-well__image--preview';
-          previewImage.src = productImages.preview;
-          previewImage.alt = '';
-          previewImage.loading = 'lazy';
-          previewImage.decoding = 'async';
-          previewImage.setAttribute('aria-hidden', 'true');
-
-          media.appendChild(previewImage);
-          card.classList.add('has-preview-image');
-        }
-
-        const content = document.createElement('div');
-        content.className = 'apiarian-pairs-well__content';
-
-        const meta = document.createElement('div');
-        meta.className = 'apiarian-pairs-well__meta';
-
-        const title = document.createElement('h3');
-        title.className = 'apiarian-pairs-well__title';
-        title.textContent = item.title || '';
-
-        const price = document.createElement('p');
-        price.className = 'apiarian-pairs-well__price';
-
-        const productPrice =
-          item.price_min !== undefined
-            ? item.price_min
-            : item.price;
-
-        price.textContent = pricePrefix + formatMoney(productPrice);
-
-        meta.appendChild(title);
-        meta.appendChild(price);
-        content.appendChild(meta);
-
-        if (Array.isArray(item.tags) && item.tags.length) {
-          const tags = document.createElement('p');
-          tags.className = 'apiarian-pairs-well__tags';
-          tags.textContent = item.tags.slice(0, 3).join(', ');
-          content.appendChild(tags);
-        }
-
-        card.appendChild(media);
-        card.appendChild(content);
-
-        return card;
-      }
 
       function clearAutoplay() {
         if (autoplayTimer) {
@@ -592,6 +545,15 @@
 
         const perView = getPerView();
         const pageCount = getPageCount();
+
+        if (window.innerWidth > 749) {
+          grid.style.transform = '';
+          if (pagination) {
+            pagination.classList.remove('is-visible');
+            pagination.innerHTML = '';
+          }
+          return;
+        }
 
         if (sliderIndex > pageCount - 1) {
           sliderIndex = pageCount - 1;
@@ -729,51 +691,19 @@
         );
       }
 
-      const url =
-        window.Shopify.routes.root +
-        'recommendations/products.json?product_id=' +
-        encodeURIComponent(productId) +
-        '&limit=' + encodeURIComponent(productsLimit) +
-        '&intent=related';
+      cards = Array.from(
+        grid.querySelectorAll('.apiarian-pairs-well__card')
+      );
 
-      fetch(url)
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error('Unable to load recommended products');
-          }
+      if (!cards.length) {
+        root.hidden = true;
+        return;
+      }
 
-          return response.json();
-        })
-        .then(function (data) {
-          const products =
-            Array.isArray(data.products)
-              ? data.products.filter(function (item) {
-                  return String(item.id) !== String(productId);
-                })
-              : [];
-
-          if (!products.length) {
-            root.hidden = true;
-            return;
-          }
-
-          products.forEach(function (item) {
-            grid.appendChild(createCard(item));
-          });
-
-          cards = Array.from(
-            grid.querySelectorAll('.apiarian-pairs-well__card')
-          );
-
-          updateLinkCount(cards.length);
-          sliderIndex = 0;
-          updateSlider();
-          bindSliderEvents();
-          restartAutoplay();
-        })
-        .catch(function () {
-          root.hidden = true;
-        });
+      sliderIndex = 0;
+      updateSlider();
+      bindSliderEvents();
+      restartAutoplay();
 
       let resizeTimer = null;
       window.addEventListener('resize', function () {
@@ -832,10 +762,8 @@
           root.hidden = false;
           root.classList.remove('is-animation-ready', 'is-visible');
 
-          const grid = root.querySelector('[data-recommended-products]');
           const pagination = root.querySelector('[data-pairs-pagination]');
 
-          if (grid) grid.innerHTML = '';
           if (pagination) pagination.innerHTML = '';
         }
 
@@ -858,6 +786,11 @@
       "id": "heading",
       "label": "Heading",
       "default": "Pairs well <em>with.</em>"
+    },
+    {
+      "type": "collection",
+      "id": "products_collection",
+      "label": "Products collection"
     },
     {
       "type": "text",
