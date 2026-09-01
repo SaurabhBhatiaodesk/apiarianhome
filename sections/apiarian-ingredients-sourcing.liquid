@@ -50,6 +50,10 @@
     font-weight: 400;
   }
 
+  #shopify-section-{{ section.id }} .apiarian-ingredients__heading p {
+    margin: 0;
+  }
+
   #shopify-section-{{ section.id }} .apiarian-ingredients__text {
     max-width: 610px;
     margin: 0;
@@ -219,9 +223,9 @@
       {% endif %}
 
       {% if section.settings.heading != blank %}
-        <h2 class="apiarian-ingredients__heading">
+        <div class="apiarian-ingredients__heading">
           {{ section.settings.heading }}
-        </h2>
+        </div>
       {% endif %}
 
       {% if section.settings.text != blank %}
@@ -317,10 +321,10 @@
       "default": "INGREDIENTS & SOURCING"
     },
     {
-      "type": "inline_richtext",
+      "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Four things, <em>nothing hidden.</em>"
+      "default": "<p>Four things, <em>nothing hidden.</em></p>"
     },
     {
       "type": "richtext",
