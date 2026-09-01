@@ -355,13 +355,14 @@
       const prevButton = slider.querySelector('button[name="previous"]');
       const nextButton = slider.querySelector('button[name="next"]');
       const maxScrollTop = Math.max(0, list.scrollHeight - list.clientHeight);
+      const hasOverflow = maxScrollTop > 1;
 
       if (prevButton) {
-        prevButton.toggleAttribute('disabled', list.scrollTop <= 1);
+        prevButton.toggleAttribute('disabled', !hasOverflow || list.scrollTop <= 1);
       }
 
       if (nextButton) {
-        nextButton.toggleAttribute('disabled', list.scrollTop >= maxScrollTop - 1);
+        nextButton.toggleAttribute('disabled', !hasOverflow || list.scrollTop >= maxScrollTop - 1);
       }
     }
 
@@ -386,9 +387,7 @@
       }
     }
 
-    function onVerticalThumbnailButtonClick(event) {
-      const button = event.target.closest('.thumbnail-slider .slider-button');
-
+    function scrollVerticalThumbnailRail(button, event) {
       if (!button || !isRightThumbnailRail(button)) return;
 
       const list = getVerticalThumbnailList(button);
@@ -416,6 +415,12 @@
       }, 350);
     }
 
+    function onVerticalThumbnailButtonClick(event) {
+      const button = event.target.closest('.thumbnail-slider .slider-button');
+
+      scrollVerticalThumbnailRail(button, event);
+    }
+
     function initVerticalThumbnailRails(scope) {
       const rails = (scope || document).querySelectorAll(
         '.product--desktop-thumbs-right .thumbnail-slider'
@@ -437,6 +442,18 @@
           updateVerticalThumbnailButtons(slider, list);
         });
 
+        slider
+          .querySelectorAll('.slider-button')
+          .forEach(function (button) {
+            button.addEventListener(
+              'click',
+              function (event) {
+                scrollVerticalThumbnailRail(button, event);
+              },
+              true
+            );
+          });
+
         const product = slider.closest('.product--desktop-thumbs-right');
         const viewer = product && product.querySelector('[id^="GalleryViewer-"]');
 
@@ -457,6 +474,11 @@
             });
           });
         }
+
+        window.setTimeout(function () {
+          syncVerticalThumbnailRailHeight(slider);
+          updateVerticalThumbnailButtons(slider, list);
+        }, 250);
       });
     }
 
