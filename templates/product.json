@@ -481,7 +481,7 @@
         "card_title_bottom_spacing": 6,
         "mobile_spacing_top": 50,
         "mobile_spacing_bottom": 50,
-        "mobile_heading_size": 38,
+        "mobile_heading_size": 35,
         "mobile_eyebrow_size": 13,
         "mobile_eyebrow_letter_spacing": 4,
         "mobile_text_size": 16,
@@ -661,7 +661,7 @@
         "mobile_padding_bottom": 50,
         "mobile_eyebrow_size": 12,
         "mobile_eyebrow_letter_spacing": 4,
-        "mobile_heading_size": 30,
+        "mobile_heading_size": 35,
         "mobile_question_size": 18,
         "mobile_answer_size": 15
       }
