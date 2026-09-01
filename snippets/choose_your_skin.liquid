@@ -2,6 +2,7 @@
   CHOOSE YOUR SCENT 
   Select up to 5 scent products from block settings.
   Swatch backgrounds come from product metafield: custom.product_badge_color.
+  Selected swatch background comes from the role metaobject background color.
 {% endcomment %} 
 
 <style> 
@@ -261,6 +262,57 @@
           if scent_product.id == product.id or scent_compare_product.id == current_compare_product.id
             assign is_selected = true
           endif
+
+          assign role_swatch_background = blank
+
+          if is_selected
+            assign role_metafield = scent_compare_product.metafields.custom.the_role_in_the_colony
+
+            if role_metafield == blank
+              assign role_metafield = scent_compare_product.metafields.custom.the_role_in_colony
+            endif
+
+            if role_metafield == blank
+              assign role_metafield = scent_compare_product.metafields.custom.role_in_the_colony
+            endif
+
+            assign role_entry = blank
+
+            if role_metafield != blank
+              assign role_metaobject_type = 'the_role_in_the_colony'
+
+              if role_metafield.type contains 'list.metaobject_reference'
+                assign role_entry = role_metafield.value | first
+              elsif role_metafield.type contains 'metaobject_reference'
+                assign role_entry = role_metafield.value
+              else
+                assign role_raw_value = role_metafield.value
+
+                if role_raw_value != blank
+                  assign role_raw_handle = role_raw_value | handleize
+                  assign role_entry = shop.metaobjects[role_metaobject_type][role_raw_value]
+
+                  if role_entry == blank
+                    assign role_entry = shop.metaobjects[role_metaobject_type][role_raw_handle]
+                  endif
+                endif
+              endif
+            endif
+
+            if role_entry != blank
+              assign role_swatch_background = role_entry.background_color.value
+
+              if role_swatch_background == blank
+                assign role_swatch_background = role_entry.backround_color.value
+              endif
+            endif
+          endif
+
+          if is_selected and role_swatch_background != blank
+            assign scent_swatch_background = role_swatch_background
+          else
+            assign scent_swatch_background = scent_badge_color
+          endif
         -%}
 
             <a
@@ -271,8 +323,8 @@
               <span class="choose-your-scent-{{ block.id }}__media-wrap">
                 <span
                   class="choose-your-scent-{{ block.id }}__media"
-                  {% if scent_badge_color != blank %}
-                    style="background: {{ scent_badge_color }};"
+                  {% if scent_swatch_background != blank %}
+                    style="background: {{ scent_swatch_background }};"
                   {% endif %}
                 ></span>
               </span>
