@@ -551,7 +551,7 @@
         "link_suffix": "scents",
         "link_url": "shopify://collections/all",
         "price_prefix": "From",
-        "products_limit": 5,
+        "products_limit": 3,
         "section_background": "#fffcf6",
         "heading_color": "#2a2118",
         "link_color": "#2a2118",
