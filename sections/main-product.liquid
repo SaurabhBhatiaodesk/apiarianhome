@@ -179,7 +179,7 @@
                   endif
 
                   assign selected_price_option = selected_price_option | split: '/' | first | strip
-                  assign selected_price_descriptor = product.metafields.custom.price_descriptor.value | default: product.type | strip | downcase
+                  assign selected_price_descriptor = product.metafields.custom.price_descriptor.value | default: product.type | default: 'beeswax-infused home fragrance' | strip | downcase
                 -%}
                 <div id="price-{{ section.id }}" class="product__price-row" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',

@@ -38,12 +38,12 @@ product-info {
 .product__price-row .price {
   margin: 0;
 }
-
 .product__selected-price-meta {
-  color: #6d5942;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.3;
+    color: rgb(107, 90, 62);
+    font-size: 14.4326px;
+    font-weight: 400;
+    font-family: Jost, sans-serif;
+    line-height: 1.3;
 }
 
 @media screen and (max-width: 749px) {
