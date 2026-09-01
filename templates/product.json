@@ -20,11 +20,11 @@
           "type": "choose_your_skin",
           "settings": {
             "products": [
-              "brood",
-              "drone",
               "hive",
-              "queen",
-              "worker"
+              "brood",
+              "worker",
+              "drone",
+              "queen"
             ],
             "heading": "CHOOSE YOUR SCENT",
             "count_text": "in the colony",
