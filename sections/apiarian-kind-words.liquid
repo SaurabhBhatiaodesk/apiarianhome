@@ -340,7 +340,11 @@
         </p>
       {% endif %}
 
-      {% if section.settings.heading != blank %}
+      {% if product != blank and section.settings.use_product_title_heading %}
+        <div class="apiarian-reviews__heading">
+          What people notice <em>about {{ product.title | escape }}.</em>
+        </div>
+      {% elsif section.settings.heading != blank %}
         <div class="apiarian-reviews__heading">
           {{ section.settings.heading }}
         </div>
@@ -804,6 +808,12 @@
       "id": "heading",
       "label": "Heading",
       "default": "What people notice <em>first.</em>"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_product_title_heading",
+      "label": "Use product title in heading on product pages",
+      "default": true
     },
     {
       "type": "image_picker",
