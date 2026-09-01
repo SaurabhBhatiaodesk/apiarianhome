@@ -2007,6 +2007,10 @@ input[type='checkbox'] {
   margin-top: 0;
   margin-bottom: 0;
 }
+.section-apiarian-breadcrumbs{
+  position: relative;
+  z-index: 1;
+}
 
 .quantity__rules .divider + .divider::before {
   content: '\2022';
