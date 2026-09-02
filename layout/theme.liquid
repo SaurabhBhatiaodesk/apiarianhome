@@ -504,5 +504,17 @@
     });
   }, 800);
 </script>
+
+<script>
+  window.setTimeout(() => {
+    document.querySelectorAll('.template-product #MainContent .pdp-notes__row-title').forEach((heading) => {
+      if (heading.tagName === 'H2') return;
+      const replacement = document.createElement('h2');
+      Array.from(heading.attributes).forEach((attribute) => replacement.setAttribute(attribute.name, attribute.value));
+      while (heading.firstChild) replacement.appendChild(heading.firstChild);
+      heading.replaceWith(replacement);
+    });
+  }, 900);
+</script>
 </body>
 </html>
