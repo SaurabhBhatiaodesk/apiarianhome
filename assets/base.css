@@ -4627,3 +4627,126 @@ summary:focus-visible,
   }
 }
 
+
+
+/* Rich-text tables, lists, quotes, dividers, and embeds */
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) table {
+  width: 100%;
+  border: 0.1rem solid rgba(42, 33, 24, 0.18);
+  border-radius: 1.2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fffcf6;
+  font-size: 1.4rem;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) :is(th, td) {
+  min-width: 14rem;
+  padding: 1.4rem 1.6rem;
+  border: 0;
+  border-bottom: 0.1rem solid rgba(42, 33, 24, 0.14);
+  text-align: left;
+  vertical-align: top;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) th {
+  background: rgba(240, 213, 140, 0.38);
+  color: #2a2118;
+  font-weight: 600;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) tr:last-child td {
+  border-bottom: 0;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) li {
+  padding-left: 0.4rem;
+  line-height: 1.7;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) li::marker {
+  color: #b7813c;
+  font-weight: 600;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) :is(ul, ol) :is(ul, ol) {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) blockquote {
+  border-radius: 0 1.2rem 1.2rem 0;
+  color: rgba(42, 33, 24, 0.86);
+  box-shadow: 0 0.8rem 2.4rem rgba(42, 33, 24, 0.07);
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) blockquote > :first-child {
+  margin-top: 0;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) blockquote cite {
+  display: block;
+  margin-top: 1.2rem;
+  color: rgba(42, 33, 24, 0.68);
+  font-size: 0.9em;
+  font-style: normal;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) hr {
+  height: 0;
+  border: 0;
+  border-top: 0.1rem solid rgba(42, 33, 24, 0.22);
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) :is(iframe, video, embed, object) {
+  display: block;
+  width: 100%;
+  max-width: 70rem;
+  margin: 3.2rem auto;
+  border: 0;
+  border-radius: 1.2rem;
+  background: #f7eddd;
+  overflow: hidden;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) :is(iframe, embed, object) {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  min-height: 28rem;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) video {
+  height: auto;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) figure {
+  max-width: 70rem;
+}
+
+:is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) figcaption {
+  margin-top: 1rem;
+  color: rgba(42, 33, 24, 0.68);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@media screen and (max-width: 749px) {
+  :is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) table {
+    font-size: 1.2rem;
+  }
+
+  :is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) :is(th, td) {
+    min-width: 12rem;
+    padding: 1.1rem 1.2rem;
+  }
+
+  :is(.template-page #MainContent .page-width--narrow .rte, .template-article #MainContent .article-template__content.rte) :is(iframe, embed, object) {
+    min-height: 20rem;
+  }
+}
+
