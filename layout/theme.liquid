@@ -376,5 +376,91 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-  </body>
+  
+  <script>
+  (() => {
+    const enhanceAccessibility = () => {
+      const main = document.getElementById('MainContent');
+      if (!main) return;
+
+      const templateClass = Array.from(document.body.classList).find((name) => name.indexOf('template-') === 0);
+      const needsPageHeading = ['template-index', 'template-collection', 'template-blog'].includes(templateClass);
+
+      if (needsPageHeading && !main.querySelector('h1')) {
+        const heading = document.createElement('h1');
+        heading.className = 'visually-hidden';
+        heading.textContent = document.title.split('–')[0].split('|')[0].trim();
+        main.prepend(heading);
+      }
+
+      const replaceHeading = (heading, level) => {
+        const replacement = document.createElement('h' + level);
+        Array.from(heading.attributes).forEach((attribute) => replacement.setAttribute(attribute.name, attribute.value));
+        while (heading.firstChild) replacement.appendChild(heading.firstChild);
+        heading.replaceWith(replacement);
+        return replacement;
+      };
+
+      let previousLevel = 0;
+      Array.from(main.querySelectorAll('h1, h2, h3, h4, h5, h6')).forEach((heading) => {
+        let level = Number(heading.tagName.slice(1));
+        if (previousLevel && level > previousLevel + 1) {
+          level = previousLevel + 1;
+          heading = replaceHeading(heading, level);
+        }
+        previousLevel = level;
+      });
+
+      const altMap = [
+        ['3e8a6446', 'Netta Caligari, founder of The Apiarian Home'],
+        ['netta-caligari-headshot', 'Netta Caligari'],
+        ['harvest_bounty', 'The Apiarian Home fragrance collection'],
+        ['discovery_set_on_beeswax', 'Colony Discovery Set fragrance vials on beeswax'],
+        ['hive_100ml_50ml', 'Hive fragrance bottles in 50 mL and 100 mL sizes'],
+        ['brood_100ml_50ml', 'Brood fragrance bottles in 50 mL and 100 mL sizes'],
+        ['worker_100ml_50ml', 'Worker fragrance bottles in 50 mL and 100 mL sizes'],
+        ['drone_100ml_50ml', 'Drone fragrance bottles in 50 mL and 100 mL sizes'],
+        ['queen_100ml_50ml', 'Queen fragrance bottles in 50 mL and 100 mL sizes'],
+        ['all_fragrances', 'The complete Apiarian Home fragrance collection'],
+        ['apiarian_home_26_10', 'Hive beeswax room spray'],
+        ['apiarian_home_26_22', 'Queen beeswax room spray'],
+        ['apiarian_home_26_20', 'Drone beeswax room spray'],
+        ['apiarian_home_26_17', 'Worker beeswax room spray'],
+        ['9979c609', 'Honeybee hive frame representing the Hive fragrance'],
+        ['pxl_20260720_154133306', 'Honeybees gathered on a hive frame'],
+        ['pxl_20260720_161038069', 'A close view inside the honeybee hive']
+      ];
+
+      main.querySelectorAll('img').forEach((image) => {
+        if (image.hasAttribute('alt') && image.getAttribute('alt').trim()) return;
+
+        const source = (image.currentSrc || image.src || '').toLowerCase();
+        const mapped = altMap.find(([key]) => source.includes(key));
+        let alternative = mapped ? mapped[1] : '';
+
+        if (!alternative) {
+          const card = image.closest('a, article, .card, .apiarian-product-card');
+          const cardHeading = card && card.querySelector('h2, h3, .card__heading');
+          const section = image.closest('section, .image-with-text, article');
+          const sectionHeading = section && section.querySelector('h1, h2, h3');
+
+          if (cardHeading) {
+            alternative = cardHeading.textContent.trim();
+          } else if (sectionHeading && image.getBoundingClientRect().width > 140) {
+            alternative = sectionHeading.textContent.trim();
+          }
+        }
+
+        image.setAttribute('alt', alternative);
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', enhanceAccessibility);
+    } else {
+      enhanceAccessibility();
+    }
+  })();
+</script>
+</body>
 </html>
