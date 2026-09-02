@@ -4914,3 +4914,37 @@ summary:focus-visible,
 }
 
 }
+
+
+
+/* Enforce the shared media system over legacy component values */
+.apiarian-product-card__media,
+.product__media,
+.thumbnail,
+.apiarian-discovery-set__media,
+.apiarian-role-split__media,
+.image-with-text__media,
+.template-collection .card__inner,
+.template-blog .card__inner,
+.template-article .card__inner {
+  border-radius: var(--apiarian-media-radius) !important;
+}
+
+.thumbnail {
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+.template-page #MainContent .page-width--narrow .rte img,
+.template-article #MainContent .article-template__content.rte img {
+  float: none !important;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--apiarian-media-radius);
+}
+
+.template-page #MainContent .page-width--narrow .rte img:not(figure img),
+.template-article #MainContent .article-template__content.rte img:not(figure img) {
+  display: block;
+  margin: var(--apiarian-media-spacing) auto !important;
+}
