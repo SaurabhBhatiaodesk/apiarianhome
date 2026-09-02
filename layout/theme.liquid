@@ -462,5 +462,47 @@
     }
   })();
 </script>
+
+<script>
+  window.setTimeout(() => {
+    const main = document.getElementById('MainContent');
+    if (!main) return;
+
+    const replaceHeading = (heading, level) => {
+      const replacement = document.createElement('h' + level);
+      Array.from(heading.attributes).forEach((attribute) => replacement.setAttribute(attribute.name, attribute.value));
+      while (heading.firstChild) replacement.appendChild(heading.firstChild);
+      heading.replaceWith(replacement);
+      return replacement;
+    };
+
+    let previousLevel = 0;
+    Array.from(main.querySelectorAll('h1, h2, h3, h4, h5, h6')).forEach((heading) => {
+      let level = Number(heading.tagName.slice(1));
+      if (previousLevel && level > previousLevel + 1) {
+        level = previousLevel + 1;
+        heading = replaceHeading(heading, level);
+      }
+      previousLevel = level;
+    });
+
+    const sectionAlternatives = [
+      ['.apiarian-stats-bar-section', ['Honeycomb and botanical imagery representing the natural Apiarian formulas']],
+      ['.apiarian-discovery-feature', ['The Colony Discovery Set with five fragrance samples']],
+      ['.apiarian-apitherapy', ['Netta Caligari practicing apitherapy', 'Honeybee products used in apitherapy']],
+      ['.apiarian-impact', ['Honeybees and wildflowers representing pollinator conservation']]
+    ];
+
+    sectionAlternatives.forEach(([selector, alternatives]) => {
+      const section = main.querySelector(selector);
+      if (!section) return;
+      Array.from(section.querySelectorAll('img')).filter((image) => image.getBoundingClientRect().width > 140).forEach((image, index) => {
+        if (!image.getAttribute('alt')) {
+          image.setAttribute('alt', alternatives[index] || alternatives[alternatives.length - 1]);
+        }
+      });
+    });
+  }, 800);
+</script>
 </body>
 </html>
