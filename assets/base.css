@@ -4384,3 +4384,246 @@ body:not(.template-index) main {
     font-size: 1.65rem;
   }
 }
+
+
+/* Unified buttons, text links, and interaction states */
+.button:not(.skip-to-content-link),
+.shopify-challenge__button,
+.customer button,
+.shopify-payment-button__button--unbranded,
+.apiarian-product-card__button,
+.apiarian-newsletter__button,
+.apiarian-discovery-set__button {
+  min-height: 5.2rem;
+  padding: 1.3rem 2.6rem;
+  border: 0.1rem solid #2a2118;
+  border-radius: 999px;
+  font-family: var(--font-body-family);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.button:not(.button--secondary):not(.button--tertiary):not(.skip-to-content-link),
+.shopify-challenge__button,
+.customer button,
+.shopify-payment-button__button--unbranded,
+.apiarian-product-card__button,
+.apiarian-newsletter__button {
+  background: #2a2118;
+  color: #fffcf6;
+}
+
+.button--secondary,
+.apiarian-discovery-set__button {
+  background: #f0d58c;
+  color: #2a2118;
+  border-color: #2a2118;
+}
+
+.button:not(.skip-to-content-link)::after {
+  box-shadow: none;
+}
+
+.button:not(.skip-to-content-link):not([disabled]):hover,
+.shopify-challenge__button:hover,
+.customer button:not([disabled]):hover,
+.shopify-payment-button__button--unbranded:hover,
+.apiarian-product-card__button:not([disabled]):hover,
+.apiarian-newsletter__button:not([disabled]):hover {
+  background: #f0d58c;
+  color: #2a2118;
+  border-color: #2a2118;
+  box-shadow: 0 0.6rem 1.6rem rgba(42, 33, 24, 0.16);
+  transform: translateY(-0.1rem);
+}
+
+.button--secondary:not([disabled]):hover,
+.apiarian-discovery-set__button:not([disabled]):hover {
+  background: #2a2118;
+  color: #fffcf6;
+  border-color: #2a2118;
+}
+
+.button[disabled],
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+#MainContent .rte a,
+#MainContent .link:not(.button),
+#MainContent .underlined-link,
+.article-template__link,
+.customer a,
+.facets__reset {
+  color: #2a2118;
+  text-decoration-line: underline;
+  text-decoration-color: #b7813c;
+  text-decoration-thickness: 0.1rem;
+  text-underline-offset: 0.3rem;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+#MainContent .rte a:hover,
+#MainContent .link:not(.button):hover,
+#MainContent .underlined-link:hover,
+.article-template__link:hover,
+.customer a:hover,
+.facets__reset:hover {
+  color: #6a4b2f;
+  text-decoration-color: #2a2118;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 0.2rem solid #2a2118;
+  outline-offset: 0.3rem;
+  box-shadow: 0 0 0 0.3rem #fffcf6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  button,
+  a {
+    transition-duration: 0.01ms;
+  }
+
+  .button:hover,
+  button:hover {
+    transform: none;
+  }
+}
+
+
+/* Unified buttons, text links, and interaction states */
+.button:not(.skip-to-content-link),
+.shopify-challenge__button,
+.customer button,
+.shopify-payment-button__button--unbranded,
+.apiarian-product-card__button,
+.apiarian-newsletter__button,
+.apiarian-discovery-set__button {
+  min-height: 5.2rem;
+  padding: 1.3rem 2.6rem;
+  border: 0.1rem solid #2a2118;
+  border-radius: 999px;
+  font-family: var(--font-body-family);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.button:not(.button--secondary):not(.button--tertiary):not(.skip-to-content-link),
+.shopify-challenge__button,
+.customer button,
+.shopify-payment-button__button--unbranded,
+.apiarian-product-card__button,
+.apiarian-newsletter__button {
+  background: #2a2118;
+  color: #fffcf6;
+}
+
+.button--secondary,
+.apiarian-discovery-set__button {
+  background: #f0d58c;
+  color: #2a2118;
+  border-color: #2a2118;
+}
+
+.button:not(.skip-to-content-link)::after {
+  box-shadow: none;
+}
+
+.button:not(.skip-to-content-link):not([disabled]):hover,
+.shopify-challenge__button:hover,
+.customer button:not([disabled]):hover,
+.shopify-payment-button__button--unbranded:hover,
+.apiarian-product-card__button:not([disabled]):hover,
+.apiarian-newsletter__button:not([disabled]):hover {
+  background: #f0d58c;
+  color: #2a2118;
+  border-color: #2a2118;
+  box-shadow: 0 0.6rem 1.6rem rgba(42, 33, 24, 0.16);
+  transform: translateY(-0.1rem);
+}
+
+.button--secondary:not([disabled]):hover,
+.apiarian-discovery-set__button:not([disabled]):hover {
+  background: #2a2118;
+  color: #fffcf6;
+  border-color: #2a2118;
+}
+
+.button[disabled],
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+#MainContent .rte a,
+#MainContent .link:not(.button),
+#MainContent .underlined-link,
+.article-template__link,
+.customer a,
+.facets__reset {
+  color: #2a2118;
+  text-decoration-line: underline;
+  text-decoration-color: #b7813c;
+  text-decoration-thickness: 0.1rem;
+  text-underline-offset: 0.3rem;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+#MainContent .rte a:hover,
+#MainContent .link:not(.button):hover,
+#MainContent .underlined-link:hover,
+.article-template__link:hover,
+.customer a:hover,
+.facets__reset:hover {
+  color: #6a4b2f;
+  text-decoration-color: #2a2118;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 0.2rem solid #2a2118;
+  outline-offset: 0.3rem;
+  box-shadow: 0 0 0 0.3rem #fffcf6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  button,
+  a {
+    transition-duration: 0.01ms;
+  }
+
+  .button:hover,
+  button:hover {
+    transform: none;
+  }
+}
+
