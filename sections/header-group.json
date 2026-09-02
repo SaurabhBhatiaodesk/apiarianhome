@@ -34,7 +34,6 @@
     },
     "apiarian_header_YfPrtc": {
       "type": "apiarian-header",
-      "disabled": true,
       "name": "Apiarian header",
       "settings": {
         "logo_text": "The Apiarian Home",
