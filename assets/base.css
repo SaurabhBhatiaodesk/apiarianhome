@@ -4038,3 +4038,89 @@ body:not(.template-index) main {
     font-size: 3.6rem !important;
   }
 }
+
+/* Cream-and-brown colour system for non-product storefront templates */
+:is(.template-page, .template-collection, .template-blog, .template-article) {
+  --apiarian-cream: #fffcf6;
+  --apiarian-brown: #2a2118;
+  --apiarian-deep-brown: #21170f;
+  --apiarian-honey: #f0d89b;
+  --apiarian-muted-brown: rgba(42, 33, 24, 0.75);
+  --apiarian-border: rgba(42, 33, 24, 0.22);
+  background: var(--apiarian-cream);
+  color: var(--apiarian-muted-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent {
+  background: var(--apiarian-cream);
+  color: var(--apiarian-muted-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(h1, h2, h3, h4, h5, h6, strong) {
+  color: var(--apiarian-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(.color-scheme-1, .color-background-1) {
+  --color-background: 255, 252, 246;
+  --gradient-background: #fffcf6;
+  --color-foreground: 42, 33, 24;
+  background: var(--apiarian-cream);
+  color: var(--apiarian-muted-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .color-scheme-5 {
+  --color-background: 42, 33, 24;
+  --gradient-background: #2a2118;
+  --color-foreground: 255, 252, 246;
+  --color-button: 240, 216, 155;
+  --color-button-text: 42, 33, 24;
+  --color-link: 255, 252, 246;
+  background: var(--apiarian-brown);
+  color: rgba(255, 252, 246, 0.82);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .color-scheme-5 :is(h1, h2, h3, h4, h5, h6, strong, a:not(.button)) {
+  color: var(--apiarian-cream);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(.button, button:not(.slider-button):not(.share-button__button), input[type="submit"]) {
+  --color-button: 42, 33, 24;
+  --color-button-text: 255, 252, 246;
+  background: var(--apiarian-brown);
+  border-color: var(--apiarian-brown);
+  color: var(--apiarian-cream);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(.button, button:not(.slider-button):not(.share-button__button), input[type="submit"]):hover {
+  background: var(--apiarian-deep-brown);
+  border-color: var(--apiarian-deep-brown);
+  color: var(--apiarian-cream);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .button--secondary {
+  --color-button: 255, 252, 246;
+  --color-button-text: 42, 33, 24;
+  background: var(--apiarian-cream);
+  border-color: var(--apiarian-brown);
+  color: var(--apiarian-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), textarea, select) {
+  background: var(--apiarian-cream);
+  border-color: var(--apiarian-border);
+  color: var(--apiarian-brown);
+  caret-color: var(--apiarian-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(input, textarea)::placeholder {
+  color: rgba(42, 33, 24, 0.58);
+  opacity: 1;
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(input, textarea, select):focus {
+  outline-color: var(--apiarian-honey);
+  border-color: var(--apiarian-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(.card, .article-card, .accordion, details, blockquote, table, th, td) {
+  border-color: var(--apiarian-border);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(.card__heading, .article-card__title, .full-unstyled-link, .rte a, .article-template__content a) {
+  color: var(--apiarian-brown);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(figcaption, .caption-with-letter-spacing, .article-card__info, time) {
+  color: rgba(42, 33, 24, 0.66);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(mark, .badge) {
+  background: var(--apiarian-honey);
+  border-color: var(--apiarian-brown);
+  color: var(--apiarian-brown);
+}
