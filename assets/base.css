@@ -5008,3 +5008,49 @@ summary:focus-visible,
   outline-offset: 0.3rem !important;
   box-shadow: 0 0 0 0.3rem #fffcf6 !important;
 }
+
+
+
+/* Enforce accessible contrast over custom section settings */
+.apiarian-entry-card {
+  background-color: #6a4b2f !important;
+}
+
+.apiarian-blog-card {
+  background-color: #6a4b2f !important;
+}
+
+.apiarian-discovery-set__eyebrow,
+.apiarian-good-to-know__eyebrow {
+  color: #6a4b2f !important;
+}
+
+.template-collection .color-scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9 .rich-text__heading,
+.template-collection .image-with-text__heading,
+.template-collection .image-with-text__text,
+.template-collection .image-with-text__text p {
+  color: #fffcf6 !important;
+}
+
+
+
+/* Enforce accessible contrast over custom section settings */
+.apiarian-entry-card {
+  background-color: #6a4b2f !important;
+}
+
+.apiarian-blog-card {
+  background-color: #6a4b2f !important;
+}
+
+.apiarian-discovery-set__eyebrow,
+.apiarian-good-to-know__eyebrow {
+  color: #6a4b2f !important;
+}
+
+.template-collection .color-scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9 .rich-text__heading,
+.template-collection .image-with-text__heading,
+.template-collection .image-with-text__text,
+.template-collection .image-with-text__text p {
+  color: #fffcf6 !important;
+}
