@@ -4750,3 +4750,99 @@ summary:focus-visible,
   }
 }
 
+
+
+/* Consistent image sizing, crops, radii, and spacing */
+:root {
+  --apiarian-media-radius: 1.5rem;
+  --apiarian-media-radius-small: 1.2rem;
+  --apiarian-media-spacing: 3.2rem;
+}
+
+.apiarian-product-card__media,
+.product__media,
+.thumbnail,
+.apiarian-discovery-set__media,
+.apiarian-role-split__media,
+.image-with-text__media,
+.template-collection .card__inner,
+.template-blog .card__inner,
+.template-article .card__inner {
+  border-radius: var(--apiarian-media-radius);
+  overflow: hidden;
+}
+
+:is(.apiarian-product-card__media, .product__media, .thumbnail, .apiarian-discovery-set__media, .apiarian-role-split__media, .image-with-text__media, .template-collection .card__inner, .template-blog .card__inner, .template-article .card__inner) img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+}
+
+.apiarian-product-card__media,
+.template-collection .card__inner {
+  aspect-ratio: 3 / 4;
+}
+
+.product__media,
+.thumbnail {
+  aspect-ratio: 1 / 1;
+}
+
+.apiarian-discovery-set__media {
+  aspect-ratio: 4 / 3;
+}
+
+.apiarian-role-split__media,
+.image-with-text__media {
+  aspect-ratio: 1 / 1;
+}
+
+.template-blog .card__inner,
+.template-article .card__inner {
+  aspect-ratio: 4 / 3;
+}
+
+.template-page #MainContent .page-width--narrow .rte > img,
+.template-article #MainContent .article-template__content.rte > img {
+  display: block;
+  float: none !important;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: var(--apiarian-media-spacing) auto !important;
+  border-radius: var(--apiarian-media-radius);
+}
+
+.template-page #MainContent .page-width--narrow .rte > figure,
+.template-article #MainContent .article-template__content.rte > figure {
+  width: 100%;
+  max-width: 70rem;
+  margin: var(--apiarian-media-spacing) auto;
+}
+
+.template-page #MainContent .page-width--narrow .rte > figure img,
+.template-article #MainContent .article-template__content.rte > figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: var(--apiarian-media-radius);
+}
+
+.template-page #MainContent .page-width--narrow .rte :is(iframe, video, embed, object),
+.template-article #MainContent .article-template__content.rte :is(iframe, video, embed, object) {
+  border-radius: var(--apiarian-media-radius);
+}
+
+@media screen and (max-width: 749px) {
+  :root {
+    --apiarian-media-radius: 1.2rem;
+    --apiarian-media-spacing: 2.4rem;
+  }
+
+  .thumbnail {
+    border-radius: var(--apiarian-media-radius-small);
+  }
+}
