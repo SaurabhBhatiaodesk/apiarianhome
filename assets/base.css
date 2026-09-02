@@ -4125,4 +4125,49 @@ body:not(.template-index) main {
   color: var(--apiarian-brown);
 }
 
-/*  */
+.template-page #MainContent .page-width,
+.template-collection #MainContent .page-width,
+.template-blog #MainContent .page-width,
+.template-article #MainContent .page-width {
+  box-sizing: border-box;
+    width: 100%;
+    }
+
+    .template-page #MainContent .page-width--narrow,
+    .template-article #MainContent .page-width--narrow {
+        max-width: 107.4rem;
+        }
+
+        .template-page #MainContent .page-width--narrow {
+            padding-top: 6.4rem;
+              padding-bottom: 6.4rem;
+              }
+
+              .template-page #MainContent .contact {
+                padding-top: 0;
+                  padding-bottom: 6.4rem;
+                  }
+
+                  .template-blog #MainContent .main-blog,
+                  .template-collection #MainContent .collection,
+                  .template-article #MainContent .article-template__content {
+                      padding-bottom: 6.4rem;
+                      }
+
+                      .template-article #MainContent .article-template__content {
+                          margin-top: 4rem;
+                          }
+
+                          .template-page #MainContent .main-page-title,
+                          .template-collection #MainContent .collection-hero__title,
+                          .template-blog #MainContent .main-blog__title,
+                          .template-article #MainContent .article-template__title {
+                              margin-top: 0;
+                                margin-bottom: 4rem;
+                                }
+
+                                .template-page #MainContent .rte > * + *,
+                                .template-article #MainContent .rte > * + * {
+                                    margin-top: 1.6rem;
+                                    }
+                                    
