@@ -4230,4 +4230,52 @@ body:not(.template-index) main {
                                                                                                                               margin-bottom: 2rem;
                                                                                                                                 }
                                                                                                                                 }
-                                                                                                                                
+
+
+.template-page #MainContent .main-page-title,
+.template-collection #MainContent > .shopify-section:first-child .rich-text__heading,
+.template-blog #MainContent > .shopify-section:first-child .rich-text__heading,
+.template-article #MainContent .article-template__title {
+    max-width: 82rem;
+      margin-left: auto;
+        margin-right: auto;
+          margin-bottom: 3rem;
+            font-size: 5.2rem;
+              line-height: 1.15;
+                letter-spacing: -0.035em;
+                  text-align: center;
+                    text-wrap: balance;
+                    }
+
+                    .template-page #MainContent .main-page-title + .rte > p:first-child,
+                    .template-collection #MainContent > .shopify-section:first-child .rich-text__text,
+                    .template-blog #MainContent > .shopify-section:first-child .rich-text__text,
+                    .template-article #MainContent .article-template__excerpt {
+                        max-width: 70rem;
+                          margin: 0 auto;
+                            color: rgba(42, 33, 24, 0.75);
+                              font-size: 1.8rem;
+                                line-height: 1.7;
+                                  text-align: center;
+                                    text-wrap: balance;
+                                    }
+
+                                    @media screen and (max-width: 749px) {
+                                        .template-page #MainContent .main-page-title,
+                                          .template-collection #MainContent > .shopify-section:first-child .rich-text__heading,
+                                            .template-blog #MainContent > .shopify-section:first-child .rich-text__heading,
+                                              .template-article #MainContent .article-template__title {
+                                                    margin-bottom: 2rem;
+                                                        font-size: 3.6rem;
+                                                            letter-spacing: -0.025em;
+                                                              }
+
+                                                                .template-page #MainContent .main-page-title + .rte > p:first-child,
+                                                                  .template-collection #MainContent > .shopify-section:first-child .rich-text__text,
+                                                                    .template-blog #MainContent > .shopify-section:first-child .rich-text__text,
+                                                                      .template-article #MainContent .article-template__excerpt {
+                                                                            font-size: 1.6rem;
+                                                                                line-height: 1.6;
+                                                                                  }
+                                                                                  }
+                                                                                  
