@@ -32,26 +32,6 @@
         "padding_bottom": 16
       }
     },
-    "apiarian_header_YfPrtc": {
-      "type": "apiarian-header",
-      "custom_css": [
-        ".apiarian-header {position: sticky !important; top: 0; z-index: 9999; }"
-      ],
-      "name": "Apiarian header",
-      "settings": {
-        "logo_text": "The Apiarian Home",
-        "left_menu": "left-menu",
-        "right_menu": "right-menu",
-        "transparent_home": false,
-        "transparent_text_color": "#fffaf2",
-        "transparent_cart_count_text_color": "#2a2118",
-        "background_color": "#fffcf6",
-        "text_color": "#2a2118",
-        "border_color": "#e7e0d7",
-        "header_height": 74,
-        "mobile_header_height": 68
-      }
-    },
     "apiarian_breadcrumbs_WwkVQB": {
       "type": "apiarian-breadcrumbs",
       "name": "Apiarian Breadcrumbs",
@@ -76,7 +56,6 @@
   },
   "order": [
     "header",
-    "apiarian_header_YfPrtc",
     "apiarian_breadcrumbs_WwkVQB"
   ]
 }
