@@ -4297,3 +4297,90 @@ body:not(.template-index) main {
                                                                                                                     }
                                                                                                                     }
                                                                                                                     
+
+/* Long-form rich text */
+.template-page #MainContent .page-width--narrow .rte,
+.template-article #MainContent .article-template__content.rte {
+  font-size: 1.6rem;
+  line-height: 1.75;
+}
+
+.template-page #MainContent .page-width--narrow .rte > p,
+.template-article #MainContent .article-template__content.rte > p {
+  max-width: 70rem;
+  margin: 0 auto 1.8rem;
+}
+
+.template-page #MainContent .page-width--narrow .rte > :is(h2, h3, h4, h5, h6),
+.template-article #MainContent .article-template__content.rte > :is(h2, h3, h4, h5, h6) {
+  max-width: 70rem;
+  margin: 4rem auto 1.5rem;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.template-page #MainContent .page-width--narrow .rte > :is(ul, ol),
+.template-article #MainContent .article-template__content.rte > :is(ul, ol) {
+  max-width: 70rem;
+  margin: 0 auto 2.4rem;
+  padding-left: 2.4rem;
+}
+
+.template-page #MainContent .page-width--narrow .rte li + li,
+.template-article #MainContent .article-template__content.rte li + li {
+  margin-top: 0.8rem;
+}
+
+.template-page #MainContent .page-width--narrow .rte blockquote,
+.template-article #MainContent .article-template__content.rte blockquote {
+  max-width: 64rem;
+  margin: 3.2rem auto;
+  padding: 2rem 2.5rem;
+  border-left: 0.4rem solid #f0d89b;
+  background: rgba(240, 216, 155, 0.2);
+  font-size: 1.8rem;
+  line-height: 1.65;
+}
+
+.template-page #MainContent .page-width--narrow .rte a,
+.template-article #MainContent .article-template__content.rte a {
+  text-decoration-thickness: 0.1rem;
+  text-underline-offset: 0.3rem;
+}
+
+.template-page #MainContent .page-width--narrow .rte :is(img, figure),
+.template-article #MainContent .article-template__content.rte :is(img, figure) {
+  max-width: 100%;
+  height: auto;
+  margin: 3.2rem auto;
+}
+
+.template-page #MainContent .page-width--narrow .rte table,
+.template-article #MainContent .article-template__content.rte table {
+  display: block;
+  max-width: 100%;
+  margin: 3.2rem auto;
+  overflow-x: auto;
+}
+
+.template-page #MainContent .page-width--narrow .rte hr,
+.template-article #MainContent .article-template__content.rte hr {
+  max-width: 70rem;
+  margin: 3.2rem auto;
+  border-color: rgba(42, 33, 24, 0.22);
+}
+
+@media screen and (max-width: 749px) {
+  .template-page #MainContent .page-width--narrow .rte,
+  .template-article #MainContent .article-template__content.rte {
+    font-size: 1.55rem;
+    line-height: 1.7;
+  }
+
+  .template-page #MainContent .page-width--narrow .rte blockquote,
+  .template-article #MainContent .article-template__content.rte blockquote {
+    margin: 2.6rem auto;
+    padding: 1.8rem 2rem;
+    font-size: 1.65rem;
+  }
+}
