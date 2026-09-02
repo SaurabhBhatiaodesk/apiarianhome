@@ -1,1 +1,155 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"apiarian_footer_QmchRe":{"type":"apiarian-footer","blocks":{"menu_column_yfJpVr":{"type":"menu_column","settings":{"heading":"SHOP","menu":"shop"}},"menu_column_URUjdQ":{"type":"menu_column","settings":{"heading":"PRACTICE","menu":"practice"}},"menu_column_jTTY3M":{"type":"menu_column","settings":{"heading":"ABOUT","menu":"about"}}},"block_order":["menu_column_yfJpVr","menu_column_URUjdQ","menu_column_jTTY3M"],"name":"Apiarian Footer","settings":{"invert_logo":true,"desktop_logo_width":180,"mobile_logo_width":180,"brand_title":"THE APIARIAN HOME","brand_text":"<p>Beeswax-infused home fragrance and apitherapy, from a beekeeper in Fort Collins, Colorado.<\/p>","copyright_text":"© 2026 The Apiarian Home","disclaimer":"Not a substitute for medical care","background_color":"#2a2118","text_color":"#DBD7CF","heading_color":"#fffcf6","accent_color":"#f0d89b","link_hover_color":"#f1c36d","muted_color":"#DBD7CF","border_color":"#51463c","padding_top":90,"padding_bottom":40,"desktop_side_padding":48,"mobile_padding_top":45,"mobile_padding_bottom":30,"mobile_side_padding":20}},"footer":{"type":"footer","blocks":{"link_list_EgrzAt":{"type":"link_list","settings":{"heading":"","menu":"footer"}}},"block_order":["link_list_EgrzAt"],"disabled":true,"settings":{"color_scheme":"scheme-4","newsletter_enable":true,"newsletter_heading":"Join the Hive","enable_follow_on_shop":false,"show_social":false,"enable_country_selector":false,"enable_language_selector":false,"payment_enable":false,"show_policy":false,"margin_top":0,"padding_top":24,"padding_bottom":0}}},"order":["apiarian_footer_QmchRe","footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "apiarian_newsletter_fiqpJX": {
+      "type": "apiarian-newsletter",
+      "name": "Apiarian Newsletter",
+      "settings": {
+        "heading": "One letter a month, <em>from the apiary.</em>",
+        "description": "<p>The hive, the season, and what is happening in the frames.<br>No selling.</p>",
+        "email_placeholder": "Your email",
+        "button_label": "Sign up",
+        "success_message": "Thank you for joining our newsletter.",
+        "heading_size": 48,
+        "text_size": 18,
+        "mobile_heading_size": 32,
+        "mobile_text_size": 15,
+        "decoration_width": 65,
+        "decoration_position": 42,
+        "decoration_offset": 46,
+        "decoration_rotation": 20,
+        "section_background": "#FAF8F3",
+        "card_background": "#F1EBDD",
+        "heading_color": "#2C2117",
+        "text_color": "#8C541D",
+        "input_background": "#FBFAF7",
+        "input_border": "#CFC8BE",
+        "input_text": "#2C2117",
+        "placeholder_color": "#7A746E",
+        "button_background": "#2A1F15",
+        "button_text": "#FFFFFF",
+        "button_hover_background": "#8C541D",
+        "button_hover_text": "#FFFFFF",
+        "success_color": "#406B45",
+        "error_color": "#A72A2A",
+        "border_radius": 28,
+        "card_padding_vertical": 75,
+        "card_padding_horizontal": 60,
+        "column_gap": 80,
+        "field_height": 68,
+        "padding_top": 60,
+        "padding_bottom": 80,
+        "desktop_side_padding": 48,
+        "mobile_border_radius": 20,
+        "mobile_card_padding_vertical": 40,
+        "mobile_card_padding_horizontal": 25,
+        "mobile_field_height": 56,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 60,
+        "mobile_side_padding": 20,
+        "mobile_decoration_width": 50,
+        "mobile_decoration_position": 50,
+        "mobile_decoration_offset": 30
+      }
+    },
+    "apiarian_footer_QmchRe": {
+      "type": "apiarian-footer",
+      "blocks": {
+        "menu_column_yfJpVr": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "SHOP",
+            "menu": "shop"
+          }
+        },
+        "menu_column_URUjdQ": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "PRACTICE",
+            "menu": "practice"
+          }
+        },
+        "menu_column_jTTY3M": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "ABOUT",
+            "menu": "about"
+          }
+        }
+      },
+      "block_order": [
+        "menu_column_yfJpVr",
+        "menu_column_URUjdQ",
+        "menu_column_jTTY3M"
+      ],
+      "name": "Apiarian Footer",
+      "settings": {
+        "invert_logo": true,
+        "desktop_logo_width": 180,
+        "mobile_logo_width": 180,
+        "brand_title": "THE APIARIAN HOME",
+        "brand_text": "<p>Beeswax-infused home fragrance and apitherapy, from a beekeeper in Fort Collins, Colorado.</p>",
+        "copyright_text": "© 2026 The Apiarian Home",
+        "disclaimer": "Not a substitute for medical care",
+        "background_color": "#2a2118",
+        "text_color": "#dbd7cf",
+        "heading_color": "#fffcf6",
+        "accent_color": "#f0d89b",
+        "link_hover_color": "#f1c36d",
+        "muted_color": "#dbd7cf",
+        "border_color": "#51463c",
+        "padding_top": 90,
+        "padding_bottom": 40,
+        "desktop_side_padding": 48,
+        "mobile_padding_top": 45,
+        "mobile_padding_bottom": 30,
+        "mobile_side_padding": 20
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "link_list_EgrzAt": {
+          "type": "link_list",
+          "settings": {
+            "heading": "",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_EgrzAt"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-4",
+        "newsletter_enable": true,
+        "newsletter_heading": "Join the Hive",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "apiarian_newsletter_fiqpJX",
+    "apiarian_footer_QmchRe",
+    "footer"
+  ]
+}
