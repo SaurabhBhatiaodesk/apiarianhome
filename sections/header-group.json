@@ -39,7 +39,7 @@
         "logo_text": "The Apiarian Home",
         "left_menu": "left-menu",
         "right_menu": "right-menu",
-        "transparent_home": false,
+        "transparent_home": true,
         "transparent_text_color": "#fffaf2",
         "transparent_cart_count_text_color": "#2a2118",
         "background_color": "#fffcf6",
