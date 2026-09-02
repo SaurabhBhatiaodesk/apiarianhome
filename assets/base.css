@@ -4027,3 +4027,14 @@ body:not(.template-index) main {
     line-height: 1.65;
   }
 }
+
+.template-page #MainContent .main-page-title,
+.template-blog #MainContent .rich-text__heading {
+  font-size: clamp(3.8rem, 5vw, 5.2rem) !important;
+}
+@media screen and (max-width: 749px) {
+  .template-page #MainContent .main-page-title,
+  .template-blog #MainContent .rich-text__heading {
+    font-size: 3.6rem !important;
+  }
+}
