@@ -4948,3 +4948,31 @@ summary:focus-visible,
   display: block;
   margin: var(--apiarian-media-spacing) auto !important;
 }
+
+
+
+/* Keep collection image-with-text media inside responsive grid columns */
+.template-collection .image-with-text__grid,
+.template-collection .image-with-text__media-item {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.template-collection .image-with-text__media {
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+}
+
+@media screen and (max-width: 749px) {
+  .template-collection .image-with-text__grid,
+  .template-collection .image-with-text__media-item {
+    width: 100%;
+  }
+
+  .template-collection .image-with-text__media-item {
+    flex: 0 0 100%;
+  }
+}
