@@ -35,7 +35,7 @@
     "apiarian_header_YfPrtc": {
       "type": "apiarian-header",
       "custom_css": [
-        "& {position: sticky !important; top: 0; z-index: 9999; }"
+        ".apiarian-header {position: sticky !important; top: 0; z-index: 9999; }"
       ],
       "name": "Apiarian header",
       "settings": {
