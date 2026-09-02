@@ -3975,3 +3975,55 @@ body:not(.template-index) main {
     font-size: 3rem;
   }
 }
+/* TEMPLATE TYPOGRAPHY SCOPES */
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .main-page-title,
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .collection-hero__title,
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .rich-text__heading,
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .image-with-text__heading {
+  font-family: var(--font-body-family);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-wrap: balance;
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .main-page-title,
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .collection-hero__title {
+  font-size: clamp(3.8rem, 5vw, 5.2rem);
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .rich-text__text,
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .image-with-text__text {
+  font-family: var(--font-body-family);
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(.rich-text__text, .image-with-text__text) a {
+  color: inherit;
+  font-weight: 400;
+  text-decoration-thickness: 0.1rem;
+  text-underline-offset: 0.35em;
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(.rich-text__text, .image-with-text__text) li {
+  margin-block: 0.6rem;
+  font: inherit;
+}
+:is(.template-page, .template-collection, .template-blog, .template-article) #MainContent :is(figcaption, .caption-with-letter-spacing) {
+  font-family: var(--font-body-family);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 749px) {
+  :is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .main-page-title,
+  :is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .collection-hero__title {
+    font-size: 3.6rem;
+  }
+  :is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .rich-text__text,
+  :is(.template-page, .template-collection, .template-blog, .template-article) #MainContent .image-with-text__text {
+    font-size: 1.7rem;
+    line-height: 1.65;
+  }
+}
