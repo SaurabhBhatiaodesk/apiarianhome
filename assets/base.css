@@ -4278,4 +4278,22 @@ body:not(.template-index) main {
                                                                                 line-height: 1.6;
                                                                                   }
                                                                                   }
-                                                                                  
+
+
+                                                                                  .template-page #MainContent .main-page-title + .rte > :first-child {
+                                                                                      max-width: 70rem;
+                                                                                        margin: 0 auto 3rem;
+                                                                                          color: rgba(42, 33, 24, 0.75);
+                                                                                            font-size: 1.8rem;
+                                                                                              line-height: 1.7;
+                                                                                                text-align: center;
+                                                                                                }
+
+                                                                                                @media screen and (max-width: 749px) {
+                                                                                                    .template-page #MainContent .main-page-title + .rte > :first-child {
+                                                                                                          margin-bottom: 2rem;
+                                                                                                              font-size: 1.6rem;
+                                                                                                                  line-height: 1.6;
+                                                                                                                    }
+                                                                                                                    }
+                                                                                                                    
