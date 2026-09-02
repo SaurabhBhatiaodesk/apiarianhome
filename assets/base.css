@@ -4170,4 +4170,64 @@ body:not(.template-index) main {
                                 .template-article #MainContent .rte > * + * {
                                     margin-top: 1.6rem;
                                     }
-                                    
+
+
+                                    .template-page #MainContent .page-width--narrow,
+                                    .template-article #MainContent .page-width--narrow {
+                                        max-width: 82.6rem;
+                                          padding-left: 5rem;
+                                            padding-right: 5rem;
+                                            }
+
+                                            .template-page #MainContent .page-width--narrow {
+                                              padding-top: 5rem;
+                                                padding-bottom: 5rem;
+                                                }
+
+                                                .template-page #MainContent .contact,
+                                                .template-blog #MainContent .main-blog,
+                                                .template-collection #MainContent .collection,
+                                                .template-article #MainContent .article-template__content {
+                                                  padding-bottom: 5rem;
+                                                  }
+
+                                                  .template-article #MainContent .article-template__content {
+                                                      margin-top: 3rem;
+                                                      }
+
+                                                      .template-page #MainContent .main-page-title,
+                                                      .template-collection #MainContent .collection-hero__title,
+                                                      .template-blog #MainContent .main-blog__title,
+                                                      .template-article #MainContent .article-template__title {
+                                                          margin-bottom: 3rem;
+                                                          }
+
+                                                          @media screen and (max-width: 749px) {
+                                                              .template-page #MainContent .page-width--narrow,
+                                                                .template-article #MainContent .page-width--narrow {
+                                                                      max-width: 100%;
+                                                                          padding-left: 1.5rem;
+                                                                              padding-right: 1.5rem;
+                                                                                }
+
+                                                                                  .template-page #MainContent .page-width--narrow,
+                                                                                    .template-page #MainContent .contact,
+                                                                                      .template-blog #MainContent .main-blog,
+                                                                                        .template-collection #MainContent .collection,
+                                                                                          .template-article #MainContent .article-template__content {
+                                                                                                padding-top: 3.7rem;
+                                                                                                    padding-bottom: 3.7rem;
+                                                                                                      }
+
+                                                                                                        .template-article #MainContent .article-template__content {
+                                                                                                              margin-top: 2rem;
+                                                                                                                }
+
+                                                                                                                  .template-page #MainContent .main-page-title,
+                                                                                                                    .template-collection #MainContent .collection-hero__title,
+                                                                                                                      .template-blog #MainContent .main-blog__title,
+                                                                                                                        .template-article #MainContent .article-template__title {
+                                                                                                                              margin-bottom: 2rem;
+                                                                                                                                }
+                                                                                                                                }
+                                                                                                                                
