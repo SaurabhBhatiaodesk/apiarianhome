@@ -5054,3 +5054,6 @@ summary:focus-visible,
 .template-collection .image-with-text__text p {
   color: #fffcf6 !important;
 }
+
+
+html:has(link[rel="canonical"][href$="/pages/about-the-apiarian-home"]) #shopify-section-apiarian-newsletter { display: none; }
