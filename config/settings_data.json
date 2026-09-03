@@ -482,8 +482,8 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".apiarian-header-section{position:sticky!important;top:0;z-index:9999}",
-      ".apiarian-header__right>a:nth-child(3),.apiarian-header__right>a:nth-child(4),.apiarian-header__right>a:nth-child(5),.apiarian-header__right>a:nth-child(6),.apiarian-header__right>a:nth-child(7){display:none}"
+      ".apiarian-header-section {position: sticky !important; top: 0; z-index: 9999;}",
+      ".apiarian-header__right > a:nth-child(3),.apiarian-header__right > a:nth-child(4),.apiarian-header__right > a:nth-child(5),.apiarian-header__right > a:nth-child(7) {display: none;}"
     ]
   }
 }
