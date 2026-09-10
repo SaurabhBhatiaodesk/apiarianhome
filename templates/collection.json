@@ -403,6 +403,73 @@
         "padding_bottom": 20
       }
     },
+    "apiarian_room_pairing": {
+      "type": "apiarian-room-pairing",
+      "blocks": {
+        "room_hive": {
+          "type": "room",
+          "settings": {
+            "room": "Anywhere in the house",
+            "description": "The whole colony in one bottle, wax and resin together.",
+            "label": "Hive",
+            "link": "shopify://products/hive-fragrance",
+            "accent_color": "#C79A3C"
+          }
+        },
+        "room_brood": {
+          "type": "room",
+          "settings": {
+            "room": "Bedrooms and linen",
+            "description": "Chamomile and lavender settling into vanilla.",
+            "label": "Brood",
+            "link": "shopify://products/brood-fragrance",
+            "accent_color": "#C9A7B8"
+          }
+        },
+        "room_worker": {
+          "type": "room",
+          "settings": {
+            "room": "Kitchens and entryways",
+            "description": "Blood orange and coriander clear a room quickly.",
+            "label": "Worker",
+            "link": "shopify://products/worker-fragrance",
+            "accent_color": "#C8752C"
+          }
+        },
+        "room_drone": {
+          "type": "room",
+          "settings": {
+            "room": "Studies and hallways",
+            "description": "Fir and cedarwood, dry rather than sweet.",
+            "label": "Drone",
+            "link": "shopify://products/drone-fragrance",
+            "accent_color": "#2E4032"
+          }
+        },
+        "room_queen": {
+          "type": "room",
+          "settings": {
+            "room": "Living rooms and upholstery",
+            "description": "Jasmine and gardenia over rose otto, unhurried.",
+            "label": "Queen",
+            "link": "shopify://products/queen-fragrance",
+            "accent_color": "#4A1F28"
+          }
+        }
+      },
+      "block_order": [
+        "room_hive",
+        "room_brood",
+        "room_worker",
+        "room_drone",
+        "room_queen"
+      ],
+      "settings": {
+        "eyebrow": "Where each one goes",
+        "heading": "Pick by room, <em>not by mood.</em>",
+        "text": "<p>Beeswax holds scent longest on fabric, so the room that suits a blend is usually the one with the most cloth in it.</p>"
+      }
+    },
     "multirow_f9byNa": {
       "type": "multirow",
       "blocks": {
@@ -619,6 +686,7 @@
     "image_with_text_apR36D",
     "rich_text_kRTFfe",
     "rich_text_HELwpN",
+    "apiarian_room_pairing",
     "multirow_f9byNa",
     "multicolumn_emfMYn",
     "main-collection-banner",
