@@ -25,7 +25,7 @@
         "sold_out_label": "Sold out",
         "product_link_label": "Read the notes",
         "caption_limit": 90,
-        "show_discovery_promo": true,
+        "show_discovery_promo": false,
         "discovery_product": "the-colony-discovery-set",
         "promo_eyebrow": "Not sure yet",
         "promo_heading": "Try all five first, <em>then commit.</em>",
@@ -100,6 +100,27 @@
         "woodsy",
         "floral"
       ]
+    },
+    "apiarian_discovery_feature": {
+      "type": "apiarian-discovery-set-feature",
+      "blocks": {
+        "feature_product": {
+          "type": "feature",
+          "settings": {
+            "product": "the-colony-discovery-set"
+          }
+        }
+      },
+      "block_order": [
+        "feature_product"
+      ],
+      "settings": {
+        "eyebrow": "Not sure yet",
+        "heading": "Try all five first, <em>then commit.</em>",
+        "text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
+        "button_label": "Shop discovery set",
+        "note": "Free U.S. shipping"
+      }
     },
     "rich_text_iQ8xm4": {
       "type": "rich-text",
@@ -591,6 +612,7 @@
   },
   "order": [
     "apiarian_collection_page",
+    "apiarian_discovery_feature",
     "rich_text_iQ8xm4",
     "image_banner_dfCAEA",
     "rich_text_YCXUGH",
