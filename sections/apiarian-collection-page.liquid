@@ -1,0 +1,1249 @@
+{% liquid
+  assign section_collection = collection
+  assign discovery_product = section.settings.discovery_product
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background: {{ section.settings.section_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection,
+  #shopify-section-{{ section.id }} .apiarian-collection * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection {
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__crumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: {{ section.settings.muted_color }};
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__crumbs a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 72px;
+    align-items: end;
+    margin-top: -34px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__bee {
+    position: absolute;
+    left: 33%;
+    top: -6%;
+    z-index: 1;
+    width: {{ section.settings.bee_width }}px;
+    opacity: {{ section.settings.bee_opacity | divided_by: 100.0 }};
+    transform: rotate(-22deg);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__bee img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__eyebrow,
+  #shopify-section-{{ section.id }} .apiarian-collection__filter-label,
+  #shopify-section-{{ section.id }} .apiarian-collection-card__role,
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__eyebrow {
+    color: {{ section.settings.accent_color }};
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__title {
+    max-width: 10ch;
+    margin: 20px 0 0;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.024em;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__title em,
+  #shopify-section-{{ section.id }} .apiarian-collection__title i,
+  #shopify-section-{{ section.id }} .apiarian-collection-card__caption,
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__title em,
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__title i {
+    font-family: "Bodoni Moda", serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__intro {
+    max-width: 48ch;
+    margin: 0 0 10px;
+    color: {{ section.settings.body_color }};
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__intro p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__band {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: -28px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__band-item {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 112px;
+    padding: 0 14px 16px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--role-color, #c79a3c);
+    color: var(--role-on-color, #fffcf6);
+    cursor: pointer;
+    font: inherit;
+    transition: filter 0.25s ease, min-height 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__band-item.is-active {
+    min-height: 132px;
+    filter: brightness(1.04);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__band-label {
+    font-size: 15px;
+    letter-spacing: 0.08em;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(42, 33, 24, 0.16);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filter-label {
+    margin-right: 6px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filter {
+    min-height: 36px;
+    padding: 9px 16px;
+    border: 1px solid rgba(42, 33, 24, 0.18);
+    border-radius: 999px;
+    background: transparent;
+    color: {{ section.settings.text_color }};
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filter.is-active {
+    background: {{ section.settings.text_color }};
+    color: {{ section.settings.section_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__count {
+    color: {{ section.settings.muted_color }};
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+    gap: 52px 24px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card.is-hidden {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__media {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1.08;
+    overflow: hidden;
+    border-radius: {{ section.settings.card_radius }}px;
+    background: var(--role-tint, #e4cfa3);
+    text-decoration: none;
+    transition: filter 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__media:hover {
+    filter: brightness(1.04);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__media:hover .apiarian-collection-card__image {
+    transform: scale(1.025);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__role {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__title {
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.014em;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__price {
+    flex: 0 0 auto;
+    margin: 0;
+    color: {{ section.settings.body_color }};
+    font-size: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__price small {
+    font-size: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__caption {
+    margin: 0;
+    color: {{ section.settings.body_color }};
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding-top: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: var(--role-tag-background, rgba(42, 33, 24, 0.08));
+    color: {{ section.settings.text_color }};
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__button,
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 13px 22px;
+    border: 0;
+    border-radius: 999px;
+    background: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__button:disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__link {
+    color: {{ section.settings.text_color }};
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-promo {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: stretch;
+    overflow: hidden;
+    border-radius: {{ section.settings.promo_radius }}px;
+    background: {{ section.settings.promo_background }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 64px 60px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__title {
+    max-width: 22ch;
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.06;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__text {
+    max-width: 44ch;
+    margin: 0;
+    color: {{ section.settings.body_color }};
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.62;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__media {
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 45%;
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .apiarian-collection__hero,
+    #shopify-section-{{ section.id }} .apiarian-collection-promo {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .apiarian-collection {
+      padding: {{ section.settings.mobile_padding_top }}px 0 {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__inner {
+      gap: 44px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__hero {
+      margin-top: 0;
+      gap: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__title {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__intro {
+      font-size: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__band {
+      grid-template-columns: repeat(5, minmax(92px, 1fr));
+      overflow-x: auto;
+      margin-top: -12px;
+      padding-bottom: 4px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__band-item {
+      min-height: 86px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__band-item.is-active {
+      min-height: 100px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__grid {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, minmax(0, 1fr));
+      gap: 34px 16px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection-card__title {
+      font-size: 22px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection-card__caption {
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection-card__actions {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection-promo__content {
+      padding: 38px 24px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection-promo__title {
+      font-size: 32px;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection-promo__media {
+      min-height: 280px;
+    }
+  }
+{% endstyle %}
+
+<section class="apiarian-collection" data-apiarian-collection>
+  <div class="page-width">
+    <div class="apiarian-collection__inner">
+      <div>
+        <nav class="apiarian-collection__crumbs" aria-label="Breadcrumb">
+          <a href="{{ routes.root_url }}">{{ section.settings.breadcrumb_home | escape }}</a>
+          <span aria-hidden="true">/</span>
+          <span>{{ section_collection.title | default: section.settings.breadcrumb_current | escape }}</span>
+        </nav>
+
+        <div class="apiarian-collection__hero">
+          {% if section.settings.bee_image != blank %}
+            <div class="apiarian-collection__bee" aria-hidden="true">
+              {{
+                section.settings.bee_image
+                | image_url: width: 240
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '80, 120, 180, 240',
+                  alt: ''
+              }}
+            </div>
+          {% endif %}
+
+          <div>
+            {% if section.settings.eyebrow != blank %}
+              <div class="apiarian-collection__eyebrow">
+                {{ section.settings.eyebrow | escape }}
+              </div>
+            {% endif %}
+
+            {% if section.settings.heading != blank %}
+              <h1 class="apiarian-collection__title">
+                {{ section.settings.heading }}
+              </h1>
+            {% endif %}
+          </div>
+
+          {% if section.settings.intro_text != blank %}
+            <div class="apiarian-collection__intro">
+              {{ section.settings.intro_text }}
+            </div>
+          {% elsif section_collection.description != blank %}
+            <div class="apiarian-collection__intro">
+              {{ section_collection.description }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if section_collection.products_count > 0 %}
+        <div class="apiarian-collection__band" aria-label="{{ section.settings.band_label | escape }}">
+          {% for card_product in section_collection.products limit: 5 %}
+            {% liquid
+              assign role_color = card_product.metafields.custom.product_badge_color.value | default: section.settings.fallback_color
+              assign role_on_color = section.settings.band_text_color
+            %}
+            <button
+              type="button"
+              class="apiarian-collection__band-item"
+              style="--role-color: {{ role_color }}; --role-on-color: {{ role_on_color }};"
+              data-apiarian-role-filter="{{ card_product.title | handleize }}"
+            >
+              <span class="apiarian-collection__band-label">{{ card_product.title | escape }}</span>
+            </button>
+          {% endfor %}
+        </div>
+
+        <div id="collection" class="apiarian-collection__panel">
+          <div class="apiarian-collection__toolbar">
+            <div class="apiarian-collection__filters" aria-label="{{ section.settings.filter_label | escape }}">
+              <span class="apiarian-collection__filter-label">{{ section.settings.filter_label | escape }}</span>
+              <button type="button" class="apiarian-collection__filter is-active" data-apiarian-feel-filter="all">
+                {{ section.settings.all_filter_label | escape }}
+              </button>
+              {% for block in section.blocks %}
+                <button
+                  type="button"
+                  class="apiarian-collection__filter"
+                  data-apiarian-feel-filter="{{ block.settings.filter_key | handleize }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.label | escape }}
+                </button>
+              {% endfor %}
+            </div>
+
+            <span class="apiarian-collection__count" data-apiarian-count>
+              {% if section_collection.products_count == 5 %}
+                Five scents, one base
+              {% else %}
+                {{ section_collection.products_count }} scents
+              {% endif %}
+            </span>
+          </div>
+
+          <div class="apiarian-collection__grid" data-apiarian-grid>
+            {% paginate section_collection.products by section.settings.products_per_page %}
+              {% for card_product in section_collection.products %}
+                {% liquid
+                  assign source_product = card_product
+                  assign source_metafield = card_product.metafields.custom.source_product
+
+                  if source_metafield != blank
+                    if source_metafield.type contains 'list.product_reference'
+                      assign source_product = source_metafield.value | first
+                    elsif source_metafield.type contains 'product_reference'
+                      assign source_product = source_metafield.value
+                    endif
+                  endif
+
+                  if source_product == blank
+                    assign source_product = card_product
+                  endif
+
+                  assign role_color = source_product.metafields.custom.product_badge_color.value | default: section.settings.fallback_color
+                  assign role_tint = role_color | color_modify: 'alpha', 0.28
+                  assign custom_product_tags = card_product.metafields.custom.custom_porudct_tag.value
+                  if custom_product_tags == blank
+                    assign custom_product_tags = source_product.metafields.custom.custom_porudct_tag.value
+                  endif
+                  assign role_label = card_product.metafields.custom.product_sub_title.value | default: source_product.metafields.custom.product_sub_title.value | default: card_product.type
+                  assign card_caption = card_product.metafields.custom.product_caption.value | default: source_product.metafields.custom.product_caption.value | default: card_product.description
+                  assign filter_text = card_product.title | append: ' ' | append: role_label | append: ' ' | append: card_caption | append: ' ' | append: card_product.tags | downcase | handleize
+                  assign variant = card_product.selected_or_first_available_variant
+                  assign quantity_value = variant.quantity_rule.min | default: 1
+                  assign product_form_id = 'ApiarianCollectionProductForm-' | append: section.id | append: '-' | append: forloop.index | append: '-' | append: card_product.id
+                %}
+
+                <article
+                  class="apiarian-collection-card"
+                  style="--role-tint: {{ role_tint }}; --role-tag-background: {{ role_color | color_modify: 'alpha', 0.5 }};"
+                  data-apiarian-card
+                  data-apiarian-search="{{ filter_text | escape }}"
+                  data-apiarian-product="{{ card_product.title | handleize }}"
+                >
+                  <a href="{{ card_product.url }}" class="apiarian-collection-card__media">
+                    {% if card_product.featured_image != blank %}
+                      {{
+                        card_product.featured_image
+                        | image_url: width: 1000
+                        | image_tag:
+                          loading: 'lazy',
+                          decoding: 'async',
+                          widths: '320, 480, 640, 800, 1000',
+                          class: 'apiarian-collection-card__image',
+                          alt: card_product.featured_image.alt
+                      }}
+                    {% endif %}
+                  </a>
+
+                  <div class="apiarian-collection-card__body">
+                    {% if role_label != blank %}
+                      <div class="apiarian-collection-card__role">
+                        {{ role_label | strip_html | escape }}
+                      </div>
+                    {% endif %}
+
+                    <div class="apiarian-collection-card__meta">
+                      <h2 class="apiarian-collection-card__title">
+                        <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
+                      </h2>
+                      <p class="apiarian-collection-card__price">
+                        <small>{{ section.settings.price_prefix | escape }}</small>
+                        {{ card_product.price_min | money_without_trailing_zeros }}
+                      </p>
+                    </div>
+
+                    {% if card_caption != blank %}
+                      <p class="apiarian-collection-card__caption">
+                        {{ card_caption | strip_html | truncate: section.settings.caption_limit }}
+                      </p>
+                    {% endif %}
+
+                    {% if custom_product_tags != blank %}
+                      <div class="apiarian-collection-card__tags">
+                        {% for tag in custom_product_tags limit: 3 %}
+                          <span class="apiarian-collection-card__tag">{{ tag | escape }}</span>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+
+                    <div class="apiarian-collection-card__actions">
+                      {% form 'product',
+                        card_product,
+                        id: product_form_id,
+                        class: 'apiarian-collection-card__form',
+                        novalidate: 'novalidate'
+                      %}
+                        <input type="hidden" name="id" value="{{ variant.id }}">
+                        <input type="hidden" name="quantity" value="{{ quantity_value }}">
+                        <button
+                          type="submit"
+                          class="apiarian-collection-card__button"
+                          {% unless variant.available %}disabled{% endunless %}
+                        >
+                          {% if variant.available %}
+                            {{ section.settings.add_to_cart_label | escape }}
+                          {% else %}
+                            {{ section.settings.sold_out_label | escape }}
+                          {% endif %}
+                        </button>
+                      {% endform %}
+
+                      <a href="{{ card_product.url }}" class="apiarian-collection-card__link">
+                        {{ section.settings.product_link_label | escape }}
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+
+              {% if paginate.pages > 1 %}
+                <div class="apiarian-collection__pagination">
+                  {{ paginate | default_pagination }}
+                </div>
+              {% endif %}
+            {% endpaginate %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_discovery_promo %}
+        <div class="apiarian-collection-promo">
+          <div class="apiarian-collection-promo__content">
+            {% if section.settings.promo_eyebrow != blank %}
+              <div class="apiarian-collection-promo__eyebrow">
+                {{ section.settings.promo_eyebrow | escape }}
+              </div>
+            {% endif %}
+
+            {% if section.settings.promo_heading != blank %}
+              <h2 class="apiarian-collection-promo__title">
+                {{ section.settings.promo_heading }}
+              </h2>
+            {% endif %}
+
+            {% if section.settings.promo_text != blank %}
+              <div class="apiarian-collection-promo__text">
+                {{ section.settings.promo_text }}
+              </div>
+            {% endif %}
+
+            {% if discovery_product != blank %}
+              <a href="{{ discovery_product.url }}" class="apiarian-collection-promo__button">
+                {{ section.settings.promo_button_label | escape }}
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="apiarian-collection-promo__media">
+            {% if section.settings.promo_image != blank %}
+              {{
+                section.settings.promo_image
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  decoding: 'async',
+                  widths: '480, 720, 960, 1200',
+                  class: 'apiarian-collection-promo__image',
+                  alt: section.settings.promo_image.alt
+              }}
+            {% elsif discovery_product.featured_image != blank %}
+              {{
+                discovery_product.featured_image
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  decoding: 'async',
+                  widths: '480, 720, 960, 1200',
+                  class: 'apiarian-collection-promo__image',
+                  alt: discovery_product.featured_image.alt
+              }}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const root = document.querySelector(
+      '#shopify-section-{{ section.id }} [data-apiarian-collection]'
+    );
+
+    if (!root || root.dataset.initialized === 'true') return;
+    root.dataset.initialized = 'true';
+
+    const cards = Array.from(root.querySelectorAll('[data-apiarian-card]'));
+    const count = root.querySelector('[data-apiarian-count]');
+    const filters = Array.from(root.querySelectorAll('[data-apiarian-feel-filter]'));
+    const roleFilters = Array.from(root.querySelectorAll('[data-apiarian-role-filter]'));
+
+    function setCount(visibleCount) {
+      if (!count) return;
+
+      if (visibleCount === 5) {
+        count.textContent = 'Five scents, one base';
+        return;
+      }
+
+      count.textContent =
+        visibleCount === 1 ? '1 scent' : visibleCount + ' scents';
+    }
+
+    function activateButton(buttons, activeButton) {
+      buttons.forEach(function (button) {
+        button.classList.toggle('is-active', button === activeButton);
+      });
+    }
+
+    function filterCards(key) {
+      const filterKey = key || 'all';
+      let visibleCount = 0;
+
+      cards.forEach(function (card) {
+        const haystack = card.dataset.apiarianSearch || '';
+        const productKey = card.dataset.apiarianProduct || '';
+        const isVisible =
+          filterKey === 'all' ||
+          haystack.indexOf(filterKey) > -1 ||
+          productKey === filterKey;
+
+        card.classList.toggle('is-hidden', !isVisible);
+
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      setCount(visibleCount);
+    }
+
+    filters.forEach(function (button) {
+      button.addEventListener('click', function () {
+        activateButton(filters, button);
+        roleFilters.forEach(function (roleButton) {
+          roleButton.classList.remove('is-active');
+        });
+        filterCards(button.dataset.apiarianFeelFilter);
+      });
+    });
+
+    roleFilters.forEach(function (button) {
+      button.addEventListener('click', function () {
+        activateButton(roleFilters, button);
+        filters.forEach(function (filterButton) {
+          filterButton.classList.toggle(
+            'is-active',
+            filterButton.dataset.apiarianFeelFilter === 'all'
+          );
+        });
+        filterCards(button.dataset.apiarianRoleFilter);
+      });
+    });
+
+    setCount(cards.length);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Apiarian Collection Page",
+  "tag": "section",
+  "class": "section-apiarian-collection-page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "breadcrumb_home",
+      "label": "Breadcrumb home",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_current",
+      "label": "Breadcrumb fallback",
+      "default": "The colony"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The collection"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Five roles, <em>five scents.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "<p>Every bottle takes its character from one job inside the hive. Beeswax absolute sits under all five, so they share a base and part ways at the top.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image",
+      "label": "Bee image"
+    },
+    {
+      "type": "text",
+      "id": "band_label",
+      "label": "Color band label",
+      "default": "Shop by scent"
+    },
+    {
+      "type": "text",
+      "id": "filter_label",
+      "label": "Filter label",
+      "default": "Filter by feel"
+    },
+    {
+      "type": "text",
+      "id": "all_filter_label",
+      "label": "All filter label",
+      "default": "All five"
+    },
+    {
+      "type": "text",
+      "id": "price_prefix",
+      "label": "Price prefix",
+      "default": "From"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Add to cart label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Sold out label",
+      "default": "Sold out"
+    },
+    {
+      "type": "text",
+      "id": "product_link_label",
+      "label": "Product link label",
+      "default": "Read the notes"
+    },
+    {
+      "type": "range",
+      "id": "caption_limit",
+      "label": "Caption character limit",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "default": 90
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discovery_promo",
+      "label": "Show discovery set promo",
+      "default": true
+    },
+    {
+      "type": "product",
+      "id": "discovery_product",
+      "label": "Discovery product"
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_image",
+      "label": "Promo image"
+    },
+    {
+      "type": "text",
+      "id": "promo_eyebrow",
+      "label": "Promo eyebrow",
+      "default": "Not sure yet"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "promo_heading",
+      "label": "Promo heading",
+      "default": "Try all five first, <em>then commit.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "promo_text",
+      "label": "Promo text",
+      "default": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive.</p>"
+    },
+    {
+      "type": "text",
+      "id": "promo_button_label",
+      "label": "Promo button label",
+      "default": "Shop discovery set"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#FFFCF6"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2A2118"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#2A2118"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body color",
+      "default": "#5C4B2E"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted color",
+      "default": "#6B5A3E"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#8A6A1F"
+    },
+    {
+      "type": "color",
+      "id": "fallback_color",
+      "label": "Fallback scent color",
+      "default": "#C79A3C"
+    },
+    {
+      "type": "color",
+      "id": "band_text_color",
+      "label": "Band text color",
+      "default": "#FFFCF6"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#2A2118"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFCF6"
+    },
+    {
+      "type": "color",
+      "id": "promo_background",
+      "label": "Promo background",
+      "default": "#F4EEE1"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 48,
+      "max": 110,
+      "step": 2,
+      "unit": "px",
+      "default": 86
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile heading size",
+      "min": 34,
+      "max": 62,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card radius",
+      "min": 0,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "promo_radius",
+      "label": "Promo radius",
+      "min": 0,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "bee_width",
+      "label": "Bee width",
+      "min": 40,
+      "max": 180,
+      "step": 10,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "bee_opacity",
+      "label": "Bee opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feel_filter",
+      "name": "Feel filter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Warm"
+        },
+        {
+          "type": "text",
+          "id": "filter_key",
+          "label": "Filter keyword",
+          "default": "Warm"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apiarian Collection Page",
+      "blocks": [
+        {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Warm",
+            "filter_key": "Warm"
+          }
+        },
+        {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Soft",
+            "filter_key": "Soft"
+          }
+        },
+        {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Bright",
+            "filter_key": "Bright"
+          }
+        },
+        {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Woodsy",
+            "filter_key": "Woodsy"
+          }
+        },
+        {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Floral",
+            "filter_key": "Floral"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
