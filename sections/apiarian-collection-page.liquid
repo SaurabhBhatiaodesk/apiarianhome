@@ -532,7 +532,15 @@
 
       {% if section_collection.products_count > 0 %}
         <div class="apiarian-collection__band" aria-label="{{ section.settings.band_label | escape }}">
-          {% for card_product in section_collection.products limit: 5 %}
+          {% assign band_shown = 0 %}
+          {% for card_product in section_collection.products %}
+            {% if band_shown >= 5 %}
+              {% break %}
+            {% endif %}
+            {% if card_product.gift_card? or card_product.type == 'Gift Card' or card_product.handle == 'the-colony-discovery-set' or card_product.handle == 'the-apiarian-home-gift-card' %}
+              {% continue %}
+            {% endif %}
+            {% assign band_shown = band_shown | plus: 1 %}
             {% liquid
               assign role_color = card_product.metafields.custom.product_badge_color.value | default: section.settings.fallback_color
               assign role_on_color = section.settings.band_text_color
@@ -567,11 +575,20 @@
               {% endfor %}
             </div>
 
+            {% liquid
+              assign visible_products_count = 0
+              for count_product in section_collection.products
+                if count_product.gift_card? or count_product.type == 'Gift Card' or count_product.handle == 'the-colony-discovery-set' or count_product.handle == 'the-apiarian-home-gift-card'
+                  continue
+                endif
+                assign visible_products_count = visible_products_count | plus: 1
+              endfor
+            %}
             <span class="apiarian-collection__count" data-apiarian-count>
-              {% if section_collection.products_count == 5 %}
+              {% if visible_products_count == 5 %}
                 Five scents, one base
               {% else %}
-                {{ section_collection.products_count }} scents
+                {{ visible_products_count }} scents
               {% endif %}
             </span>
           </div>
@@ -579,6 +596,9 @@
           <div class="apiarian-collection__grid" data-apiarian-grid>
             {% paginate section_collection.products by section.settings.products_per_page %}
               {% for card_product in section_collection.products %}
+                {% if card_product.gift_card? or card_product.type == 'Gift Card' or card_product.handle == 'the-colony-discovery-set' or card_product.handle == 'the-apiarian-home-gift-card' %}
+                  {% continue %}
+                {% endif %}
                 {% liquid
                   assign source_product = card_product
                   assign source_metafield = card_product.metafields.custom.source_product
