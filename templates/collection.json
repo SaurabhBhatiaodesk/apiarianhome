@@ -9,6 +9,98 @@
  */
 {
   "sections": {
+    "apiarian_collection_page": {
+      "type": "apiarian-collection-page",
+      "settings": {
+        "breadcrumb_home": "Shop",
+        "breadcrumb_current": "The colony",
+        "eyebrow": "The collection",
+        "heading": "Five roles, <em>five scents.</em>",
+        "intro_text": "<p>Every bottle takes its character from one job inside the hive. Beeswax absolute from Netta's own frames sits under all five, so they share a base and part ways at the top.</p>",
+        "band_label": "Shop by scent",
+        "filter_label": "Filter by feel",
+        "all_filter_label": "All five",
+        "price_prefix": "From",
+        "add_to_cart_label": "Add to cart",
+        "sold_out_label": "Sold out",
+        "product_link_label": "Read the notes",
+        "caption_limit": 90,
+        "show_discovery_promo": true,
+        "discovery_product": "the-colony-discovery-set",
+        "promo_eyebrow": "Not sure yet",
+        "promo_heading": "Try all five first, <em>then commit.</em>",
+        "promo_text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
+        "promo_button_label": "Shop discovery set",
+        "section_background": "#fffcf6",
+        "heading_color": "#2a2118",
+        "text_color": "#2a2118",
+        "body_color": "#5c4b2e",
+        "muted_color": "#6b5a3e",
+        "accent_color": "#8a6a1f",
+        "fallback_color": "#c79a3c",
+        "band_text_color": "#fffcf6",
+        "button_background": "#2a2118",
+        "button_text_color": "#fffcf6",
+        "promo_background": "#f4eee1",
+        "heading_size": 86,
+        "mobile_heading_size": 46,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "products_per_page": 12,
+        "card_radius": 14,
+        "promo_radius": 22,
+        "bee_width": 90,
+        "bee_opacity": 45,
+        "padding_top": 24,
+        "padding_bottom": 96,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 64
+      },
+      "blocks": {
+        "warm": {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Warm",
+            "filter_key": "Warm"
+          }
+        },
+        "soft": {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Soft",
+            "filter_key": "Soft"
+          }
+        },
+        "bright": {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Bright",
+            "filter_key": "Bright"
+          }
+        },
+        "woodsy": {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Woodsy",
+            "filter_key": "Woodsy"
+          }
+        },
+        "floral": {
+          "type": "feel_filter",
+          "settings": {
+            "label": "Floral",
+            "filter_key": "Floral"
+          }
+        }
+      },
+      "block_order": [
+        "warm",
+        "soft",
+        "bright",
+        "woodsy",
+        "floral"
+      ]
+    },
     "rich_text_iQ8xm4": {
       "type": "rich-text",
       "blocks": {
@@ -44,7 +136,6 @@
         "text_dfngJc",
         "button_mmiXdm"
       ],
-      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -92,7 +183,6 @@
         "text_itWqJ9",
         "buttons_Jh9QmB"
       ],
-      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/harvest_bounty_001_cropped.jpg",
@@ -143,7 +233,6 @@
         "text_BXerUm",
         "button_NKUEem"
       ],
-      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -238,7 +327,6 @@
         "text_nPepC9",
         "button_XhAVQp"
       ],
-      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -284,7 +372,6 @@
         "text_JGx3M3",
         "button_43PU8b"
       ],
-      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -385,7 +472,6 @@
         "row_4NF4Lt",
         "row_QUaDNQ"
       ],
-      "disabled": true,
       "name": "t:sections.multirow.presets.name",
       "settings": {
         "image_height": "medium",
@@ -501,66 +587,10 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
-    },
-    "product_apiarian_discovery_set_zrNBH3": {
-      "type": "product-apiarian-discovery-set",
-      "name": "Apiarian Discovery Set",
-      "settings": {
-        "eyebrow": "NOT SURE YET",
-        "heading": "Try all five first, <em>then commit.</em>",
-        "text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
-        "button_label": "Add the set",
-        "note": "Credited toward your first full bottle",
-        "image": "shopify://shop_images/cb25afa7-a0cb-4662-9bd5-536e4268899a.jpg",
-        "set_products": [
-          "brood",
-          "drone",
-          "hive",
-          "queen",
-          "worker"
-        ],
-        "background_color": "#F4EEE1",
-        "eyebrow_color": "#8A6A1F",
-        "heading_color": "#30241A",
-        "text_color": "#5C4B2E",
-        "button_background": "#F0D58C",
-        "button_text_color": "#2A2118",
-        "note_color": "#5C4B2E",
-        "image_background": "#E7DED0",
-        "left_width": 53,
-        "border_radius": 24,
-        "content_padding_vertical": 50,
-        "content_padding_horizontal": 50,
-        "image_position": "center center",
-        "spacing_top": 70,
-        "spacing_bottom": 70,
-        "eyebrow_size": 16,
-        "eyebrow_letter_spacing": 2,
-        "heading_size": 48,
-        "text_size": 17,
-        "button_text_size": 15,
-        "note_size": 14,
-        "heading_bottom_spacing": 26,
-        "text_bottom_spacing": 26,
-        "action_gap": 18,
-        "mobile_spacing_top": 32,
-        "mobile_spacing_bottom": 32,
-        "mobile_border_radius": 20,
-        "mobile_content_padding_vertical": 38,
-        "mobile_content_padding_horizontal": 24,
-        "mobile_eyebrow_size": 13,
-        "mobile_eyebrow_letter_spacing": 4,
-        "mobile_heading_size": 36,
-        "mobile_text_size": 16,
-        "mobile_button_text_size": 15,
-        "mobile_note_size": 13,
-        "mobile_heading_bottom_spacing": 20,
-        "mobile_text_bottom_spacing": 26,
-        "mobile_action_gap": 14
-      }
     }
   },
   "order": [
+    "apiarian_collection_page",
     "rich_text_iQ8xm4",
     "image_banner_dfCAEA",
     "rich_text_YCXUGH",
@@ -570,7 +600,6 @@
     "multirow_f9byNa",
     "multicolumn_emfMYn",
     "main-collection-banner",
-    "main-collection-product-grid",
-    "product_apiarian_discovery_set_zrNBH3"
+    "main-collection-product-grid"
   ]
 }
