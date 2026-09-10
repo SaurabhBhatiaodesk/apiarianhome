@@ -677,7 +677,11 @@
                           {% unless variant.available %}disabled{% endunless %}
                         >
                           {% if variant.available %}
-                            {{ section.settings.add_to_cart_label | escape }}
+                            {% if variant.title != blank and variant.title != 'Default Title' %}
+                              {{ section.settings.add_to_cart_label | escape }} {{ variant.title }} — {{ variant.price | money_without_trailing_zeros }}
+                            {% else %}
+                              {{ section.settings.add_to_cart_label | escape }}
+                            {% endif %}
                           {% else %}
                             {{ section.settings.sold_out_label | escape }}
                           {% endif %}
