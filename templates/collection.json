@@ -18,11 +18,15 @@
         "band_label": "Shop by scent",
         "filter_label": "Filter by feel",
         "all_filter_label": "All five",
+        "show_product_tags": true,
+        "show_description": true,
+        "mobile_columns": 1,
         "price_prefix": "From",
         "add_to_cart_label": "Add to cart",
         "sold_out_label": "Sold out",
         "product_link_label": "Read the notes",
         "caption_limit": 90,
+        "empty_state_text": "No products in this collection yet. Check back soon.",
         "show_discovery_promo": false,
         "discovery_product": "the-colony-discovery-set",
         "promo_eyebrow": "Not sure yet",
@@ -39,6 +43,8 @@
         "band_text_color": "#fffcf6",
         "button_background": "#2a2118",
         "button_text_color": "#fffcf6",
+        "button_hover_background": "#4a3a1c",
+        "button_hover_text_color": "#fffcf6",
         "promo_background": "#f4eee1",
         "heading_size": 86,
         "mobile_heading_size": 46,
@@ -69,153 +75,44 @@
         "feature_product"
       ],
       "settings": {
+        "feature_items": "Five 2 mL glass bottles, one per role\nFragrance tester strips\nA written and spoken journey through the colony\nCredited toward your first full bottle",
         "eyebrow": "Not sure yet",
         "heading": "Try all five first, <em>then commit.</em>",
         "text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
+        "note": "Free U.S. shipping",
         "button_label": "Shop discovery set",
-        "note": "Free U.S. shipping"
-      }
-    },
-    "rich_text_iQ8xm4": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_krrexN": {
-          "type": "heading",
-          "settings": {
-            "heading": "Step Inside the Colony",
-            "heading_size": "h2"
-          }
-        },
-        "text_dfngJc": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_mmiXdm": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_krrexN",
-        "text_dfngJc",
-        "button_mmiXdm"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
-    "image_banner_dfCAEA": {
-      "type": "image-banner",
-      "blocks": {
-        "heading_PHKjgE": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "heading": "Step Inside the Colony",
-            "heading_size": "h1"
-          }
-        },
-        "text_itWqJ9": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "buttons_Jh9QmB": {
-          "type": "buttons",
-          "disabled": true,
-          "settings": {
-            "button_label_1": "Button label",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "Button label",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_PHKjgE",
-        "text_itWqJ9",
-        "buttons_Jh9QmB"
-      ],
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/harvest_bounty_001_cropped.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
-    "rich_text_YCXUGH": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_Fd9YfB": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "heading": "Step Inside the Colony",
-            "heading_size": "h2"
-          }
-        },
-        "text_BXerUm": {
-          "type": "text",
-          "settings": {
-            "text": "<p>A honeybee colony is what’s known as a superorganism. Thousands of individual bees functioning as one unified body, with a collective consciousness.<br/><br/>The Apiarian Home's five fragrances are inspired by that intelligence. Each scent is drawn from a role and place within the colony. Like the hive itself, they are designed to collectively support your daily rhythms and rituals. Together, they form a holistic collection to bring the essence of nature into your home.</p>"
-          }
-        },
-        "button_NKUEem": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_Fd9YfB",
-        "text_BXerUm",
-        "button_NKUEem"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "left",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 40
+        "image_position": "center center",
+        "section_background": "#f8f4eb",
+        "panel_background": "#efe8d8",
+        "accent_color": "#a46b18",
+        "heading_color": "#21170f",
+        "body_color": "#8c6b4d",
+        "button_background": "#f1d58b",
+        "button_text": "#21170f",
+        "button_hover_background": "#e5c56d",
+        "button_hover_text": "#21170f",
+        "radius": 28,
+        "content_padding_vertical": 45,
+        "content_padding_horizontal": 68,
+        "bee_width": 90,
+        "bee_opacity": 45,
+        "eyebrow_size": 14,
+        "heading_size": 54,
+        "body_size": 17,
+        "list_size": 16,
+        "button_size": 16,
+        "note_size": 14,
+        "padding_top": 45,
+        "padding_bottom": 45,
+        "mobile_eyebrow_size": 11,
+        "mobile_heading_size": 40,
+        "mobile_body_size": 15,
+        "mobile_list_size": 14,
+        "mobile_button_size": 15,
+        "mobile_note_size": 13,
+        "mobile_bee_width": 70,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
       }
     },
     "image_with_text_apR36D": {
@@ -268,95 +165,6 @@
         "padding_bottom": 12
       }
     },
-    "rich_text_kRTFfe": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_iTDtyQ": {
-          "type": "heading",
-          "settings": {
-            "heading": "About the Formulas",
-            "heading_size": "h2"
-          }
-        },
-        "text_nPepC9": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Within all of these scents, beeswax is the constant ingredient.<strong><br/><br/></strong>Each blend starts with an alcohol base infused with raw beeswax, bringing in the wax’s natural esters and compounds.</p><p>One pound of beeswax requires honeybees to consume roughly eight pounds of honey, representing the energy gathered from more than 16 million flower visits. It's a precious ingredient, embodying one of the many ways that bees are the alchemists of nature.</p><p>Beeswax has been used by humans for a very long time. Face cream, medicines, tools, waterproofing, candles, and so much more. This is a different and immersive way to experience the wondrous substance.</p>"
-          }
-        },
-        "button_XhAVQp": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_iTDtyQ",
-        "text_nPepC9",
-        "button_XhAVQp"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "left",
-        "color_scheme": "scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9",
-        "full_width": true,
-        "padding_top": 20,
-        "padding_bottom": 40
-      }
-    },
-    "rich_text_HELwpN": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_AaUtrh": {
-          "type": "heading",
-          "settings": {
-            "heading": "Meet the Scents",
-            "heading_size": "h2"
-          }
-        },
-        "text_JGx3M3": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_43PU8b": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_AaUtrh",
-        "text_JGx3M3",
-        "button_43PU8b"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "left",
-        "color_scheme": "scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9",
-        "full_width": true,
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
     "apiarian_room_pairing": {
       "type": "apiarian-room-pairing",
       "blocks": {
@@ -365,9 +173,10 @@
           "settings": {
             "room": "Anywhere in the house",
             "description": "The whole colony in one bottle, wax and resin together.",
+            "product": "",
             "label": "Hive",
             "link": "shopify://products/hive-fragrance",
-            "accent_color": "#C79A3C"
+            "accent_color": "#c79a3c"
           }
         },
         "room_brood": {
@@ -375,9 +184,10 @@
           "settings": {
             "room": "Bedrooms and linen",
             "description": "Chamomile and lavender settling into vanilla.",
+            "product": "",
             "label": "Brood",
             "link": "shopify://products/brood-fragrance",
-            "accent_color": "#C9A7B8"
+            "accent_color": "#c9a7b8"
           }
         },
         "room_worker": {
@@ -385,9 +195,10 @@
           "settings": {
             "room": "Kitchens and entryways",
             "description": "Blood orange and coriander clear a room quickly.",
+            "product": "",
             "label": "Worker",
             "link": "shopify://products/worker-fragrance",
-            "accent_color": "#C8752C"
+            "accent_color": "#c8752c"
           }
         },
         "room_drone": {
@@ -395,9 +206,10 @@
           "settings": {
             "room": "Studies and hallways",
             "description": "Fir and cedarwood, dry rather than sweet.",
+            "product": "",
             "label": "Drone",
             "link": "shopify://products/drone-fragrance",
-            "accent_color": "#2E4032"
+            "accent_color": "#2e4032"
           }
         },
         "room_queen": {
@@ -405,9 +217,10 @@
           "settings": {
             "room": "Living rooms and upholstery",
             "description": "Jasmine and gardenia over rose otto, unhurried.",
+            "product": "",
             "label": "Queen",
             "link": "shopify://products/queen-fragrance",
-            "accent_color": "#4A1F28"
+            "accent_color": "#4a1f28"
           }
         }
       },
@@ -421,7 +234,19 @@
       "settings": {
         "eyebrow": "Where each one goes",
         "heading": "Pick by room, <em>not by mood.</em>",
-        "text": "<p>Beeswax holds scent longest on fabric, so the room that suits a blend is usually the one with the most cloth in it.</p>"
+        "text": "<p>Beeswax holds scent longest on fabric, so the room that suits a blend is usually the one with the most cloth in it.</p>",
+        "fallback_color": "#c79a3c",
+        "section_background": "#fffcf6",
+        "heading_color": "#2a2118",
+        "text_color": "#2a2118",
+        "body_color": "#5c4b2e",
+        "accent_color": "#8a6a1f",
+        "heading_size": 46,
+        "mobile_heading_size": 30,
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48
       }
     },
     "apiarian_story_banner": {
@@ -431,114 +256,23 @@
         "heading": "Blended by hand in Fort Collins, <em>from her own hives.</em>",
         "text": "<p>Netta keeps the colonies, renders the wax and blends every batch small enough to carry its own character. Nothing in the collection uses synthetic fragrance, and a portion of every sale funds pollinators.</p>",
         "button_label": "Read her story",
-        "button_link": "/pages/our-story"
-      }
-    },
-    "multirow_f9byNa": {
-      "type": "multirow",
-      "blocks": {
-        "row_6LhdUh": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/discovery_set_on_beeswax.jpg",
-            "caption": "",
-            "heading": "COLONY DISCOVERY SET",
-            "text": "<p>You are standing at the entrance of a wondrous cave, holding a map to its winding, organic pathways. You don't have to choose a direction just yet; instead, you are invited to wander through the chambers at your own pace, letting your senses guide you through shadows and light. <em><strong>What happens when you stop trying to plan it all, and simply let yourself explore your surroundings?</strong></em></p>",
-            "button_label": "Buy Now",
-            "button_link": "shopify://products/the-colony-discovery-set"
-          }
-        },
-        "row_Mtnhrz": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/hive_100ml_50ml.jpg",
-            "caption": "",
-            "heading": "HIVE",
-            "text": "<p><em>You are on your way to meet a friend for coffee and you see someone helping their neighbor with a task. The kindness makes you stop and smile as a bee briefly buzzes across your path. </em><em><strong>In what ways do you feel connected to your community?</strong></em></p>",
-            "button_label": "Buy Now",
-            "button_link": "shopify://products/hive-fragrance"
-          }
-        },
-        "row_inBzz3": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/brood_100ml_50ml.jpg",
-            "caption": "",
-            "heading": "BROOD",
-            "text": "<p><em>It is late in the evening. Honey cookies are baking in the oven and you are curled up with a good book. </em><em><strong>What in your life deserves care and nurturing?</strong></em></p>",
-            "button_label": "Buy Now",
-            "button_link": "shopify://products/brood-fragrance"
-          }
-        },
-        "row_c6UjQV": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/worker_100ml_50ml.jpg",
-            "caption": "",
-            "heading": "WORKER",
-            "text": "<p><em>You are at the farmers market early, moving from stall to stall, filling your basket with goods that someone took care to grow. </em><em><strong>What are you gathering that feels purposeful in your life right now?</strong></em></p>",
-            "button_label": "Buy Now",
-            "button_link": "shopify://products/worker-fragrance"
-          }
-        },
-        "row_HyyUPy": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/drone_100ml_50ml_d9f296db-ef86-425f-9a80-deb4e392bebb.jpg",
-            "caption": "",
-            "heading": "DRONE",
-            "text": "<p><em>You are deep in the woods when you round a bend and stop. There is a tree ahead, massive and ancient, with a low humming somewhere in the distance. It draws you in and you continue down the path. </em><em><strong>What are you ready to pursue without hesitation?</strong></em></p>",
-            "button_label": "Buy Now",
-            "button_link": "shopify://products/drone-fragrance"
-          }
-        },
-        "row_4NF4Lt": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/queen_100ml_50ml.jpg",
-            "caption": "",
-            "heading": "QUEEN",
-            "text": "<p><em>The table is set, the bouquets are arranged, and the beeswax candles are lit. Every detail has been considered, every guest is expected, and the room hums with abundance. </em><em><strong>What in your life is ready to be celebrated?</strong></em></p>",
-            "button_label": "Buy Now",
-            "button_link": "shopify://products/queen-fragrance"
-          }
-        },
-        "row_QUaDNQ": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/all_fragrances.jpg",
-            "caption": "",
-            "heading": "GIFT CARD",
-            "text": "<p><em>Your calendar dings with a special reminder. It is a busy day, but it makes you pause in gratitude.</em> <em><strong>What could be a small act of kindness toward yourself, or someone important in your life? </strong></em></p>",
-            "button_label": "Buy Now",
-            "button_link": "shopify://products/the-apiarian-home-gift-card"
-          }
-        }
-      },
-      "block_order": [
-        "row_6LhdUh",
-        "row_Mtnhrz",
-        "row_inBzz3",
-        "row_c6UjQV",
-        "row_HyyUPy",
-        "row_4NF4Lt",
-        "row_QUaDNQ"
-      ],
-      "name": "t:sections.multirow.presets.name",
-      "settings": {
-        "image_height": "medium",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9",
-        "row_color_scheme": "scheme-1aa5eb4b-e9d3-4d68-b0c3-a59f9b1d1fe9",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "button_link": "/pages/our-story",
+        "section_background": "#fffcf6",
+        "panel_background": "#2a2118",
+        "accent_color": "#c79a3c",
+        "heading_color": "#fffcf6",
+        "text_color": "#d9cdba",
+        "button_background": "#f0d89b",
+        "button_text_color": "#2a2118",
+        "button_hover_background": "#fffcf6",
+        "button_hover_text_color": "#2a2118",
+        "heading_size": 42,
+        "mobile_heading_size": 30,
+        "radius": 28,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
       }
     },
     "multicolumn_emfMYn": {
@@ -644,15 +378,9 @@
   "order": [
     "apiarian_collection_page",
     "apiarian_discovery_feature",
-    "rich_text_iQ8xm4",
-    "image_banner_dfCAEA",
-    "rich_text_YCXUGH",
     "image_with_text_apR36D",
-    "rich_text_kRTFfe",
-    "rich_text_HELwpN",
     "apiarian_room_pairing",
     "apiarian_story_banner",
-    "multirow_f9byNa",
     "multicolumn_emfMYn",
     "main-collection-banner",
     "main-collection-product-grid"
