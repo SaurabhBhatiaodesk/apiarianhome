@@ -424,6 +424,16 @@
         "text": "<p>Beeswax holds scent longest on fabric, so the room that suits a blend is usually the one with the most cloth in it.</p>"
       }
     },
+    "apiarian_story_banner": {
+      "type": "apiarian-story-banner",
+      "settings": {
+        "eyebrow": "One beekeeper",
+        "heading": "Blended by hand in Fort Collins, <em>from her own hives.</em>",
+        "text": "<p>Netta keeps the colonies, renders the wax and blends every batch small enough to carry its own character. Nothing in the collection uses synthetic fragrance, and a portion of every sale funds pollinators.</p>",
+        "button_label": "Read her story",
+        "button_link": "/pages/our-story"
+      }
+    },
     "multirow_f9byNa": {
       "type": "multirow",
       "blocks": {
@@ -641,6 +651,7 @@
     "rich_text_kRTFfe",
     "rich_text_HELwpN",
     "apiarian_room_pairing",
+    "apiarian_story_banner",
     "multirow_f9byNa",
     "multicolumn_emfMYn",
     "main-collection-banner",
