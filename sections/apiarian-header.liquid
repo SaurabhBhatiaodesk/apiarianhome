@@ -226,29 +226,73 @@
       justify-self: end;
     }
 
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(20, 15, 10, 0.45);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility 0s linear .3s;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .3s ease, visibility 0s linear 0s;
+    }
+
     #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu {
       position: fixed;
-      top: var(--mobile-header-height);
-      left: 0;
+      top: 0;
       right: 0;
       bottom: 0;
+      left: auto;
+      width: min(86vw, 360px);
       z-index: 9999;
-      display: none;
+      display: block;
       overflow-y: auto;
       background: var(--solid-bg);
       color: var(--solid-text);
-      border-top: 1px solid var(--border-color);
-      box-shadow: 0 12px 24px rgba(42, 33, 24, .08);
+      box-shadow: -12px 0 32px rgba(42, 33, 24, .12);
+      transform: translateX(100%);
+      transition: transform .32s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu.is-open {
-      display: block;
+      transform: translateX(0);
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--solid-text);
+      cursor: pointer;
+    }
+
+    #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-close svg {
+      width: 20px;
+      height: 20px;
     }
 
     #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu ul {
       list-style: none;
       margin: 0;
-      padding: 12px 0;
+      padding: 12px 20px;
     }
 
     #ApiarianHeader-{{ section.id }} .apiarian-header__mobile-menu a {
@@ -330,7 +374,16 @@
     </a>
   </div>
 
+  <div class="apiarian-header__mobile-backdrop" data-apiarian-menu-backdrop></div>
+
   <div id="ApiarianMobileMenu-{{ section.id }}" class="apiarian-header__mobile-menu" data-apiarian-mobile-menu>
+    <div class="apiarian-header__mobile-menu-top">
+      <button type="button" class="apiarian-header__mobile-close" aria-label="Close menu" data-apiarian-menu-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M5 5l14 14M19 5L5 19"></path>
+        </svg>
+      </button>
+    </div>
     <nav class="page-width" aria-label="Mobile navigation">
       <ul>
         {% if section.settings.left_menu != blank %}
@@ -366,6 +419,15 @@
     const transparentHome = header.dataset.transparentHome === 'true';
     const toggle = header.querySelector('[data-apiarian-menu-toggle]');
     const menu = header.querySelector('[data-apiarian-mobile-menu]');
+    const backdrop = header.querySelector('[data-apiarian-menu-backdrop]');
+    const closeButton = header.querySelector('[data-apiarian-menu-close]');
+
+    const closeMenu = () => {
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      if (menu) menu.classList.remove('is-open');
+      if (backdrop) backdrop.classList.remove('is-open');
+      document.body.classList.remove('overflow-hidden');
+    };
 
     const updateHeader = () => {
       const scrolled = window.scrollY > 4;
@@ -383,22 +445,27 @@
         const open = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
         menu.classList.toggle('is-open', !open);
+        if (backdrop) backdrop.classList.toggle('is-open', !open);
         document.body.classList.toggle('overflow-hidden', !open);
       });
 
       menu.addEventListener('click', (event) => {
         if (event.target.closest('a')) {
-          toggle.setAttribute('aria-expanded', 'false');
-          menu.classList.remove('is-open');
-          document.body.classList.remove('overflow-hidden');
+          closeMenu();
         }
       });
 
+      if (closeButton) {
+        closeButton.addEventListener('click', closeMenu);
+      }
+
+      if (backdrop) {
+        backdrop.addEventListener('click', closeMenu);
+      }
+
       window.addEventListener('resize', () => {
         if (window.innerWidth > 989) {
-          toggle.setAttribute('aria-expanded', 'false');
-          menu.classList.remove('is-open');
-          document.body.classList.remove('overflow-hidden');
+          closeMenu();
         }
       });
     }

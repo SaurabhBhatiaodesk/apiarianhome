@@ -487,6 +487,14 @@
       overflow-x: auto;
       margin-top: -12px;
       padding-bottom: 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    #shopify-section-{{ section.id }} .apiarian-collection__band::-webkit-scrollbar {
+      display: none;
+      height: 0;
+      width: 0;
     }
 
     #shopify-section-{{ section.id }} .apiarian-collection__band-item {
