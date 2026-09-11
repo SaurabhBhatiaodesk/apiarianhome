@@ -350,7 +350,7 @@
     justify-content: center;
     min-height: 44px;
     padding: 13px 22px;
-    border: 0;
+    border: 1px solid {{ section.settings.button_background }};
     border-radius: 999px;
     background: {{ section.settings.button_background }};
     color: {{ section.settings.button_text_color }};
@@ -358,6 +358,14 @@
     font: inherit;
     font-size: 14px;
     text-decoration: none;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__button:hover:not(:disabled),
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__button:hover {
+    background: {{ section.settings.button_hover_background }};
+    border-color: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text_color }};
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__button:disabled {
@@ -372,6 +380,23 @@
     text-decoration: none;
     border-bottom: 1px solid currentColor;
     padding-bottom: 2px;
+    transition: color 0.25s ease, opacity 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__link:hover {
+    color: {{ section.settings.accent_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filter {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filter:hover:not(.is-active) {
+    border-color: {{ section.settings.text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__band-item:hover {
+    filter: brightness(1.06);
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-promo {
@@ -1185,6 +1210,18 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
+      "default": "#FFFCF6"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#8A6A1F"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text color",
       "default": "#FFFCF6"
     },
     {
