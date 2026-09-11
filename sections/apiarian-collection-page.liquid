@@ -133,7 +133,7 @@
 
   #shopify-section-{{ section.id }} .apiarian-collection__band-item.is-active {
     min-height: 132px;
-    filter: brightness(1.04);
+    background: var(--role-active-color, var(--role-color));
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection__band-label {
@@ -594,12 +594,13 @@
             {% capture role_color %}{% render 'apiarian-role-color', product: card_product %}{% endcapture %}
             {% liquid
               assign role_color = role_color | strip | default: section.settings.fallback_color
+              assign role_active_color = card_product.metafields.custom.product_badge_color.value | default: role_color
               assign role_on_color = section.settings.band_text_color
             %}
             <button
               type="button"
               class="apiarian-collection__band-item"
-              style="--role-color: {{ role_color }}; --role-on-color: {{ role_on_color }};"
+              style="--role-color: {{ role_color }}; --role-active-color: {{ role_active_color }}; --role-on-color: {{ role_on_color }};"
               data-apiarian-role-filter="{{ card_product.title | handleize }}"
             >
               <span class="apiarian-collection__band-label">{{ card_product.title | escape }}</span>
@@ -670,6 +671,7 @@
                 {% liquid
                   assign role_color = role_color | strip | default: section.settings.fallback_color
                   assign role_tint = role_color | color_modify: 'alpha', 0.28
+                  assign role_badge_color = card_product.metafields.custom.product_badge_color.value | default: source_product.metafields.custom.product_badge_color.value | default: role_color
                   assign custom_product_tags = card_product.metafields.custom.custom_porudct_tag.value
                   if custom_product_tags == blank
                     assign custom_product_tags = source_product.metafields.custom.custom_porudct_tag.value
@@ -684,7 +686,7 @@
 
                 <article
                   class="apiarian-collection-card"
-                  style="--role-tint: {{ role_tint }}; --role-tag-background: {{ role_color | color_modify: 'alpha', 0.5 }};"
+                  style="--role-tint: {{ role_tint }}; --role-tag-background: {{ role_badge_color | color_modify: 'alpha', 0.5 }};"
                   data-apiarian-card
                   data-apiarian-search="{{ filter_text | escape }}"
                   data-apiarian-product="{{ card_product.title | handleize }}"
