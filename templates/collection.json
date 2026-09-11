@@ -53,51 +53,7 @@
         "padding_bottom": 96,
         "mobile_padding_top": 24,
         "mobile_padding_bottom": 64
-      },
-      "blocks": {
-        "warm": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Warm",
-            "filter_key": "Warm"
-          }
-        },
-        "soft": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Soft",
-            "filter_key": "Soft"
-          }
-        },
-        "bright": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Bright",
-            "filter_key": "Bright"
-          }
-        },
-        "woodsy": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Woodsy",
-            "filter_key": "Woodsy"
-          }
-        },
-        "floral": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Floral",
-            "filter_key": "Floral"
-          }
-        }
-      },
-      "block_order": [
-        "warm",
-        "soft",
-        "bright",
-        "woodsy",
-        "floral"
-      ]
+      }
     },
     "apiarian_discovery_feature": {
       "type": "apiarian-discovery-set-feature",
