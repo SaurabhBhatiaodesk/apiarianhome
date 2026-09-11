@@ -364,50 +364,35 @@
           "type": "room",
           "settings": {
             "room": "Anywhere in the house",
-            "description": "The whole colony in one bottle, wax and resin together.",
-            "label": "Hive",
-            "link": "shopify://products/hive-fragrance",
-            "accent_color": "#C79A3C"
+            "product": "hive"
           }
         },
         "room_brood": {
           "type": "room",
           "settings": {
             "room": "Bedrooms and linen",
-            "description": "Chamomile and lavender settling into vanilla.",
-            "label": "Brood",
-            "link": "shopify://products/brood-fragrance",
-            "accent_color": "#C9A7B8"
+            "product": "brood"
           }
         },
         "room_worker": {
           "type": "room",
           "settings": {
             "room": "Kitchens and entryways",
-            "description": "Blood orange and coriander clear a room quickly.",
-            "label": "Worker",
-            "link": "shopify://products/worker-fragrance",
-            "accent_color": "#C8752C"
+            "product": "worker"
           }
         },
         "room_drone": {
           "type": "room",
           "settings": {
             "room": "Studies and hallways",
-            "description": "Fir and cedarwood, dry rather than sweet.",
-            "label": "Drone",
-            "link": "shopify://products/drone-fragrance",
-            "accent_color": "#2E4032"
+            "product": "drone"
           }
         },
         "room_queen": {
           "type": "room",
           "settings": {
             "room": "Living rooms and upholstery",
-            "description": "Jasmine and gardenia over rose otto, unhurried.",
-            "label": "Queen",
-            "link": "shopify://products/queen-fragrance",
-            "accent_color": "#4A1F28"
+            "product": "queen"
           }
         }
       },

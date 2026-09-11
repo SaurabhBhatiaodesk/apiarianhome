@@ -191,6 +191,10 @@
             assign row_color = row_color | default: section.settings.fallback_color
             assign row_label = block.settings.label | default: row_product.title
             assign row_url = row_product.url | default: block.settings.link
+            assign row_description = block.settings.description
+            if row_description == blank
+              assign row_description = row_product.metafields.custom.product_caption.value | default: row_product.description
+            endif
           %}
           {% if row_url != blank %}
             <a href="{{ row_url }}" class="apiarian-room-pairing__row" {{ block.shopify_attributes }}>
@@ -199,7 +203,7 @@
           {% endif %}
             <span class="apiarian-room-pairing__swatch" style="background: {{ row_color }};"></span>
             <span class="apiarian-room-pairing__room">{{ block.settings.room | escape }}</span>
-            <span class="apiarian-room-pairing__description">{{ block.settings.description | escape }}</span>
+            <span class="apiarian-room-pairing__description">{{ row_description | strip_html | escape }}</span>
             <span class="apiarian-room-pairing__label">{{ row_label | escape }}</span>
           {% if row_url != blank %}
             </a>
@@ -355,8 +359,8 @@
         {
           "type": "text",
           "id": "description",
-          "label": "Description",
-          "default": "The whole colony in one bottle, wax and resin together."
+          "label": "Description override",
+          "info": "Leave blank to use the product's caption metafield."
         },
         {
           "type": "product",
