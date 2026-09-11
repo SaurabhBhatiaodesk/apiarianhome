@@ -643,28 +643,15 @@
               <button type="button" class="apiarian-collection__filter is-active" data-apiarian-feel-filter="all">
                 {{ section.settings.all_filter_label | escape }}
               </button>
-              {% if dynamic_feel_tags_array.size > 0 %}
-                {% for feel_tag in dynamic_feel_tags_array %}
-                  <button
-                    type="button"
-                    class="apiarian-collection__filter"
-                    data-apiarian-feel-filter="{{ feel_tag | handleize }}"
-                  >
-                    {{ feel_tag | escape }}
-                  </button>
-                {% endfor %}
-              {% else %}
-                {% for block in section.blocks %}
-                  <button
-                    type="button"
-                    class="apiarian-collection__filter"
-                    data-apiarian-feel-filter="{{ block.settings.filter_key | handleize }}"
-                    {{ block.shopify_attributes }}
-                  >
-                    {{ block.settings.label | escape }}
-                  </button>
-                {% endfor %}
-              {% endif %}
+              {% for feel_tag in dynamic_feel_tags_array %}
+                <button
+                  type="button"
+                  class="apiarian-collection__filter"
+                  data-apiarian-feel-filter="{{ feel_tag | handleize }}"
+                >
+                  {{ feel_tag | escape }}
+                </button>
+              {% endfor %}
             </div>
 
             {% liquid
@@ -1398,66 +1385,9 @@
       "default": 64
     }
   ],
-  "blocks": [
-    {
-      "type": "feel_filter",
-      "name": "Feel filter",
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "Warm"
-        },
-        {
-          "type": "text",
-          "id": "filter_key",
-          "label": "Filter keyword",
-          "default": "Warm"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Apiarian Collection Page",
-      "blocks": [
-        {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Warm",
-            "filter_key": "Warm"
-          }
-        },
-        {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Soft",
-            "filter_key": "Soft"
-          }
-        },
-        {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Bright",
-            "filter_key": "Bright"
-          }
-        },
-        {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Woodsy",
-            "filter_key": "Woodsy"
-          }
-        },
-        {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Floral",
-            "filter_key": "Floral"
-          }
-        }
-      ]
+      "name": "Apiarian Collection Page"
     }
   ]
 }

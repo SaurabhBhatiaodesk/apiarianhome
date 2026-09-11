@@ -11,67 +11,18 @@
   "sections": {
     "apiarian_collection_page": {
       "type": "apiarian-collection-page",
-      "blocks": {
-        "warm": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Warm",
-            "filter_key": "Warm"
-          }
-        },
-        "soft": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Soft",
-            "filter_key": "Soft"
-          }
-        },
-        "bright": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Bright",
-            "filter_key": "Bright"
-          }
-        },
-        "woodsy": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Woodsy",
-            "filter_key": "Woodsy"
-          }
-        },
-        "floral": {
-          "type": "feel_filter",
-          "settings": {
-            "label": "Floral",
-            "filter_key": "Floral"
-          }
-        }
-      },
-      "block_order": [
-        "warm",
-        "soft",
-        "bright",
-        "woodsy",
-        "floral"
-      ],
       "settings": {
         "eyebrow": "The collection",
         "heading": "Five roles, <em>five scents.</em>",
         "intro_text": "<p>Every bottle takes its character from one job inside the hive. Beeswax absolute from Netta's own frames sits under all five, so they share a base and part ways at the top.</p>",
-        "bee_image": "shopify://shop_images/2fa5677e-8c0e-4976-9b2d-6190934b2409.png",
         "band_label": "Shop by scent",
         "filter_label": "Filter by feel",
         "all_filter_label": "All five",
-        "show_product_tags": true,
-        "show_description": true,
-        "mobile_columns": 1,
         "price_prefix": "From",
         "add_to_cart_label": "Add to cart",
         "sold_out_label": "Sold out",
         "product_link_label": "Read the notes",
         "caption_limit": 90,
-        "empty_state_text": "No products in this collection yet. Check back soon.",
         "show_discovery_promo": false,
         "discovery_product": "the-colony-discovery-set",
         "promo_eyebrow": "Not sure yet",
@@ -88,8 +39,6 @@
         "band_text_color": "#fffcf6",
         "button_background": "#2a2118",
         "button_text_color": "#fffcf6",
-        "button_hover_background": "#4a3a1c",
-        "button_hover_text_color": "#fffcf6",
         "promo_background": "#f4eee1",
         "heading_size": 86,
         "mobile_heading_size": 46,
@@ -120,44 +69,11 @@
         "feature_product"
       ],
       "settings": {
-        "feature_items": "Five 2 mL glass bottles, one per role\nFragrance tester strips\nA written and spoken journey through the colony\nCredited toward your first full bottle",
         "eyebrow": "Not sure yet",
         "heading": "Try all five first, <em>then commit.</em>",
         "text": "<p>The Colony Discovery Set holds five 2 mL bottles, tester strips and a guided journey through the hive. The $28 is credited toward your first full bottle.</p>",
-        "note": "Free U.S. shipping",
         "button_label": "Shop discovery set",
-        "image_position": "center center",
-        "section_background": "#f8f4eb",
-        "panel_background": "#efe8d8",
-        "accent_color": "#a46b18",
-        "heading_color": "#21170f",
-        "body_color": "#8c6b4d",
-        "button_background": "#f1d58b",
-        "button_text": "#21170f",
-        "button_hover_background": "#e5c56d",
-        "button_hover_text": "#21170f",
-        "radius": 28,
-        "content_padding_vertical": 45,
-        "content_padding_horizontal": 68,
-        "bee_width": 90,
-        "bee_opacity": 45,
-        "eyebrow_size": 14,
-        "heading_size": 54,
-        "body_size": 17,
-        "list_size": 16,
-        "button_size": 16,
-        "note_size": 14,
-        "padding_top": 45,
-        "padding_bottom": 45,
-        "mobile_eyebrow_size": 11,
-        "mobile_heading_size": 40,
-        "mobile_body_size": 15,
-        "mobile_list_size": 14,
-        "mobile_button_size": 15,
-        "mobile_note_size": 13,
-        "mobile_bee_width": 70,
-        "mobile_padding_top": 30,
-        "mobile_padding_bottom": 30
+        "note": "Free U.S. shipping"
       }
     },
     "rich_text_iQ8xm4": {
@@ -449,10 +365,9 @@
           "settings": {
             "room": "Anywhere in the house",
             "description": "The whole colony in one bottle, wax and resin together.",
-            "product": "",
             "label": "Hive",
             "link": "shopify://products/hive-fragrance",
-            "accent_color": "#c79a3c"
+            "accent_color": "#C79A3C"
           }
         },
         "room_brood": {
@@ -460,10 +375,9 @@
           "settings": {
             "room": "Bedrooms and linen",
             "description": "Chamomile and lavender settling into vanilla.",
-            "product": "",
             "label": "Brood",
             "link": "shopify://products/brood-fragrance",
-            "accent_color": "#c9a7b8"
+            "accent_color": "#C9A7B8"
           }
         },
         "room_worker": {
@@ -471,10 +385,9 @@
           "settings": {
             "room": "Kitchens and entryways",
             "description": "Blood orange and coriander clear a room quickly.",
-            "product": "",
             "label": "Worker",
             "link": "shopify://products/worker-fragrance",
-            "accent_color": "#c8752c"
+            "accent_color": "#C8752C"
           }
         },
         "room_drone": {
@@ -482,10 +395,9 @@
           "settings": {
             "room": "Studies and hallways",
             "description": "Fir and cedarwood, dry rather than sweet.",
-            "product": "",
             "label": "Drone",
             "link": "shopify://products/drone-fragrance",
-            "accent_color": "#2e4032"
+            "accent_color": "#2E4032"
           }
         },
         "room_queen": {
@@ -493,10 +405,9 @@
           "settings": {
             "room": "Living rooms and upholstery",
             "description": "Jasmine and gardenia over rose otto, unhurried.",
-            "product": "",
             "label": "Queen",
             "link": "shopify://products/queen-fragrance",
-            "accent_color": "#4a1f28"
+            "accent_color": "#4A1F28"
           }
         }
       },
@@ -510,19 +421,7 @@
       "settings": {
         "eyebrow": "Where each one goes",
         "heading": "Pick by room, <em>not by mood.</em>",
-        "text": "<p>Beeswax holds scent longest on fabric, so the room that suits a blend is usually the one with the most cloth in it.</p>",
-        "fallback_color": "#c79a3c",
-        "section_background": "#fffcf6",
-        "heading_color": "#2a2118",
-        "text_color": "#2a2118",
-        "body_color": "#5c4b2e",
-        "accent_color": "#8a6a1f",
-        "heading_size": 46,
-        "mobile_heading_size": 30,
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "mobile_padding_top": 48,
-        "mobile_padding_bottom": 48
+        "text": "<p>Beeswax holds scent longest on fabric, so the room that suits a blend is usually the one with the most cloth in it.</p>"
       }
     },
     "multirow_f9byNa": {
