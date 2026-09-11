@@ -591,8 +591,9 @@
               {% continue %}
             {% endif %}
             {% assign band_shown = band_shown | plus: 1 %}
+            {% capture role_color %}{% render 'apiarian-role-color', product: card_product %}{% endcapture %}
             {% liquid
-              assign role_color = card_product.metafields.custom.product_badge_color.value | default: section.settings.fallback_color
+              assign role_color = role_color | strip | default: section.settings.fallback_color
               assign role_on_color = section.settings.band_text_color
             %}
             <button
@@ -664,8 +665,10 @@
                   if source_product == blank
                     assign source_product = card_product
                   endif
-
-                  assign role_color = source_product.metafields.custom.product_badge_color.value | default: section.settings.fallback_color
+                %}
+                {% capture role_color %}{% render 'apiarian-role-color', product: source_product %}{% endcapture %}
+                {% liquid
+                  assign role_color = role_color | strip | default: section.settings.fallback_color
                   assign role_tint = role_color | color_modify: 'alpha', 0.28
                   assign custom_product_tags = card_product.metafields.custom.custom_porudct_tag.value
                   if custom_product_tags == blank
