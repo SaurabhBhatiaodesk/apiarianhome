@@ -194,6 +194,20 @@
     font-weight: 300;
   }
 
+  #shopify-section-{{ section.id }} .apiarian-collection__empty {
+    padding: 48px 0;
+    border-top: 1px solid rgba(42, 33, 24, 0.16);
+    border-bottom: 1px solid rgba(42, 33, 24, 0.16);
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__empty-text {
+    margin: 0;
+    color: {{ section.settings.muted_color }};
+    font-size: 18px;
+    font-weight: 300;
+  }
+
   #shopify-section-{{ section.id }} .apiarian-collection__grid {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
@@ -527,6 +541,10 @@
               <h1 class="apiarian-collection__title">
                 {{ section.settings.heading }}
               </h1>
+            {% elsif section_collection.title != blank %}
+              <h1 class="apiarian-collection__title">
+                {{ section_collection.title }}
+              </h1>
             {% endif %}
           </div>
 
@@ -755,6 +773,12 @@
               {% endif %}
             {% endpaginate %}
           </div>
+        </div>
+      {% else %}
+        <div class="apiarian-collection__empty">
+          <p class="apiarian-collection__empty-text">
+            {{ section.settings.empty_state_text | escape }}
+          </p>
         </div>
       {% endif %}
 
@@ -1052,6 +1076,12 @@
       "max": 180,
       "step": 10,
       "default": 90
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "Empty collection text",
+      "default": "No products in this collection yet. Check back soon."
     },
     {
       "type": "checkbox",
