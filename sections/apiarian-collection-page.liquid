@@ -232,10 +232,22 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.45s ease;
+    transition: opacity 0.35s ease, transform 0.45s ease;
   }
 
-  #shopify-section-{{ section.id }} .apiarian-collection-card__media:hover .apiarian-collection-card__image {
+  #shopify-section-{{ section.id }} .apiarian-collection-card__image--hover {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__media:hover .apiarian-collection-card__image--primary {
+    transform: scale(1.025);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card.is-hover-image-loaded .apiarian-collection-card__media:hover .apiarian-collection-card__image--hover {
+    opacity: 1;
     transform: scale(1.025);
   }
 
@@ -636,6 +648,12 @@
                   data-apiarian-search="{{ filter_text | escape }}"
                   data-apiarian-product="{{ card_product.title | handleize }}"
                 >
+                  {% liquid
+                    assign hover_preview_image = blank
+                    if card_product.media.size > 1 and card_product.media[1].preview_image != blank
+                      assign hover_preview_image = card_product.media[1].preview_image
+                    endif
+                  %}
                   <a href="{{ card_product.url }}" class="apiarian-collection-card__media">
                     {% if card_product.featured_image != blank %}
                       {{
@@ -645,9 +663,23 @@
                           loading: 'lazy',
                           decoding: 'async',
                           widths: '320, 480, 640, 800, 1000',
-                          class: 'apiarian-collection-card__image',
+                          class: 'apiarian-collection-card__image apiarian-collection-card__image--primary',
                           alt: card_product.featured_image.alt
                       }}
+                    {% endif %}
+
+                    {% if hover_preview_image != blank %}
+                      <img
+                        class="apiarian-collection-card__image apiarian-collection-card__image--hover"
+                        data-apiarian-hover-image
+                        data-src="{{ hover_preview_image | image_url: width: 1000 }}"
+                        data-srcset="{{ hover_preview_image | image_url: width: 320 }} 320w, {{ hover_preview_image | image_url: width: 480 }} 480w, {{ hover_preview_image | image_url: width: 640 }} 640w, {{ hover_preview_image | image_url: width: 800 }} 800w, {{ hover_preview_image | image_url: width: 1000 }} 1000w"
+                        width="{{ hover_preview_image.width }}"
+                        height="{{ hover_preview_image.height }}"
+                        alt="{{ hover_preview_image.alt | escape }}"
+                        loading="lazy"
+                        decoding="async"
+                      >
                     {% endif %}
                   </a>
 
@@ -798,6 +830,48 @@
     const count = root.querySelector('[data-apiarian-count]');
     const filters = Array.from(root.querySelectorAll('[data-apiarian-feel-filter]'));
     const roleFilters = Array.from(root.querySelectorAll('[data-apiarian-role-filter]'));
+
+    function loadHoverImage(card) {
+      if (!card || card.dataset.apiarianHoverRequested === 'true') return;
+
+      const hoverImage = card.querySelector('[data-apiarian-hover-image]');
+      if (!hoverImage) return;
+
+      card.dataset.apiarianHoverRequested = 'true';
+
+      hoverImage.addEventListener(
+        'load',
+        function () {
+          card.classList.add('is-hover-image-loaded');
+        },
+        { once: true }
+      );
+
+      if (hoverImage.dataset.srcset) hoverImage.srcset = hoverImage.dataset.srcset;
+      if (hoverImage.dataset.src) hoverImage.src = hoverImage.dataset.src;
+
+      if (hoverImage.complete && hoverImage.naturalWidth > 0) {
+        card.classList.add('is-hover-image-loaded');
+      }
+    }
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      root.addEventListener(
+        'pointerover',
+        function (event) {
+          const card = event.target.closest('[data-apiarian-card]');
+          if (!card || !root.contains(card)) return;
+          loadHoverImage(card);
+        },
+        { passive: true }
+      );
+    }
+
+    root.addEventListener('focusin', function (event) {
+      const card = event.target.closest('[data-apiarian-card]');
+      if (!card || !root.contains(card)) return;
+      loadHoverImage(card);
+    });
 
     function setCount(visibleCount) {
       if (!count) return;
