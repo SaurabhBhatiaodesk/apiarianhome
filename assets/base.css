@@ -2008,7 +2008,7 @@ input[type='checkbox'] {
 }
 .section-apiarian-breadcrumbs{
   position: relative;
-  z-index: 1;
+  z-index: -1 !important;
 }
 
 .quantity__rules .divider + .divider::before {
