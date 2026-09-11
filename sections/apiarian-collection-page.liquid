@@ -194,6 +194,20 @@
     font-weight: 300;
   }
 
+  #shopify-section-{{ section.id }} .apiarian-collection__empty {
+    padding: 48px 0;
+    border-top: 1px solid rgba(42, 33, 24, 0.16);
+    border-bottom: 1px solid rgba(42, 33, 24, 0.16);
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__empty-text {
+    margin: 0;
+    color: {{ section.settings.muted_color }};
+    font-size: 18px;
+    font-weight: 300;
+  }
+
   #shopify-section-{{ section.id }} .apiarian-collection__grid {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
@@ -336,7 +350,7 @@
     justify-content: center;
     min-height: 44px;
     padding: 13px 22px;
-    border: 0;
+    border: 1px solid {{ section.settings.button_background }};
     border-radius: 999px;
     background: {{ section.settings.button_background }};
     color: {{ section.settings.button_text_color }};
@@ -344,6 +358,14 @@
     font: inherit;
     font-size: 14px;
     text-decoration: none;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__button:hover:not(:disabled),
+  #shopify-section-{{ section.id }} .apiarian-collection-promo__button:hover {
+    background: {{ section.settings.button_hover_background }};
+    border-color: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text_color }};
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__button:disabled {
@@ -358,6 +380,23 @@
     text-decoration: none;
     border-bottom: 1px solid currentColor;
     padding-bottom: 2px;
+    transition: color 0.25s ease, opacity 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__link:hover {
+    color: {{ section.settings.accent_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filter {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__filter:hover:not(.is-active) {
+    border-color: {{ section.settings.text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection__band-item:hover {
+    filter: brightness(1.06);
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-promo {
@@ -526,6 +565,10 @@
             {% if section.settings.heading != blank %}
               <h1 class="apiarian-collection__title">
                 {{ section.settings.heading }}
+              </h1>
+            {% elsif section_collection.title != blank %}
+              <h1 class="apiarian-collection__title">
+                {{ section_collection.title }}
               </h1>
             {% endif %}
           </div>
@@ -755,6 +798,12 @@
               {% endif %}
             {% endpaginate %}
           </div>
+        </div>
+      {% else %}
+        <div class="apiarian-collection__empty">
+          <p class="apiarian-collection__empty-text">
+            {{ section.settings.empty_state_text | escape }}
+          </p>
         </div>
       {% endif %}
 
@@ -1054,6 +1103,12 @@
       "default": 90
     },
     {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "Empty collection text",
+      "default": "No products in this collection yet. Check back soon."
+    },
+    {
       "type": "checkbox",
       "id": "show_discovery_promo",
       "label": "Show discovery set promo",
@@ -1155,6 +1210,18 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
+      "default": "#FFFCF6"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#8A6A1F"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text color",
       "default": "#FFFCF6"
     },
     {
