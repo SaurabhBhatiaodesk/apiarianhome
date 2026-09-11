@@ -12,8 +12,6 @@
     "apiarian_collection_page": {
       "type": "apiarian-collection-page",
       "settings": {
-        "breadcrumb_home": "Shop",
-        "breadcrumb_current": "The colony",
         "eyebrow": "The collection",
         "heading": "Five roles, <em>five scents.</em>",
         "intro_text": "<p>Every bottle takes its character from one job inside the hive. Beeswax absolute from Netta's own frames sits under all five, so they share a base and part ways at the top.</p>",
