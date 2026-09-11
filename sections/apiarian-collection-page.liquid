@@ -610,21 +610,62 @@
 
         <div id="collection" class="apiarian-collection__panel">
           <div class="apiarian-collection__toolbar">
+            {% liquid
+              assign dynamic_feel_tags = ''
+              for feel_product in section_collection.products
+                if feel_product.gift_card? or feel_product.type == 'Gift Card' or feel_product.handle == 'the-colony-discovery-set' or feel_product.handle == 'the-apiarian-home-gift-card'
+                  continue
+                endif
+                assign feel_source = feel_product
+                assign feel_source_metafield = feel_product.metafields.custom.source_product
+                if feel_source_metafield != blank
+                  if feel_source_metafield.type contains 'list.product_reference'
+                    assign feel_source = feel_source_metafield.value | first
+                  elsif feel_source_metafield.type contains 'product_reference'
+                    assign feel_source = feel_source_metafield.value
+                  endif
+                endif
+                if feel_source == blank
+                  assign feel_source = feel_product
+                endif
+                assign feel_tags = feel_product.metafields.custom.custom_porudct_tag.value
+                if feel_tags == blank
+                  assign feel_tags = feel_source.metafields.custom.custom_porudct_tag.value
+                endif
+                assign feel_primary = feel_tags | first
+                if feel_primary != blank
+                  assign dynamic_feel_tags = dynamic_feel_tags | append: feel_primary | append: '||'
+                endif
+              endfor
+              assign dynamic_feel_tags_array = dynamic_feel_tags | split: '||' | uniq
+            %}
             <div class="apiarian-collection__filters" aria-label="{{ section.settings.filter_label | escape }}">
               <span class="apiarian-collection__filter-label">{{ section.settings.filter_label | escape }}</span>
               <button type="button" class="apiarian-collection__filter is-active" data-apiarian-feel-filter="all">
                 {{ section.settings.all_filter_label | escape }}
               </button>
-              {% for block in section.blocks %}
-                <button
-                  type="button"
-                  class="apiarian-collection__filter"
-                  data-apiarian-feel-filter="{{ block.settings.filter_key | handleize }}"
-                  {{ block.shopify_attributes }}
-                >
-                  {{ block.settings.label | escape }}
-                </button>
-              {% endfor %}
+              {% if dynamic_feel_tags_array.size > 0 %}
+                {% for feel_tag in dynamic_feel_tags_array %}
+                  <button
+                    type="button"
+                    class="apiarian-collection__filter"
+                    data-apiarian-feel-filter="{{ feel_tag | handleize }}"
+                  >
+                    {{ feel_tag | escape }}
+                  </button>
+                {% endfor %}
+              {% else %}
+                {% for block in section.blocks %}
+                  <button
+                    type="button"
+                    class="apiarian-collection__filter"
+                    data-apiarian-feel-filter="{{ block.settings.filter_key | handleize }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{ block.settings.label | escape }}
+                  </button>
+                {% endfor %}
+              {% endif %}
             </div>
 
             {% liquid
@@ -678,7 +719,8 @@
                   endif
                   assign role_label = card_product.metafields.custom.product_sub_title.value | default: source_product.metafields.custom.product_sub_title.value | default: card_product.type
                   assign card_caption = card_product.metafields.custom.product_caption.value | default: source_product.metafields.custom.product_caption.value | default: card_product.description
-                  assign filter_text = card_product.title | append: ' ' | append: role_label | append: ' ' | append: card_caption | append: ' ' | append: card_product.tags | downcase | handleize
+                  assign custom_product_tags_text = custom_product_tags | join: ' '
+                  assign filter_text = card_product.title | append: ' ' | append: role_label | append: ' ' | append: card_caption | append: ' ' | append: card_product.tags | append: ' ' | append: custom_product_tags_text | downcase | handleize
                   assign variant = card_product.selected_or_first_available_variant
                   assign quantity_value = variant.quantity_rule.min | default: 1
                   assign product_form_id = 'ApiarianCollectionProductForm-' | append: section.id | append: '-' | append: forloop.index | append: '-' | append: card_product.id
