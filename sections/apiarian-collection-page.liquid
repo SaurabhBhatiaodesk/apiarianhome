@@ -337,6 +337,61 @@
     text-transform: uppercase;
   }
 
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding: 0;
+    margin-top: 2px;
+    border: 0;
+    background: transparent;
+    color: {{ section.settings.accent_color }};
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand-toggle svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand-inner {
+    min-height: 0;
+    overflow: hidden;
+    padding-top: 10px;
+    color: {{ section.settings.body_color }};
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand-inner p {
+    margin: 0 0 10px;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__expand-inner p:last-child {
+    margin-bottom: 0;
+  }
+
   #shopify-section-{{ section.id }} .apiarian-collection-card__actions {
     display: flex;
     align-items: center;
@@ -849,6 +904,26 @@
                       </div>
                     {% endif %}
 
+                    {% if card_product.description != blank %}
+                      <button
+                        type="button"
+                        class="apiarian-collection-card__expand-toggle"
+                        data-apiarian-expand-toggle
+                        aria-expanded="false"
+                      >
+                        <span data-apiarian-expand-label>More details</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                          <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                      </button>
+
+                      <div class="apiarian-collection-card__expand" data-apiarian-expand-panel>
+                        <div class="apiarian-collection-card__expand-inner">
+                          {{ card_product.description }}
+                        </div>
+                      </div>
+                    {% endif %}
+
                     <div class="apiarian-collection-card__actions">
                       {% form 'product',
                         card_product,
@@ -1104,6 +1179,20 @@
           }
         }
       });
+    });
+
+    root.addEventListener('click', function (event) {
+      const expandToggle = event.target.closest('[data-apiarian-expand-toggle]');
+      if (!expandToggle) return;
+
+      const card = expandToggle.closest('[data-apiarian-card]');
+      const panel = card && card.querySelector('[data-apiarian-expand-panel]');
+      const label = expandToggle.querySelector('[data-apiarian-expand-label]');
+      if (!panel) return;
+
+      const isOpen = panel.classList.toggle('is-open');
+      expandToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (label) label.textContent = isOpen ? 'Less details' : 'More details';
     });
 
     root.addEventListener('click', function (event) {
