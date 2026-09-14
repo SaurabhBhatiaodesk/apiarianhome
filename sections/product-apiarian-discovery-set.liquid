@@ -42,6 +42,7 @@
 
   #shopify-section-{{ section.id }} .apiarian-discovery-set__inner {
     display: grid;
+    position:relative;
     grid-template-columns: minmax(0, {{ section.settings.left_width }}fr) minmax(0, {{ 100 | minus: section.settings.left_width }}fr);
     overflow: hidden;
     border-radius: {{ section.settings.border_radius }}px;
@@ -55,6 +56,22 @@
       {{ section.settings.content_padding_vertical }}px
       {{ section.settings.content_padding_horizontal }}px;
     background: {{ section.settings.background_color }};
+  }
+  #shopify-section-{{ section.id }} .apiarian-discovery-set__content .apiarian-values__bee {
+    position: absolute;
+    top: -34px;
+    left: 44px;
+    opacity: 0.6;
+    z-index: 2;
+    width: 85px;
+    height:86px;
+    pointer-events: none;
+    transform: rotate(-16deg);
+  }
+  #shopify-section-{{ section.id }} .apiarian-discovery-set__content .apiarian-values__bee img{
+    display: block;
+    width: auto;
+    height: 86px;
   }
 
   #shopify-section-{{ section.id }} .apiarian-discovery-set__content-inner {
@@ -321,7 +338,18 @@
 
     <div class="apiarian-discovery-set__content">
       <div class="apiarian-discovery-set__content-inner">
-
+        {% if section.settings.bee_image != blank %}
+        <div class="apiarian-values__bee">
+          {{
+            section.settings.bee_image
+            | image_url: width: 260
+            | image_tag:
+              loading: 'lazy',
+              widths: '100, 140, 180, 220, 260',
+              alt: section.settings.bee_image.alt
+          }}
+        </div>
+      {% endif %}
         {% if section.settings.eyebrow != blank %}
           <p class="apiarian-discovery-set__eyebrow">
             {{ section.settings.eyebrow | escape }}
@@ -592,6 +620,11 @@
     {
       "type": "header",
       "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "bee_image",
+      "label": "Bee image"
     },
     {
       "type": "text",
