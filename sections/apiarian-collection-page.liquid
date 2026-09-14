@@ -905,13 +905,12 @@
                       </div>
                     {% endif %}
 
-                    {% if card_product.description != blank %}
+                    {% comment %} {% if card_product.description != blank %}
                       <button
                         type="button"
                         class="apiarian-collection-card__expand-toggle"
                         data-apiarian-expand-toggle
-                        aria-expanded="false"
-                      >
+                        aria-expanded="false">
                         <span data-apiarian-expand-label>More details</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
                           <path d="M6 9l6 6 6-6"></path>
@@ -923,7 +922,7 @@
                           {{ card_product.description }}
                         </div>
                       </div>
-                    {% endif %}
+                    {% endif %} {% endcomment %}
 
                     <div class="apiarian-collection-card__actions">
                       {% form 'product',
