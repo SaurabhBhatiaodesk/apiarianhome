@@ -138,6 +138,7 @@
   #shopify-section-{{ section.id }} .apiarian-collection__band-label {
     font-size: 15px;
     letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection__panel {
@@ -341,6 +342,57 @@
     align-items: center;
     gap: 14px;
     padding-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__quantity {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    border: 1px solid rgba(42, 33, 24, 0.18);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__quantity-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    color: {{ section.settings.text_color }};
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__quantity-input {
+    width: 34px;
+    height: 100%;
+    border: 0;
+    border-left: 1px solid rgba(42, 33, 24, 0.14);
+    border-right: 1px solid rgba(42, 33, 24, 0.14);
+    text-align: center;
+    font: inherit;
+    font-size: 14px;
+    color: {{ section.settings.text_color }};
+    background: transparent;
+    -moz-appearance: textfield;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__quantity-input::-webkit-outer-spin-button,
+  #shopify-section-{{ section.id }} .apiarian-collection-card__quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__button,
@@ -805,7 +857,25 @@
                         novalidate: 'novalidate'
                       %}
                         <input type="hidden" name="id" value="{{ variant.id }}">
-                        <input type="hidden" name="quantity" value="{{ quantity_value }}">
+
+                        {% if variant.available %}
+                          <div class="apiarian-collection-card__quantity" data-apiarian-quantity>
+                            <button type="button" class="apiarian-collection-card__quantity-btn" data-apiarian-quantity-decrease aria-label="Decrease quantity">−</button>
+                            <input
+                              type="number"
+                              name="quantity"
+                              class="apiarian-collection-card__quantity-input"
+                              value="{{ quantity_value }}"
+                              min="1"
+                              inputmode="numeric"
+                              data-apiarian-quantity-input
+                            >
+                            <button type="button" class="apiarian-collection-card__quantity-btn" data-apiarian-quantity-increase aria-label="Increase quantity">+</button>
+                          </div>
+                        {% else %}
+                          <input type="hidden" name="quantity" value="{{ quantity_value }}">
+                        {% endif %}
+
                         <button
                           type="submit"
                           class="apiarian-collection-card__button"
@@ -813,7 +883,7 @@
                         >
                           {% if variant.available %}
                             {% if variant.title != blank and variant.title != 'Default Title' %}
-                              {{ section.settings.add_to_cart_label | escape }} {{ variant.title }} — {{ variant.price | money_without_trailing_zeros }}
+                              Add {{ variant.title }} — {{ variant.price | money_without_trailing_zeros }}
                             {% else %}
                               {{ section.settings.add_to_cart_label | escape }}
                             {% endif %}
@@ -962,6 +1032,95 @@
       loadHoverImage(card);
     });
 
+    root.querySelectorAll('.apiarian-collection-card__form').forEach(function (form) {
+      if (form.dataset.apiarianCartBound === 'true') return;
+      form.dataset.apiarianCartBound = 'true';
+
+      form.addEventListener('submit', async function (event) {
+        const cartDrawer = document.querySelector('cart-drawer');
+
+        if (
+          !cartDrawer ||
+          typeof cartDrawer.renderContents !== 'function' ||
+          typeof cartDrawer.getSectionsToRender !== 'function'
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const submitButton = form.querySelector('.apiarian-collection-card__button[type="submit"]');
+        if (submitButton && submitButton.disabled) return;
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.setAttribute('aria-disabled', 'true');
+        }
+
+        try {
+          const formData = new FormData(form);
+          const sectionsToRender = cartDrawer.getSectionsToRender().map(function (item) {
+            return item.id;
+          });
+
+          formData.append('sections', sectionsToRender.join(','));
+          formData.append('sections_url', window.location.pathname);
+
+          if (typeof cartDrawer.setActiveElement === 'function') {
+            cartDrawer.setActiveElement(document.activeElement || submitButton);
+          }
+
+          const response = await fetch(form.action, {
+            method: 'POST',
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              Accept: 'application/javascript'
+            },
+            body: formData
+          });
+
+          const parsedState = await response.json();
+
+          if (!response.ok || parsedState.status) {
+            throw new Error(
+              parsedState.description || parsedState.message || 'Unable to add this product to the cart.'
+            );
+          }
+
+          cartDrawer.renderContents(parsedState);
+
+          if (cartDrawer.classList.contains('is-empty')) {
+            cartDrawer.classList.remove('is-empty');
+          }
+        } catch (error) {
+          console.error('Apiarian collection add to cart error:', error);
+          window.alert(
+            error && error.message ? error.message : 'Unable to add this product to the cart. Please try again.'
+          );
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.removeAttribute('aria-disabled');
+          }
+        }
+      });
+    });
+
+    root.addEventListener('click', function (event) {
+      const decreaseButton = event.target.closest('[data-apiarian-quantity-decrease]');
+      const increaseButton = event.target.closest('[data-apiarian-quantity-increase]');
+      if (!decreaseButton && !increaseButton) return;
+
+      const wrapper = (decreaseButton || increaseButton).closest('[data-apiarian-quantity]');
+      const input = wrapper && wrapper.querySelector('[data-apiarian-quantity-input]');
+      if (!input) return;
+
+      const min = parseInt(input.min, 10) || 1;
+      let value = parseInt(input.value, 10) || min;
+      value = decreaseButton ? Math.max(min, value - 1) : value + 1;
+      input.value = value;
+    });
+
     function setCount(visibleCount) {
       if (!count) return;
 
@@ -1107,7 +1266,7 @@
       "type": "text",
       "id": "add_to_cart_label",
       "label": "Add to cart label",
-      "default": "Add to cart"
+      "default": "Add"
     },
     {
       "type": "text",
