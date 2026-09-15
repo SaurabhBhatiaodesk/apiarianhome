@@ -402,8 +402,8 @@
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__form {
-    display: grid;
-    grid-template-columns:1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
     width: 100%;
@@ -413,7 +413,6 @@
     box-shadow:none;
   }
   #shopify-section-{{ section.id }} .apiarian-collection-card__variant-select {
-    width: 100%;
     min-width: 0;
     min-height: 52px;
     padding: 12px 36px 12px 18px;
