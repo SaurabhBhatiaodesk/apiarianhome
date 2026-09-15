@@ -408,6 +408,20 @@
     flex-wrap: wrap;
   }
 
+  #shopify-section-{{ section.id }} .apiarian-collection-card__variant-select {
+    min-height: 44px;
+    max-width: 190px;
+    padding: 10px 34px 10px 16px;
+    border: 1px solid rgba(42, 33, 24, 0.18);
+    border-radius: 999px;
+    background-color: transparent;
+    color: {{ section.settings.text_color }};
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
   #shopify-section-{{ section.id }} .apiarian-collection-card__quantity {
     display: inline-flex;
     align-items: center;
@@ -931,7 +945,31 @@
                         class: 'apiarian-collection-card__form',
                         novalidate: 'novalidate'
                       %}
-                        <input type="hidden" name="id" value="{{ variant.id }}">
+                        {% if card_product.variants_count > 1 %}
+                          <select
+                            name="id"
+                            class="apiarian-collection-card__variant-select"
+                            aria-label="Choose size for {{ card_product.title | escape }}"
+                            data-apiarian-variant-select
+                          >
+                            {% for product_variant in card_product.variants %}
+                              {% assign variant_quantity_value = product_variant.quantity_rule.min | default: 1 %}
+                              <option
+                                value="{{ product_variant.id }}"
+                                {% if product_variant.id == variant.id %}selected{% endif %}
+                                {% unless product_variant.available %}disabled{% endunless %}
+                                data-variant-title="{{ product_variant.title | escape }}"
+                                data-variant-price="{{ product_variant.price | money_without_trailing_zeros | escape }}"
+                                data-variant-available="{% if product_variant.available %}true{% else %}false{% endif %}"
+                                data-quantity-min="{{ variant_quantity_value }}"
+                              >
+                                {{ product_variant.title | escape }} - {{ product_variant.price | money_without_trailing_zeros }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        {% else %}
+                          <input type="hidden" name="id" value="{{ variant.id }}">
+                        {% endif %}
 
                         {% if variant.available %}
                           <div class="apiarian-collection-card__quantity" data-apiarian-quantity>
@@ -941,7 +979,7 @@
                               name="quantity"
                               class="apiarian-collection-card__quantity-input"
                               value="{{ quantity_value }}"
-                              min="1"
+                              min="{{ quantity_value }}"
                               inputmode="numeric"
                               data-apiarian-quantity-input
                             >
@@ -954,11 +992,14 @@
                         <button
                           type="submit"
                           class="apiarian-collection-card__button"
+                          data-apiarian-add-button
+                          data-add-label="{{ section.settings.add_to_cart_label | escape }}"
+                          data-sold-out-label="{{ section.settings.sold_out_label | escape }}"
                           {% unless variant.available %}disabled{% endunless %}
                         >
                           {% if variant.available %}
                             {% if variant.title != blank and variant.title != 'Default Title' %}
-                              Add {{ variant.title }} — {{ variant.price | money_without_trailing_zeros }}
+                              {{ section.settings.add_to_cart_label | escape }} {{ variant.title | escape }} &mdash; {{ variant.price | money_without_trailing_zeros }}
                             {% else %}
                               {{ section.settings.add_to_cart_label | escape }}
                             {% endif %}
@@ -1110,6 +1151,48 @@
     root.querySelectorAll('.apiarian-collection-card__form').forEach(function (form) {
       if (form.dataset.apiarianCartBound === 'true') return;
       form.dataset.apiarianCartBound = 'true';
+
+      const variantSelect = form.querySelector('[data-apiarian-variant-select]');
+      const addButton = form.querySelector('[data-apiarian-add-button]');
+      const quantityInput = form.querySelector('[data-apiarian-quantity-input]');
+
+      function updateSelectedVariant() {
+        if (!variantSelect || !addButton) return;
+
+        const selectedOption = variantSelect.options[variantSelect.selectedIndex];
+        if (!selectedOption) return;
+
+        const addLabel = addButton.dataset.addLabel || 'Add';
+        const soldOutLabel = addButton.dataset.soldOutLabel || 'Sold out';
+        const variantTitle = selectedOption.dataset.variantTitle || '';
+        const variantPrice = selectedOption.dataset.variantPrice || '';
+        const variantAvailable = selectedOption.dataset.variantAvailable !== 'false';
+
+        addButton.disabled = !variantAvailable;
+        addButton.toggleAttribute('aria-disabled', !variantAvailable);
+
+        if (!variantAvailable) {
+          addButton.textContent = soldOutLabel;
+        } else if (variantTitle && variantTitle !== 'Default Title') {
+          addButton.textContent = addLabel + ' ' + variantTitle + ' \u2014 ' + variantPrice;
+        } else {
+          addButton.textContent = addLabel;
+        }
+
+        if (quantityInput) {
+          const minimumQuantity = parseInt(selectedOption.dataset.quantityMin, 10) || 1;
+          quantityInput.min = minimumQuantity;
+
+          if ((parseInt(quantityInput.value, 10) || 0) < minimumQuantity) {
+            quantityInput.value = minimumQuantity;
+          }
+        }
+      }
+
+      if (variantSelect) {
+        variantSelect.addEventListener('change', updateSelectedVariant);
+        updateSelectedVariant();
+      }
 
       form.addEventListener('submit', async function (event) {
         const cartDrawer = document.querySelector('cart-drawer');
