@@ -403,13 +403,15 @@
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__form {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 126px;
+    grid-template-columns:1fr 1fr;
     align-items: center;
     gap: 10px;
     width: 100%;
     max-width: 390px;
   }
-
+  #shopify-section-{{ section.id }} .apiarian-collection-card__variant-select:focus-visible{
+    box-shadow:none;
+  }
   #shopify-section-{{ section.id }} .apiarian-collection-card__variant-select {
     width: 100%;
     min-width: 0;
@@ -501,8 +503,6 @@
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__button {
-    grid-column: 1 / -1;
-    width: 100%;
     min-height: 52px;
     padding: 13px 24px;
     font-size: 15px;
@@ -1021,11 +1021,12 @@
                             {{ section.settings.sold_out_label | escape }}
                           {% endif %}
                         </button>
+                        <a href="{{ card_product.url }}" class="apiarian-collection-card__link">
+                          {{ section.settings.product_link_label | escape }}
+                        </a>
                       {% endform %}
 
-                      <a href="{{ card_product.url }}" class="apiarian-collection-card__link">
-                        {{ section.settings.product_link_label | escape }}
-                      </a>
+                      
                     </div>
                   </div>
                 </article>
