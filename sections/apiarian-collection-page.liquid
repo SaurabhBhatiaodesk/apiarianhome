@@ -395,23 +395,26 @@
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__actions {
     display: flex;
-    align-items: center;
-    gap: 14px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
     padding-top: 8px;
-    flex-wrap: wrap;
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__form {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 126px;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap;
+    width: 100%;
+    max-width: 390px;
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__variant-select {
-    min-height: 44px;
-    max-width: 190px;
-    padding: 10px 34px 10px 16px;
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 12px 36px 12px 18px;
     border: 1px solid rgba(42, 33, 24, 0.18);
     border-radius: 999px;
     background-color: transparent;
@@ -425,7 +428,9 @@
   #shopify-section-{{ section.id }} .apiarian-collection-card__quantity {
     display: inline-flex;
     align-items: center;
-    height: 44px;
+    justify-content: space-between;
+    width: 126px;
+    height: 52px;
     border: 1px solid rgba(42, 33, 24, 0.18);
     border-radius: 999px;
     overflow: hidden;
@@ -435,7 +440,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
+    width: 40px;
     height: 100%;
     border: 0;
     background: transparent;
@@ -446,7 +451,7 @@
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__quantity-input {
-    width: 34px;
+    width: 44px;
     height: 100%;
     border: 0;
     border-left: 1px solid rgba(42, 33, 24, 0.14);
@@ -493,6 +498,15 @@
   #shopify-section-{{ section.id }} .apiarian-collection-card__button:disabled {
     cursor: default;
     opacity: 0.55;
+  }
+
+  #shopify-section-{{ section.id }} .apiarian-collection-card__button {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 52px;
+    padding: 13px 24px;
+    font-size: 15px;
+    white-space: normal;
   }
 
   #shopify-section-{{ section.id }} .apiarian-collection-card__link {
