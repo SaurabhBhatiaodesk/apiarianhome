@@ -1021,11 +1021,7 @@
                           {% unless variant.available %}disabled{% endunless %}
                         >
                           {% if variant.available %}
-                            {% if variant.title != blank and variant.title != 'Default Title' %}
-                              {{ section.settings.add_to_cart_label | escape }} {{ variant.title | escape }} &mdash; {{ variant.price | money_without_trailing_zeros }}
-                            {% else %}
-                              {{ section.settings.add_to_cart_label | escape }}
-                            {% endif %}
+                            {{ section.settings.add_to_cart_label | escape }}
                           {% else %}
                             {{ section.settings.sold_out_label | escape }}
                           {% endif %}
@@ -1188,8 +1184,6 @@
 
         const addLabel = addButton.dataset.addLabel || 'Add';
         const soldOutLabel = addButton.dataset.soldOutLabel || 'Sold out';
-        const variantTitle = selectedOption.dataset.variantTitle || '';
-        const variantPrice = selectedOption.dataset.variantPrice || '';
         const variantAvailable = selectedOption.dataset.variantAvailable !== 'false';
 
         addButton.disabled = !variantAvailable;
@@ -1197,8 +1191,6 @@
 
         if (!variantAvailable) {
           addButton.textContent = soldOutLabel;
-        } else if (variantTitle && variantTitle !== 'Default Title') {
-          addButton.textContent = addLabel + ' ' + variantTitle + ' \u2014 ' + variantPrice;
         } else {
           addButton.textContent = addLabel;
         }
